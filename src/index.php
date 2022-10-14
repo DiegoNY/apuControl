@@ -24,7 +24,7 @@
     </header>
     <main>
        
-        <div class="<?php $arreglo[0];?> ">
+        <div class="">
            
         </div>
 
@@ -53,12 +53,7 @@
                 <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
             </form>
 
-            <?php 
-            // $listado = $grupo->verGrupos();
-            // while($row=mysqli_fetch_object($listado)){
-                
-            // }
-            ?> 
+           
             <div class="tabla-grupo">
                 <div class="tablas-empresa table-responsive">
                     <table id="grupo" class="table table-bordered border table-hover" style="width:100%">
