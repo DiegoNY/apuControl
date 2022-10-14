@@ -23,13 +23,13 @@
 
     </header>
     <main>
-       
-        <div class="alert ">
-           
-        </div>
 
+        <div class="alert ">
+
+        </div>
         <div class="formulario-registro-grupos">
             <form id="frm_grupo" name="frm_grupo">
+                <input type="hidden" name="txtIdGrupo" id="id_grupo">
                 <div>
                     <label for="txtNombre">Nombre Grupo :</label>
                     <input type="hidden" name="txtFuncion" id="txtFuncion" value="Insertar">
@@ -53,7 +53,6 @@
                 <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
             </form>
 
-            
             <div class="tabla-grupo">
                 <div class="tablas-empresa table-responsive">
                     <table id="tabla-grupo" class="table table-bordered border table-hover" style="width:100%">
@@ -65,16 +64,16 @@
                                 <th>Fecha Creacion </th>
                                 <th>Usuario Creacion</th>
                                 <th>Estatus</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody id="listado-grupos">
                             <!-- Data en Ajax-->
-                          
+
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
         <h1 id="alerta" class="alert "></h1>

@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class BaseDatos{
+class BaseDatos
+{
 
     private $con;
     private $dbhost = "localhost";
@@ -13,49 +14,65 @@ class BaseDatos{
         $this->conectardb();
     }
 
-   
-    public function sanitizar($var){
+
+    public function sanitizar($var)
+    {
         $return  = mysqli_real_escape_string($this->con, $var);
         return $return;
     }
+    public function editarGrupo($id, $nombre, $descripcion, $usuarioCreacion)
+    {
+        $consulta = "update grupo as g set nombre = '$nombre', descripcion ='$descripcion', usuarioCreacion = '$usuarioCreacion' where (g.id = '$id');";
 
-    public function verGrupo($id){
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res === TRUE) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    public function verGrupo($id)
+    {
         $consulta = "SELECT * FROM `grupo` as g where (g.estado = 1 and g.id = $id);";
-        $res = mysqli_query($this->con,$consulta);
+        $res = mysqli_query($this->con, $consulta);
         return $res;
     }
 
-    public function eliminarGrupo($id){
+    public function eliminarGrupo($id)
+    {
         $consulta = "update grupo as g set estado = 0 where  g.id = $id";
-        $res = mysqli_query($this->con,$consulta);
-        if($res == TRUE){
+        $res = mysqli_query($this->con, $consulta);
+        if ($res == TRUE) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public function crearGrupo($nombre,$descripcion,$estado,$usuarioCreacion,$fechaCreacion){
+    public function crearGrupo($nombre, $descripcion, $estado, $usuarioCreacion, $fechaCreacion)
+    {
         $consulta = "insert into `grupo`(nombre,descripcion,estado,usuarioCreacion,fechaCreacion) values ('$nombre','$descripcion','$estado','$usuarioCreacion','$fechaCreacion');";
-        $res = mysqli_query($this->con,$consulta);
+        $res = mysqli_query($this->con, $consulta);
 
-        if($res == TRUE ){
+        if ($res == TRUE) {
             return TRUE;
-        }else{
+        } else {
             return FALSE;
         }
     }
 
-    public function verGrupos(){
+    public function verGrupos()
+    {
         $consulta = "SELECT * FROM `grupo` as g where (g.estado = 1);";
-        $res = mysqli_query($this->con,$consulta);
+        $res = mysqli_query($this->con, $consulta);
         return $res;
     }
 
-    public function conectardb(){
+    public function conectardb()
+    {
         $this->con = mysqli_connect($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
-			if(mysqli_connect_error()){
-				die("Conexión a la base de datos falló " . mysqli_connect_error() . mysqli_connect_errno());
-			}
+        if (mysqli_connect_error()) {
+            die("Conexión a la base de datos falló " . mysqli_connect_error() . mysqli_connect_errno());
+        }
     }
-
 }

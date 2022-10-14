@@ -18,33 +18,23 @@ $grupo = new BaseDatos();
  * recibe valor cuando funcion sea insertar se insertaran los datos
  */
 
-switch ($txtFuncion) {
-    case 'Insertar':
-        if (isset($txtNombre) && !empty($txtNombre)) {
-            //Los datos
-            $nombre = $grupo->sanitizar($txtNombre);
-            $descripcion = $grupo->sanitizar($txtDescripcion);
-            $estado = $grupo->sanitizar($txtEstado);
-            $usuarioCreacion = $grupo->sanitizar($txtUsuCre);
-            $fechaCreacion = $grupo->sanitizar($txtFechCre);
 
-            //La insercion y la respuesta 👌
+if (isset($txtNombre) && !empty($txtNombre)) {
+    //Los datos
+    $nombre = $grupo->sanitizar($txtNombre);
+    $descripcion = $grupo->sanitizar($txtDescripcion);
+    $estado = $grupo->sanitizar($txtEstado);
+    $usuarioCreacion = $grupo->sanitizar($txtUsuCre);
+    $fechaCreacion = $grupo->sanitizar($txtFechCre);
 
-            $res = $grupo->crearGrupo($nombre, $descripcion, $estado, $usuarioCreacion, $fechaCreacion);
-            if ($res == TRUE) {
+    //La insercion y la respuesta 👌
 
-                $mensaje = "alert-success"; 
+    $res = $grupo->crearGrupo($nombre, $descripcion, $estado, $usuarioCreacion, $fechaCreacion);
+    if ($res == TRUE) {
 
-            } else {
-                $mensaje = "alert-danger" ;
-            }
-            echo $mensaje;
-           
-        }
-        break;
-    case 'Editar':
-        echo "Editando...";
-    default:
-        # code...
-        break;
+        $mensaje = "alert-success";
+    } else {
+        $mensaje = "alert-danger";
+    }
+    echo $mensaje;
 }

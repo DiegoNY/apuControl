@@ -1,3 +1,4 @@
+let editar = false;
 
 $(document).ready(function () {
     $('#tabla-grupo').DataTable({
@@ -12,11 +13,14 @@ $(document).ready(function () {
 });
 
 function RegistrarGrupo() {
+    //si aun no estamos editando se registrara el grupo  pero si se esta editando se editaran los datos 
+    let url = editar === false ? 'procesarGrupo.php' : 'editar-grupo.php';
     $.ajax({
         type: "GET",
         data: $("#frm_grupo").serialize(),
-        url: 'procesarGrupo.php',
+        url: url,
         success: function (data) {
+            console.log(data);
             //cuando se ingresen los grupos se motran en pantalla sin refrescar
             CargarGrupos();
 
@@ -27,6 +31,7 @@ function RegistrarGrupo() {
     });
     //se reinicia el formulario cuando enviamos datos
     $('#frm_grupo').trigger('reset');
+
 }
 
 
@@ -39,7 +44,6 @@ function CargarGrupos() {
         success: function (response) {
             let grupos = JSON.parse(response);
             let templates = '';
-            console.log(grupos);
             //recorriendo el grupo y mostrandolo en la tabla por ello se creo el template
             grupos.forEach(grupos => {
                 templates += `
@@ -79,15 +83,20 @@ function EliminarGrupo() {
 }
 
 $(document).on('click', '.btn-edit', function () {
+
     let element = $(this)[0].parentElement.parentElement;
     let id = $(element).attr('id-grupos');
     $.post('escuchar-grupo.php', { id }, function (response) {
         let grupo = JSON.parse(response);
+        $('#id_grupo').val(grupo.id);
         $('#txtNombre').val(grupo.nombre);
         $('#txtDescripcion').val(grupo.descripcion);
         $('#txtEstado').val(grupo.estado);
         $('#txtUsuCre').val(grupo.usuarioCreacion);
         $('#txtFechCre').val(grupo.fechaCreacion);
+        editar = true;
+       
     });
 
 })
+
