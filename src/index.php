@@ -100,17 +100,17 @@
                     <label for="txtDireccion">Direccion</label>
                     <input type="text" value="" name="txtDireccion">
                 </div>
-                <div>
-                    <label for="cboIdU">Seleccion el Ubigeo</label>
-                    <select name="cboIdu" id="cboIdu">
-                        <option value="value1">Value 1</option>
-                        <option value="value2" selected>Value 2</option>
-                        <option value="value3">Value 3</option>
-                    </select>
-                </div>
                 <div >
+                    <div>
+                        <label for="cboTipoSistema">Selecciona el tipo de sistema</label>
+                        <select name="cboTipoSistema" id="cboTipoSistema">
+                            <option value="1">GESFARMA</option>
+                            <option value="2" selected>APUGESCOM</option>
+                           
+                        </select>
+                    </div>
                     <label for="cboIdGrupo" >Seleccion Grupo</label>
-                    <select id="cbogrupo">
+                    <select id="cbogrupo" name="txtIdGrupo">
                     <option value="value" >value</option>
                     </select>
                 </div>
@@ -161,6 +161,7 @@
                 </div>
                 <div>
                     <input type="hidden" value="1" name="txtEstado">
+                    <input type="hidden" value="1" name="txtEliminada">
                 </div>
                 <input type="button" onclick="RegistrarEmpresa()" value="ingresar Empresa">
             </form>
