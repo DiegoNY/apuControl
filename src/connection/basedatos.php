@@ -20,6 +20,8 @@ class BaseDatos
         $return  = mysqli_real_escape_string($this->con, $var);
         return $return;
     }
+
+    //CRUD GRUPOS :
     public function editarGrupo($id, $nombre, $descripcion, $usuarioCreacion)
     {
         $consulta = "update grupo as g set nombre = '$nombre', descripcion ='$descripcion', usuarioCreacion = '$usuarioCreacion' where (g.id = '$id');";
@@ -32,6 +34,7 @@ class BaseDatos
             return FALSE;
         }
     }
+
     public function verGrupo($id)
     {
         $consulta = "SELECT * FROM `grupo` as g where (g.estado = 1 and g.id = $id);";
@@ -49,6 +52,7 @@ class BaseDatos
             return false;
         }
     }
+
     public function crearGrupo($nombre, $descripcion, $estado, $usuarioCreacion, $fechaCreacion)
     {
         $consulta = "insert into `grupo`(nombre,descripcion,estado,usuarioCreacion,fechaCreacion) values ('$nombre','$descripcion','$estado','$usuarioCreacion','$fechaCreacion');";
@@ -61,6 +65,7 @@ class BaseDatos
         }
     }
 
+
     public function verGrupos()
     {
         $consulta = "SELECT * FROM `grupo` as g where (g.estado = 1);";
@@ -68,6 +73,34 @@ class BaseDatos
         return $res;
     }
 
+    //CRUD RUBRO
+
+    //CRUD BANDERA
+
+    //CRUD EMPRESAS
+    public function agregarEmpresa()
+    {
+        
+    }
+
+    public function verEmpresas()
+    {
+    }
+
+    public function  editarEmpresas()
+    {
+    }
+
+    public function borrarEmpresas()
+    {
+    }
+
+    public function actualizarEmpresas()
+    {
+    }
+
+
+    //conectar la BD
     public function conectardb()
     {
         $this->con = mysqli_connect($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);

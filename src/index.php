@@ -22,12 +22,14 @@
     <header>
 
     </header>
-    <main>
+
+
+    <div class="formulario-tabla-grupo inactive">
 
         <div class="alert ">
 
         </div>
-        <div class="formulario-registro-grupos">
+        <div class="formulario-registro-grupos ">
             <form id="frm_grupo" name="frm_grupo">
                 <input type="hidden" name="txtIdGrupo" id="id_grupo">
                 <div>
@@ -77,8 +79,127 @@
             </div>
         </div>
         <h1 id="alerta" class="alert "></h1>
-    </main>
+    </div>
+
+    <div class="frm-tabla-empresa">
+        <div class="frm">
+            <form id="frm_empresa">
+                <div>
+                    <label for="txtNombreCo"> Nombre</label>
+                    <input type="text" value="" name="txtNombreCo">
+                </div>
+                <div>
+                    <label for="txtRuc"> Ruc</label>
+                    <input type="text" value="" name="txtNombreCo">
+                </div>
+                <div>
+                    <label for="txtRazonSocial">Razon social</label>
+                    <input type="text" value="" name="txtRazonSocial">
+                </div>
+                <div>
+                    <label for="txtDireccion">Direccion</label>
+                    <input type="text" value="" name="txtDireccion">
+                </div>
+                <div>
+                    <label for="cboIdU">Seleccion el Ubigeo</label>
+                    <select name="cboIdu" id="cboIdu">
+                        <option value="value1">Value 1</option>
+                        <option value="value2" selected>Value 2</option>
+                        <option value="value3">Value 3</option>
+                    </select>
+                </div>
+                <div >
+                    <label for="cboIdGrupo" >Seleccion Grupo</label>
+                    <select id="cbogrupo">
+                    <option value="value" >value</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cboIdRubro">Seleccion el Rubro</label>
+                    <select name="cboIdRubro" id="cboIdRubro">
+                        <option value="1">EDS</option>
+                        <option value="2" selected>BOTICAS</option>
+                        <option value="3">MARKETS</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cboTipoEnvio">Seleccion el tipo de envio</label>
+                    <select name="cboTipoEnvio" id="cboTipoEnvio">
+                        <option value="1">OSE</option>
+                        <option value="2" selected>SUNAT</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cboIdTipoIntegracion">Selecciona el tipo de integracion</label>
+                    <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion">
+                        <option value="1">DBF</option>
+                        <option value="2" selected>TXT</option>
+                        <option value="3">JSON</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="txtFechaRegistro">Ingresela fecha de registro</label>
+                    <input type="text" name="txtFechaRegistro">
+                </div>
+                <div>
+                    <label for="txtEstadoComercial">Ingresa el estado comercial</label>
+                    <input type="text" name="txtEstadoComercial">
+                </div>
+                <div>
+                    <label for="cboTipoPersona">Selecciona el tipo de persona</label>
+                    <select name="cboTipoPersona" id="">
+                        <option value="1">Natural</option>
+                        <option value="2" selected>Juridica</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cboEstado">Estado</label>
+                    <select name="cboEstado" id="cboEstado">
+                        <option value="0">Posible Cliente</option>
+                        <option value="1" selected>Cliente</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="hidden" value="1" name="txtEstado">
+                </div>
+            </form>
+        </div>
+
+        <div class="tabla-tipo-sistema">
+            <div class="tablas-empresa table-responsive">
+                <table id="tabla_TS" class="table table-bordered border table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Ruc</th>
+                            <th>Social</th>
+                            <th>Ubigeo</th>
+                            <th>Grupo</th>
+                            <th>Rubro</th>
+                            <th>Tipo de envio</th>
+                            <th>Fecha de registro</th>
+                            <th>Estado comercial</th>
+                            <th>Tipo de persona</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listado-sistema">
+                        <!-- Data en Ajax-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
 </body>
 
 </html>
+<style>
+    .inactive {
+        display: none;
+    }
+</style>
 <script type="text/javascript" src="js/main.js"></script>

@@ -1,3 +1,4 @@
+//para los grupos 
 let editar = false;
 
 $(document).ready(function () {
@@ -95,8 +96,34 @@ $(document).on('click', '.btn-edit', function () {
         $('#txtUsuCre').val(grupo.usuarioCreacion);
         $('#txtFechCre').val(grupo.fechaCreacion);
         editar = true;
-       
+
     });
 
 })
+
+cargaGrupoEnFrm();
+function cargaGrupoEnFrm() {
+    //cargando grupo en frm-empresa
+    $.ajax({
+        url: 'mostrarGrupos.php',
+        type: 'GET',
+        success: function (response) {
+            let grupos = JSON.parse(response);
+            let template = '';
+            //recorriendo el grupo y mostrandolo en la tabla por ello se creo el template
+            grupos.forEach(grupos => {
+                template += `
+                
+                <option value="${grupos.id}">${grupos.nombre}</option>
+              
+        `
+            });
+            //pasamos el template al index
+            $('#cbogrupo').html(template);
+        }
+    });
+}
+
+//PARA LA EMPRESA  
+
 

@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+}
+header{
+    background-color: red;
+    height: 9vh;
+    width: auto;
+}
+main{
+    background-color: wheat;
+    height: 91vh;
+    width: auto;
+}
+.empresas{
+    height: 150px;
+    width: 150px;
+    background-color: aqua;
+    
+}
+footer{
+    display: none;
+}
+.formulario-tabla-grupo{
+    display: none;
+}
