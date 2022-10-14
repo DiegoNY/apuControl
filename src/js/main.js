@@ -125,5 +125,18 @@ function cargaGrupoEnFrm() {
 }
 
 //PARA LA EMPRESA  
+RegistrarEmpresa();
+function RegistrarEmpresa(){
+    $.ajax({
+        url: 'registrar-empresa.php',
+        type : 'GET',
+        data : $('#frm_empresa').serialize(), 
+        success:function(response){
+
+            console.log(response);
+        }
+
+    })
+}
 
 

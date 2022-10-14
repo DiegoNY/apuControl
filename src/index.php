@@ -90,7 +90,7 @@
                 </div>
                 <div>
                     <label for="txtRuc"> Ruc</label>
-                    <input type="text" value="" name="txtNombreCo">
+                    <input type="text" value="" name="txtRuc">
                 </div>
                 <div>
                     <label for="txtRazonSocial">Razon social</label>
@@ -162,12 +162,13 @@
                 <div>
                     <input type="hidden" value="1" name="txtEstado">
                 </div>
+                <input type="button" onclick="RegistrarEmpresa()" value="ingresar Empresa">
             </form>
         </div>
 
-        <div class="tabla-tipo-sistema">
+        <div class="tabla-empresas">
             <div class="tablas-empresa table-responsive">
-                <table id="tabla_TS" class="table table-bordered border table-hover" style="width:100%">
+                <table id="tabla_empresas" class="table table-bordered border table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -183,7 +184,7 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody id="listado-sistema">
+                    <tbody id="listado-empresas">
                         <!-- Data en Ajax-->
                     </tbody>
                 </table>
