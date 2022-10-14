@@ -43,14 +43,17 @@ function CargarGrupos() {
             //recorriendo el grupo y mostrandolo en la tabla por ello se creo el template
             grupos.forEach(grupos => {
                 templates += `
-            <tr>
+            <tr id-grupos="${grupos.id} ">
                 <td>${grupos.id}</td>
                 <td>${grupos.nombre}</td>
                 <td>${grupos.descripcion}</td>
                 <td>${grupos.fechaCreacion}</td>
                 <td>${grupos.usuarioCreacion}</td>
                 <td>${grupos.estado}</td>
-                <td><i class="btn-delete"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+                
+                <td><i class="btn-edit"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+                
+                <td><i class="btn-delete"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
             </tr>
             `
             });
@@ -60,24 +63,31 @@ function CargarGrupos() {
     });
 }
 
-$(document).on('click','.btn-delete',function(){
-   //console.log('Funciono no me preciones aaa!') 
-    let element =  $(this)[0].parentElement.parentElement;
-    console.log(element);
-    // if(confirm('Estas seguro de borrarlo ?')){
-       
-    // }
-})
+EliminarGrupo();
+function EliminarGrupo() {
 
-//llamar atravez de un boton 
-function EliminarGrupo(id) {
-
-    $.ajax({
-        type: "POST",
-        data: $("#id").val(),
-        url: 'eliminarGrupo.php',
-        success: function (data) {
-            console.log(data);
+    $(document).on('click', '.btn-delete', function () {
+        //obteniendo toda la fila para poder obtener el id 
+        if (confirm("Quieres eliminar el Grupo ?")) {
+            let element = $(this)[0].parentElement.parentElement;
+            let id = $(element).attr('id-grupos');
+            $.post('eliminarGrupo.php', { id }, function (response) {
+                CargarGrupos();
+            });
         }
     })
 }
+
+$(document).on('click', '.btn-edit', function () {
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr('id-grupos');
+    $.post('escuchar-grupo.php', { id }, function (response) {
+        let grupo = JSON.parse(response);
+        $('#txtNombre').val(grupo.nombre);
+        $('#txtDescripcion').val(grupo.descripcion);
+        $('#txtEstado').val(grupo.estado);
+        $('#txtUsuCre').val(grupo.usuarioCreacion);
+        $('#txtFechCre').val(grupo.fechaCreacion);
+    });
+
+})

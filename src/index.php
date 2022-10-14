@@ -65,6 +65,7 @@
                                 <th>Fecha Creacion </th>
                                 <th>Usuario Creacion</th>
                                 <th>Estatus</th>
+                                
                             </tr>
                         </thead>
                         <tbody id="listado-grupos">

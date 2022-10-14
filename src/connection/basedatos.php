@@ -13,11 +13,27 @@ class BaseDatos{
         $this->conectardb();
     }
 
+   
     public function sanitizar($var){
         $return  = mysqli_real_escape_string($this->con, $var);
         return $return;
     }
 
+    public function verGrupo($id){
+        $consulta = "SELECT * FROM `grupo` as g where (g.estado = 1 and g.id = $id);";
+        $res = mysqli_query($this->con,$consulta);
+        return $res;
+    }
+
+    public function eliminarGrupo($id){
+        $consulta = "update grupo as g set estado = 0 where  g.id = $id";
+        $res = mysqli_query($this->con,$consulta);
+        if($res == TRUE){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function crearGrupo($nombre,$descripcion,$estado,$usuarioCreacion,$fechaCreacion){
         $consulta = "insert into `grupo`(nombre,descripcion,estado,usuarioCreacion,fechaCreacion) values ('$nombre','$descripcion','$estado','$usuarioCreacion','$fechaCreacion');";
         $res = mysqli_query($this->con,$consulta);
