@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
-    
+
 </head>
 
 <body>
@@ -23,16 +23,16 @@
 
     </header>
     <main>
-       
-        <div class="<?php $arreglo[0];?> ">
-           
+
+        <div class=" alert-success">
+
         </div>
 
         <div class="formulario-registro-grupos">
-            <form id="frm_grupo" name="frm_grupo" >
+            <form id="frm_grupo" name="frm_grupo">
                 <div>
                     <label for="txtNombre">Nombre Grupo :</label>
-                    <input type="hidden" name="txtFuncion" id="txtFuncion" value="Insertar" >
+                    <input type="hidden" name="txtFuncion" id="txtFuncion" value="Insertar">
                     <input type="text" name="txtNombre" id="txtNombre">
                 </div>
                 <div>
@@ -53,12 +53,6 @@
                 <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
             </form>
 
-            <?php 
-            // $listado = $grupo->verGrupos();
-            // while($row=mysqli_fetch_object($listado)){
-                
-            // }
-            ?> 
             <div class="tabla-grupo">
                 <div class="tablas-empresa table-responsive">
                     <table id="grupo" class="table table-bordered border table-hover" style="width:100%">
@@ -74,14 +68,21 @@
                         </thead>
                         <tbody>
                             <!-- Data en Ajax-->
+                            <td>s</td>
+                            <td>s</td>
+                            <td>s</td>
+                            <td>s</td>
+                            <td>s</td>
+                            <td>s</td>
                         </tbody>
                     </table>
                 </div>
-
+                
             </div>
         </div>
+        <h1 id="alerta" class="alert "></h1>
     </main>
 </body>
 
 </html>
-<script  type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>

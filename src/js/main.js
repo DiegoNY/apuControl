@@ -1,3 +1,5 @@
+const alerta = document.querySelector();
+
 $(document).ready(function() {
     $('#grupo').DataTable({
         scrollY: '420px',
@@ -18,7 +20,23 @@ function RegistrarGrupo()
         url : 'procesarGrupo.php',
         success: function(data)
         {
+        //muestra verde si se enviaron los datos
+        const alerta = document.querySelector('#alerta');
+        alerta.classList.toggle(data);
+        }
+    })
+}
+
+function EliminarGrupo(){
+
+    $.ajax({
+        type : "POST",
+        data: $("#id").val(),
+        url : 'eliminarGrupo.php',
+        success : function(data)
+        {
             console.log(data);
         }
     })
+
 }
