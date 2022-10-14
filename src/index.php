@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
-    
+
 </head>
 
 <body>
@@ -24,15 +24,15 @@
     </header>
     <main>
        
-        <div class="">
+        <div class="alert ">
            
         </div>
 
         <div class="formulario-registro-grupos">
-            <form id="frm_grupo" name="frm_grupo" >
+            <form id="frm_grupo" name="frm_grupo">
                 <div>
                     <label for="txtNombre">Nombre Grupo :</label>
-                    <input type="hidden" name="txtFuncion" id="txtFuncion" value="Insertar" >
+                    <input type="hidden" name="txtFuncion" id="txtFuncion" value="Insertar">
                     <input type="text" name="txtNombre" id="txtNombre">
                 </div>
                 <div>
@@ -53,30 +53,32 @@
                 <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
             </form>
 
-           
+            
             <div class="tabla-grupo">
                 <div class="tablas-empresa table-responsive">
-                    <table id="grupo" class="table table-bordered border table-hover" style="width:100%">
+                    <table id="tabla-grupo" class="table table-bordered border table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Direccion</th>
-                                <th>R.Social</th>
-                                <th>Contactos</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
+                                <th>id</th>
+                                <th>Nombre </th>
+                                <th>Descripcion </th>
+                                <th>Fecha Creacion </th>
+                                <th>Usuario Creacion</th>
+                                <th>Estatus</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="listado-grupos">
                             <!-- Data en Ajax-->
+                          
                         </tbody>
                     </table>
                 </div>
-
+                
             </div>
         </div>
+        <h1 id="alerta" class="alert "></h1>
     </main>
 </body>
 
 </html>
-<script  type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>

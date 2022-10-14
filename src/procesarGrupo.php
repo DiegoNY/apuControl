@@ -33,20 +33,17 @@ switch ($txtFuncion) {
             $res = $grupo->crearGrupo($nombre, $descripcion, $estado, $usuarioCreacion, $fechaCreacion);
             if ($res == TRUE) {
 
-                $arreglo = [ "mensaje" =>"Los datos fueron insertados con exito", "clase" => "alert alert-success" ];
+                $mensaje = "alert-success"; 
 
-                /*$mensaje = "Los datos fueron insertados con exito";
-                $class = "alert alert-success";*/
             } else {
-                $arreglo = [ "mensaje" =>"Error al inserar Datos LLama al Admin 😢", "clase" => "alert alert-danger" ];
-                /*$mensaje = "Error al inserar Datos LLama al Admin 😢";
-                $class = "alert alert-danger";*/
+                $mensaje = "alert-danger" ;
             }
-            //validando si lo retorno 
-            var_dump($arreglo) ;
+            echo $mensaje;
+           
         }
         break;
-
+    case 'Editar':
+        echo "Editando...";
     default:
         # code...
         break;
