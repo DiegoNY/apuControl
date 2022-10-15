@@ -79,7 +79,7 @@
         <h1 id="alerta" class="alert "></h1>
     </div>
 
-    <div class="frm-tabla-empresa">
+    <div class="frm-tabla-empresa inactive">
         <div class="frm">
             <form id="frm_empresa">
                 <div>
@@ -198,6 +198,31 @@
         </div>
     </div>
 
+    <div class="frm-tabla-contactos">
+        <form action="">
+
+        </form>
+        <div class="tabla-empresas">
+            <div class="tablas-empresa table-responsive">
+                <table id="tabla_empresas" class="table table-bordered border table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Ruc</th>
+                            <th>Nombre</th>
+                            <th>Cargo</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Eliminar</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listado-contactos">
+                        <!-- Data en Ajax-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

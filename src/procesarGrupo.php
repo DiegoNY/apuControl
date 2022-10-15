@@ -29,4 +29,6 @@ if (isset($txtNombre) && !empty($txtNombre)) {
         $mensaje = "alert-danger";
     }
     echo $mensaje;
+}else{
+    echo "alert-danger";
 }

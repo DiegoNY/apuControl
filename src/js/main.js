@@ -164,3 +164,15 @@ function MostrarEmpresas() {
     },
   });
 }
+
+//Para los Contactos
+RegistrarContactos();
+function RegistrarContactos(){
+  $.ajax({
+    url: 'registrar-contactos.php',
+    type: 'GET',
+    success: function(response){
+      console.log(response);
+    }
+  })
+}
