@@ -202,9 +202,9 @@
         <form action="">
 
         </form>
-        <div class="tabla-empresas">
-            <div class="tablas-empresa table-responsive">
-                <table id="tabla_empresas" class="table table-bordered border table-hover" style="width:100%">
+        <div class="tabla-contactos">
+            <div class="tablas-contactos table-responsive">
+                <table id="tabla_contactos" class="table table-bordered border table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>Ruc</th>
@@ -218,6 +218,7 @@
                     </thead>
                     <tbody id="listado-contactos">
                         <!-- Data en Ajax-->
+
                     </tbody>
                 </table>
             </div>
