@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
+    <!-- Stylos -->
+    <!-- <link rel="stylesheet" href="style/style.css"> -->
 
 </head>
 
@@ -66,16 +67,13 @@
                                 <th>Fecha Creacion </th>
                                 <th>Usuario Creacion</th>
                                 <th>Estatus</th>
-
                             </tr>
                         </thead>
                         <tbody id="listado-grupos">
                             <!-- Data en Ajax-->
-
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
         <h1 id="alerta" class="alert "></h1>
@@ -100,18 +98,18 @@
                     <label for="txtDireccion">Direccion</label>
                     <input type="text" value="" name="txtDireccion">
                 </div>
-                <div >
+                <div>
                     <div>
                         <label for="cboTipoSistema">Selecciona el tipo de sistema</label>
                         <select name="cboTipoSistema" id="cboTipoSistema">
                             <option value="1">GESFARMA</option>
                             <option value="2" selected>APUGESCOM</option>
-                           
+
                         </select>
                     </div>
-                    <label for="cboIdGrupo" >Seleccion Grupo</label>
+                    <label for="cboIdGrupo">Seleccion Grupo</label>
                     <select id="cbogrupo" name="txtIdGrupo">
-                    <option value="value" >value</option>
+                        <option value="value">value</option>
                     </select>
                 </div>
                 <div>
@@ -153,6 +151,13 @@
                     </select>
                 </div>
                 <div>
+                    <label for="cboIdu ">Selecciona el codigo ubigeo </label>
+                    <select name="cboIdu" id="cboIdu">
+                        <option value="1">123</option>
+                        <option value="2" selected>123</option>
+                    </select>
+                </div>
+                <div>
                     <label for="cboEstado">Estado</label>
                     <select name="cboEstado" id="cboEstado">
                         <option value="0">Posible Cliente</option>
@@ -191,10 +196,7 @@
                 </table>
             </div>
         </div>
-
     </div>
-
-
 
 </body>
 

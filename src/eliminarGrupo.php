@@ -4,6 +4,7 @@ $id = $_POST['id'];
 if (isset($id)) {
     
     $grupo = new BaseDatos();
+    
     $id = $grupo->sanitizar($id);
 
     $resultado = $grupo->eliminarGrupo($id);
