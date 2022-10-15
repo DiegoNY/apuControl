@@ -126,21 +126,41 @@ function RegistrarEmpresa() {
     type: "GET",
     data: $("#frm_empresa").serialize(),
     success: function (response) {
-      //console.log(response);
+      console.log(response);
+      MostrarEmpresas();
     },
   });
+
+  $("#frm_empresa").trigger("reset");
 }
 
 MostrarEmpresas();
-function MostrarEmpresas(){
+function MostrarEmpresas() {
   $.ajax({
-    url: 'mostrar-empresas.php',
-    type: 'GET',
-    success: function(response){
-      console.log(response);
-    }
+    url: "mostrar-empresas.php",
+    type: "GET",
+    success: function (response) {
+      let empresas = JSON.parse(response);
+      let template = "";
+      empresas.forEach((empresas) => {
+        template += `
+        <tr id-empresa="${empresas.id}">
+          <td>${empresas.nom_comercial}</td>
+          <td>${empresas.ruc}</td>
+          <td>${empresas.razon_social}</td>
+          <td>${empresas.id_ubigeo}</td>
+          <td>${empresas.id_grupo}</td>
+          <td>${empresas.id_rubro}</td>
+          <td>${empresas.tipo_envio}</td>
+          <td>fecha de registo</td>
+          <td>${empresas.estado_comercial}</td>
+          <td>${empresas.tipo_persona}</td>
+          <td>${empresas.estado}</td>
+        </tr>
+        `;
+      });
+      
+      $("#listado-empresas").html(template);
+    },
   });
 }
-
-
-

@@ -1,20 +1,36 @@
-<?php 
-$resulta= extract($_GET);
+<?php
+$resulta = extract($_GET);
 
 include 'connection/basedatos.php';
-
 $empresas = new BaseDatos();
 
-$response = $empresas->agregarEmpresa($txtIdGrupo,$cboTipoPersona,$txtRuc,$txtRazonSocial,$txtNombreCo,$txtDireccion,$cboIdu,$cboIdRubro,$cboTipoSistema,$cboIdTipoIntegracion,$cboTipoEnvio,$txtEstado,$txtFechaRegistro,$txtEliminada,$cboEstado);
+if (isset($txtRuc) && !empty($txtRuc)) {
+    $txtIdGrupo = $empresas->sanitizar($txtIdGrupo);
+    $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
+    $txtRuc = $empresas->sanitizar($txtRuc);
+    $txtRazonSocial = $empresas->sanitizar($txtRazonSocial);
+    $txtNombreCo = $empresas->sanitizar($txtNombreCo);
+    $txtDireccion = $empresas->sanitizar($txtDireccion);
+    $cboIdu = $empresas->sanitizar($cboIdu);
+    $cboIdRubro = $empresas->sanitizar($cboIdRubro);
+    $cboTipoSistema = $empresas->sanitizar($cboTipoSistema);
+    $cboIdTipoIntegracion = $empresas->sanitizar($cboIdTipoIntegracion);
+    $cboTipoEnvio = $empresas->sanitizar( $cboTipoEnvio);
+    $txtEstado = $empresas->sanitizar($txtEstado);
+    $txtFechaRegistro = $empresas->sanitizar($txtFechaRegistro);
+    $txtEliminada = $empresas->sanitizar( $txtEliminada);
+    $cboEstado = $empresas->sanitizar($cboEstado);
 
-if ($response == TRUE) {
-    $mensaje = "alert-success";
-} else {
-    $mensaje = "alert-danger";
+
+    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $txtEstado, $txtFechaRegistro, $txtEliminada, $cboEstado);
+
+    if ($response == TRUE) {
+        $mensaje = "alert-success";
+    } else {
+        $mensaje = "alert-danger";
+    }
+
+    echo $mensaje;
+}else{
+    echo "ingresa Datos ÑAAA";
 }
-
-echo $mensaje;
-
-
-
-
