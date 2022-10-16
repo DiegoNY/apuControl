@@ -79,34 +79,36 @@
         <h1 id="alerta" class="alert "></h1>
     </div>
 
-    <div class="frm-tabla-empresa inactive">
+    <div class="frm-tabla-empresa ">
         <div class="frm">
             <form id="frm_empresa">
+                <input type="hidden" id="id">
                 <div>
                     <label for="txtNombreCo"> Nombre</label>
-                    <input type="text" value="" name="txtNombreCo">
+                    <input type="text" value="" name="txtNombreCo" id="txtNombreCo">
                 </div>
                 <div>
                     <label for="txtRuc"> Ruc</label>
-                    <input type="text" value="" name="txtRuc">
+                    <input type="text" value="" name="txtRuc" id="txtRuc">
                 </div>
                 <div>
                     <label for="txtRazonSocial">Razon social</label>
-                    <input type="text" value="" name="txtRazonSocial">
+                    <input type="text" value="" name="txtRazonSocial" id="txtRazonSocial">
                 </div>
                 <div>
                     <label for="txtDireccion">Direccion</label>
-                    <input type="text" value="" name="txtDireccion">
+                    <input type="text" value="" name="txtDireccion" id="txtDireccion">
                 </div>
                 <div>
-                    <div>
-                        <label for="cboTipoSistema">Selecciona el tipo de sistema</label>
-                        <select name="cboTipoSistema" id="cboTipoSistema">
-                            <option value="1">GESFARMA</option>
-                            <option value="2" selected>APUGESCOM</option>
 
-                        </select>
-                    </div>
+                    <label for="cboTipoSistema">Selecciona el tipo de sistema</label>
+                    <select name="cboTipoSistema" id="cboTipoSistema">
+                        <option value="1">GESFARMA</option>
+                        <option value="2" selected>APUGESCOM</option>
+
+                    </select>
+                </div>
+                <div>
                     <label for="cboIdGrupo">Seleccion Grupo</label>
                     <select id="cbogrupo" name="txtIdGrupo">
                         <option value="value">value</option>
@@ -137,15 +139,15 @@
                 </div>
                 <div>
                     <label for="txtFechaRegistro">Ingresela fecha de registro</label>
-                    <input type="text" name="txtFechaRegistro">
+                    <input type="text" name="txtFechaRegistro" id="txtFechaRegistro">
                 </div>
                 <div>
                     <label for="txtEstadoComercial">Ingresa el estado comercial</label>
-                    <input type="text" name="txtEstadoComercial">
+                    <input type="text" name="txtEstadoComercial" id="txtEstadoComercial">
                 </div>
                 <div>
                     <label for="cboTipoPersona">Selecciona el tipo de persona</label>
-                    <select name="cboTipoPersona" id="">
+                    <select name="cboTipoPersona" id="cboTipoPersona">
                         <option value="1">Natural</option>
                         <option value="2" selected>Juridica</option>
                     </select>
@@ -222,7 +224,7 @@
                 <label for="txtCorreo">Correo</label>
                 <input type="text" name="txtCorreo">
             </div>
-            
+
         </form>
         <div class="tabla-contactos">
             <div class="tablas-contactos table-responsive">

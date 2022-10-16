@@ -97,6 +97,13 @@ class BaseDatos
         return $res;
     }
 
+    public function verEmpresa($id)
+    {
+        $consulta = "SELECT * FROM `empresa` as e where (e.eliminada = 1 AND e.id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+
     public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial)
     {
         $consulta = "update empresa as e set id_grupo = $id_grupo,tipo_persona = $tipo_persona,ruc = $ruc,razon_social = $razon_social,nom_comercial = $nom_comercial,direccion =$direccion,id_ubigeo =$id_ubigeo,id_rubro = $id_rubro,id_tipo_sistema = $id_tipo_sistema,id_tipo_integracion = $id_tipo_integracion,tipo_envio = $tipo_envio,estado=$estado,fecha_registro = $fecha_registro,estado_comercial = $estado_comercial where (e.id = '$id');";

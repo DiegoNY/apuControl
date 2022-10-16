@@ -1,17 +1,17 @@
 //para los grupos
 let editar = false;
 
-$(document).ready(function () {
-  $("#tabla-grupo").DataTable({
-    scrollY: "420px",
-    scrollCollapse: true,
-    paging: true,
-    language: {
-      url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json",
-    },
-    dom: '<"toolbar">Bftrp',
-  });
-});
+// $(document).ready(function () {
+//   $("#tabla-grupo").DataTable({
+//     scrollY: "420px",
+//     scrollCollapse: true,
+//     paging: true,
+//     language: {
+//       url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json",
+//     },
+//     dom: '<"toolbar">Bftrp',
+//   });
+// });
 
 function RegistrarGrupo() {
   //si aun no estamos editando se registrara el grupo  pero si se esta editando se editaran los datos
@@ -85,6 +85,7 @@ $(document).on("click", ".btn-edit", function () {
   let id = $(element).attr("id-grupos");
   $.post("escuchar-grupo.php", { id }, function (response) {
     let grupo = JSON.parse(response);
+
     $("#id_grupo").val(grupo.id);
     $("#txtNombre").val(grupo.nombre);
     $("#txtDescripcion").val(grupo.descripcion);
@@ -121,8 +122,9 @@ function cargaGrupoEnFrm() {
 //PARA LA EMPRESA
 RegistrarEmpresa();
 function RegistrarEmpresa() {
+  let url = editar === false ? "registrar-empresa.php" : "editar-empresa.php";
   $.ajax({
-    url: "registrar-empresa.php",
+    url: url,
     type: "GET",
     data: $("#frm_empresa").serialize(),
     success: function (response) {
@@ -134,8 +136,8 @@ function RegistrarEmpresa() {
   $("#frm_empresa").trigger("reset");
 }
 
-mostrarEmpresas();
-function mostrarEmpresas() {
+MostrarEmpresas();
+function MostrarEmpresas() {
   $.ajax({
     url: "mostrar-empresas.php",
     type: "GET",
@@ -157,10 +159,10 @@ function mostrarEmpresas() {
           <td>${empresas.tipo_persona}</td>
           <td>${empresas.estado}</td>
           
-          <td><i class="btn-edit"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+          <td><i class="btn-edit-empresa"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
 
-          <td><i class="btn-delete"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
-          
+          <td><i class="btn-delete-empresa"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
+
         </tr>
         `;
       });
@@ -170,9 +172,53 @@ function mostrarEmpresas() {
   });
 }
 
-function eliminarEmpresa(id) {
-  $(document).on("click", "");
+/*
+ *
+ *  Elimina a las empresas ingresando a travez del  dom al atributo id
+ *
+ */
+eliminarEmpresa();
+function eliminarEmpresa() {
+  $(document).on("click", ".btn-delete-empresa", function () {
+    //ingresando a las propiedas de la tabla
+    let element = $(this)[0].parentElement.parentElement;
+    //capturando el id
+    let id = $(element).attr("id-empresa");
+    $.post("eliminar-empresa.php", { id }, function (response) {
+      MostrarEmpresas();
+      console.log(response);
+    });
+  });
 }
+editarEmpresas();
+function editarEmpresas() {
+  $(document).on("click", ".btn-edit-empresa", function () {
+    let element = $(this)[0].parentElement.parentElement;
+
+    let id = $(element).attr("id-empresa");
+
+    $.post("escuchar-empresa.php", { id }, function (response) {
+      let empresa = JSON.parse(response);
+      console.log(empresa);
+      $("#id").val(empresa.id);
+      $("#txtRuc").val(empresa.ruc);
+      $("#txtRazonSocial").val(empresa.razon_social);
+      $("#txtDireccion").val(empresa.direccion);
+      $("#cbogrupo").val(empresa.id_grupo);
+      $("#cboTipoSistema").val(empresa.id_tipo_sistema);
+      $("#cboIdRubro").val(empresa.id_rubro);
+      $("#cboTipoEnvio").val(empresa.tipo_envio);
+      $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion)
+      $("#txtFechaRegistro").val(empresa.fecha_registro);
+      $("#txtEstadoComercial").val(empresa.estado_comercial);
+      $("#cboTipoPersona").val(empresa.tipo_persona);
+      $("#cboIdu").val(empresa.id_ubigeo);
+      $("#cboEstado").val(empresa.estado);
+      editar = true;
+    });
+  });
+}
+
 //Para los Contactos
 registrarContactos();
 function registrarContactos() {
