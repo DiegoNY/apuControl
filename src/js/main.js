@@ -74,6 +74,7 @@ function EliminarGrupo() {
       let element = $(this)[0].parentElement.parentElement;
       let id = $(element).attr("id-grupos");
       $.post("eliminarGrupo.php", { id }, function (response) {
+        console.log(response);
         CargarGrupos();
       });
     }
@@ -225,9 +226,57 @@ registrarContactos();
 function registrarContactos() {
   $.ajax({
     url: "registrar-contactos.php",
+    data:$("#frm-contactos").serialize(),
     type: "GET",
     success: function (response) {
-      console.log(response);
+      mostrarContactos();
     },
   });
+
+  $("#frm-contactos").trigger("reset");
+}
+
+mostrarContactos();
+function mostrarContactos(){
+  $.ajax({
+    url: "mostrar-contactos.php",
+    type: "GET",
+    success: function(response){
+      let contactos = JSON.parse(response);
+      let template= "";
+
+      contactos.forEach((contactos)=>{
+        template+=`
+        <tr id-contacto="${contactos.id} ">
+        <td>${contactos.id_empresa}</td>
+        <td>${contactos.nombre}</td>
+        <td>${contactos.cargo}</td>
+        <td>${contactos.telefono}</td>
+        <td>${contactos.correo}</td>
+
+        <td><i class="btn-edit-contacto"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+        
+        <td><i class="btn-delete-contacto"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
+    </tr>
+        `
+      });
+
+      $("#listado-contactos").html(template);
+    }
+  });
+}
+
+
+eliminarContacto();
+function eliminarContacto(){
+
+  $(document).on("click",".btn-delete-contacto",function(){
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr("id-contacto");
+    
+    $.post("eliminar-contactos.php",{id},function(response){
+      console.log(response);
+      mostrarContactos();
+    })
+  })
 }

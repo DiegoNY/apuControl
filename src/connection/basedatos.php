@@ -129,8 +129,59 @@ class BaseDatos
     }
 
     //CRUD CONTACTOS 
+    public function verContactos(){
+        $consulta = "SELECT * FROM `contactos` as c where (c.estado = 1);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
 
+    }
+
+    public function registrarContactos($nombre,$cargo,$id_empresa,$telefono,$correo,$estado){
+        $consulta = "insert into `contactos`(id_empresa,nombre_contacto,cargo,telefono,correo,estado) values ('$id_empresa','$nombre','$cargo','$telefono','$correo','$estado');";
+        
+        $res = mysqli_query($this->con, $consulta);
+        
+        if($res === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function eliminarContacto($id){
+        $consulta = "update contactos as c set estado = 0 where  c.id = $id";
+
+        $res = mysqli_query($this->con, $consulta);
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function editarContacto($id,$nombre,$cargo,$id_empresa,$telefono,$correo){
+        $consulta = "update contactos as c set nombre_contacto = '$nombre', cargo ='$cargo', telefono = '$telefono', correo = '$correo' where (c.id = '$id' and c.id_empresa = '$id_empresa');";
+
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res === TRUE) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function verContacto($id){
+        $consulta = "SELECT * FROM `contactos` as c where (c.estado = 1 and c.id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
     //CRUD SUCURSAL
+
+    public function registrarSucursal(){
+        
+    }
 
     //conectar la BD
     public function conectardb()

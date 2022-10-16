@@ -79,7 +79,7 @@
         <h1 id="alerta" class="alert "></h1>
     </div>
 
-    <div class="frm-tabla-empresa ">
+    <div class="frm-tabla-empresa inactive">
         <div class="frm">
             <form id="frm_empresa">
                 <input type="hidden" id="id" name="id">
@@ -203,37 +203,41 @@
     </div>
 
     <div class="frm-tabla-contactos">
-        <form action="">
-            <div>
-                <label for="">Nombre</label>
-                <input type="text" name="txtNombre">
-            </div>
-            <div>
-                <label for="txtCargo">Cargo</label>
-                <input type="text" name="txtCargo">
-            </div>
-            <div>
-                <label for="txtEmpresa">Id Empresa</label>
-                <input type="text" name="txtEmpresa">
-            </div>
-            <div>
-                <label for="txtTelefono">Telefono</label>
-                <input type="text" name="txtTelefono">
-            </div>
-            <div>
-                <label for="txtCorreo">Correo</label>
-                <input type="text" name="txtCorreo">
-            </div>
+        <div class="frm-contactos">
+            <form id="frm-contactos">
+                <div>
+                    <label for="txtNombre">Nombre</label>
+                    <input type="text" name="txtNombre">
+                </div>
+                <div>
+                    <label for="txtCargo">Cargo</label>
+                    <input type="text" name="txtCargo">
+                </div>
+                <div>
+                    <label for="txtEmpresa">Id Empresa</label>
+                    <input type="text" name="txtEmpresa">
+                </div>
+                <div>
+                    <label for="txtTelefono">Telefono</label>
+                    <input type="text" name="txtTelefono">
+                </div>
+                <div>
+                    <label for="txtCorreo">Correo</label>
+                    <input type="text" name="txtCorreo">
+                </div>
+                <input type="hidden" value="1" name="txtEstado">
+                <input type="button" value="Registrar Contacto" onclick="registrarContactos()">
+            </form>
+        </div>
 
-        </form>
         <div class="tabla-contactos">
             <div class="tablas-contactos table-responsive">
                 <table id="tabla_contactos" class="table table-bordered border table-hover" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Id Empresa</th>
                             <th>Nombre Contactos</th>
                             <th>Cargo</th>
-                            <th>Id Empresa</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Eliminar</th>
