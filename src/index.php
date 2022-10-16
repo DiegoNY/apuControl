@@ -82,7 +82,7 @@
     <div class="frm-tabla-empresa ">
         <div class="frm">
             <form id="frm_empresa">
-                <input type="hidden" id="id">
+                <input type="hidden" id="id" name="id">
                 <div>
                     <label for="txtNombreCo"> Nombre</label>
                     <input type="text" value="" name="txtNombreCo" id="txtNombreCo">

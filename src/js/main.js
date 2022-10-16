@@ -200,6 +200,7 @@ function editarEmpresas() {
     $.post("escuchar-empresa.php", { id }, function (response) {
       let empresa = JSON.parse(response);
       console.log(empresa);
+      $("#txtNombreCo").val(empresa.nom_comercial);
       $("#id").val(empresa.id);
       $("#txtRuc").val(empresa.ruc);
       $("#txtRazonSocial").val(empresa.razon_social);
