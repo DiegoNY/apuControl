@@ -1,0 +1,1 @@
+CREATE TABLE `control_empresas`.`contactos` (`id` INT(225) NOT NULL AUTO_INCREMENT , `id_empresa` VARCHAR(225) NOT NULL , `nombre_contacto` VARCHAR(225) NOT NULL , `cargo` VARCHAR(225) NOT NULL , `telefono` VARCHAR(225) NOT NULL , `correo` VARCHAR(225) NOT NULL , `estado` VARCHAR(225) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

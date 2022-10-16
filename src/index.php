@@ -200,16 +200,36 @@
 
     <div class="frm-tabla-contactos">
         <form action="">
-
+            <div>
+                <label for="">Nombre</label>
+                <input type="text" name="txtNombre">
+            </div>
+            <div>
+                <label for="txtCargo">Cargo</label>
+                <input type="text" name="txtCargo">
+            </div>
+            <div>
+                <label for="txtEmpresa">Id Empresa</label>
+                <input type="text" name="txtEmpresa">
+            </div>
+            <div>
+                <label for="txtTelefono">Telefono</label>
+                <input type="text" name="txtTelefono">
+            </div>
+            <div>
+                <label for="txtCorreo">Correo</label>
+                <input type="text" name="txtCorreo">
+            </div>
+            
         </form>
         <div class="tabla-contactos">
             <div class="tablas-contactos table-responsive">
                 <table id="tabla_contactos" class="table table-bordered border table-hover" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ruc</th>
-                            <th>Nombre</th>
+                            <th>Nombre Contactos</th>
                             <th>Cargo</th>
+                            <th>Id Empresa</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Eliminar</th>
@@ -218,7 +238,6 @@
                     </thead>
                     <tbody id="listado-contactos">
                         <!-- Data en Ajax-->
-
                     </tbody>
                 </table>
             </div>
