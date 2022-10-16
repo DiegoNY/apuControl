@@ -134,8 +134,8 @@ function RegistrarEmpresa() {
   $("#frm_empresa").trigger("reset");
 }
 
-MostrarEmpresas();
-function MostrarEmpresas() {
+mostrarEmpresas();
+function mostrarEmpresas() {
   $.ajax({
     url: "mostrar-empresas.php",
     type: "GET",
@@ -156,23 +156,31 @@ function MostrarEmpresas() {
           <td>${empresas.estado_comercial}</td>
           <td>${empresas.tipo_persona}</td>
           <td>${empresas.estado}</td>
+          
+          <td><i class="btn-edit"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+
+          <td><i class="btn-delete"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
+          
         </tr>
         `;
       });
-      
+
       $("#listado-empresas").html(template);
     },
   });
 }
 
+function eliminarEmpresa(id) {
+  $(document).on("click", "");
+}
 //Para los Contactos
-RegistrarContactos();
-function RegistrarContactos(){
+registrarContactos();
+function registrarContactos() {
   $.ajax({
-    url: 'registrar-contactos.php',
-    type: 'GET',
-    success: function(response){
+    url: "registrar-contactos.php",
+    type: "GET",
+    success: function (response) {
       console.log(response);
-    }
-  })
+    },
+  });
 }

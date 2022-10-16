@@ -188,6 +188,8 @@
                             <th>Estado comercial</th>
                             <th>Tipo de persona</th>
                             <th>Estado</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody id="listado-empresas">
