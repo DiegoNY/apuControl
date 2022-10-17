@@ -112,7 +112,7 @@ function cargaGrupoEnFrm() {
       grupos.forEach((grupos) => {
         template += `
                 
-                <option value="${grupos.id}">${grupos.nombre}</option>
+                <option value="${grupos.nombre}">${grupos.nombre}</option>
               
         `;
       });
@@ -466,5 +466,11 @@ function editarAcceso(){
     });
   });
   
+
+  //tabs 
+
+  $(function () {
+    $("#tabs").tabs();
+});
 }
 

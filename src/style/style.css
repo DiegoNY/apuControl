@@ -25,20 +25,23 @@ main{
     width: auto;
     background-color: black;
 }
-.frm{
-    background-color: antiquewhite;
+
+.contenedor{
+    height: 40vh;
     width: auto;
-    height: 100%;
 }
 .tabla{
     background-color: blue;
     width: auto;
     height: 100%;
 }
-.formulario-registro-grupos{
+.contenedor-tabla{
     display: grid;
     grid-template-columns: 1fr 2fr;
     
+}
+.inactive{
+    display: none;
 }
 footer{
     display: none;
