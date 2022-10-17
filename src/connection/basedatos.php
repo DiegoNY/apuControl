@@ -224,6 +224,49 @@ class BaseDatos
         }
     }
 
+    //CRUD Accesos
+
+    public function registrarAccesos($id_sucursal,$nombre,$id_acceso,$contraseña,$estado){
+        $consulta = "INSERT INTO `accesos`(id_sucursal,nombreAcceso,idAcceso,contraseña,estado) values ('$id_sucursal','$nombre','$id_acceso','$contraseña','$estado');";
+        $res = mysqli_query($this->con,$consulta);
+        return $res;
+    }
+
+    public function editarAcceso($id_sucursal,$nombre,$id_acceso,$contraseña,$id){
+        $consulta = "UPDATE accesos as a set nombreAcceso = '$nombre',idAcceso = '$id_acceso',contraseña='$contraseña', id_sucursal = '$id_sucursal' where(a.id = $id);";
+
+        $res = mysqli_query($this->con,$consulta);
+
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function eliminarAcceso($id){
+        $consulta = "UPDATE accesos as a set estado = 0 where (id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function mostrarAccesos(){
+        $consulta = "SELECT * FROM `accesos` as a where (a.estado = 1 );";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+
+    public  function mostrarAcceso($id){
+        $consulta = "SELECT * FROM `accesos` as a where (a.estado = 1 and a.id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+
+    
     //conectar la BD
     public function conectardb()
     {

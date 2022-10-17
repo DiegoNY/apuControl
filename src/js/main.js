@@ -2,6 +2,7 @@
 let editar = false;
 let editarContacto = false;
 let editarSucursall = false;
+let editarAccesp = false;
 // $(document).ready(function () {
 //   $("#tabla-grupo").DataTable({
 //     scrollY: "420px",
@@ -226,10 +227,10 @@ function editarEmpresas() {
 //Para los Contactos
 registrarContactos();
 function registrarContactos() {
-    let url = editarContacto === false ? "registrar-contactos.php" : "editar-contacto.php";
+  let url = editarContacto === false ? "registrar-contactos.php" : "editar-contacto.php";
   $.ajax({
     url: url,
-    data:$("#frm-contactos").serialize(),
+    data: $("#frm-contactos").serialize(),
     type: "GET",
     success: function (response) {
       console.log(response);
@@ -242,16 +243,16 @@ function registrarContactos() {
 }
 
 mostrarContactos();
-function mostrarContactos(){
+function mostrarContactos() {
   $.ajax({
     url: "mostrar-contactos.php",
     type: "GET",
-    success: function(response){
+    success: function (response) {
       let contactos = JSON.parse(response);
-      let template= "";
+      let template = "";
 
-      contactos.forEach((contactos)=>{
-        template+=`
+      contactos.forEach((contactos) => {
+        template += `
         <tr id-contacto="${contactos.id} ">
         <td>${contactos.id_empresa}</td>
         <td>${contactos.nombre}</td>
@@ -273,13 +274,13 @@ function mostrarContactos(){
 
 
 eliminarContacto();
-function eliminarContacto(){
+function eliminarContacto() {
 
-  $(document).on("click",".btn-delete-contacto",function(){
+  $(document).on("click", ".btn-delete-contacto", function () {
     let element = $(this)[0].parentElement.parentElement;
     let id = $(element).attr("id-contacto");
-    
-    $.post("eliminar-contactos.php",{id},function(response){
+
+    $.post("eliminar-contactos.php", { id }, function (response) {
       console.log(response);
       mostrarContactos();
     })
@@ -287,53 +288,53 @@ function eliminarContacto(){
 }
 
 editarContactos();
-function editarContactos(){
-    $(document).on("click",".btn-edit-contacto",function(){
-        let element = $(this)[0].parentElement.parentElement;
+function editarContactos() {
+  $(document).on("click", ".btn-edit-contacto", function () {
+    let element = $(this)[0].parentElement.parentElement;
 
-        let id = $(element).attr("id-contacto");
+    let id = $(element).attr("id-contacto");
 
-        $.post("escuchar-contacto.php",{id},function(response){
-            let contacto = JSON.parse(response);
-            console.log(contacto);
-            $("#id-contacto").val(contacto.id);
-            $("#nombre-contacto").val(contacto.nombre_contacto);
-            $("#cargo-contacto").val(contacto.cargo);
-            $("#correo-contacto").val(contacto.correo);
-            $("#id-empresa-contacto").val(contacto.id_empresa);
-            $("#telefono-contacto").val(contacto.telefono);
-            editarContacto = true;
-        })
+    $.post("escuchar-contacto.php", { id }, function (response) {
+      let contacto = JSON.parse(response);
+      console.log(contacto);
+      $("#id-contacto").val(contacto.id);
+      $("#nombre-contacto").val(contacto.nombre_contacto);
+      $("#cargo-contacto").val(contacto.cargo);
+      $("#correo-contacto").val(contacto.correo);
+      $("#id-empresa-contacto").val(contacto.id_empresa);
+      $("#telefono-contacto").val(contacto.telefono);
+      editarContacto = true;
     })
+  })
 }
 
 //Para la sucursal 
 
-function registrarSucursal(){
-    let url = editarSucursall === false ? "registrar-sucursal.php":"editar-sucursal.php";
-    $.ajax({
-        url: url,
-        data:$("#frm-sucursal").serialize(),
-        type: "GET",
-        success: function (response) {
-            console.log(response);
-            mostrarSucursal();
-            editarSucursall = false;
-        },
-      });
-      $("#frm-sucursal").trigger("reset");
+function registrarSucursal() {
+  let url = editarSucursall === false ? "registrar-sucursal.php" : "editar-sucursal.php";
+  $.ajax({
+    url: url,
+    data: $("#frm-sucursal").serialize(),
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      mostrarSucursal();
+      editarSucursall = false;
+    },
+  });
+  $("#frm-sucursal").trigger("reset");
 }
 
 mostrarSucursal();
-function mostrarSucursal(){
-    $.ajax({
-        url: "mostrar-sucursal.php",
-        type:"GET",
-        success: function(response){
-            let sucursal = JSON.parse(response);
-            let template  = "";
-            sucursal.forEach((sucursal)=>{
-                template += `
+function mostrarSucursal() {
+  $.ajax({
+    url: "mostrar-sucursal.php",
+    type: "GET",
+    success: function (response) {
+      let sucursal = JSON.parse(response);
+      let template = "";
+      sucursal.forEach((sucursal) => {
+        template += `
                 
                 <tr id="${sucursal.id}">
                     <td>${sucursal.id_empresa}</td>
@@ -347,41 +348,122 @@ function mostrarSucursal(){
                 </tr>
                 
                 `
-            });
-            $("#listado-sucursal").html(template);
-        }
-    });
-} 
+      });
+      $("#listado-sucursal").html(template);
+    }
+  });
+}
 
 eliminarSucursal();
-function eliminarSucursal(){
-    $(document).on("click",".btn-delete-sucursal",function(){
-        let element = $(this)[0].parentElement.parentElement;
-        let id = $(element).attr("id");
+function eliminarSucursal() {
+  $(document).on("click", ".btn-delete-sucursal", function () {
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr("id");
 
-        $.post("eliminar-sucursal.php",{id},function(response){
-            console.log(response);
-            mostrarSucursal();
-        })    
-    });
-}   
+    $.post("eliminar-sucursal.php", { id }, function (response) {
+      console.log(response);
+      mostrarSucursal();
+    })
+  });
+}
 
 editarSucursal();
-function editarSucursal(){
-    $(document).on("click",".btn-edit-sucursal",function(){
-        let element = $(this)[0].parentElement.parentElement;
-        let id = $(element).attr("id");
+function editarSucursal() {
+  $(document).on("click", ".btn-edit-sucursal", function () {
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr("id");
 
-        $.post("escuchar-sucursal.php",{id},function(response){
-            let sucursal = JSON.parse(response);
-            console.log(sucursal);
-            $("#id-sucursal").val(sucursal.id);
-            $("#txtNombreSucursal").val(sucursal.nombre);
-            $("#txtDireccionSucursal").val(sucursal.direccion);
-            $("#txtCodigoCofide").val(sucursal.codigo_cofide);
-            $("#cboIdu").val(sucursal.ubigeo);
-            $("#txtIdEmpresa").val(sucursal.id_empresa);
-            editarSucursall = true;
-        });
-    })
+    $.post("escuchar-sucursal.php", { id }, function (response) {
+      let sucursal = JSON.parse(response);
+      console.log(sucursal);
+      $("#id-sucursal").val(sucursal.id);
+      $("#txtNombreSucursal").val(sucursal.nombre);
+      $("#txtDireccionSucursal").val(sucursal.direccion);
+      $("#txtCodigoCofide").val(sucursal.codigo_cofide);
+      $("#cboIdu").val(sucursal.ubigeo);
+      $("#txtIdEmpresa").val(sucursal.id_empresa);
+      editarSucursall = true;
+
+    });
+  })
+}
+
+//CRUD ACCESOS
+
+function registrarAccesos() {
+  let url = editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
+  $.ajax({
+    url: url,
+    data: $("#frm-accesos").serialize(),
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      mostrarAccesos();
+
+      editarAcceso = false;
+    }
+  });
+  $("#frm-accesos").trigger("reset");
+}
+
+mostrarAccesos();
+function mostrarAccesos() {
+  $.ajax({
+    url: "mostrar-accesos.php",
+    type: "GET",
+    success: function (response) {
+      let accesos = JSON.parse(response);
+      let template = "";
+      console.log(accesos);
+      accesos.forEach((accesos) => {
+        template += `
+        <tr id-acceso="${accesos.id}">
+          <td>${accesos.id_sucursal}</td>
+          <td>${accesos.nombreAcceso}</td>
+          <td>${accesos.idAcceso}</td>
+          <td>${accesos.contrasena}</td>
+
+          <td><i class="btn-edit-acceso"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+
+          <td><i class="btn-delete-acceso"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
+        </tr>
+        `
+      });
+      $("#listado-accesos").html(template);
+    }
+  });
+}
+
+eliminarAcceso();
+function eliminarAcceso(){
+
+  $(document).on("click",".btn-delete-acceso",function(){
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr("id-acceso")
+    console.log(id);
+
+    $.post("eliminar-acceso.php",{id},function(response){
+      console.log(response);
+      mostrarAccesos();
+    });
+  })
+}
+
+editarAcceso()
+function editarAcceso(){
+
+  $(document).on("click",".btn-edit-acceso",function(){
+    let element =$(this)[0].parentElement.parentElement;
+    let id = $(element).attr("id-acceso")
+    $.post("escuchar-acceso.php",{id},function(response){
+      let accesos = JSON.parse(response);
+      $("#id-acceso").val(accesos.id);
+      $("#txtIdSucursal").val(accesos.id_sucursal);
+      $("#txtNombreAcceso").val(accesos.nombreAcceso);
+      $("#txtIdAcceso").val(accesos.idAcceso);
+      $("#txtContraseña").val(accesos.contrasena);
+      editarAcceso = true;
+    });
+  });
+  
 }

@@ -306,6 +306,51 @@
             </div>
         </div>
     </div>
+
+    <div class="frm-tabla-accesos">
+        <div class="frm-accesos">
+            <form id="frm-accesos">
+                    <input type="hidden" id="id-acceso" name="id_acceso">
+                <div>
+                    <label for="txtIdSucursal">Id Sucursal</label>
+                    <input type="text" name="txtIdSucursal" id="txtIdSucursal">
+                </div>
+                <div>
+                    <label for="txtNombreAcceso">Nombre Acceso</label>
+                    <input type="text" name="txtNombreAcceso" id="txtNombreAcceso">
+                </div>
+                <div>
+                    <label for="txtIdAcceso">Id Acceso</label>
+                    <input type="text" name="txtIdAcceso" id="txtIdAcceso">
+                </div>
+                <div>
+                    <label for="txtContraseña">Contraseña</label>
+                    <input type="text" name="txtContraseña" id="txtContraseña">
+                </div>
+                <input type="hidden" name="txtEstado" value="1">
+                <input type="button" value="Registrar" onclick="registrarAccesos()">
+            </form>
+        </div>
+        <div class="tabla-accesos">
+            <div class="tablas-accesos table-responsive">
+                <table id="tabla_accesos" class="table table-bordered border table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id Sucursal</th>
+                            <th>Nombre Acceso</th>
+                            <th>Id Acceso </th>
+                            <th>Contraseña </th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listado-accesos">
+                        <!-- Data en Ajax-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
@@ -314,4 +359,4 @@
         display: none;
     }
 </style>
-<script type="text/javascript" src="js/main.js"></script>   
+<script type="text/javascript" src="js/main.js"></script>
