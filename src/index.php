@@ -103,8 +103,8 @@
 
                     <label for="cboTipoSistema">Selecciona el tipo de sistema</label>
                     <select name="cboTipoSistema" id="cboTipoSistema">
-                        <option value="1">GESFARMA</option>
-                        <option value="2" selected>APUGESCOM</option>
+                        <option value="GESFARMA">GESFARMA</option>
+                        <option value="APUGESCOM" selected>APUGESCOM</option>
 
                     </select>
                 </div>
@@ -117,24 +117,24 @@
                 <div>
                     <label for="cboIdRubro">Seleccion el Rubro</label>
                     <select name="cboIdRubro" id="cboIdRubro">
-                        <option value="1">EDS</option>
-                        <option value="2" selected>BOTICAS</option>
-                        <option value="3">MARKETS</option>
+                        <option value="EDS">EDS</option>
+                        <option value="BOTICAS" selected>BOTICAS</option>
+                        <option value="MARKETS">MARKETS</option>
                     </select>
                 </div>
                 <div>
                     <label for="cboTipoEnvio">Seleccion el tipo de envio</label>
                     <select name="cboTipoEnvio" id="cboTipoEnvio">
-                        <option value="1">OSE</option>
-                        <option value="2" selected>SUNAT</option>
+                        <option value="OSE">OSE</option>
+                        <option value="SUNAT" selected>SUNAT</option>
                     </select>
                 </div>
                 <div>
                     <label for="cboIdTipoIntegracion">Selecciona el tipo de integracion</label>
                     <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion">
-                        <option value="1">DBF</option>
-                        <option value="2" selected>TXT</option>
-                        <option value="3">JSON</option>
+                        <option value="DBF">DBF</option>
+                        <option value="TXT" selected>TXT</option>
+                        <option value="JSON">JSON</option>
                     </select>
                 </div>
                 <div>
@@ -148,15 +148,15 @@
                 <div>
                     <label for="cboTipoPersona">Selecciona el tipo de persona</label>
                     <select name="cboTipoPersona" id="cboTipoPersona">
-                        <option value="1">Natural</option>
-                        <option value="2" selected>Juridica</option>
+                        <option value="NATURAL">Natural</option>
+                        <option value="JURIDICA" selected>Juridica</option>
                     </select>
                 </div>
                 <div>
                     <label for="cboIdu ">Selecciona el codigo ubigeo </label>
                     <select name="cboIdu" id="cboIdu">
-                        <option value="1">123</option>
-                        <option value="2" selected>123</option>
+                        <option value="123">123</option>
+                        <option value="164" selected>164</option>
                     </select>
                 </div>
                 <div>
@@ -253,10 +253,10 @@
         </div>
     </div>
 
-    <div class="frm-tabla-sucursal">
+    <div class="frm-tabla-sucursal inactive ">
         <div class="frm-sucursal">
             <form id="frm-sucursal">
-                    <input type="hidden" id="id-sucursal" name="id_sucursal">
+                <input type="hidden" id="id-sucursal" name="id_sucursal">
                 <div>
                     <label for="txtNombreSucursal">Nombre</label>
                     <input type="text" name="txtNombreSucursal" id="txtNombreSucursal">
@@ -284,6 +284,7 @@
                 <input type="button" value="Registrar" onclick="registrarSucursal();">
             </form>
         </div>
+
         <div class="tabla-sucursal">
             <div class="tablas-sucursal table-responsive">
                 <table id="tabla_sucursal" class="table table-bordered border table-hover" style="width:100%">
@@ -313,4 +314,4 @@
         display: none;
     }
 </style>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>   

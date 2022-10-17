@@ -6,20 +6,40 @@ header{
     height: 9vh;
     width: auto;
 }
+
 main{
     background-color: wheat;
     height: 91vh;
     width: auto;
 }
+
 .empresas{
-    height: 150px;
-    width: 150px;
+    height: 40vh;
+    width: auto;
     background-color: aqua;
+  
+    
+}
+.tabs{
+    height: 50vh;
+    width: auto;
+    background-color: black;
+}
+.frm{
+    background-color: antiquewhite;
+    width: auto;
+    height: 100%;
+}
+.tabla{
+    background-color: blue;
+    width: auto;
+    height: 100%;
+}
+.formulario-registro-grupos{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     
 }
 footer{
-    display: none;
-}
-.formulario-tabla-grupo{
     display: none;
 }

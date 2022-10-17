@@ -132,6 +132,7 @@ function RegistrarEmpresa() {
     success: function (response) {
       console.log(response);
       MostrarEmpresas();
+      mostrarSucursal();
     },
   });
 

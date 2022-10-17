@@ -75,8 +75,10 @@ class BaseDatos
 
     //CRUD RUBRO
 
+
     //CRUD BANDERA
 
+    
     //CRUD EMPRESAS
     public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial)
     {

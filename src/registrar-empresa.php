@@ -23,8 +23,10 @@ if (isset($txtRuc) && !empty($txtRuc)) {
 
 
     $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $txtEstado, $txtFechaRegistro, $txtEliminada, $cboEstado);
+    //se registra una sucursal
+    $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,$codCofide,$cboIdu,$txtEstado,$txtRuc);
 
-    if ($response == TRUE) {
+    if ($response == TRUE && $registroSucursal == TRUE) {
         $mensaje = "alert-success";
     } else {
         $mensaje = "alert-danger";
