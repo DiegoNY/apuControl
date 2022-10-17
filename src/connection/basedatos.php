@@ -188,19 +188,38 @@ class BaseDatos
     }
 
     public function mostrarSucursales(){
-
+        $consulta = "SELECT * FROM `sucursal` as s where (s.estado = 1 );";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
     }
 
-    public function mostrarSucursal(){
-
+    public function mostrarSucursal($id){
+        $consulta = "SELECT * FROM `sucursal` as s where (s.estado = 1 and s.id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
     }
 
-    public function eliminarSucursal(){
+    public function eliminarSucursal($id){
+        $consulta = "update sucursal as s set estado = 0 where s.id = $id";
 
+        $res = mysqli_query($this->con, $consulta);
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function editarSucursal(){
-        
+    public function editarSucursal($id,$nombre,$direccion,$cod_cofide,$id_ubigeo,$id_empresa){
+        $consulta = "update sucursal as s set 
+        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo' where  (s.id = $id and s.id_empresa = $id_empresa);";
+
+        $res = mysqli_query($this->con, $consulta);
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //conectar la BD
