@@ -1,5 +1,6 @@
 //para los grupos
 let editar = false;
+let editarContacto = false;
 
 // $(document).ready(function () {
 //   $("#tabla-grupo").DataTable({
@@ -224,12 +225,15 @@ function editarEmpresas() {
 //Para los Contactos
 registrarContactos();
 function registrarContactos() {
+    let url = editarContacto === false ? "registrar-contactos.php" : "editar-contacto.php";
   $.ajax({
-    url: "registrar-contactos.php",
+    url: url,
     data:$("#frm-contactos").serialize(),
     type: "GET",
     success: function (response) {
+      console.log(response);
       mostrarContactos();
+      editarContacto = false;
     },
   });
 
@@ -279,4 +283,25 @@ function eliminarContacto(){
       mostrarContactos();
     })
   })
+}
+
+editarContactos();
+function editarContactos(){
+    $(document).on("click",".btn-edit-contacto",function(){
+        let element = $(this)[0].parentElement.parentElement;
+
+        let id = $(element).attr("id-contacto");
+
+        $.post("escuchar-contacto.php",{id},function(response){
+            let contacto = JSON.parse(response);
+            console.log(contacto);
+            $("#id-contacto").val(contacto.id);
+            $("#nombre-contacto").val(contacto.nombre_contacto);
+            $("#cargo-contacto").val(contacto.cargo);
+            $("#correo-contacto").val(contacto.correo);
+            $("#id-empresa-contacto").val(contacto.id_empresa);
+            $("#telefono-contacto").val(contacto.telefono);
+            editarContacto = true;
+        })
+    })
 }

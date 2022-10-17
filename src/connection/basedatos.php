@@ -179,7 +179,27 @@ class BaseDatos
     }
     //CRUD SUCURSAL
 
-    public function registrarSucursal(){
+    public function registrarSucursal($nombre,$direccion,$cod_cofide,$id_ubigeo,$estado,$id_empresa){
+        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa')";
+
+        $res = mysqli_query($this->con,$consulta);
+
+        return $res;
+    }
+
+    public function mostrarSucursales(){
+
+    }
+
+    public function mostrarSucursal(){
+
+    }
+
+    public function eliminarSucursal(){
+
+    }
+
+    public function editarSucursal(){
         
     }
 

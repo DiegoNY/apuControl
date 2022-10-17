@@ -5,7 +5,6 @@ extract($_GET);
 
 $empresa = new BaseDatos();
 
-
 $res = $empresa->editarEmpresas($id,$txtIdGrupo,$cboTipoPersona,$txtRuc,$txtRazonSocial,$txtNombreCo,$txtDireccion,$cboIdu,$cboIdRubro,$cboTipoSistema,$cboIdTipoIntegracion,$cboTipoEnvio,$cboEstado,$txtFechaRegistro,$txtEstadoComercial);
 
 if(!$res){

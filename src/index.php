@@ -205,25 +205,26 @@
     <div class="frm-tabla-contactos">
         <div class="frm-contactos">
             <form id="frm-contactos">
+                <input type="hidden" id="id-contacto" name="id_contacto">
                 <div>
                     <label for="txtNombre">Nombre</label>
-                    <input type="text" name="txtNombre">
+                    <input type="text" name="txtNombre" id="nombre-contacto">
                 </div>
                 <div>
                     <label for="txtCargo">Cargo</label>
-                    <input type="text" name="txtCargo">
+                    <input type="text" name="txtCargo" id="cargo-contacto">
                 </div>
                 <div>
                     <label for="txtEmpresa">Id Empresa</label>
-                    <input type="text" name="txtEmpresa">
+                    <input type="text" name="txtEmpresa" id="id-empresa-contacto">
                 </div>
                 <div>
                     <label for="txtTelefono">Telefono</label>
-                    <input type="text" name="txtTelefono">
+                    <input type="text" name="txtTelefono" id="telefono-contacto">
                 </div>
                 <div>
                     <label for="txtCorreo">Correo</label>
-                    <input type="text" name="txtCorreo">
+                    <input type="text" name="txtCorreo" id="correo-contacto">
                 </div>
                 <input type="hidden" value="1" name="txtEstado">
                 <input type="button" value="Registrar Contacto" onclick="registrarContactos()">
@@ -240,8 +241,8 @@
                             <th>Cargo</th>
                             <th>Telefono</th>
                             <th>Correo</th>
-                            <th>Eliminar</th>
                             <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody id="listado-contactos">
