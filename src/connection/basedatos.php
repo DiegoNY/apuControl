@@ -212,7 +212,7 @@ class BaseDatos
 
     public function editarSucursal($id,$nombre,$direccion,$cod_cofide,$id_ubigeo,$id_empresa){
         $consulta = "update sucursal as s set 
-        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo' where  (s.id = $id and s.id_empresa = $id_empresa);";
+        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo' where  (s.id = $id)";
 
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {

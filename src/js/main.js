@@ -1,7 +1,7 @@
 //para los grupos
 let editar = false;
 let editarContacto = false;
-
+let editarSucursall = false;
 // $(document).ready(function () {
 //   $("#tabla-grupo").DataTable({
 //     scrollY: "420px",
@@ -303,5 +303,84 @@ function editarContactos(){
             $("#telefono-contacto").val(contacto.telefono);
             editarContacto = true;
         })
+    })
+}
+
+//Para la sucursal 
+
+function registrarSucursal(){
+    let url = editarSucursall === false ? "registrar-sucursal.php":"editar-sucursal.php";
+    $.ajax({
+        url: url,
+        data:$("#frm-sucursal").serialize(),
+        type: "GET",
+        success: function (response) {
+            console.log(response);
+            mostrarSucursal();
+            editarSucursall = false;
+        },
+      });
+      $("#frm-sucursal").trigger("reset");
+}
+
+mostrarSucursal();
+function mostrarSucursal(){
+    $.ajax({
+        url: "mostrar-sucursal.php",
+        type:"GET",
+        success: function(response){
+            let sucursal = JSON.parse(response);
+            let template  = "";
+            sucursal.forEach((sucursal)=>{
+                template += `
+                
+                <tr id="${sucursal.id}">
+                    <td>${sucursal.id_empresa}</td>
+                    <td>${sucursal.nombre}</td>
+                    <td>${sucursal.ubigeo}</td>
+                    <td>${sucursal.codigo_cofide}</td>
+                    <td>${sucursal.direccion}</td>
+                    <td><i class="btn-edit-sucursal"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+
+                    <td><i class="btn-delete-sucursal"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
+                </tr>
+                
+                `
+            });
+            $("#listado-sucursal").html(template);
+        }
+    });
+} 
+
+eliminarSucursal();
+function eliminarSucursal(){
+    $(document).on("click",".btn-delete-sucursal",function(){
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr("id");
+
+        $.post("eliminar-sucursal.php",{id},function(response){
+            console.log(response);
+            mostrarSucursal();
+        })    
+    });
+}   
+
+editarSucursal();
+function editarSucursal(){
+    $(document).on("click",".btn-edit-sucursal",function(){
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr("id");
+
+        $.post("escuchar-sucursal.php",{id},function(response){
+            let sucursal = JSON.parse(response);
+            console.log(sucursal);
+            $("#id-sucursal").val(sucursal.id);
+            $("#txtNombreSucursal").val(sucursal.nombre);
+            $("#txtDireccionSucursal").val(sucursal.direccion);
+            $("#txtCodigoCofide").val(sucursal.codigo_cofide);
+            $("#cboIdu").val(sucursal.ubigeo);
+            $("#txtIdEmpresa").val(sucursal.id_empresa);
+            editarSucursall = true;
+        });
     })
 }

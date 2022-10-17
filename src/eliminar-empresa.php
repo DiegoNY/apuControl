@@ -2,6 +2,8 @@
 include 'connection/basedatos.php';
 
 $id = $_POST['id'];
+
+
 if(isset($id)){
     $empresas = new BaseDatos();
     $id = $empresas->sanitizar($id);

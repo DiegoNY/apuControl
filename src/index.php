@@ -202,7 +202,7 @@
         </div>
     </div>
 
-    <div class="frm-tabla-contactos">
+    <div class="frm-tabla-contactos inactive">
         <div class="frm-contactos">
             <form id="frm-contactos">
                 <input type="hidden" id="id-contacto" name="id_contacto">
@@ -246,6 +246,59 @@
                         </tr>
                     </thead>
                     <tbody id="listado-contactos">
+                        <!-- Data en Ajax-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="frm-tabla-sucursal">
+        <div class="frm-sucursal">
+            <form id="frm-sucursal">
+                    <input type="hidden" id="id-sucursal" name="id_sucursal">
+                <div>
+                    <label for="txtNombreSucursal">Nombre</label>
+                    <input type="text" name="txtNombreSucursal" id="txtNombreSucursal">
+                </div>
+                <div>
+                    <label for="txtDireccionSucursal">Direccion</label>
+                    <input type="text" name="txtDireccionSucursal" id="txtDireccionSucursal">
+                </div>
+                <div>
+                    <label for="txtCodigoCofide">Codigo Cofide</label>
+                    <input type="text" name="txtCodigoCofide" id="txtCodigoCofide">
+                </div>
+                <div>
+                    <label for="cboIdu">Selecciona el codigo ubigeo </label>
+                    <select name="cboIdu" id="cboIdu">
+                        <option value="1">123</option>
+                        <option value="2" selected>123</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="txtIdEmpresa">Id Empresa</label>
+                    <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
+                </div>
+                <input type="hidden" value="1" name="txtEstado">
+                <input type="button" value="Registrar" onclick="registrarSucursal();">
+            </form>
+        </div>
+        <div class="tabla-sucursal">
+            <div class="tablas-sucursal table-responsive">
+                <table id="tabla_sucursal" class="table table-bordered border table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id Empresa</th>
+                            <th>Nombre</th>
+                            <th>Ubigeo</th>
+                            <th>Cod Cofide</th>
+                            <th>Direccion</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listado-sucursal">
                         <!-- Data en Ajax-->
                     </tbody>
                 </table>
