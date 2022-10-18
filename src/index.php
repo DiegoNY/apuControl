@@ -8,16 +8,16 @@ $fecha = date('d/m/y');
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Document</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <!--DataTable-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    
+
     <!-- Stylos -->
     <link rel="stylesheet" href="style/style.css">
     <!---TABS LINKS -->
@@ -98,8 +98,8 @@ $fecha = date('d/m/y');
                             </select>
                         </div>
                         <div>
-                            
-                            <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro" value="<?php echo $fecha?>">
+
+                            <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro" value="<?php echo $fecha ?>">
                         </div>
                         <div>
                             <label for="txtEstadoComercial">Ingresa el estado comercial</label>
@@ -136,23 +136,23 @@ $fecha = date('d/m/y');
 
                 <div class="tabla-empresas">
                     <div class="tablas-empresa table-responsive container-fluid">
-                        <table id="tabla_empresas" class="table     table-bordered border table-hover" style="width:100%">
+                        <table id="tabla_empresass" class="table  table-wrap table-hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Ruc</th>
-                                    <th>Social</th>
-                                    <th>Ubigeo</th>
-                                    <th>Grupo</th>
-                                    <th>Rubro</th>
-                                    <th>Tipo de envio</th>
-                                    <th>Tipo Integracion</th>
-                                    <th>Fecha de registro</th>
-                                    <th>Estado comercial</th>
-                                    <th>Tipo de persona</th>
-                                    <th>Estado</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
+                                    <th scope="col" >Nombre</th>
+                                    <th scope="col" >Ruc</th>
+                                    <th scope="col" >Social</th>
+                                    <th scope="col" >Ubigeo</th>
+                                    <th scope="col" >Grupo</th>
+                                    <th scope="col" >Rubro</th>
+                                    <th scope="col" >Tipo de envio</th>
+                                    <th scope="col" >Tipo Integracion</th>
+                                    <th scope="col" >Fecha de registro</th>
+                                    <th scope="col" >Estado comercial</th>
+                                    <th scope="col" >Tipo de persona</th>
+                                    <th scope="col" >Estado</th>
+                                    <th scope="col" >Editar</th>
+                                    <th scope="col" >Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody id="listado-empresas">
@@ -201,9 +201,9 @@ $fecha = date('d/m/y');
                             <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
                         </form>
 
-                        <div class="tabla-grupo">
-                            <div class="tablas-empresa table-responsive">
-                                <table id="tabla-grupo" class="table table-bordered border table-hover" style="width:100%">
+                        <div class="tabla-grupo ">
+                            <div class="tablas-empresa table-responsive conteiner-fluid">
+                                <table id="tabla-grupos" class="table table-wrap table-hover" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -262,7 +262,7 @@ $fecha = date('d/m/y');
 
                     <div class="tabla-sucursal">
                         <div class="tablas-sucursal table-responsive">
-                            <table id="tabla_sucursal" class="table table-bordered border table-hover" style="width:100%">
+                            <table id="tabla_sucursals" class="table table-wrap  table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Id Empresa</th>
@@ -315,7 +315,7 @@ $fecha = date('d/m/y');
 
                     <div class="tabla-contactos">
                         <div class="tablas-contactos table-responsive">
-                            <table id="tabla_contactos" class="table table-bordered border table-hover" style="width:100%">
+                            <table id="tabla_contactoss" class="table table-wrap table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Id Empresa</th>
@@ -363,13 +363,15 @@ $fecha = date('d/m/y');
                     </div>
                     <div class="tabla-accesos">
                         <div class="tablas-accesos table-responsive">
-                            <table id="tabla_accesos" class="table table-bordered border table-hover" style="width:100%">
+                            <table id="tabla_accesos" class="table table-wrap table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Id Sucursal</th>
                                         <th>Nombre Acceso</th>
                                         <th>Id Acceso </th>
                                         <th>Contraseña </th>
+                                        <th>editar</th>
+                                        <th>eliminar</th>
                                     </tr>
                                 </thead>
 
@@ -386,11 +388,9 @@ $fecha = date('d/m/y');
 
     </main>
     <footer></footer>
+  
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 </html>
-<style>
-    .inactive {
-        display: none;
-    }
-</style>
+
 <script type="text/javascript" src="js/main.js"></script>

@@ -88,6 +88,10 @@ main{
 
 }
 
+.dataTables_filter{
+    padding: 15px;
+}
+
 footer{
     display: none;
 }

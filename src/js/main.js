@@ -3,17 +3,7 @@ let editar = false;
 let editarContacto = false;
 let editarSucursall = false;
 let editarAccesp = false;
-// $(document).ready(function () {
-//   $("#tabla-grupo").DataTable({
-//     scrollY: "420px",
-//     scrollCollapse: true,
-//     paging: true,
-//     language: {
-//       url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json",
-//     },
-//     dom: '<"toolbar">Bftrp',
-//   });
-// });
+
 
 function RegistrarGrupo() {
   //si aun no estamos editando se registrara el grupo  pero si se esta editando se editaran los datos
@@ -151,18 +141,18 @@ function MostrarEmpresas() {
       empresas.forEach((empresas) => {
         template += `
         <tr id-empresa="${empresas.id}">
-          <td>${empresas.nom_comercial}</td>
-          <td>${empresas.ruc}</td>
-          <td>${empresas.razon_social}</td>
-          <td>${empresas.id_ubigeo}</td>
-          <td>${empresas.id_grupo}</td>
-          <td>${empresas.id_rubro}</td>
-          <td>${empresas.tipo_envio}</td>
-          <td>${empresas.id_tipo_integracion}</td>
-          <td>${empresas.fecha_registro}</td>
-          <td>${empresas.estado_comercial}</td>
-          <td>${empresas.tipo_persona}</td>
-          <td>${empresas.estado}</td>
+          <td scope="row" >${empresas.nom_comercial}</td>
+          <td scope="row" >${empresas.ruc}</td>
+          <td scope="row" >${empresas.razon_social}</td>
+          <td scope="row" >${empresas.id_ubigeo}</td>
+          <td scope="row" >${empresas.id_grupo}</td>
+          <td scope="row" >${empresas.id_rubro}</td>
+          <td scope="row" >${empresas.tipo_envio}</td>
+          <td scope="row" >${empresas.id_tipo_integracion}</td>
+          <td scope="row" >${empresas.fecha_registro}</td>
+          <td scope="row" >${empresas.estado_comercial}</td>
+          <td scope="row" >${empresas.tipo_persona}</td>
+          <td scope="row" >${empresas.estado}</td>
           
           <td><i class="btn-edit-empresa"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
 
@@ -368,6 +358,7 @@ function eliminarSucursal() {
   });
 }
 
+
 editarSucursal();
 function editarSucursal() {
   $(document).on("click", ".btn-edit-sucursal", function () {
@@ -475,3 +466,70 @@ function editarAcceso(){
 });
 }
 
+
+//dataTable 
+
+$(document).ready(function(){
+  $('#tabla_sucursals').DataTable({
+    scrollY: '40vh',
+        scrollCollapse: true,
+        paging: false,
+        ordering: false,
+        searching:true,
+        "language": {
+          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      },
+  });
+});
+$(document).ready(function(){
+  $('#tabla-grupos').DataTable({
+    scrollY: '40vh',  
+        scrollCollapse: true,
+        paging: false,
+        ordering: false,
+        searching:true,
+        "language": {
+          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      },
+  });
+});
+
+$(document).ready(function(){
+  $('#tabla_empresass').DataTable({
+    scrollY: '40vh',  
+        scrollCollapse: true,
+        paging: false,
+        ordering: false,
+        searching:true,
+        "language": {
+          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      },
+  });
+});
+
+$(document).ready(function(){
+  $('#tabla_contactoss').DataTable({
+    scrollY: '40vh',  
+        scrollCollapse: true,
+        paging: false,
+        ordering: false,
+        searching:true,
+        "language": {
+          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      },
+  });
+});
+
+$(document).ready(function(){
+  $('#tabla_accesos').DataTable({
+    scrollY: '40vh',  
+        scrollCollapse: true,
+        paging: false,
+        ordering: false,
+        searching:true,
+        "language": {
+          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      }
+     
+  });
+});
