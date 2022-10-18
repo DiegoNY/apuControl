@@ -1,5 +1,6 @@
 body{
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
 }
 header{
     height: 9vh;
@@ -13,32 +14,82 @@ main{
 
 
 .tabs{
-    height: 50vh;
+    height: 25%;
+    width: auto;
+}
+/*empresa form-principal*/
+.contenedor{
+    height: 75%;
     width: auto;
 }
 
-.contenedor{
-    height: 40vh;
-    width: auto;
-}
 .tabla{
     width: auto;
     height: 100%;
 }
 
+/* tabla de tabs*/
 .contenedor-tabla{
     display: grid;
-    grid-template-columns: minmax(200px, 25%) 1fr;
-    
+    grid-template-columns: 1fr 2fr;
+    gap: 3px;
 }
+
+/*fin */
 
 .inactive{
     display: none;
 }
+
+/*Formulario y tabla empresa */
+.frm-tabla-empresa{
+    display: grid;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 1fr 2fr;
+}
+
 .frm{
-    display: flex;
+    display: grid;
+    margin: 12px;
+}
+
+.frm-empresa{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    flex-wrap: wrap;
+    height: 100%;
+    gap: 7px;
+}
+.tabla-empresas{
+   display: grid;
+}
+
+.btn-tabla-empresa{
+    grid-column: 6 /span 2;
+}
+
+@media(max-width:1247px){
+    .frm-empresa{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        gap: 10px;
+    }
+}
+
+/**/
+
+.img-table{
+    height: 30px;
+    width: 30px;
+
 }
 
 footer{
     display: none;
 }
+
+
