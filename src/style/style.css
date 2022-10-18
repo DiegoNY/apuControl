@@ -2,28 +2,19 @@ body{
     margin: 0;
 }
 header{
-    background-color: red;
     height: 9vh;
     width: auto;
 }
 
 main{
-    background-color: wheat;
     height: 91vh;
     width: auto;
 }
 
-.empresas{
-    height: 40vh;
-    width: auto;
-    background-color: aqua;
-  
-    
-}
+
 .tabs{
     height: 50vh;
     width: auto;
-    background-color: black;
 }
 
 .contenedor{
@@ -31,18 +22,23 @@ main{
     width: auto;
 }
 .tabla{
-    background-color: blue;
     width: auto;
     height: 100%;
 }
+
 .contenedor-tabla{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(200px, 25%) 1fr;
     
 }
+
 .inactive{
     display: none;
 }
+.frm{
+    display: flex;
+}
+
 footer{
     display: none;
 }
