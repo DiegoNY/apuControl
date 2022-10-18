@@ -37,10 +37,10 @@ $fecha = date('d/m/y');
     <!-- Prueba index -->
     <header></header>
     <main>
-        <div class="contenedor">
 
+        <div class="contenedor ">
             <div class="frm-tabla-empresa contenedor contenedor-tabla">
-                <div class="frm ">
+                <div class="frm">
                     <form id="frm_empresa " class="frm-conten">
                         <input type="hidden" id="id" name="id">
                         <div>
@@ -222,6 +222,7 @@ $fecha = date('d/m/y');
                     <h1 id="alerta" class="alert "></h1>
                 </div>
             </div>
+
             <div id="tabs-2">
                 <div class="contenedor  contenedor-tabla">
                     <div class="frm-sucursal">
