@@ -16,7 +16,6 @@ $fecha = date('d/m/y');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <!--DataTable-->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    
 
     <!-- Stylos -->
     <link rel="stylesheet" href="style/style.css">
@@ -30,7 +29,10 @@ $fecha = date('d/m/y');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <!-- TABS -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
+    <!-- fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -97,7 +99,7 @@ $fecha = date('d/m/y');
                                 <option value="JSON">JSON</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="inactive">
 
                             <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro" value="<?php echo $fecha ?>">
                         </div>
@@ -130,39 +132,39 @@ $fecha = date('d/m/y');
                             <input type="hidden" value="1" name="txtEstado">
                             <input type="hidden" value="1" name="txtEliminada">
                         </div>
-                        <input type="button" onclick="RegistrarEmpresa()" value="ingresar Empresa" class="btn-tabla-empresa">
+                        <input type="button" onclick="RegistrarEmpresa()" value="Ingresar Empresa" class="btn-tabla-empresa">
                     </form>
                 </div>
-
-                <div class="tabla-empresas">
+<!-- 
+                <div class="tabla-empresas inactive">
                     <div class="tablas-empresa table-responsive container-fluid">
-                        <table id="tabla_empresass" class="table  table-wrap table-hover" style="width:100%">
+                        <table id="tabla_empresass" class="table  table-borderless table-hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th scope="col" >Nombre</th>
-                                    <th scope="col" >Ruc</th>
-                                    <th scope="col" >Social</th>
-                                    <th scope="col" >Ubigeo</th>
-                                    <th scope="col" >Grupo</th>
-                                    <th scope="col" >Rubro</th>
-                                    <th scope="col" >Tipo de envio</th>
-                                    <th scope="col" >Tipo Integracion</th>
-                                    <th scope="col" >Fecha de registro</th>
-                                    <th scope="col" >Estado comercial</th>
-                                    <th scope="col" >Tipo de persona</th>
-                                    <th scope="col" >Estado</th>
-                                    <th scope="col" >Editar</th>
-                                    <th scope="col" >Eliminar</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Ruc</th>
+                                    <th scope="col">Social</th>
+                                    <th scope="col">Ubigeo</th>
+                                    <th scope="col">Grupo</th>
+                                    <th scope="col">Rubro</th>
+                                    <th scope="col">T.Envio</th>
+                                    <th scope="col">Tipo Integracion</th>
+                                    <th scope="col">Fecha de registro</th>
+                                    <th scope="col">Estado comercial</th>
+                                    <th scope="col">Tipo de persona</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody id="listado-empresas">
-                                <!-- Data en Ajax-->
+                                - Data en Ajax-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
         <div id="tabs" class="tab">
@@ -176,8 +178,8 @@ $fecha = date('d/m/y');
 
                 <div class=" contenedor ">
 
-                    <div class="formulario-registro-grupos contenedor contenedor-tabla">
-                        <form id="frm_grupo" name="frm_grupo">
+                    <div class="contenedor contenedor-tabla">
+                        <form id="frm_grupo" name="frm_grupo" class="frm frm-grupo">
                             <input type="hidden" name="txtIdGrupo" id="id_grupo">
                             <div>
                                 <label for="txtNombre">Nombre Grupo :</label>
@@ -188,7 +190,7 @@ $fecha = date('d/m/y');
                                 <label for="txtDescripcion">Descripcion :</label>
                                 <input type="text" name="txtDescripcion" id="txtDescripcion">
                             </div>
-                            <div>
+                            <div class="inactive">
                                 <input type="hidden" value="1" name="txtEstado" id="txtEstado">
                             </div>
                             <div>
@@ -198,12 +200,12 @@ $fecha = date('d/m/y');
                             <div>
                                 <input type="hidden" name="txtFechCre" id="txtFechCre" value="<?php echo $fecha; ?>">
                             </div>
-                            <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
+                            <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo" class="btn-ingresar-grupo">
                         </form>
 
                         <div class="tabla-grupo ">
                             <div class="tablas-empresa table-responsive conteiner-fluid">
-                                <table id="tabla-grupos" class="table table-wrap table-hover" style="width:100%">
+                                <table id="tabla-grupos" class="table table-borderless table-hover" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -229,8 +231,8 @@ $fecha = date('d/m/y');
 
             <div id="tabs-2">
                 <div class="contenedor  contenedor-tabla">
-                    <div class="frm-sucursal">
-                        <form id="frm-sucursal">
+                    <div class="frm">
+                        <form id="frm-sucursal" class="frm-sucursal">
                             <input type="hidden" id="id-sucursal" name="id_sucursal">
                             <div>
                                 <label for="txtNombreSucursal">Nombre</label>
@@ -256,13 +258,13 @@ $fecha = date('d/m/y');
                                 <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
                             </div>
                             <input type="hidden" value="1" name="txtEstado">
-                            <input type="button" value="Registrar" onclick="registrarSucursal();">
+                            <input type="button" value="Registrar" onclick="registrarSucursal();" class="btn-sucursal">
                         </form>
                     </div>
 
                     <div class="tabla-sucursal">
                         <div class="tablas-sucursal table-responsive">
-                            <table id="tabla_sucursals" class="table table-wrap  table-hover" style="width:100%">
+                            <table id="tabla_sucursals" class="table table-borderless table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Id Empresa</th>
@@ -285,8 +287,8 @@ $fecha = date('d/m/y');
             <div id="tabs-3">
 
                 <div class="frm-tabla-contactos contenedor contenedor-tabla">
-                    <div class="frm-contactos">
-                        <form id="frm-contactos">
+                    <div class="frm">
+                        <form id="frm-contactos" class="frm-contactos">
                             <input type="hidden" id="id-contacto" name="id_contacto">
                             <div>
                                 <label for="txtNombre">Nombre</label>
@@ -309,13 +311,13 @@ $fecha = date('d/m/y');
                                 <input type="text" name="txtCorreo" id="correo-contacto">
                             </div>
                             <input type="hidden" value="1" name="txtEstado">
-                            <input type="button" value="Registrar Contacto" onclick="registrarContactos()">
+                            <input type="button" value="Registrar Contacto" onclick="registrarContactos()" class="btn-registrar-contacto">
                         </form>
                     </div>
 
                     <div class="tabla-contactos">
                         <div class="tablas-contactos table-responsive">
-                            <table id="tabla_contactoss" class="table table-wrap table-hover" style="width:100%">
+                            <table id="tabla_contactoss" class="table table-borderless table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Id Empresa</th>
@@ -338,8 +340,8 @@ $fecha = date('d/m/y');
             <div id="tabs-4">
 
                 <div class="frm-tabla-accesos contenedor contenedor-tabla">
-                    <div class="frm-accesos">
-                        <form id="frm-accesos">
+                    <div class="frm">
+                        <form id="frm-accesos" class="frm-accesos">
                             <input type="hidden" id="id-acceso" name="id_acceso">
                             <div>
                                 <label for="txtIdSucursal">Id Sucursal</label>
@@ -358,12 +360,12 @@ $fecha = date('d/m/y');
                                 <input type="text" name="txtContraseña" id="txtContraseña">
                             </div>
                             <input type="hidden" name="txtEstado" value="1">
-                            <input type="button" value="Registrar" onclick="registrarAccesos()">
+                            <input type="button" value="Registrar" onclick="registrarAccesos()" class="btn-registrar-accesos">
                         </form>
                     </div>
                     <div class="tabla-accesos">
                         <div class="tablas-accesos table-responsive">
-                            <table id="tabla_accesos" class="table table-wrap table-hover" style="width:100%">
+                            <table id="tabla_accesos" class="table table-borderless table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Id Sucursal</th>
@@ -388,7 +390,7 @@ $fecha = date('d/m/y');
 
     </main>
     <footer></footer>
-  
+
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 </html>

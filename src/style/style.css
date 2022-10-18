@@ -1,35 +1,52 @@
-body{
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --very-light-pink: #C7C7C7;
+    --text-input-field: #F7F7F7;
+    --hospital-green: #ACD9B2;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+}
+
+body {
     margin: 0px;
     padding: 0px;
+    font-family: 'Quicksand', sans-serif;
+    background: #c4c4c4;
 }
-header{
+
+header {
     height: 9vh;
     width: auto;
 }
 
-main{
-    height: 91vh;
+main {
+    height: 100vh;
     width: auto;
+    background-color: whitesmoke;
 }
 
 
-.tabs{
-    height: 25%;
+.tabs {
+    height: 20%;
     width: auto;
+    background-color: whitesmoke;
 }
+
 /*empresa form-principal*/
-.contenedor{
-    height: 75%;
+.contenedor {
+    height: auto;
     width: auto;
 }
 
-.tabla{
+.tabla {
     width: auto;
     height: 100%;
 }
 
 /* tabla de tabs*/
-.contenedor-tabla{
+.contenedor-tabla {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 3px;
@@ -37,12 +54,12 @@ main{
 
 /*fin */
 
-.inactive{
+.inactive {
     display: none;
 }
 
 /*Formulario y tabla empresa */
-.frm-tabla-empresa{
+.frm-tabla-empresa {
     display: grid;
     gap: 15px;
     width: 100%;
@@ -50,28 +67,80 @@ main{
     grid-template-rows: 1fr 2fr;
 }
 
-.frm{
+.frm {
     display: grid;
-    margin: 12px;
+    padding: 10px;
+    background-color: var(--white);
 }
 
-.frm-empresa{
+.frm-empresa {
     display: grid;
-    grid-template-columns: repeat(7,1fr);
+    grid-template-columns: repeat(7, 1fr);
     flex-wrap: wrap;
     height: 100%;
     gap: 7px;
 }
-.tabla-empresas{
-   display: grid;
+
+.tabla-empresas {
+    display: grid;
+    margin: 24px;
+    background-color: var(--white);
+    border-radius: 19px;
 }
 
-.btn-tabla-empresa{
+.btn-tabla-empresa {
     grid-column: 6 /span 2;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--hospital-green);
+    height: 50px;
+    color: var(--white);
+    font-size: var(--md);
+    font-weight: bold;
+    width: 100%;
+
+
+}
+.dataTables_wrapper .dataTables_filter input{
+    border-radius: 15px;
+    border: 1px solid #f1f1f1;
 }
 
-@media(max-width:1247px){
-    .frm-empresa{
+label {
+    font-size: var(--sm);
+    font-weight: bold;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+input {
+    background-color: var(--text-input-field);
+    border: none;
+    border-radius: 8px;
+    height: 45px;
+    font-size: var(--md);
+    padding: 5px;
+    margin-bottom: 12px;
+}
+
+select {
+    background-color: var(--text-input-field);
+    border: none;
+    border-radius: 8px;
+    height: 35px;
+    padding: 5px;
+}
+
+@media(max-width:1247px) {
+    .frm-empresa {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        gap: 10px;
+    }
+
+    .frm-grupo {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -82,18 +151,122 @@ main{
 
 /**/
 
-.img-table{
+.img-table {
     height: 30px;
     width: 30px;
-
 }
 
-.dataTables_filter{
+.dataTables_filter {
     padding: 15px;
 }
 
-footer{
-    display: none;
+.dataTables_wrapper {
+ padding: 13px;
+ 
 }
 
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: 1px solid #ddd;
+}
 
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 1px solid #ddd;
+}
+/*Sucursal*/
+
+.frm-sucursal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 66px);
+    align-items: center;
+    gap: 7px;
+}
+
+.btn-sucursal {
+    grid-row: 4;
+    grid-column: 1 / span 2;
+}
+
+/*frm grupo*/
+
+.frm-grupo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    grid-template-rows: repeat(3, 90px);
+}
+
+.btn-ingresar-grupo {
+    grid-column: 1/ span 2;
+    height: 40px;
+    width: 100%;
+
+}
+
+/*frm contactos*/
+.frm-contactos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 76px);
+    gap: 7px;
+}
+
+.btn-registrar-contacto {
+    grid-row: 4;
+    grid-column: 1/ span 2;
+    height: 45px;
+    width: 100%;
+
+}
+
+/*frm-accesos*/
+.frm-accesos{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(3,85px);
+    gap: 7px;
+}
+.frm div input{
+    width: 100%;
+}
+.frm div select {
+    width: 100%;
+    text-align: center;
+    height: 45px;
+}
+.btn-registrar-accesos{
+    grid-column: 1 / span 2;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--hospital-green);
+    height: 50px;
+    color: var(--white);
+    font-size: var(--md);
+    font-weight: bold;
+    width: 100%;
+
+}
+
+/*responsive*/
+
+@media(max-width:1247px) {
+    .frm-empresa {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        gap: 10px;
+    }
+
+    .frm-grupo {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        gap: 10px;
+    }
+}
+
+footer {
+    display: none;
+}
