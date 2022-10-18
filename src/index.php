@@ -1,3 +1,7 @@
+<?php
+$fecha = date('d/m/y');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,8 +40,8 @@
         <div class="contenedor">
 
             <div class="frm-tabla-empresa contenedor contenedor-tabla">
-                <div class="frm contenedor">
-                    <form id="frm_empresa">
+                <div class="frm ">
+                    <form id="frm_empresa " class="frm-conten">
                         <input type="hidden" id="id" name="id">
                         <div>
                             <label for="txtNombreCo"> Nombre</label>
@@ -93,10 +97,8 @@
                                 <option value="JSON">JSON</option>
                             </select>
                         </div>
-                        <div>
-                            <label for="txtFechaRegistro">Ingresela fecha de registro</label>
-                            <input type="text" name="txtFechaRegistro" id="txtFechaRegistro">
-                        </div>
+                        <!-- fecha -->
+                        <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro" value="<?php echo $fecha; ?>">
                         <div>
                             <label for="txtEstadoComercial">Ingresa el estado comercial</label>
                             <input type="text" name="txtEstadoComercial" id="txtEstadoComercial">
@@ -126,22 +128,23 @@
                             <input type="hidden" value="1" name="txtEstado">
                             <input type="hidden" value="1" name="txtEliminada">
                         </div>
-                        <input type="button" onclick="RegistrarEmpresa()" value="ingresar Empresa">
+                        <input type="button" onclick="RegistrarEmpresa()" value="ingresar Empresa" class="btn-frm-empresa">
                     </form>
                 </div>
 
                 <div class="tabla-empresas">
-                    <div class="tablas-empresa table-responsive">
+                    <div class="tabla-empresa table-responsive">
                         <table id="tabla_empresas" class="table table-bordered border table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Ruc</th>
-                                    <th>Social</th>
+                                    <th>Razon Social</th>
                                     <th>Ubigeo</th>
                                     <th>Grupo</th>
                                     <th>Rubro</th>
                                     <th>Tipo de envio</th>
+                                    <th>Tipo de Integracion</th>
                                     <th>Fecha de registro</th>
                                     <th>Estado comercial</th>
                                     <th>Tipo de persona</th>
@@ -157,6 +160,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
         <div id="tabs" class="tab">
@@ -190,8 +194,7 @@
                                 <input type="text" name="txtUsuCre" id="txtUsuCre">
                             </div>
                             <div>
-                                <label for="txtFechCre">Fecha Creacion :</label>
-                                <input type="text" name="txtFechCre" id="txtFechCre">
+                                <input type="hidden" name="txtFechCre" id="txtFechCre" value="<?php echo $fecha; ?>">
                             </div>
                             <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">
                         </form>
@@ -403,8 +406,9 @@
                     <label for="txtUsuCre">Usuario Creacion :</label>
                     <input type="text" name="txtUsuCre" id="txtUsuCre">
                 </div>
+                <?php $fecha = date('d/m/y'); ?>
                 <div>
-                    <label for="txtFechCre">Fecha Creacion :</label>
+                    <label for="txtFechCre">Fecha Creacion <?php echo  $fecha; ?>:</label>
                     <input type="text" name="txtFechCre" id="txtFechCre">
                 </div>
                 <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo">

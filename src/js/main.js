@@ -158,7 +158,8 @@ function MostrarEmpresas() {
           <td>${empresas.id_grupo}</td>
           <td>${empresas.id_rubro}</td>
           <td>${empresas.tipo_envio}</td>
-          <td>fecha de registo</td>
+          <td>${empresas.id_tipo_integracion}</td>
+          <td>${empresas.fecha_registro}</td>
           <td>${empresas.estado_comercial}</td>
           <td>${empresas.tipo_persona}</td>
           <td>${empresas.estado}</td>
