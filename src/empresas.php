@@ -56,12 +56,12 @@
                     </tr>
                 </thead>
                 <tbody id="listado-empresas">
-                    - Data en Ajax-
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

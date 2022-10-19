@@ -17,26 +17,31 @@ body {
 }
 
 header {
-    height: 9vh;
+    height: 15vh;
     width: auto;
 }
 
 main {
-    height: 100vh;
+    height: 90vh;
     width: auto;
     background-color: whitesmoke;
 }
 
 
 .tabs {
-    height: 20%;
+    height: 100%;
     width: auto;
     background-color: whitesmoke;
 }
 
+
+.ui-widget.ui-widget-content {
+    border: 1px solid #c5c5c5;
+    background: #cfcece;
+}
 /*empresa form-principal*/
 .contenedor {
-    height: auto;
+    height:  100%;
     width: auto;
 }
 
@@ -71,6 +76,7 @@ main {
     display: grid;
     padding: 10px;
     background-color: var(--white);
+    align-items: center;
 }
 
 .frm-empresa {
@@ -161,7 +167,8 @@ select {
 }
 
 .dataTables_wrapper {
- padding: 13px;
+    padding: 23px;
+    background: white;
  
 }
 
@@ -171,7 +178,7 @@ table.dataTable thead th, table.dataTable thead td {
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
-    border-bottom: 1px solid #ddd;
+    border-bottom: none;
 }
 /*Sucursal*/
 
@@ -191,6 +198,7 @@ table.dataTable thead th, table.dataTable thead td {
 /*frm grupo*/
 
 .frm-grupo {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     grid-template-rows: repeat(3, 90px);
