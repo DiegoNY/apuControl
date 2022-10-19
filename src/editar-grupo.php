@@ -11,4 +11,4 @@ if(!$resultado){
     die("Consulta fallida llama al admin 😢");
 }
 
-echo 'Editado con exito';
+echo 'ingresado';
