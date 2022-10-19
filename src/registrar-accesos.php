@@ -12,10 +12,10 @@ if (isset($txtIdSucursal) && !empty($txtIdSucursal)) {
 
 
     if ($resultado == TRUE) {
-        echo $mensaje = "alert-succes";
+        echo "ingresado";
     } else {
-        echo $mensaje = "alert-danger";
+        echo  "error";
     }
 } else {
-    echo $mensaje = "ingresa datos";
+    echo "sin datos";
 }

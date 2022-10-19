@@ -18,12 +18,13 @@ $txtEstado = $contactos->sanitizar($txtEstado);
 $resultado = $contactos->registrarContactos($txtNombre,$txtCargo,$txtEmpresa,$txtTelefono,$txtCorreo,$txtEstado);
 
 if($resultado == TRUE){
-    echo $mensaje = "alert-succes";
+    echo "ingresado";
 }else{
-    echo $mensaje = "alert-danger";
+    echo  "error";
 }
 
 }else{
-    echo $mensaje = "ingresa datos";
+    echo "sin datos";
+
 }
 

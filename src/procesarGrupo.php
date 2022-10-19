@@ -10,7 +10,6 @@ $grupo = new BaseDatos();
  * recibe valor cuando funcion sea insertar se insertaran los datos
  */
 
-
 if (isset($txtNombre) && !empty($txtNombre)) {
     //Los datos
     $nombre = $grupo->sanitizar($txtNombre);
@@ -24,11 +23,10 @@ if (isset($txtNombre) && !empty($txtNombre)) {
     $res = $grupo->crearGrupo($nombre, $descripcion, $estado, $usuarioCreacion, $fechaCreacion);
     if ($res == TRUE) {
 
-        $mensaje = "alert-success";
+        echo "ingresado";
     } else {
-        $mensaje = "alert-danger";
+        echo  "error";
     }
-    echo $mensaje;
 }else{
-    echo "alert-danger";
+    echo "sin datos";
 }

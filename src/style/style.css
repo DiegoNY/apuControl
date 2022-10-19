@@ -17,8 +17,9 @@ body {
 }
 
 header {
-    height: 15vh;
+    height: 10vh;
     width: auto;
+    background-color: var(--hospital-green);
 }
 
 main {
@@ -43,7 +44,7 @@ main {
 
 /*empresa form-principal*/
 .contenedor {
-    height:  100%;
+    height: 100%;
     width: auto;
 }
 
@@ -75,19 +76,26 @@ main {
 }
 
 .frm {
-    display: grid;
+    display: flex;
     padding: 10px;
     background-color: var(--white);
-    align-items: center;
+    place-items: center;
     border-radius: 4px;
+    flex-direction: column;
 }
 
 .frm-empresa {
+    width: 50%;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     flex-wrap: wrap;
     height: 100%;
     gap: 7px;
+}
+
+.cont-form {
+    margin-bottom: 6px;
+    margin-left: 18px;
 }
 
 .tabla-empresas {
@@ -98,7 +106,7 @@ main {
 }
 
 .btn-tabla-empresa {
-    grid-column: 6 /span 2;
+    grid-column: 3/span 2;
     border-radius: 8px;
     border: none;
     background-color: var(--hospital-green);
@@ -108,9 +116,9 @@ main {
     font-weight: bold;
     width: 100%;
 
-
 }
-.dataTables_wrapper .dataTables_filter input{
+
+.dataTables_wrapper .dataTables_filter input {
     border-radius: 15px;
     border: 1px solid #f1f1f1;
 }
@@ -133,11 +141,10 @@ input {
 }
 
 select {
-    background-color: var(--text-input-field);
-    border: none;
     border-radius: 8px;
-    height: 35px;
+    font-size: var(--md);
     padding: 5px;
+    margin-bottom: 12px;
 }
 
 @media(max-width:1247px) {
@@ -173,10 +180,11 @@ select {
     padding: 23px;
     background: white;
     border-radius: 4px;
- 
+
 }
 
-table.dataTable thead th, table.dataTable thead td {
+table.dataTable thead th,
+table.dataTable thead td {
     padding: 10px 18px;
     border-bottom: 1px solid #ddd;
 }
@@ -184,6 +192,7 @@ table.dataTable thead th, table.dataTable thead td {
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
     border-bottom: none;
 }
+
 /*Sucursal*/
 
 .frm-sucursal {
@@ -232,21 +241,24 @@ table.dataTable thead th, table.dataTable thead td {
 }
 
 /*frm-accesos*/
-.frm-accesos{
+.frm-accesos {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(3,85px);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 85px);
     gap: 7px;
 }
-.frm div input{
+
+.frm div input {
     width: 100%;
 }
+
 .frm div select {
     width: 100%;
     text-align: center;
     height: 45px;
 }
-.btn-registrar-accesos{
+
+.btn-registrar-accesos {
     grid-column: 1 / span 2;
     border-radius: 8px;
     border: none;
@@ -281,4 +293,12 @@ table.dataTable thead th, table.dataTable thead td {
 
 footer {
     display: none;
+}
+/*grupo */
+.grupo-descripcion{
+    grid-row: 1/span 2;
+    grid-column: 2;
+}
+.descripcion{
+    height:73%;
 }

@@ -21,7 +21,6 @@ $fecha = date('d/m/y');
     <link rel="stylesheet" href="style/style.css">
     <!---TABS LINKS -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -37,7 +36,36 @@ $fecha = date('d/m/y');
 
 <body>
     <!-- Prueba index -->
-    <header></header>
+    <header>
+        <div class="container-fluid ">
+            <nav class="navbar navbar-expand-lg navbar-light  py-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="">Bienvenido👋</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pantallaRegistraEmpresa.php?mensaje=faltanDatos">Ingresar Empresas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.php">Salir</a>
+                            </li>
+
+                            <li class="nav-item inactive">
+                                <a class="nav-link" href="#">volver</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">🐱‍👤</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
     <main>
 
         <div class="contenedor ">
@@ -45,23 +73,23 @@ $fecha = date('d/m/y');
                 <div class="frm">
                     <form id="frm_empresa" class="frm-empresa">
                         <input type="hidden" id="id" name="id">
-                        <div class="nombre">
+                        <div class="nombre  cont-form">
                             <label for="txtNombreCo"> Nombre</label>
                             <input type="text" value="" name="txtNombreCo" id="txtNombreCo">
                         </div>
-                        <div class="ruc">
+                        <div class="ruc cont-form">
                             <label for="txtRuc"> Ruc</label>
                             <input type="text" value="" name="txtRuc" id="txtRuc">
                         </div>
-                        <div class="razon-social">
+                        <div class="razon-social cont-form">
                             <label for="txtRazonSocial">Razon social</label>
                             <input type="text" value="" name="txtRazonSocial" id="txtRazonSocial">
                         </div>
-                        <div class="direccion">
+                        <div class="direccion cont-form">
                             <label for="txtDireccion">Direccion</label>
                             <input type="text" value="" name="txtDireccion" id="txtDireccion">
                         </div>
-                        <div class="tipo-sis">
+                        <div class="tipo-sis cont-form">
 
                             <label for="cboTipoSistema">Tipo de sistema</label>
                             <select name="cboTipoSistema" id="cboTipoSistema">
@@ -70,13 +98,13 @@ $fecha = date('d/m/y');
 
                             </select>
                         </div>
-                        <div class="cbo-id">
+                        <div class="cbo-id cont-form">
                             <label for="cboIdGrupo">Grupo</label>
                             <select id="cbogrupo" name="txtIdGrupo">
                                 <option value="value">value</option>
                             </select>
                         </div>
-                        <div class="bdo-id">
+                        <div class="bdo-id cont-form">
                             <label for="cboIdRubro">Rubro</label>
                             <select name="cboIdRubro" id="cboIdRubro">
                                 <option value="EDS">EDS</option>
@@ -84,14 +112,14 @@ $fecha = date('d/m/y');
                                 <option value="MARKETS">MARKETS</option>
                             </select>
                         </div>
-                        <div class="cbo-ti">
+                        <div class="cbo-ti cont-form">
                             <label for="cboTipoEnvio">Tipo de envio</label>
                             <select name="cboTipoEnvio" id="cboTipoEnvio">
                                 <option value="OSE">OSE</option>
                                 <option value="SUNAT" selected>SUNAT</option>
                             </select>
                         </div>
-                        <div class="cbo-id-tip-inte">
+                        <div class="cbo-id-tip-inte cont-form">
                             <label for="cboIdTipoIntegracion">Tipo de integracion</label>
                             <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion">
                                 <option value="DBF">DBF</option>
@@ -103,25 +131,25 @@ $fecha = date('d/m/y');
 
                             <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro" value="<?php echo $fecha ?>">
                         </div>
-                        <div>
+                        <div class="cont-form">
                             <label for="txtEstadoComercial">Estado comercial</label>
                             <input type="text" name="txtEstadoComercial" id="txtEstadoComercial">
                         </div>
-                        <div>
+                        <div class="cont-form">
                             <label for="cboTipoPersona">Tipo de persona</label>
                             <select name="cboTipoPersona" id="cboTipoPersona">
                                 <option value="NATURAL">Natural</option>
                                 <option value="JURIDICA" selected>Juridica</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="cont-form">
                             <label for="cboIdu ">Codigo ubigeo </label>
                             <select name="cboIdu" id="cboIdu">
                                 <option value="123">123</option>
                                 <option value="164" selected>164</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="cont-form">
                             <label for="cboEstado">Estado</label>
                             <select name="cboEstado" id="cboEstado">
                                 <option value="0">Posible Cliente</option>
@@ -135,52 +163,24 @@ $fecha = date('d/m/y');
                         <input type="button" onclick="RegistrarEmpresa()" value="Ingresar Empresa" class="btn-tabla-empresa">
                     </form>
                 </div>
-                <!-- 
-                <div class="tabla-empresas inactive">
-                    <div class="tablas-empresa table-responsive container-fluid">
-                        <table id="tabla_empresass" class="table  table-borderless table-hover" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Ruc</th>
-                                    <th scope="col">Social</th>
-                                    <th scope="col">Ubigeo</th>
-                                    <th scope="col">Grupo</th>
-                                    <th scope="col">Rubro</th>
-                                    <th scope="col">T.Envio</th>
-                                    <th scope="col">Tipo Integracion</th>
-                                    <th scope="col">Fecha de registro</th>
-                                    <th scope="col">Estado comercial</th>
-                                    <th scope="col">Tipo de persona</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Editar</th>
-                                    <th scope="col">Eliminar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="listado-empresas">
-                                - Data en Ajax-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
 
                 <div id="tabs" class="tabs">
 
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#tabs-1">Active</a>
+                            <a class="nav-link active" aria-current="page" href="#tabs-1">Grupos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#tabs-2">Sucursal</a>
+                            <a class="nav-link active" href="#tabs-2">Sucursal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#tabs-3">Contactos</a>
+                            <a class="nav-link active" href="#tabs-3">Contactos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#tabs-4" >Accesos</a>
+                            <a class="nav-link active" href="#tabs-4">Accesos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tabs-5">Bandera</a>
                         </li>
                     </ul>
 
@@ -197,9 +197,9 @@ $fecha = date('d/m/y');
                                             <input type="hidden" name="txtFuncion" id="txtFuncion" value="Insertar">
                                             <input type="text" name="txtNombre" id="txtNombre">
                                         </div>
-                                        <div>
+                                        <div class="grupo-descripcion">
                                             <label for="txtDescripcion">Descripcion :</label>
-                                            <input type="text" name="txtDescripcion" id="txtDescripcion">
+                                            <input type="text" name="txtDescripcion" id="txtDescripcion" class="descripcion">
                                         </div>
                                         <div class="inactive">
                                             <input type="hidden" value="1" name="txtEstado" id="txtEstado">
@@ -208,7 +208,7 @@ $fecha = date('d/m/y');
                                             <label for="txtUsuCre">Usuario Creacion :</label>
                                             <input type="text" name="txtUsuCre" id="txtUsuCre">
                                         </div>
-                                        <div>
+                                        <div class="inactive">
                                             <input type="hidden" name="txtFechCre" id="txtFechCre" value="<?php echo $fecha; ?>">
                                         </div>
                                         <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo" class="btn-ingresar-grupo">
@@ -279,10 +279,10 @@ $fecha = date('d/m/y');
                                     <table id="tabla_sucursals" class="table table-borderless table-hover" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Id Empresa</th>
+                                                <th>Id_Empresa</th>
                                                 <th>Nombre</th>
                                                 <th>Ubigeo</th>
-                                                <th>Cod Cofide</th>
+                                                <th>Cod_Cofide</th>
                                                 <th>Direccion</th>
                                                 <th>Editar</th>
                                                 <th>Eliminar</th>
@@ -296,8 +296,8 @@ $fecha = date('d/m/y');
                             </div>
                         </div>
                     </div>
-                    <div id="tabs-3">
 
+                    <div id="tabs-3">
                         <div class="frm-tabla-contactos contenedor contenedor-tabla">
                             <div class="frm">
                                 <form id="frm-contactos" class="frm-contactos">
@@ -349,8 +349,8 @@ $fecha = date('d/m/y');
                             </div>
                         </div>
                     </div>
-                    <div id="tabs-4">
 
+                    <div id="tabs-4">
                         <div class="frm-tabla-accesos contenedor contenedor-tabla">
                             <div class="frm">
                                 <form id="frm-accesos" class="frm-accesos">
@@ -396,15 +396,31 @@ $fecha = date('d/m/y');
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
+
+                    <div id="tabs-5">
+                        <div class="frm-tabla-bandera contenedor contenedor-tabla">
+                            <div class="frm-ingreso-bandera">
+                                <form id="frm_logo" method="POST" enctype="multipart/form-data">
+                                    <label for="">Ingresa Bandera</label>
+                                    <input type="text" name="nombre" id="nombre">
+                                    <input type="file" name="logo" id="logo">
+                                    <input type="submit" name="btn_registrar" value="Registrar Logo" class="btn-registrar-logo" id="btn_registrar">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+
 
     </main>
     <footer></footer>
 
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
 
 <script type="text/javascript" src="js/main.js"></script>

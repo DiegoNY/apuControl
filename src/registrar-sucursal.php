@@ -1,6 +1,5 @@
 <?php
 
-echo "registrando ....";
 
 include 'connection/basedatos.php';
 
@@ -20,11 +19,11 @@ $txtIdEmpresa = $sucursal->sanitizar($txtIdEmpresa);
 $resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$txtEstado,$txtIdEmpresa);
 
 if($resultado == TRUE){
-    echo $mensaje = "alert-succes";
+    echo "ingresado";
 }else{
-    echo $mensaje = "alert-danger";
+    echo "error";
 }
 
 }else{
-    echo $mensaje = "ingresa datos";
+    echo "sin datos";
 }

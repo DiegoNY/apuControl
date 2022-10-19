@@ -16,10 +16,7 @@ function RegistrarGrupo() {
       console.log(data);
       //cuando se ingresen los grupos se motran en pantalla sin refrescar
       CargarGrupos();
-
-      //muestra verde si se enviaron los datos cambiar por una alerta owo
-      const alerta = document.querySelector("#alerta");
-      alerta.classList.toggle(data);
+      mensajes(data,"Se registro el grupo 🐱‍👤","Rellena todos los campos");
     },
   });
   //se reinicia el formulario cuando enviamos datos
@@ -113,7 +110,6 @@ function cargaGrupoEnFrm() {
 }
 
 //PARA LA EMPRESA
-RegistrarEmpresa();
 function RegistrarEmpresa() {
   let url = editar === false ? "registrar-empresa.php" : "editar-empresa.php";
   $.ajax({
@@ -124,6 +120,7 @@ function RegistrarEmpresa() {
       console.log(response);
       MostrarEmpresas();
       mostrarSucursal();
+      mensajes(response,"Se ingreso la empresa :D","Faltan datos IMPORTANTES de la empresa");
     },
   });
 
@@ -216,7 +213,6 @@ function editarEmpresas() {
 }
 
 //Para los Contactos
-registrarContactos();
 function registrarContactos() {
   let url = editarContacto === false ? "registrar-contactos.php" : "editar-contacto.php";
   $.ajax({
@@ -226,6 +222,7 @@ function registrarContactos() {
     success: function (response) {
       console.log(response);
       mostrarContactos();
+      mensajes(response,"Contacto Registrado","Rellena todos los campos ❌");
       editarContacto = false;
     },
   });
@@ -233,7 +230,7 @@ function registrarContactos() {
   $("#frm-contactos").trigger("reset");
 }
 
-mostrarContactos();
+
 function mostrarContactos() {
   $.ajax({
     url: "mostrar-contactos.php",
@@ -251,9 +248,9 @@ function mostrarContactos() {
         <td>${contactos.telefono}</td>
         <td>${contactos.correo}</td>
 
-        <td><i class="btn-edit-contacto"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+        <td><i class="btn-edit-contacto" onclick="editarContactos()"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
         
-        <td><i class="btn-delete-contacto"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
+        <td><i class="btn-delete-contacto" onclick="eliminarContacto()"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
     </tr>
         `
       });
@@ -264,7 +261,6 @@ function mostrarContactos() {
 }
 
 
-eliminarContacto();
 function eliminarContacto() {
 
   $(document).on("click", ".btn-delete-contacto", function () {
@@ -278,7 +274,7 @@ function eliminarContacto() {
   })
 }
 
-editarContactos();
+
 function editarContactos() {
   $(document).on("click", ".btn-edit-contacto", function () {
     let element = $(this)[0].parentElement.parentElement;
@@ -310,13 +306,13 @@ function registrarSucursal() {
     success: function (response) {
       console.log(response);
       mostrarSucursal();
+      mensajes(response,"Ok, se registro la sucursal","Te falta llenar algunos datos importantes ☹");
       editarSucursall = false;
     },
   });
   $("#frm-sucursal").trigger("reset");
 }
 
-mostrarSucursal();
 function mostrarSucursal() {
   $.ajax({
     url: "mostrar-sucursal.php",
@@ -391,14 +387,14 @@ function registrarAccesos() {
     success: function (response) {
       console.log(response);
       mostrarAccesos();
-
+      mensajes(response,"Bien Se ingresaron los accesos 😀","Completa Todos los campos");
       editarAcceso = false;
+
     }
   });
   $("#frm-accesos").trigger("reset");
 }
 
-mostrarAccesos();
 function mostrarAccesos() {
   $.ajax({
     url: "mostrar-accesos.php",
@@ -427,14 +423,14 @@ function mostrarAccesos() {
 }
 
 eliminarAcceso();
-function eliminarAcceso(){
+function eliminarAcceso() {
 
-  $(document).on("click",".btn-delete-acceso",function(){
+  $(document).on("click", ".btn-delete-acceso", function () {
     let element = $(this)[0].parentElement.parentElement;
     let id = $(element).attr("id-acceso")
     console.log(id);
 
-    $.post("eliminar-acceso.php",{id},function(response){
+    $.post("eliminar-acceso.php", { id }, function (response) {
       console.log(response);
       mostrarAccesos();
     });
@@ -442,12 +438,12 @@ function eliminarAcceso(){
 }
 
 editarAcceso()
-function editarAcceso(){
+function editarAcceso() {
 
-  $(document).on("click",".btn-edit-acceso",function(){
-    let element =$(this)[0].parentElement.parentElement;
+  $(document).on("click", ".btn-edit-acceso", function () {
+    let element = $(this)[0].parentElement.parentElement;
     let id = $(element).attr("id-acceso")
-    $.post("escuchar-acceso.php",{id},function(response){
+    $.post("escuchar-acceso.php", { id }, function (response) {
       let accesos = JSON.parse(response);
       $("#id-acceso").val(accesos.id);
       $("#txtIdSucursal").val(accesos.id_sucursal);
@@ -457,79 +453,100 @@ function editarAcceso(){
       editarAcceso = true;
     });
   });
-  
+
 
   //tabs 
 
   $(function () {
     $("#tabs").tabs();
-});
+  });
+}
+
+//CRUD LOGO 
+mostrarLogoss();
+function mostrarLogoss() {
+  $.ajax({
+    url: "mostrar-logo.php",
+    type: "GET",
+    success: function (response) {
+      let logo = JSON.parse(response);
+      let template = "";
+
+      logo.forEach((logo) => {
+        console.log(logo.ruta);
+        template += `
+         <img src="${logo.ruta}" alt="${logo.nombre}">
+        `
+      });
+      $("#imge-logos").html(template);
+    }
+  });
+}
+
+
+  document.getElementById("btn_registrar").addEventListener('click', (e) => {
+    e.preventDefault();
+
+    let frm = document.getElementById('frm_logo');
+    let frmdata = new FormData(frm);
+
+    $.ajax({
+      method: 'post',
+      url: "registrar-logo.php",
+      data: frmdata,
+      cache: false,
+      processData: false,
+      contentType: false,
+      success: (response) => {
+        console.log(response);
+        mensajes(response,"Ingresaste un Logo 😃","Seguro falto el nombre 😲");
+      }
+    });
+
+  })
+
+//alerta 
+
+function mensajes(response,mensaje,error) {
+    if (response == "ingresado") {
+      Swal.fire(
+        'Registrado con exito',
+        `${mensaje}`,
+        'success'
+      ).then(() => {
+        console.log("tabla actualizada")
+      })
+    } else {
+      Swal.fire(
+        'Completa todos los campos',
+        `${error}`,
+        'error'
+      ).then(() => {
+        console.log("no hay datos");
+      })
+    }
 }
 
 
 //dataTable 
 
-$(document).ready(function(){
-  $('#tabla_sucursals').DataTable({
-    scrollY: '40vh',
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        searching:true,
-        "language": {
-          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-      },
-  });
-});
-$(document).ready(function(){
-  $('#tabla-grupos').DataTable({
-    scrollY: '40vh',  
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        searching:true,
-        "language": {
-          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-      },
-  });
-});
+dataTables('#tabla_empresasas');
+dataTables('#tabla-grupos');
+dataTables('#tabla_sucursals');
+dataTables('#tabla_contactoss');
+dataTables('#tabla_accesos');
 
-$(document).ready(function(){
-  $('#tabla_empresass').DataTable({
-    scrollY: '40vh',  
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        searching:true,
-        "language": {
-          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-      },
-  });
-});
-
-$(document).ready(function(){
-  $('#tabla_contactoss').DataTable({
-    scrollY: '40vh',  
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        searching:true,
-        "language": {
-          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-      },
-  });
-});
-
-$(document).ready(function(){
-  $('#tabla_accesos').DataTable({
-    scrollY: '40vh',  
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        searching:true,
-        "language": {
-          "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+function dataTables(id) {
+  $(document).ready(function () {
+    $(id).DataTable({
+      scrollY: '40vh',
+      scrollCollapse: false,
+      paging: false,
+      ordering: false,
+      searching: false,
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
       }
-     
+    });
   });
-});
+}
