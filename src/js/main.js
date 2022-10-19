@@ -230,7 +230,7 @@ function registrarContactos() {
   $("#frm-contactos").trigger("reset");
 }
 
-
+mostrarContactos();
 function mostrarContactos() {
   $.ajax({
     url: "mostrar-contactos.php",
@@ -312,7 +312,7 @@ function registrarSucursal() {
   });
   $("#frm-sucursal").trigger("reset");
 }
-
+mostrarSucursal();
 function mostrarSucursal() {
   $.ajax({
     url: "mostrar-sucursal.php",
@@ -395,6 +395,7 @@ function registrarAccesos() {
   $("#frm-accesos").trigger("reset");
 }
 
+mostrarAccesos();
 function mostrarAccesos() {
   $.ajax({
     url: "mostrar-accesos.php",
@@ -538,15 +539,6 @@ dataTables('#tabla_accesos');
 
 function dataTables(id) {
   $(document).ready(function () {
-    $(id).DataTable({
-      scrollY: '40vh',
-      scrollCollapse: false,
-      paging: false,
-      ordering: false,
-      searching: false,
-      "language": {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-      }
-    });
+    $(id).DataTable();
   });
 }

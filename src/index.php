@@ -329,7 +329,7 @@ $fecha = date('d/m/y');
 
                             <div class="tabla-contactos">
                                 <div class="tablas-contactos table-responsive">
-                                    <table id="tabla_contactoss" class="table table-borderless table-hover" style="width:100%">
+                                    <table id="tabla_contactoss" class="table table-borderless table-hover display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Id Empresa</th>
@@ -347,6 +347,7 @@ $fecha = date('d/m/y');
                                     </table>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -391,6 +392,14 @@ $fecha = date('d/m/y');
 
                                         <tbody id="listado-accesos">
                                             <!-- Data en Ajax-->
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
