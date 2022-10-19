@@ -168,15 +168,25 @@ $fecha = date('d/m/y');
 
 
                 <div id="tabs" class="tabs">
-                    <ul>
-                        <li><a href="#tabs-1">Grupo</a></li>
-                        <li><a href="#tabs-2">Sucursal</a></li>
-                        <li><a href="#tabs-3">Contactos</a></li>
-                        <li><a href="#tabs-4">Accesos</a></li>
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#tabs-1">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tabs-2">Sucursal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tabs-3">Contactos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#tabs-4" >Accesos</a>
+                        </li>
                     </ul>
+
                     <div id="tabs-1">
 
-                        <div class=" contenedor ">
+                        <div class="contenedor">
 
                             <div class="contenedor contenedor-tabla">
                                 <div class="frm">
@@ -228,7 +238,6 @@ $fecha = date('d/m/y');
                                     </div>
                                 </div>
                             </div>
-                            <h1 id="alerta" class="alert "></h1>
                         </div>
                     </div>
 
