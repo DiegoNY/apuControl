@@ -16,7 +16,7 @@ function RegistrarGrupo() {
       console.log(data);
       //cuando se ingresen los grupos se motran en pantalla sin refrescar
       CargarGrupos();
-      mensajes(data,"Se registro el grupo 🐱‍👤","Rellena todos los campos");
+      mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
     },
   });
   //se reinicia el formulario cuando enviamos datos
@@ -120,7 +120,7 @@ function RegistrarEmpresa() {
       console.log(response);
       MostrarEmpresas();
       mostrarSucursal();
-      mensajes(response,"Se ingreso la empresa :D","Faltan datos IMPORTANTES de la empresa");
+      mensajes(response, "Se ingreso la empresa :D", "Faltan datos IMPORTANTES de la empresa");
     },
   });
 
@@ -222,7 +222,7 @@ function registrarContactos() {
     success: function (response) {
       console.log(response);
       mostrarContactos();
-      mensajes(response,"Contacto Registrado","Rellena todos los campos ❌");
+      mensajes(response, "Contacto Registrado", "Rellena todos los campos ❌");
       editarContacto = false;
     },
   });
@@ -306,7 +306,7 @@ function registrarSucursal() {
     success: function (response) {
       console.log(response);
       mostrarSucursal();
-      mensajes(response,"Ok, se registro la sucursal","Te falta llenar algunos datos importantes ☹");
+      mensajes(response, "Ok, se registro la sucursal", "Te falta llenar algunos datos importantes ☹");
       editarSucursall = false;
     },
   });
@@ -387,7 +387,7 @@ function registrarAccesos() {
     success: function (response) {
       console.log(response);
       mostrarAccesos();
-      mensajes(response,"Bien Se ingresaron los accesos 😀","Completa Todos los campos");
+      mensajes(response, "Bien Se ingresaron los accesos 😀", "Completa Todos los campos");
       editarAcceso = false;
 
     }
@@ -485,47 +485,47 @@ function mostrarLogoss() {
 }
 
 
-  document.getElementById("btn_registrar").addEventListener('click', (e) => {
-    e.preventDefault();
+document.getElementById("btn_registrar").addEventListener('click', (e) => {
+  e.preventDefault();
 
-    let frm = document.getElementById('frm_logo');
-    let frmdata = new FormData(frm);
+  let frm = document.getElementById('frm_logo');
+  let frmdata = new FormData(frm);
 
-    $.ajax({
-      method: 'post',
-      url: "registrar-logo.php",
-      data: frmdata,
-      cache: false,
-      processData: false,
-      contentType: false,
-      success: (response) => {
-        console.log(response);
-        mensajes(response,"Ingresaste un Logo 😃","Seguro falto el nombre 😲");
-      }
-    });
+  $.ajax({
+    method: 'post',
+    url: "registrar-logo.php",
+    data: frmdata,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (response) => {
+      console.log(response);
+      mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
+    }
+  });
 
-  })
+})
 
 //alerta 
 
-function mensajes(response,mensaje,error) {
-    if (response == "ingresado") {
-      Swal.fire(
-        'Registrado con exito',
-        `${mensaje}`,
-        'success'
-      ).then(() => {
-        console.log("tabla actualizada")
-      })
-    } else {
-      Swal.fire(
-        'Completa todos los campos',
-        `${error}`,
-        'error'
-      ).then(() => {
-        console.log("no hay datos");
-      })
-    }
+function mensajes(response, mensaje, error) {
+  if (response == "ingresado") {
+    Swal.fire(
+      'Registrado con exito',
+      `${mensaje}`,
+      'success'
+    ).then(() => {
+      console.log("tabla actualizada")
+    })
+  } else {
+    Swal.fire(
+      'Completa todos los campos',
+      `${error}`,
+      'error'
+    ).then(() => {
+      console.log("no hay datos");
+    })
+  }
 }
 
 
