@@ -469,6 +469,7 @@ function editarAcceso() {
         `
       });
       $("#cboIdu").html(template);
+      $("#cboIdub").html(template);
 
     }
     
@@ -539,7 +540,6 @@ document.getElementById("btn_registrar").addEventListener('click', (e) => {
       
     }
   });
-
 })
 
 //alerta 

@@ -189,6 +189,10 @@ select {
 .btn-sucursal {
     grid-row: 4;
     grid-column: 1 / span 2;
+    border: none;
+    background-color: #dffae4;
+    color: #bebcbc;
+    font-size: var(--md);
 }
 
 /*frm grupo*/
@@ -204,6 +208,11 @@ select {
     grid-column: 1/ span 2;
     height: 40px;
     width: 100%;
+    border-radius: 8px;
+    border: none;
+    background-color: #dffae4;
+    color: #bebcbc;
+    font-size: var(--md);
 
 }
 
@@ -220,6 +229,11 @@ select {
     grid-column: 1/ span 2;
     height: 45px;
     width: 100%;
+    border: none;
+    background-color: #dffae4;
+    color: #bebcbc;
+    font-size: var(--md);
+    
 
 }
 
@@ -244,14 +258,11 @@ select {
 .btn-registrar-accesos {
     grid-column: 1 / span 2;
     border-radius: 8px;
+    border-radius: 8px;
     border: none;
-    background-color: var(--hospital-green);
-    height: 50px;
-    color: var(--white);
+    background-color: #dffae4;
+    color: #bebcbc;
     font-size: var(--md);
-    font-weight: bold;
-    width: 100%;
-
 }
 
 /*Banderas*/

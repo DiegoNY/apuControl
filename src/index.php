@@ -14,7 +14,7 @@ $fecha = date('d/m/y');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-   
+
     <!-- Stylos -->
     <link rel="stylesheet" href="style/style.css">
     <!---TABS LINKS -->
@@ -141,7 +141,7 @@ $fecha = date('d/m/y');
                             </select>
                         </div>
                         <div class="cont-form">
-                            <label for="cboIdu ">Codigo ubigeo </label>
+                            <label for="cboIdu ">Distrito</label>
                             <select name="cboIdu" id="cboIdu">
                                 <option value="123">123</option>
                                 <option value="164" selected>164</option>
@@ -216,17 +216,17 @@ $fecha = date('d/m/y');
 
                                 <div class="tabla-grupo ">
                                     <div class="tablas-empresa  table-responsive conteiner-fluid" id="tabla">
-                                        <table id="tabla-grupos" class="table  table-borderless table-hover" style="width:100%; ">
+                                        <table id="tabla-grupos" class="table  table-hover" style="width:100%; ">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" >id</th>
-                                                    <th scope="col" >Nombre </th>
-                                                    <th scope="col" >Descripcion </th>
-                                                    <th scope="col" >Fecha Creacion </th>
-                                                    <th scope="col" >Usuario Creacion</th>
-                                                    <th scope="col" >Estatus</th>
-                                                    <th scope="col" >Editar</th>
-                                                    <th scope="col" >Eliminar</th>
+                                                    <th scope="col">id</th>
+                                                    <th scope="col">Nombre </th>
+                                                    <th scope="col">Descripcion </th>
+                                                    <th scope="col">Fecha Creacion </th>
+                                                    <th scope="col">Usuario Creacion</th>
+                                                    <th scope="col">Estatus</th>
+                                                    <th scope="col">Editar</th>
+                                                    <th scope="col">Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="listado-grupos">
@@ -257,10 +257,10 @@ $fecha = date('d/m/y');
                                         <input type="text" name="txtCodigoCofide" id="txtCodigoCofide">
                                     </div>
                                     <div>
-                                        <label for="cboIdu">Selecciona el codigo ubigeo </label>
-                                        <select name="cboIdu" id="cboIdu">
-                                            <option value="1">123</option>
-                                            <option value="2" selected>123</option>
+                                        <label for="cboIdu ">Distrito</label>
+                                        <select name="cboIdu" id="cboIdub">
+                                            <option value="123">123</option>
+                                            <option value="164" selected>164</option>
                                         </select>
                                     </div>
                                     <div>
@@ -274,7 +274,7 @@ $fecha = date('d/m/y');
 
                             <div class="tabla-sucursal">
                                 <div class="tablas-sucursal table-responsive" id="tabla">
-                                    <table id="tabla_sucursals" class="table table-borderless table-hover" style="width:100%">
+                                    <table id="tabla_sucursals" class="table  table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Ruc</th>
@@ -327,7 +327,7 @@ $fecha = date('d/m/y');
 
                             <div class="tabla-contactos">
                                 <div class="tablas-contactos table-responsive" id="tabla">
-                                    <table id="tabla_contactoss" class="table table-borderless table-hover display" style="width:100%">
+                                    <table id="tabla_contactoss" class="table table-hover display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Id Empresa</th>
@@ -376,7 +376,7 @@ $fecha = date('d/m/y');
                             </div>
                             <div class="tabla-accesos">
                                 <div class="tablas-accesos table-responsive" id="tabla">
-                                    <table id="tabla_accesos" class="table table-borderless table-hover" style="width:100%">
+                                    <table id="tabla_accesos" class="table table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Id Sucursal</th>
@@ -435,7 +435,7 @@ $fecha = date('d/m/y');
                                     <div class="contenedor-img-banderas" id="contenedor-img-banderas">
                                         <div class="contenedor-img">
                                             <img src="img/icons8-bookmark.svg" alt="">
-                                            
+
                                         </div>
                                         <div class="contenedor-img">
                                             <img src="img/icons8-delete.svg" alt="">
@@ -458,4 +458,3 @@ $fecha = date('d/m/y');
     <script type="text/javascript" src="js/main.js"></script>
 
 </html>
-
