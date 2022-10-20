@@ -75,6 +75,13 @@ class BaseDatos
 
     //CRUD RUBRO
 
+    //Mostrar Ubigeo
+
+    public function mostrarUbigeo(){
+        $consulta = "SELECT * FROM `ubigeo`;";
+        $res = mysqli_query($this->con,$consulta);
+        return $res;
+    }
 
     //CRUD BANDERA
     public function ingresarBandera($logo,$nombre){
@@ -95,12 +102,16 @@ class BaseDatos
     }
 
     public function eliminarBandera($id){
-        //$consulta = ""
+        $consulta = "DELETE  FROM `bandera`  WHERE( id = '$id');";
+        $res = mysqli_query($this->con,$consulta);
+        if($res==TRUE){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
-    
-    public function mostrarBandera($id){
 
-    }
+
     //CRUD EMPRESAS
     public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial)
     {

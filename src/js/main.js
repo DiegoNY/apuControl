@@ -454,7 +454,25 @@ function editarAcceso() {
       editarAcceso = true;
     });
   });
+  //ubigeo cargado al formulario
+  $.ajax({
+    url: "mostrar-ubigeo.php",
+    type: "GET",
+    success: function(response){
+      let ubigeo = JSON.parse(response);
+      let template = "";
+      ubigeo.forEach((ubigeo)=>{
+        template+=`
 
+        <option value="${ubigeo.id}">${ubigeo.distrito}</option>
+
+        `
+      });
+      $("#cboIdu").html(template);
+
+    }
+    
+  })
 
   //tabs 
 
@@ -474,13 +492,14 @@ function mostrarLogoss() {
       let template = "";
 
       logo.forEach((logo) => {
-        console.log(logo.ruta);
+
         template += `
 
-        <div class="contenedor-img">
+        <div class="contenedor-img" id-logo="${logo.id}">
         <img src="${logo.ruta}" alt="${logo.nombre}">
+        <button  class="btn-delete-logo">brrar</button>
         </div>
-
+        
         `
       });
       $("#contenedor-img-banderas").html(template);
@@ -488,6 +507,18 @@ function mostrarLogoss() {
   });
 }
 
+
+$(document).on('click', ".btn-delete-logo", function () {
+  let element = $(this)[0].parentElement;
+  let id = $(element).attr("id-logo");
+  console.log(id);
+  $.post("eliminar-logo.php", { id }, function (response) {
+    console.log(response);
+    mostrarLogoss();
+  }
+  );
+}
+)
 
 document.getElementById("btn_registrar").addEventListener('click', (e) => {
   e.preventDefault();
@@ -505,7 +536,7 @@ document.getElementById("btn_registrar").addEventListener('click', (e) => {
     success: (response) => {
       console.log(response);
       mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
-      mostrarLogoss();
+      
     }
   });
 
@@ -514,6 +545,7 @@ document.getElementById("btn_registrar").addEventListener('click', (e) => {
 //alerta 
 
 function mensajes(response, mensaje, error) {
+
   if (response == "ingresado") {
     Swal.fire(
       'Registrado con exito',
@@ -521,8 +553,10 @@ function mensajes(response, mensaje, error) {
       'success'
     ).then(() => {
       console.log("tabla actualizada")
+      mostrarLogoss();
     })
   } else {
+
     Swal.fire(
       'Completa todos los campos',
       `${error}`,
@@ -530,17 +564,20 @@ function mensajes(response, mensaje, error) {
     ).then(() => {
       console.log("no hay datos");
     })
+
   }
+
 }
 
 
 //dataTable 
 
 dataTables('#tabla_empresasas');
-dataTables('#tabla-grupos');
-dataTables('#tabla_sucursals');
-dataTables('#tabla_contactoss');
-dataTables('#tabla_accesos');
+
+// dataTables('#tabla-grupos');
+// dataTables('#tabla_sucursals');
+// dataTables('#tabla_contactoss');
+// dataTables('#tabla_accesos');
 
 function dataTables(id) {
   $(document).ready(function () {

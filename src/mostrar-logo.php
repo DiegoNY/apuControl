@@ -18,6 +18,7 @@ while($row = mysqli_fetch_array($resultado)){
         'ruta'=>$row['logo'],
     );
 }
+
 $jsonString = json_encode($json);
 
 echo $jsonString;
