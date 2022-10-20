@@ -47,7 +47,7 @@ $fecha = date('d/m/y');
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="pantallaRegistraEmpresa.php?mensaje=faltanDatos">Ingresar Empresas</a>
+                                <a class="nav-link" href="empresas.php">Ver Empresas </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.php">Salir</a>
@@ -347,7 +347,7 @@ $fecha = date('d/m/y');
                                     </table>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -409,14 +409,41 @@ $fecha = date('d/m/y');
 
 
                     <div id="tabs-5">
-                        <div class="frm-tabla-bandera contenedor contenedor-tabla">
-                            <div class="frm-ingreso-bandera">
-                                <form id="frm_logo" method="POST" enctype="multipart/form-data">
-                                    <label for="">Ingresa Bandera</label>
-                                    <input type="text" name="nombre" id="nombre">
-                                    <input type="file" name="logo" id="logo">
-                                    <input type="submit" name="btn_registrar" value="Registrar Logo" class="btn-registrar-logo" id="btn_registrar">
-                                </form>
+
+                        <div class="contenedor">
+                            <div class="contenedor contenedor-tabla">
+                                <div class="frm">
+
+                                    <form id="frm_logo" method="POST" enctype="multipart/form-data" class="frm-ingreso-bandera">
+                                        <div>
+                                            <label for="txtBandera">Nombre</label>
+                                            <input type="text" name="nombre" id="nombre">
+                                        </div>
+
+                                        <div class="input-file">
+                                            <div>
+                                                <input type="file" name="logo" id="logo">
+                                            </div>
+                                        </div>
+
+                                        <div class="btn-logo">
+                                            <input type="submit" name="btn_registrar" value="Registrar Logo" class="btn-registrar-logo" id="btn_registrar">
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="contenedor-banderas">
+                                    <div class="contenedor-img-banderas" id="contenedor-img-banderas">
+                                        <div class="contenedor-img">
+                                            <img src="img/icons8-bookmark.svg" alt="">
+                                        </div>
+                                        <div class="contenedor-img">
+                                          <img src="img/icons8-delete.svg" alt="">
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -430,6 +457,7 @@ $fecha = date('d/m/y');
 
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>
 
 <script type="text/javascript" src="js/main.js"></script>

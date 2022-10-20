@@ -271,6 +271,55 @@ table.dataTable thead td {
 
 }
 
+/*Banderas*/
+.contenedor-banderas{
+    height: 350px;
+    background-color: var(--white);
+    overflow-y: scroll;
+}
+.frm-ingreso-bandera{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 85px);
+    gap: 7px;
+}
+
+.btn-logo{
+    grid-column: 2;
+    grid-row: 1;
+}
+.input-file{
+    grid-column:1/span 2 ;
+    grid-row: 2/span 3;
+    display: flex;
+    align-items: center;
+    background-color: var(--text-input-field);
+}
+.frm-ingreso-bandera .input-file input{
+    height: 100%;
+}
+
+.contenedor-img-banderas{
+    height: auto;
+    width: 100%;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto;
+    gap: 15px;
+
+}
+
+.contenedor-img{
+    height: 148px;
+    width: 100%;
+}
+
+.contenedor-img img {
+    height: 100%;
+    width: 100%;
+}
+
 /*responsive*/
 
 @media(max-width:1247px) {

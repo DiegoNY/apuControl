@@ -476,10 +476,14 @@ function mostrarLogoss() {
       logo.forEach((logo) => {
         console.log(logo.ruta);
         template += `
-         <img src="${logo.ruta}" alt="${logo.nombre}">
+
+        <div class="contenedor-img">
+        <img src="${logo.ruta}" alt="${logo.nombre}">
+        </div>
+
         `
       });
-      $("#imge-logos").html(template);
+      $("#contenedor-img-banderas").html(template);
     }
   });
 }
@@ -501,6 +505,7 @@ document.getElementById("btn_registrar").addEventListener('click', (e) => {
     success: (response) => {
       console.log(response);
       mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
+      mostrarLogoss();
     }
   });
 
