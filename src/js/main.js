@@ -135,6 +135,7 @@ function MostrarEmpresas() {
     success: function (response) {
       let empresas = JSON.parse(response);
       let template = "";
+      console.log(empresas);
       empresas.forEach((empresas) => {
         template += `
         <tr id-empresa="${empresas.id}">
@@ -151,7 +152,7 @@ function MostrarEmpresas() {
           <td scope="row" >${empresas.tipo_persona}</td>
           <td scope="row" >${empresas.estado}</td>
           
-          <td><i class="btn-edit-empresa"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
+          <td><a href="index.php?${empresas.id}&&${empresas.nombre}&&${empresas.ruc}"><i class="btn-edit-empresa"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></a></td>
 
           <td><i class="btn-delete-empresa"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
 
@@ -164,6 +165,7 @@ function MostrarEmpresas() {
   });
 }
 
+console.log(editar);
 /*
  *
  *  Elimina a las empresas ingresando a travez del  dom al atributo id
@@ -572,15 +574,16 @@ function mensajes(response, mensaje, error) {
 
 //dataTable 
 
-dataTables('#tabla_empresasas');
+// dataTables('#tabla_empresasas');
 
-// dataTables('#tabla-grupos');
-// dataTables('#tabla_sucursals');
-// dataTables('#tabla_contactoss');
-// dataTables('#tabla_accesos');
+// // dataTables('#tabla-grupos');
+// // dataTables('#tabla_sucursals');
+// // dataTables('#tabla_contactoss');
+// // dataTables('#tabla_accesos');
 
-function dataTables(id) {
-  $(document).ready(function () {
-    $(id).DataTable();
-  });
-}
+// function dataTables(id) {
+//   $(document).ready(function () {
+//     $(id).DataTable();
+//   });
+
+// }
