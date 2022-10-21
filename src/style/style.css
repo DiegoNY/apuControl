@@ -105,7 +105,6 @@ main {
     border-radius: 19px;
 }
 #tabla{
-    height: 350px;
     background-color: var(--white);
 }
 
@@ -122,10 +121,6 @@ main {
 
 }
 
-.dataTables_wrapper .dataTables_filter input {
-    border-radius: 15px;
-    border: 1px solid #f1f1f1;
-}
 
 label {
     font-size: var(--sm);
@@ -344,4 +339,8 @@ footer {
 }
 .descripcion{
     height:73%;
+}
+
+.nav a{
+  color: var(--white);
 }

@@ -1,101 +1,29 @@
 //para los grupos
-let editar = false;
-let editarContacto = false;
-let editarSucursall = false;
-let editarAccesp = false;
-
 
 function RegistrarGrupo() {
-  //si aun no estamos editando se registrara el grupo  pero si se esta editando se editaran los datos
+  
   let url = editar === false ? "procesarGrupo.php" : "editar-grupo.php";
   $.ajax({
     type: "GET",
     data: $("#frm_grupo").serialize(),
     url: url,
     success: function (data) {
-      console.log(data);
-      //cuando se ingresen los grupos se motran en pantalla sin refrescar
-      CargarGrupos();
       mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
     },
   });
-  //se reinicia el formulario cuando enviamos datos
   $("#frm_grupo").trigger("reset");
 }
 
-CargarGrupos();
-
-function CargarGrupos() {
-  $.ajax({
-    url: "mostrarGrupos.php",
-    type: "GET",
-    success: function (response) {
-      let grupos = JSON.parse(response);
-      let templates = "";
-      //recorriendo el grupo y mostrandolo en la tabla por ello se creo el template
-      grupos.forEach((grupos) => {
-        templates += `
-            <tr id-grupos="${grupos.id} ">
-                <td>${grupos.id}</td>
-                <td>${grupos.nombre}</td>
-                <td>${grupos.descripcion}</td>
-                <td>${grupos.fechaCreacion}</td>
-                <td>${grupos.usuarioCreacion}</td>
-                <td>${grupos.estado}</td>
-                
-                <td><i class="btn-edit"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></td>
-                
-                <td><i class="btn-delete"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
-            </tr>
-            `;
-      });
-      //pasamos el template al index
-      $("#listado-grupos").html(templates);
-    },
-  });
-}
-
-EliminarGrupo();
-function EliminarGrupo() {
-  $(document).on("click", ".btn-delete", function () {
-    //obteniendo toda la fila para poder obtener el id
-    if (confirm("Quieres eliminar el Grupo ?")) {
-      let element = $(this)[0].parentElement.parentElement;
-      let id = $(element).attr("id-grupos");
-      $.post("eliminarGrupo.php", { id }, function (response) {
-        console.log(response);
-        CargarGrupos();
-      });
-    }
-  });
-}
-
-$(document).on("click", ".btn-edit", function () {
-  let element = $(this)[0].parentElement.parentElement;
-  let id = $(element).attr("id-grupos");
-  $.post("escuchar-grupo.php", { id }, function (response) {
-    let grupo = JSON.parse(response);
-
-    $("#id_grupo").val(grupo.id);
-    $("#txtNombre").val(grupo.nombre);
-    $("#txtDescripcion").val(grupo.descripcion);
-    $("#txtEstado").val(grupo.estado);
-    $("#txtUsuCre").val(grupo.usuarioCreacion);
-    $("#txtFechCre").val(grupo.fechaCreacion);
-    editar = true;
-  });
-});
-
 cargaGrupoEnFrm();
 function cargaGrupoEnFrm() {
-  //cargando grupo en frm-empresa
   $.ajax({
     url: "mostrarGrupos.php",
     type: "GET",
     success: function (response) {
-      let grupos = JSON.parse(response);
+      console.log(response)
+      let grupos = response["data"];
+      console.log(grupos);
       let template = "";
-      //recorriendo el grupo y mostrandolo en la tabla por ello se creo el template
       grupos.forEach((grupos) => {
         template += `
                 
@@ -103,11 +31,12 @@ function cargaGrupoEnFrm() {
               
         `;
       });
-      //pasamos el template al index
+      console.log(template);
       $("#cbogrupo").html(template);
     },
   });
 }
+
 
 //PARA LA EMPRESA
 function RegistrarEmpresa() {
@@ -118,7 +47,6 @@ function RegistrarEmpresa() {
     data: $("#frm_empresa").serialize(),
     success: function (response) {
       console.log(response);
-      MostrarEmpresas();
       mostrarSucursal();
       mensajes(response, "Se ingreso la empresa :D", "Faltan datos IMPORTANTES de la empresa");
     },
@@ -127,90 +55,37 @@ function RegistrarEmpresa() {
   $("#frm_empresa").trigger("reset");
 }
 
-MostrarEmpresas();
-function MostrarEmpresas() {
-  $.ajax({
-    url: "mostrar-empresas.php",
-    type: "GET",
-    success: function (response) {
-      let empresas = JSON.parse(response);
-      let template = "";
-      console.log(empresas);
-      empresas.forEach((empresas) => {
-        template += `
-        <tr id-empresa="${empresas.id}">
-          <td scope="row" >${empresas.nom_comercial}</td>
-          <td scope="row" >${empresas.ruc}</td>
-          <td scope="row" >${empresas.razon_social}</td>
-          <td scope="row" >${empresas.id_ubigeo}</td>
-          <td scope="row" >${empresas.id_grupo}</td>
-          <td scope="row" >${empresas.id_rubro}</td>
-          <td scope="row" >${empresas.tipo_envio}</td>
-          <td scope="row" >${empresas.id_tipo_integracion}</td>
-          <td scope="row" >${empresas.fecha_registro}</td>
-          <td scope="row" >${empresas.estado_comercial}</td>
-          <td scope="row" >${empresas.tipo_persona}</td>
-          <td scope="row" >${empresas.estado}</td>
-          
-          <td><a href="index.php?${empresas.id}&&${empresas.nombre}&&${empresas.ruc}"><i class="btn-edit-empresa"><img src="img/icons8-bookmark.svg" class="img-table text-center" alt=""></i></a></td>
 
-          <td><i class="btn-delete-empresa"><img src="img/icons8-delete.svg" class="img-table text-center" alt=""></i></td>
 
-        </tr>
-        `;
-      });
+//recibo valores por post 
+const valores = window.location.search;
+const urlParams = new URLSearchParams(valores);
+let id = urlParams.get('id');
+let edit = urlParams.get('edit');
 
-      $("#listado-empresas").html(template);
-    },
-  });
-}
+editarEmpresas(id, edit);
 
-console.log(editar);
-/*
- *
- *  Elimina a las empresas ingresando a travez del  dom al atributo id
- *
- */
-eliminarEmpresa();
-function eliminarEmpresa() {
-  $(document).on("click", ".btn-delete-empresa", function () {
-    //ingresando a las propiedas de la tabla
-    let element = $(this)[0].parentElement.parentElement;
-    //capturando el id
-    let id = $(element).attr("id-empresa");
-    $.post("eliminar-empresa.php", { id }, function (response) {
-      MostrarEmpresas();
-      console.log(response);
-    });
-  });
-}
-editarEmpresas();
 function editarEmpresas() {
-  $(document).on("click", ".btn-edit-empresa", function () {
-    let element = $(this)[0].parentElement.parentElement;
 
-    let id = $(element).attr("id-empresa");
-
-    $.post("escuchar-empresa.php", { id }, function (response) {
-      let empresa = JSON.parse(response);
-      console.log(empresa);
-      $("#txtNombreCo").val(empresa.nom_comercial);
-      $("#id").val(empresa.id);
-      $("#txtRuc").val(empresa.ruc);
-      $("#txtRazonSocial").val(empresa.razon_social);
-      $("#txtDireccion").val(empresa.direccion);
-      $("#cbogrupo").val(empresa.id_grupo);
-      $("#cboTipoSistema").val(empresa.id_tipo_sistema);
-      $("#cboIdRubro").val(empresa.id_rubro);
-      $("#cboTipoEnvio").val(empresa.tipo_envio);
-      $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion)
-      $("#txtFechaRegistro").val(empresa.fecha_registro);
-      $("#txtEstadoComercial").val(empresa.estado_comercial);
-      $("#cboTipoPersona").val(empresa.tipo_persona);
-      $("#cboIdu").val(empresa.id_ubigeo);
-      $("#cboEstado").val(empresa.estado);
-      editar = true;
-    });
+  $.post("escuchar-empresa.php", { id }, function (response) {
+    let empresa = JSON.parse(response);
+    console.log(empresa);
+    $("#txtNombreCo").val(empresa.nom_comercial);
+    $("#id").val(empresa.id);
+    $("#txtRuc").val(empresa.ruc);
+    $("#txtRazonSocial").val(empresa.razon_social);
+    $("#txtDireccion").val(empresa.direccion);
+    $("#cbogrupo").val(empresa.id_grupo);
+    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
+    $("#cboIdRubro").val(empresa.id_rubro);
+    $("#cboTipoEnvio").val(empresa.tipo_envio);
+    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion)
+    $("#txtFechaRegistro").val(empresa.fecha_registro);
+    $("#txtEstadoComercial").val(empresa.estado_comercial);
+    $("#cboTipoPersona").val(empresa.tipo_persona);
+    $("#cboIdu").val(empresa.id_ubigeo);
+    $("#cboEstado").val(empresa.estado);
+    editar = true;
   });
 }
 
@@ -293,6 +168,7 @@ function editarContactos() {
       $("#id-empresa-contacto").val(contacto.id_empresa);
       $("#telefono-contacto").val(contacto.telefono);
       editarContacto = true;
+
     })
   })
 }
@@ -373,12 +249,18 @@ function editarSucursal() {
       $("#cboIdu").val(sucursal.ubigeo);
       $("#txtIdEmpresa").val(sucursal.id_empresa);
       editarSucursall = true;
+      ides = sucursal.id;
+      //cargando los datos al frm de acceso se hara con un btn 
+      $("#txtIdSucursal").val(ides);
 
     });
   })
 }
 
 //CRUD ACCESOS
+// Prueba cargando id de acceso 
+
+
 
 function registrarAccesos() {
   let url = editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
@@ -408,8 +290,8 @@ function mostrarAccesos() {
       console.log(accesos);
       accesos.forEach((accesos) => {
         template += `
-        <tr id-acceso="${accesos.id}">
-          <td>${accesos.id_sucursal}</td>
+        <tr id-acceso="${accesos.id} " class="odd">
+          <td class="sorting_1" >${accesos.id_sucursal}</td>
           <td>${accesos.nombreAcceso}</td>
           <td>${accesos.idAcceso}</td>
           <td>${accesos.contrasena}</td>
@@ -460,11 +342,11 @@ function editarAcceso() {
   $.ajax({
     url: "mostrar-ubigeo.php",
     type: "GET",
-    success: function(response){
+    success: function (response) {
       let ubigeo = JSON.parse(response);
       let template = "";
-      ubigeo.forEach((ubigeo)=>{
-        template+=`
+      ubigeo.forEach((ubigeo) => {
+        template += `
 
         <option value="${ubigeo.id}">${ubigeo.distrito}</option>
 
@@ -474,7 +356,7 @@ function editarAcceso() {
       $("#cboIdub").html(template);
 
     }
-    
+
   })
 
   //tabs 
@@ -539,7 +421,7 @@ document.getElementById("btn_registrar").addEventListener('click', (e) => {
     success: (response) => {
       console.log(response);
       mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
-      
+
     }
   });
 })
@@ -574,16 +456,126 @@ function mensajes(response, mensaje, error) {
 
 //dataTable 
 
-// dataTables('#tabla_empresasas');
 
-// // dataTables('#tabla-grupos');
-// // dataTables('#tabla_sucursals');
-// // dataTables('#tabla_contactoss');
-// // dataTables('#tabla_accesos');
+dataTables('#tabla_sucursals');
+dataTables('#tabla_contactoss');
+dataTables('#tabla_accesos');
 
-// function dataTables(id) {
-//   $(document).ready(function () {
-//     $(id).DataTable();
-//   });
+function dataTables(id) {
 
-// }
+  $(id).DataTable({
+    scrollY: '200px',
+    scrollCollapse: true,
+    paging: false,
+  });
+
+}
+var editar = false;
+var editarContacto = false;
+var editarSucursall = false;
+var editarAccesp = false;
+
+$(document).ready(function () {
+ 
+
+//empresa cargando data
+  let tablaEmpresa = $("#tabla_empresasas").DataTable({
+    ajax: "mostrar-empresas.php",
+    columns: [
+      { data: 'id' },
+      { data: 'ruc' },
+      { data: 'razon_social' },
+      { data: 'id_ubigeo' },
+      { data: 'id_grupo' },
+      { data: 'id_rubro' },
+      { data: 'tipo_envio' },
+      { data: 'id_tipo_integracion' },
+      { data: 'fecha_registro' },
+      { data: 'estado_comercial' },
+      { data: 'tipo_persona' },
+      { data: 'estado' },
+      {
+        defaultContent: `<div class="dropdown  ">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-calendar3"></i>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li id="btn-editar-empresa"><a class="dropdown-item">Editar</a></li>
+        <li id="btn-nose"><a class="dropdown-item" >Another action</a></li>
+        <li id="btn-nose"><a class="dropdown-item" >Something else here</a></li>
+      </ul>
+    </div>`},
+      { defaultContent: `<i class="bi bi-x-circle-fill btn-delet"></i>` }
+
+    ]
+
+  });
+
+  $(document).on("click", ".btn-delet", function () {
+
+    let data = tablaEmpresa.row($(this).parents()).data();
+    console.log(data);
+    let id = data.id;
+    $.post("eliminar-empresa.php", { id }, function (response) {
+      console.log(response);
+      tablaEmpresa.ajax.reload();
+    });
+  });
+
+  $(document).on("click", "#btn-editar-empresa", function () {
+    let data = tablaEmpresa.row($(this).parents()).data();
+    let id = data.id;
+    window.location.replace(`index.php?id=${id}&&edit=2`);
+  })
+
+
+  //CRUD para los grupos 
+  let tablaGrupos = $("#tabla-grupos").DataTable({
+    ajax: "mostrarGrupos.php",
+    columns: [
+      { data: 'id' },
+      { data: 'nombre' },
+      { data: 'descripcion' },
+      { data: 'fechaCreacion' },
+      { data: 'usuarioCreacion' },
+      { data: 'estado' },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-grup"></i>`
+      },
+      { defaultContent: `<i class="bi bi-x-circle-fill btn-delet-grup"></i>` }
+    ]
+  });
+
+
+  $(document).on("click", ".btn-delet-grup", function () {
+    if (confirm("Quieres eliminar el Grupo ?")) {
+      let data = tablaGrupos.row($(this).parents()).data();
+      console.log(data);
+      let id = data.id;
+      $.post("eliminarGrupo.php", { id }, function (response) {
+        console.log(response);
+        tablaGrupos.ajax.reload();
+      });
+    }
+  });
+
+
+  $(document).on("click", ".btn-edit-grup", function () {
+    let data = tablaGrupos.row($(this).parents()).data();
+    console.log(data);
+    let id = data.id;
+    $.post("escuchar-grupo.php", { id }, function (response) {
+      let grupo = JSON.parse(response);
+      $("#id_grupo").val(grupo.id);
+      $("#txtNombre").val(grupo.nombre);
+      $("#txtDescripcion").val(grupo.descripcion);
+      $("#txtEstado").val(grupo.estado);
+      $("#txtUsuCre").val(grupo.usuarioCreacion);
+      $("#txtFechCre").val(grupo.fechaCreacion);
+      editar = true;
+      tablaGrupos.ajax.reload();
+    });
+  });
+  //CRUD 
+
+})
