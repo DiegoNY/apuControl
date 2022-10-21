@@ -20,7 +20,9 @@ function cargaGrupoEnFrm() {
     url: "mostrarGrupos.php",
     type: "GET",
     success: function (response) {
-      let grupos = JSON.parse(response);
+      console.log(response)
+      let grupos = response["data"];
+      console.log(grupos);
       let template = "";
       grupos.forEach((grupos) => {
         template += `
@@ -29,10 +31,12 @@ function cargaGrupoEnFrm() {
               
         `;
       });
+      console.log(template);
       $("#cbogrupo").html(template);
     },
   });
 }
+
 
 //PARA LA EMPRESA
 function RegistrarEmpresa() {
