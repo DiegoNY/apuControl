@@ -1,5 +1,6 @@
 <?php
 $fecha = date('d/m/y');
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +33,11 @@ $fecha = date('d/m/y');
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
 </head>
 
 <body>
@@ -94,8 +100,7 @@ $fecha = date('d/m/y');
                             <label for="cboTipoSistema">Tipo de sistema</label>
                             <select name="cboTipoSistema" id="cboTipoSistema">
                                 <option value="GESFARMA">GESFARMA</option>
-                                <option value="APUGESCOM" selected>APUGESCOM</option>
-
+                                <option value="APUGESCOM">APUGESCOM</option>
                             </select>
                         </div>
                         <div class="cbo-id cont-form">
@@ -276,7 +281,7 @@ $fecha = date('d/m/y');
 
                             <div class="tabla-sucursal">
                                 <div class="tablas-sucursal table-responsive" id="tabla">
-                                    <table id="tabla_sucursals" class="table  table-hover" style="width:100%">
+                                    <table id="tabla_sucursals" class="table  table-hover display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Ruc</th>
@@ -286,6 +291,7 @@ $fecha = date('d/m/y');
                                                 <th>Direccion</th>
                                                 <th>Editar</th>
                                                 <th>Eliminar</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="listado-sucursal">
@@ -437,12 +443,10 @@ $fecha = date('d/m/y');
                                     <div class="contenedor-img-banderas" id="contenedor-img-banderas">
                                         <div class="contenedor-img">
                                             <img src="img/icons8-bookmark.svg" alt="">
-
                                         </div>
                                         <div class="contenedor-img">
                                             <img src="img/icons8-delete.svg" alt="">
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

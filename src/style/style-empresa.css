@@ -1,3 +1,88 @@
 .inactive{
     display: none;
 }
+
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --very-light-pink: #C7C7C7;
+    --text-input-field: #F7F7F7;
+    --hospital-green: #ACD9B2;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+}
+
+body{
+    font-family: 'Quicksand', sans-serif;
+    background-color : var(--white);
+    width: auto ;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+main nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 30px;
+    background-color: var(--hospital-green);
+}
+
+main nav h1{
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--white);
+}
+
+main nav .icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+}
+main nav .icon img {
+    height: 100%;
+    width: 100%;
+    border-radius: 25px;
+
+}
+
+main nav .search{
+    
+    border: 1px solid #d9d8d8;
+    border-radius: 35px;
+    width: 40%;
+    height: 38px;
+    display: grid;
+    grid-template-columns: minmax(18px,20%) 1fr;
+    align-items: center;
+    padding: 7px;
+}
+
+main nav .search input{
+    border: none;
+    width: 100%;
+}
+
+main  .table .header-table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+main  .table .header-table .opciones{
+    display: flex;
+}
+
+.contenedor-empresa{
+    height: 350px;
+    background-color: var(--white);
+    overflow-y: scroll;
+}
