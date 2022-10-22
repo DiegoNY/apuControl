@@ -10,6 +10,7 @@ if(!$resultado){
 }
 
 $json = array();
+$form = array();
 while($row = mysqli_fetch_array($resultado)){
 
  $json['data'][] = array(
@@ -20,6 +21,8 @@ while($row = mysqli_fetch_array($resultado)){
     'usuarioCreacion' => $row['usuarioCreacion'],
     'fechaCreacion' => $row['fechaCreacion'],
  );  
+
+
 }
 
 $jsonString =  json_encode($json);

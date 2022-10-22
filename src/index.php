@@ -291,7 +291,6 @@ $fecha = date('d/m/y');
                                                 <th>Direccion</th>
                                                 <th>Editar</th>
                                                 <th>Eliminar</th>
-
                                             </tr>
                                         </thead>
                                         <tbody id="listado-sucursal">

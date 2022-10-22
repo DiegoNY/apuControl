@@ -17,12 +17,10 @@ function RegistrarGrupo() {
 cargaGrupoEnFrm();
 function cargaGrupoEnFrm() {
   $.ajax({
-    url: "mostrarGrupos.php",
+    url: "mostrar-grupo-formulario.php",
     type: "GET",
     success: function (response) {
-      console.log(response)
-      let grupos = response["data"];
-      console.log(grupos);
+      let grupos = JSON.parse(response);
       let template = "";
       grupos.forEach((grupos) => {
         template += `
@@ -31,7 +29,6 @@ function cargaGrupoEnFrm() {
               
         `;
       });
-      console.log(template);
       $("#cbogrupo").html(template);
     },
   });
@@ -65,7 +62,7 @@ let edit = urlParams.get('edit');
 
 editarEmpresas(id, edit);
 
-function editarEmpresas() {
+function editarEmpresas(id,edit) {
 
   $.post("escuchar-empresa.php", { id }, function (response) {
     let empresa = JSON.parse(response);
@@ -85,7 +82,7 @@ function editarEmpresas() {
     $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#cboEstado").val(empresa.estado);
-    editar = true;
+    editar = edit;
   });
 }
 
