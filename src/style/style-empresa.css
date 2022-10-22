@@ -81,6 +81,14 @@ main  .table .header-table .opciones{
     display: flex;
 }
 
+main  .table .header-table .img-table img{
+    height: 61px;
+   
+}
+
+main  .table .header-table .img-table img:hover{
+    cursor:pointer ;
+}
 .contenedor-empresa{
     height: 350px;
     background-color: var(--white);

@@ -46,9 +46,9 @@
                     <a href="index.php">Nueva</a>
                 </div>
 
-                <div>
-                    <img src="" alt="imagen rueda">
-                    <img src="" alt="imgen de selection">
+                <div class="img-table">
+                    <img src="img/ingenieria.png" alt="config">
+                    <img src="img/barra-de-carga.png" alt="imgen de selection">
                 </div>
             </div>
 

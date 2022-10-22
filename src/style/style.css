@@ -106,7 +106,9 @@ main {
 }
 #tabla{
     background-color: var(--white);
+    border-radius: 19px;
 }
+
 
 .btn-tabla-empresa {
     grid-column: 3/span 2;
@@ -344,3 +346,15 @@ footer {
 .nav a{
   color: var(--white);
 }
+
+/* data table*/
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+    padding: 19px;
+}
+
+.navbar-nav li a {
+    color: var(--white);
+}
+
