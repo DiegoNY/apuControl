@@ -462,7 +462,6 @@ dataTables('#tabla_contactoss');
 dataTables('#tabla_accesos');
 
 function dataTables(id) {
-
   $(id).DataTable({
     scrollY: '200px',
     scrollCollapse: true,
@@ -505,9 +504,28 @@ $(document).ready(function () {
         <li id="btn-nose"><a class="dropdown-item" >Something else here</a></li>
       </ul>
     </div>`},
-      { defaultContent: `<i class="bi bi-x-circle-fill btn-delet"></i>` }
-
-    ]
+      { defaultContent: `<i class="bi bi-x-circle-fill btn-delet"></i>` },
+    ],
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay información",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords": "Sin resultados encontrados",
+      "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+      },
+  }
 
   });
 
@@ -543,7 +561,27 @@ $(document).ready(function () {
         defaultContent: `<i class="bi bi-pencil-square btn-edit-grup"></i>`
       },
       { defaultContent: `<i class="bi bi-x-circle-fill btn-delet-grup"></i>` }
-    ]
+    ], 
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay información",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords": "Sin resultados encontrados",
+      "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+      },
+  }
   });
 
 

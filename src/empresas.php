@@ -83,7 +83,7 @@
         </div>
     </main>
     <input type="hidden" name="btn_registrar" value="Registrar Logo" class="btn-registrar-logo" id="btn_registrar">
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/empresa.js"></script>
 </body>
 
 </html>
