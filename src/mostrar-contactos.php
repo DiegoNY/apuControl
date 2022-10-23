@@ -11,7 +11,7 @@ if(!$resultado){
 $json = array();
 
 while($row = mysqli_fetch_array($resultado)){
-    $json[] = array(
+    $json['data'][] = array(
         'id' => $row['id'],
         'id_empresa' => $row['id_empresa'],
         'nombre' => $row['nombre_contacto'],

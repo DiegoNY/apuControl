@@ -15,7 +15,7 @@ $json = array();
 
 while($row = mysqli_fetch_array($resultado)){
     
-    $json[] = array(
+    $json['data'][] = array(
         'id'=>$row['id'],
         'id_sucursal' => $row['id_sucursal'],
         'nombreAcceso'=>$row['nombreAcceso'],

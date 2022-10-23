@@ -284,11 +284,12 @@ $fecha = date('d/m/y');
                                     <table id="tabla_sucursals" class="table  table-hover display" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Ruc</th>
                                                 <th>Nombre</th>
-                                                <th>Ubigeo</th>
                                                 <th>Cod_Cofide</th>
                                                 <th>Direccion</th>
+                                                <th>Ubigeo</th>
                                                 <th>Editar</th>
                                                 <th>Eliminar</th>
                                             </tr>
@@ -337,6 +338,7 @@ $fecha = date('d/m/y');
                                     <table id="tabla_contactoss" class="table table-hover display" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>Id</th>
                                                 <th>Id Empresa</th>
                                                 <th>Nombre Contactos</th>
                                                 <th>Cargo</th>
