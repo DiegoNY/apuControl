@@ -1,8 +1,11 @@
 <?php
 include 'connection/basedatos.php';
+
+$id=$_GET['id'];
+
 $contactos = new BaseDatos();
 
-$resultado = $contactos->verContactos();
+$resultado = $contactos->verContactos($id);
 
 if(!$resultado){
     die("Query failed");

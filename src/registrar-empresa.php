@@ -27,7 +27,7 @@ if (isset($txtRuc) && !empty($txtRuc)) {
     $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"----",$cboIdu,$txtEstado,$txtRuc);
 
     if ($response == TRUE) {
-        echo "ingresado";
+        echo $txtRuc;
     } else {
         echo "sin datos";
     }

@@ -2,9 +2,10 @@
 
 include 'connection/basedatos.php';
 
+$id = $_GET['id'];
 $logos = new BaseDatos();
 
-$resultado = $logos->traerBandera();
+$resultado = $logos->traerBandera($id);
 
 
 

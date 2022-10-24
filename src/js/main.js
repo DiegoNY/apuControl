@@ -34,25 +34,6 @@ function cargaGrupoEnFrm() {
 }
 
 //PARA LA EMPRESA
-function RegistrarEmpresa() {
-  let url = editar === false ? "registrar-empresa.php" : "editar-empresa.php";
-  $.ajax({
-    url: url,
-    type: "GET",
-    data: $("#frm_empresa").serialize(),
-    success: function (response) {
-      console.log(response);
-      mostrarSucursal();
-      mensajes(
-        response,
-        "Se ingreso la empresa :D",
-        "Faltan datos IMPORTANTES de la empresa"
-      );
-    },
-  });
-
-  $("#frm_empresa").trigger("reset");
-}
 
 //recibo valores por post
 const valores = window.location.search;
@@ -64,6 +45,7 @@ editarEmpresas(id, edit);
 
 function editarEmpresas(id, edit) {
   $.post("escuchar-empresa.php", { id }, function (response) {
+    console.log(response);
     let empresa = JSON.parse(response);
     console.log(empresa);
     $("#txtNombreCo").val(empresa.nom_comercial);
@@ -85,6 +67,22 @@ function editarEmpresas(id, edit) {
   });
 }
 
+function RegistrarEmpresa() {
+  let url = editar === false ? "registrar-empresa.php" : "editar-empresa.php";
+  $.ajax({
+    url: url,
+    type: "GET",
+    data: $("#frm_empresa").serialize(),
+    success: function (response) {
+      cargarSucursal(response);
+      cargarContactos(response);
+      mostrarLogoss(response);
+    },
+  });
+  
+  $("#frm_empresa").trigger("reset");
+}
+
 //Para los Contactos
 function registrarContactos() {
   let url =
@@ -97,12 +95,11 @@ function registrarContactos() {
     type: "GET",
     success: function (response) {
       console.log(response);
-      mostrarContactos();
       mensajes(response, "Contacto Registrado", "Rellena todos los campos ❌");
       editarContacto = false;
+      tablaContactos.ajax.reload();
     },
   });
-
   $("#frm-contactos").trigger("reset");
 }
 
@@ -125,9 +122,11 @@ function registrarSucursal() {
         "Te falta llenar algunos datos importantes ☹"
       );
       editarSucursall = false;
+      tableSucursal.ajax.reload();
     },
   });
   $("#frm-sucursal").trigger("reset");
+ 
 }
 
 //CRUD ACCESOS
@@ -146,98 +145,34 @@ function registrarAccesos() {
         "Completa Todos los campos"
       );
       editarAcceso = false;
+      tablaAccesos.ajax.reload();
     },
   });
+ 
   $("#frm-accesos").trigger("reset");
 }
 
 
 
 
-
-$(function () {
-$("#tabs").tabs();
-});
-
-//CRUD LOGO
-mostrarLogoss();
-function mostrarLogoss() {
-  $.ajax({
-    url: "mostrar-logo.php",
-    type: "GET",
-    success: function (response) {
-      let logo = JSON.parse(response);
-      let template = "";
-
-      logo.forEach((logo) => {
-        template += `
-
-        <div class="contenedor-img" id-logo="${logo.id}">
-        <img src="${logo.ruta}" alt="${logo.nombre}">
-        <button  class="btn-delete-logo">brrar</button>
-        </div>
-        
-        `;
-      });
-      $("#contenedor-img-banderas").html(template);
-    },
-  });
-}
-
-$(document).on("click", ".btn-delete-logo", function () {
-  let element = $(this)[0].parentElement;
-  let id = $(element).attr("id-logo");
-  console.log(id);
-  $.post("eliminar-logo.php", { id }, function (response) {
-    console.log(response);
-    mostrarLogoss();
-  });
-});
-
-document.getElementById("btn_registrar").addEventListener("click", (e) => {
-  e.preventDefault();
-
-  let frm = document.getElementById("frm_logo");
-  let frmdata = new FormData(frm);
-
-  $.ajax({
-    method: "post",
-    url: "registrar-logo.php",
-    data: frmdata,
-    cache: false,
-    processData: false,
-    contentType: false,
-    success: (response) => {
-      console.log(response);
-      mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
-    },
-  });
-});
-
-//alerta
-
-function mensajes(response, mensaje, error) {
-  if (response == "ingresado") {
-    Swal.fire("Registrado con exito", `${mensaje}`, "success").then(() => {
-      console.log("tabla actualizada");
-      mostrarLogoss();
-    });
-  } else {
-    Swal.fire("Completa todos los campos", `${error}`, "error").then(() => {
-      console.log("no hay datos");
-    });
-  }
-}
-
-
 var editar = false;
 var editarContacto = false;
 var editarSucursall = false;
-var editarAccesp = false;
+var editarAcceso = false;
+var tableSucursal = '';
+var tablaContactos = '';
+var tablaAccesos ='';
 
 $(document).ready(function () {
-  //CRUD para los grupos
+  //SE CARGA EL RUC AL FORMULARIO DE SUCURSAL 
+  $("#txtRuc").keyup(function(){
+    var ruc = $(this).val();
+    $("#txtIdEmpresa").val(ruc);
+    $("#id-empresa-contacto").val(ruc);
+    $("#txtRucEmpresa").val(ruc);    
+  });
 
+  //CRUD para los grupos //
   let tablaGrupos = $("#tabla-grupos").DataTable({
     ajax: "mostrarGrupos.php",
     columns: [
@@ -303,10 +238,9 @@ $(document).ready(function () {
     });
   });
 
-  //CRUD para la Sucursal
-
-  let tableSucursal = $("#tabla_sucursals").DataTable({
-    ajax: "mostrar-sucursal.php",
+  //CRUD SUCURSAL  //
+    tableSucursal = $("#tabla_sucursals").DataTable({
+    ajax: "mostrar-sucursal.php?id=1",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -315,7 +249,9 @@ $(document).ready(function () {
       { data: "direccion" },
       { data: "ubigeo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-sucursal"></i>`,
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-sucursal"></i>
+                      <i class="bi bi-person-plus btn-agregar-acceso"></i>
+        `,
       },
       {
         defaultContent: `<i class="bi bi-x-circle-fill btn-delete-sucursal"></i>`,
@@ -343,6 +279,7 @@ $(document).ready(function () {
     },
   });
 
+ 
   $(document).on("click", ".btn-edit-sucursal", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
@@ -357,8 +294,6 @@ $(document).ready(function () {
       $("#txtIdEmpresa").val(sucursal.id_empresa);
       editarSucursall = true;
       ides = sucursal.id;
-      //cargando los datos al frm de acceso se hara con un btn
-      $("#txtIdSucursal").val(ides);
     });
     tableSucursal.ajax.reload();
   });
@@ -373,10 +308,25 @@ $(document).ready(function () {
     });
   });
 
+  // BTN PARA AGREGAR ACCESOS //
+  $(document).on("click",".btn-agregar-acceso", function(){
+    let data = tableSucursal.row($(this).parents()).data();
+    let id = data.id;
+
+    $.post("escuchar-sucursal.php", { id }, function (response) {
+      let sucursal = JSON.parse(response);
+
+      ideSuc = sucursal.id;
+      //cargando los datos al frm de acceso se hara con un btn
+      $("#txtIdSucursal").val(ideSuc);
+      cargarAccesos(ideSuc);
+    });
+  })
+
   //CRUD contactos
 
-  let tablaContactos = $("#tabla_contactoss").DataTable({
-    ajax: "mostrar-contactos.php",
+  tablaContactos = $("#tabla_contactoss").DataTable({
+    ajax: "mostrar-contactos.php?id=1",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -447,10 +397,11 @@ $(document).ready(function () {
   //ACCESOS CRUD
 
   
-  let tablaAccesos = $("#tabla_accesos").DataTable({
-    ajax: "mostrar-accesos.php",
+  tablaAccesos = $("#tabla_accesos").DataTable({
+    ajax: "mostrar-accesos.php?id=1",
     columns: [
       { data: "id" },
+      { data: "id_sucursal" },
       { data: "nombreAcceso" },
       { data: "idAcceso" },
       { data: "contrasena" },
@@ -509,6 +460,7 @@ $(document).ready(function () {
       editarAcceso = true;
     });
   });
+
   //ubigeo cargado al formulario
   $.ajax({
     url: "mostrar-ubigeo.php",
@@ -527,6 +479,205 @@ $(document).ready(function () {
       $("#cboIdub").html(template);
     },
   });
+  
+});
 
+$(function () {
+$("#tabs").tabs();
+});
 
+function cargarSucursal(ruc){
+  tableSucursal.destroy();
+  tableSucursal = $("#tabla_sucursals").DataTable({
+    ajax: "mostrar-sucursal.php?id="+ruc,
+    columns: [
+      { data: "id" },
+      { data: "id_empresa" },
+      { data: "nombre" },
+      { data: "codigo_cofide" },
+      { data: "direccion" },
+      { data: "ubigeo" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-sucursal"></i>
+                      <i class="bi bi-person-plus btn-agregar-acceso"></i>
+        `,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-sucursal"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+}
+
+function cargarContactos(ruc){
+  tablaContactos.destroy();
+  tablaContactos = $("#tabla_contactoss").DataTable({
+    ajax: "mostrar-contactos.php?id="+ruc,
+    columns: [
+      { data: "id" },
+      { data: "id_empresa" },
+      { data: "nombre" },
+      { data: "cargo" },
+      { data: "telefono" },
+      { data: "correo" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>`,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-contacto"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+}
+
+function cargarAccesos(id_sucursal){
+  tablaAccesos.destroy();
+  tablaAccesos = $("#tabla_accesos").DataTable({
+    ajax: "mostrar-accesos.php?id="+id_sucursal,
+    columns: [
+      { data: "id" },
+      { data: "id_sucursal" },
+      { data: "nombreAcceso" },
+      { data: "idAcceso" },
+      { data: "contrasena" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-acceso"></i>`,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-acceso"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+}
+
+// ALERTAS //
+
+function mensajes(response, mensaje, error) {
+  if (response == "ingresado") {
+    Swal.fire("Registrado con exito", `${mensaje}`, "success").then(() => {
+      console.log("tabla actualizada");
+      mostrarLogoss();
+    });
+  } else {
+    Swal.fire("Completa todos los campos", `${error}`, "error").then(() => {
+      console.log("no hay datos");
+    });
+  }
+}
+
+// CRUD DEL LOGO  //
+
+function mostrarLogoss(id){
+  $.ajax({
+    url: "mostrar-logo.php?id="+id,
+    type: "GET",
+    success: function (response) {
+      let logo = JSON.parse(response);
+      let template = "";
+
+      logo.forEach((logo) => {
+        template += `
+
+        <div class="contenedor-img" id-logo="${logo.id}">
+        <img src="${logo.ruta}" alt="${logo.nombre}">
+        <button  class="btn-delete-logo btn btn-outline-danger">Borrar</button>
+        </div>
+        `;
+      });
+      $("#contenedor-img-banderas").html(template);
+    },
+  });
+}
+
+$(document).on("click", ".btn-delete-logo", function () {
+  let element = $(this)[0].parentElement;
+  let id = $(element).attr("id-logo");
+  console.log(id);
+  $.post("eliminar-logo.php", { id }, function (response) {
+    console.log(response);
+    mostrarLogoss();
+  });
+});
+
+document.getElementById("btn_registrar").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  let frm = document.getElementById("frm_logo");
+  let frmdata = new FormData(frm);
+
+  $.ajax({
+    method: "post",
+    url: "registrar-logo.php",
+    data: frmdata,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (response) => {
+      // let data = response.JSON();
+      console.log(response);
+      mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
+
+    },
+  });
 });

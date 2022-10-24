@@ -32,25 +32,16 @@
 
     <main>
         <nav>
-            <h1>LISTA EMPRESAS</h1>
+            <div class="enlaces">
+                <h1>LISTA EMPRESAS</h1>
+                <a href="index.php" class="">Nueva</a>
+            </div>
 
             <div class="icon">
                 <img src="https://neliosoftware.com/es/wp-content/uploads/sites/3/2018/07/aziz-acharki-549137-unsplash-1200x775.jpg" alt="">
             </div>
         </nav>
         <div class="table">
-
-            <div class="header-table">
-                <div class="opciones">
-                    <p>Todas las Empresas (50)</p>
-                    <a href="index.php">Nueva</a>
-                </div>
-
-                <div class="img-table">
-                    <img src="img/gear.png" alt="config">
-                    <img src="img/menu.png" alt="imgen de selection">
-                </div>
-            </div>
 
             <div class="table">
                 <div class="tabla-empresas ">

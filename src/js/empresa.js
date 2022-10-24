@@ -23,7 +23,7 @@ $(document).ready(function () {
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li id="btn-editar-empresa"><a class="dropdown-item">Editar</a></li>
         <li id="btn-nose"><a class="dropdown-item" >Another action</a></li>
-        <li id="btn-nose"><a class="dropdown-item" >Something else here</a></li>
+        <li id="btn-nose"><a class="dropdown-item" >Another action</a></li>
       </ul>
     </div>`,
       },

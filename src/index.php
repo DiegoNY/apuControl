@@ -290,7 +290,7 @@ $fecha = date('d/m/y');
                                                 <th>Cod_Cofide</th>
                                                 <th>Direccion</th>
                                                 <th>Ubigeo</th>
-                                                <th>Editar</th>
+                                                <th>Opciones</th>
                                                 <th>Eliminar</th>
                                             </tr>
                                         </thead>
@@ -317,7 +317,7 @@ $fecha = date('d/m/y');
                                         <input type="text" name="txtCargo" id="cargo-contacto">
                                     </div>
                                     <div>
-                                        <label for="txtEmpresa">Id Empresa</label>
+                                        <label for="txtEmpresa">RUC Empresa</label>
                                         <input type="text" name="txtEmpresa" id="id-empresa-contacto">
                                     </div>
                                     <div>
@@ -339,7 +339,7 @@ $fecha = date('d/m/y');
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Id Empresa</th>
+                                                <th>RUC Empresa</th>
                                                 <th>Nombre Contactos</th>
                                                 <th>Cargo</th>
                                                 <th>Telefono</th>
@@ -388,6 +388,7 @@ $fecha = date('d/m/y');
                                     <table id="tabla_accesos" class="table table-hover" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Id Sucursal</th>
                                                 <th>Nombre Acceso</th>
                                                 <th>Id Acceso </th>
@@ -396,7 +397,6 @@ $fecha = date('d/m/y');
                                                 <th>eliminar</th>
                                             </tr>
                                         </thead>
-
                                         <tbody id="listado-accesos">
                                             <!-- Data en Ajax-->
                                             <tr>
@@ -425,6 +425,7 @@ $fecha = date('d/m/y');
                                         <div>
                                             <label for="txtBandera">Nombre</label>
                                             <input type="text" name="nombre" id="nombre">
+                                            <input type="text" name="txtRucEmpresa" id="txtRucEmpresa">
                                         </div>
 
                                         <div class="input-file">

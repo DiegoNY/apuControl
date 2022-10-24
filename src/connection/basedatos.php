@@ -84,8 +84,8 @@ class BaseDatos
     }
 
     //CRUD BANDERA
-    public function ingresarBandera($logo,$nombre){
-        $consulta = "INSERT INTO `bandera`(nombre,logo) VALUES('$nombre','$logo');";
+    public function ingresarBandera($logo,$nombre,$ruc){
+        $consulta = "INSERT INTO `bandera`(nombre,logo,id_empresa) VALUES('$nombre','$logo','$ruc');";
         $res = mysqli_query($this->con,$consulta);
         
         if ($res == TRUE) {
@@ -95,8 +95,8 @@ class BaseDatos
         }
     }
 
-    public function  traerBandera(){
-        $consulta = "SELECT * FROM `bandera`;";
+    public function  traerBandera($id){
+        $consulta = "SELECT * FROM `bandera` as b where(b.id_empresa = $id);";
         $res = mysqli_query($this->con,$consulta);
         return $res;
     }
@@ -164,8 +164,8 @@ class BaseDatos
     }
 
     //CRUD CONTACTOS 
-    public function verContactos(){
-        $consulta = "SELECT * FROM `contactos` as c where (c.estado = 1);";
+    public function verContactos($id_empresa){
+        $consulta = "SELECT * FROM `contactos` as c where (c.estado = 1 and c.id_empresa = $id_empresa);";
         $res = mysqli_query($this->con, $consulta);
         return $res;
 
@@ -222,8 +222,8 @@ class BaseDatos
         return $res;
     }
 
-    public function mostrarSucursales(){
-        $consulta = "SELECT * FROM `sucursal` as s where (s.estado = 1 );";
+    public function mostrarSucursales($id){
+        $consulta = "SELECT * FROM `sucursal` as s where (s.estado = 1 and s.id_empresa = $id);";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }
@@ -287,8 +287,8 @@ class BaseDatos
         }
     }
 
-    public function mostrarAccesos(){
-        $consulta = "SELECT * FROM `accesos` as a where (a.estado = 1 );";
+    public function mostrarAccesos($id){
+        $consulta = "SELECT * FROM `accesos` as a where (a.estado = 1 and a.id_sucursal = $id);";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }

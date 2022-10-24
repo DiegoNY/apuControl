@@ -1,9 +1,13 @@
 <?php
 include 'connection/basedatos.php';
 
+
+//solo probando 
+$id = $_GET['id'];
+ 
 $sucursal = new BaseDatos();
 
-$resultado = $sucursal->mostrarSucursales();
+$resultado = $sucursal->mostrarSucursales($id);
 
 
 if(!$resultado){

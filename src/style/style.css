@@ -106,7 +106,6 @@ main {
 }
 #tabla{
     background-color: var(--white);
-    border-radius: 19px;
 }
 
 
@@ -120,7 +119,6 @@ main {
     font-size: var(--md);
     font-weight: bold;
     width: 100%;
-
 }
 
 

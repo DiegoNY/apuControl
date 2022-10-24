@@ -1,6 +1,7 @@
 <?php
 include 'connection/basedatos.php';
 
+$ruc = $_POST['txtRucEmpresa'];
 $nombre = $_POST['nombre'];
 $logo = $_FILES['logo']['name'];
 $temporal = $_FILES['logo']['tmp_name'];
@@ -12,11 +13,14 @@ if (isset($nombre) && !empty($nombre)){
     move_uploaded_file($temporal, $carpeta . '/' . $logo);
 
     $bandera = new BaseDatos();
-    $res =  $bandera->ingresarBandera($ruta, $nombre);
+    $res =  $bandera->ingresarBandera($ruta, $nombre,$ruc);
 
 
     if ($res === TRUE) {
-        echo "ingresado";
+        $json = array();
+        $json[] = array('mensaje'=>"ingresado", 'ruc'=>$ruc);
+        $jsonString = json_encode($json);
+        echo $jsonString;
     } else {
         echo  "error";
     }

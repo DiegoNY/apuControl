@@ -53,43 +53,10 @@ main nav .icon img {
     border: white 1px solid;
 }
 
-main nav .search{
-    
-    border: 1px solid #d9d8d8;
-    border-radius: 35px;
-    width: 40%;
-    height: 38px;
-    display: grid;
-    grid-template-columns: minmax(18px,20%) 1fr;
-    align-items: center;
-    padding: 7px;
-}
-
-main nav .search input{
-    border: none;
-    width: 100%;
-}
-
-main  .table .header-table {
+main nav .enlaces {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 8px;
+    gap: 17px;
 }
-
-main  .table .header-table .opciones{
-    display: flex;
-}
-
-main  .table .header-table .img-table img{
-    height: 61px;
-   
-}
-
-main  .table .header-table .img-table img:hover{
-    cursor:pointer ;
-}
-
 .contenedor-empresa{
     height: 350px;
     background-color: var(--white);

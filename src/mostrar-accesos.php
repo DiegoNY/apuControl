@@ -2,9 +2,11 @@
 
 include 'connection/basedatos.php';
 
+$id = $_GET['id'];
+
 $accesos = new BaseDatos();
 
-$resultado = $accesos->mostrarAccesos();
+$resultado = $accesos->mostrarAccesos($id);
 
 
 if(!$resultado){
