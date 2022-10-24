@@ -47,8 +47,8 @@
                 </div>
 
                 <div class="img-table">
-                    <img src="img/ingenieria.png" alt="config">
-                    <img src="img/barra-de-carga.png" alt="imgen de selection">
+                    <img src="img/gear.png" alt="config">
+                    <img src="img/menu.png" alt="imgen de selection">
                 </div>
             </div>
 

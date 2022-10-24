@@ -216,7 +216,7 @@ $fecha = date('d/m/y');
                                         <div class="inactive">
                                             <input type="hidden" name="txtFechCre" id="txtFechCre" value="<?php echo $fecha; ?>">
                                         </div>
-                                        <input type="button" onclick="RegistrarGrupo()" value="ingresar Grupo" class="btn-ingresar-grupo">
+                                        <input type="button" onclick="RegistrarGrupo()" value="Ingresar Grupo" class="btn-ingresar-grupo">
                                     </form>
                                 </div>
 

@@ -3,7 +3,7 @@
     --black: #000000;
     --very-light-pink: #C7C7C7;
     --text-input-field: #F7F7F7;
-    --hospital-green: #ACD9B2;
+    --hospital-green: #1b285b;
     --sm: 14px;
     --md: 16px;
     --lg: 18px;
@@ -187,8 +187,8 @@ select {
     grid-row: 4;
     grid-column: 1 / span 2;
     border: none;
-    background-color: #dffae4;
-    color: #bebcbc;
+    background-color: #3E48AD;
+    color: var(--white);
     font-size: var(--md);
 }
 
@@ -207,8 +207,8 @@ select {
     width: 100%;
     border-radius: 8px;
     border: none;
-    background-color: #dffae4;
-    color: #bebcbc;
+    background-color: #3E48AD;
+    color: var(--white);
     font-size: var(--md);
 
 }
@@ -227,8 +227,8 @@ select {
     height: 45px;
     width: 100%;
     border: none;
-    background-color: #dffae4;
-    color: #bebcbc;
+    background-color: #3E48AD;
+    color: var(--white);
     font-size: var(--md);
     
 
@@ -257,8 +257,8 @@ select {
     border-radius: 8px;
     border-radius: 8px;
     border: none;
-    background-color: #dffae4;
-    color: #bebcbc;
+    background-color: #3E48AD;
+    color: var(--white);
     font-size: var(--md);
 }
 
