@@ -8,7 +8,6 @@ $logos = new BaseDatos();
 $resultado = $logos->traerBandera($id);
 
 
-
 $json = array();
 
 while($row = mysqli_fetch_array($resultado)){

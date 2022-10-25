@@ -425,7 +425,7 @@ $fecha = date('d/m/y');
                                         <div>
                                             <label for="txtBandera">Nombre</label>
                                             <input type="text" name="nombre" id="nombre">
-                                            <input type="text" name="txtRucEmpresa" id="txtRucEmpresa">
+                                            <input type="hidden" name="txtRucEmpresa" id="txtRucEmpresa">
                                         </div>
 
                                         <div class="input-file">

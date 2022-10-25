@@ -1,175 +1,18 @@
-//para los grupos
-
-function RegistrarGrupo() {
-  let url = editar === false ? "procesarGrupo.php" : "editar-grupo.php";
-  $.ajax({
-    type: "GET",
-    data: $("#frm_grupo").serialize(),
-    url: url,
-    success: function (data) {
-      mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
-    },
-  });
-  $("#frm_grupo").trigger("reset");
-}
-
-cargaGrupoEnFrm();
-function cargaGrupoEnFrm() {
-  $.ajax({
-    url: "mostrar-grupo-formulario.php",
-    type: "GET",
-    success: function (response) {
-      let grupos = JSON.parse(response);
-      let template = "";
-      grupos.forEach((grupos) => {
-        template += `
-                
-                <option value="${grupos.nombre}">${grupos.nombre}</option>
-              
-        `;
-      });
-      $("#cbogrupo").html(template);
-    },
-  });
-}
-
-//PARA LA EMPRESA
-
-//recibo valores por post
-const valores = window.location.search;
-const urlParams = new URLSearchParams(valores);
-let id = urlParams.get("id");
-let edit = urlParams.get("edit");
-
-editarEmpresas(id, edit);
-
-function editarEmpresas(id, edit) {
-  $.post("escuchar-empresa.php", { id }, function (response) {
-    console.log(response);
-    let empresa = JSON.parse(response);
-    console.log(empresa);
-    $("#txtNombreCo").val(empresa.nom_comercial);
-    $("#id").val(empresa.id);
-    $("#txtRuc").val(empresa.ruc);
-    $("#txtRazonSocial").val(empresa.razon_social);
-    $("#txtDireccion").val(empresa.direccion);
-    $("#cbogrupo").val(empresa.id_grupo);
-    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
-    $("#cboIdRubro").val(empresa.id_rubro);
-    $("#cboTipoEnvio").val(empresa.tipo_envio);
-    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
-    $("#txtFechaRegistro").val(empresa.fecha_registro);
-    $("#txtEstadoComercial").val(empresa.estado_comercial);
-    $("#cboTipoPersona").val(empresa.tipo_persona);
-    $("#cboIdu").val(empresa.id_ubigeo);
-    $("#cboEstado").val(empresa.estado);
-    editar = edit;
-  });
-}
-
-function RegistrarEmpresa() {
-  let url = editar === false ? "registrar-empresa.php" : "editar-empresa.php";
-  $.ajax({
-    url: url,
-    type: "GET",
-    data: $("#frm_empresa").serialize(),
-    success: function (response) {
-      cargarSucursal(response);
-      cargarContactos(response);
-      mostrarLogoss(response);
-    },
-  });
-  
-  $("#frm_empresa").trigger("reset");
-}
-
-//Para los Contactos
-function registrarContactos() {
-  let url =
-    editarContacto === false
-      ? "registrar-contactos.php"
-      : "editar-contacto.php";
-  $.ajax({
-    url: url,
-    data: $("#frm-contactos").serialize(),
-    type: "GET",
-    success: function (response) {
-      console.log(response);
-      mensajes(response, "Contacto Registrado", "Rellena todos los campos ❌");
-      editarContacto = false;
-      tablaContactos.ajax.reload();
-    },
-  });
-  $("#frm-contactos").trigger("reset");
-}
-
-//Para la sucursal
-
-function registrarSucursal() {
-  let url =
-    editarSucursall === false
-      ? "registrar-sucursal.php"
-      : "editar-sucursal.php";
-  $.ajax({
-    url: url,
-    data: $("#frm-sucursal").serialize(),
-    type: "GET",
-    success: function (response) {
-      console.log(response);
-      mensajes(
-        response,
-        "Ok, se registro la sucursal",
-        "Te falta llenar algunos datos importantes ☹"
-      );
-      editarSucursall = false;
-      tableSucursal.ajax.reload();
-    },
-  });
-  $("#frm-sucursal").trigger("reset");
- 
-}
-
-//CRUD ACCESOS
-function registrarAccesos() {
-  let url =
-    editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
-  $.ajax({
-    url: url,
-    data: $("#frm-accesos").serialize(),
-    type: "GET",
-    success: function (response) {
-      console.log(response);
-      mensajes(
-        response,
-        "Bien Se ingresaron los accesos 😀",
-        "Completa Todos los campos"
-      );
-      editarAcceso = false;
-      tablaAccesos.ajax.reload();
-    },
-  });
- 
-  $("#frm-accesos").trigger("reset");
-}
-
-
-
-
 var editar = false;
 var editarContacto = false;
 var editarSucursall = false;
 var editarAcceso = false;
-var tableSucursal = '';
-var tablaContactos = '';
-var tablaAccesos ='';
+var tableSucursal = "";
+var tablaContactos = "";
+var tablaAccesos = "";
 
 $(document).ready(function () {
-  //SE CARGA EL RUC AL FORMULARIO DE SUCURSAL 
-  $("#txtRuc").keyup(function(){
+  //SE CARGA EL RUC AL FORMULARIO DE SUCURSAL
+  $("#txtRuc").keyup(function () {
     var ruc = $(this).val();
     $("#txtIdEmpresa").val(ruc);
     $("#id-empresa-contacto").val(ruc);
-    $("#txtRucEmpresa").val(ruc);    
+    $("#txtRucEmpresa").val(ruc);
   });
 
   //CRUD para los grupos //
@@ -239,7 +82,7 @@ $(document).ready(function () {
   });
 
   //CRUD SUCURSAL  //
-    tableSucursal = $("#tabla_sucursals").DataTable({
+  tableSucursal = $("#tabla_sucursals").DataTable({
     ajax: "mostrar-sucursal.php?id=1",
     columns: [
       { data: "id" },
@@ -279,7 +122,6 @@ $(document).ready(function () {
     },
   });
 
- 
   $(document).on("click", ".btn-edit-sucursal", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
@@ -309,7 +151,7 @@ $(document).ready(function () {
   });
 
   // BTN PARA AGREGAR ACCESOS //
-  $(document).on("click",".btn-agregar-acceso", function(){
+  $(document).on("click", ".btn-agregar-acceso", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
 
@@ -321,7 +163,7 @@ $(document).ready(function () {
       $("#txtIdSucursal").val(ideSuc);
       cargarAccesos(ideSuc);
     });
-  })
+  });
 
   //CRUD contactos
 
@@ -363,7 +205,6 @@ $(document).ready(function () {
     },
   });
 
-
   $(document).on("click", ".btn-delete-contacto", function () {
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
@@ -373,7 +214,6 @@ $(document).ready(function () {
       tablaContactos.ajax.reload();
     });
   });
-
 
   $(document).on("click", ".btn-edit-contacto", function () {
     let data = tablaContactos.row($(this).parents()).data();
@@ -393,10 +233,8 @@ $(document).ready(function () {
     tablaContactos.ajax.reload();
   });
 
-
   //ACCESOS CRUD
 
-  
   tablaAccesos = $("#tabla_accesos").DataTable({
     ajax: "mostrar-accesos.php?id=1",
     columns: [
@@ -479,17 +317,16 @@ $(document).ready(function () {
       $("#cboIdub").html(template);
     },
   });
-  
 });
 
 $(function () {
-$("#tabs").tabs();
+  $("#tabs").tabs();
 });
 
-function cargarSucursal(ruc){
+function cargarSucursal(ruc) {
   tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
-    ajax: "mostrar-sucursal.php?id="+ruc,
+    ajax: "mostrar-sucursal.php?id=" + ruc,
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -529,10 +366,10 @@ function cargarSucursal(ruc){
   });
 }
 
-function cargarContactos(ruc){
+function cargarContactos(ruc) {
   tablaContactos.destroy();
   tablaContactos = $("#tabla_contactoss").DataTable({
-    ajax: "mostrar-contactos.php?id="+ruc,
+    ajax: "mostrar-contactos.php?id=" + ruc,
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -570,10 +407,10 @@ function cargarContactos(ruc){
   });
 }
 
-function cargarAccesos(id_sucursal){
+function cargarAccesos(id_sucursal) {
   tablaAccesos.destroy();
   tablaAccesos = $("#tabla_accesos").DataTable({
-    ajax: "mostrar-accesos.php?id="+id_sucursal,
+    ajax: "mostrar-accesos.php?id=" + id_sucursal,
     columns: [
       { data: "id" },
       { data: "id_sucursal" },
@@ -608,7 +445,6 @@ function cargarAccesos(id_sucursal){
       },
     },
   });
-
 }
 
 // ALERTAS //
@@ -628,9 +464,9 @@ function mensajes(response, mensaje, error) {
 
 // CRUD DEL LOGO  //
 
-function mostrarLogoss(id){
+function mostrarLogoss(id) {
   $.ajax({
-    url: "mostrar-logo.php?id="+id,
+    url: "mostrar-logo.php?id=" + id,
     type: "GET",
     success: function (response) {
       let logo = JSON.parse(response);
@@ -674,10 +510,169 @@ document.getElementById("btn_registrar").addEventListener("click", (e) => {
     processData: false,
     contentType: false,
     success: (response) => {
-      // let data = response.JSON();
       console.log(response);
-      mensajes(response, "Ingresaste un Logo 😃", "Seguro falto el nombre 😲");
-
+      let data = JSON.parse(response);
+      data.forEach((data) => {
+        mensajes(
+          data.mensaje,
+          "Ingresaste un Logo 😃",
+          "Seguro falto el nombre 😲"
+        );
+        mostrarLogoss(data.ruc);
+      });
     },
   });
 });
+
+//CRUD ACCESOS
+function registrarAccesos() {
+  let url =
+    editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
+  $.ajax({
+    url: url,
+    data: $("#frm-accesos").serialize(),
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      mensajes(
+        response,
+        "Bien Se ingresaron los accesos 😀",
+        "Completa Todos los campos"
+      );
+      editarAcceso = false;
+      tablaAccesos.ajax.reload();
+    },
+  });
+
+  $("#frm-accesos").trigger("reset");
+}
+
+//Para la sucursal
+
+function registrarSucursal() {
+  let url =
+    editarSucursall === false
+      ? "registrar-sucursal.php"
+      : "editar-sucursal.php";
+  $.ajax({
+    url: url,
+    data: $("#frm-sucursal").serialize(),
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      mensajes(
+        response,
+        "Ok, se registro la sucursal",
+        "Te falta llenar algunos datos importantes ☹"
+      );
+      editarSucursall = false;
+      tableSucursal.ajax.reload();
+    },
+  });
+  $("#frm-sucursal").trigger("reset");
+}
+
+//Para los Contactos
+function registrarContactos() {
+  let url =
+    editarContacto === false
+      ? "registrar-contactos.php"
+      : "editar-contacto.php";
+  $.ajax({
+    url: url,
+    data: $("#frm-contactos").serialize(),
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      mensajes(response, "Contacto Registrado", "Rellena todos los campos ❌");
+      editarContacto = false;
+      tablaContactos.ajax.reload();
+    },
+  });
+  $("#frm-contactos").trigger("reset");
+}
+
+//para los grupos
+
+function RegistrarGrupo() {
+  let url = editar === false ? "procesarGrupo.php" : "editar-grupo.php";
+  $.ajax({
+    type: "GET",
+    data: $("#frm_grupo").serialize(),
+    url: url,
+    success: function (data) {
+      mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
+    },
+  });
+  $("#frm_grupo").trigger("reset");
+}
+
+cargaGrupoEnFrm();
+function cargaGrupoEnFrm() {
+  $.ajax({
+    url: "mostrar-grupo-formulario.php",
+    type: "GET",
+    success: function (response) {
+      let grupos = JSON.parse(response);
+      let template = "";
+      grupos.forEach((grupos) => {
+        template += `
+                
+                <option value="${grupos.nombre}">${grupos.nombre}</option>
+              
+        `;
+      });
+      $("#cbogrupo").html(template);
+    },
+  });
+}
+
+//PARA LA EMPRESA
+
+//recibo valores por post
+const valores = window.location.search;
+const urlParams = new URLSearchParams(valores);
+let id = urlParams.get("id");
+let edit = urlParams.get("edit");
+
+editarEmpresas(id, edit);
+
+function editarEmpresas(id, edit) {
+  $.post("escuchar-empresa.php", { id }, function (response) {
+    console.log(response);
+    let empresa = JSON.parse(response);
+    console.log(empresa);
+    $("#txtNombreCo").val(empresa.nom_comercial);
+    $("#id").val(empresa.id);
+    $("#txtRuc").val(empresa.ruc);
+    $("#txtRazonSocial").val(empresa.razon_social);
+    $("#txtDireccion").val(empresa.direccion);
+    $("#cbogrupo").val(empresa.id_grupo);
+    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
+    $("#cboIdRubro").val(empresa.id_rubro);
+    $("#cboTipoEnvio").val(empresa.tipo_envio);
+    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
+    $("#txtFechaRegistro").val(empresa.fecha_registro);
+    $("#txtEstadoComercial").val(empresa.estado_comercial);
+    $("#cboTipoPersona").val(empresa.tipo_persona);
+    $("#cboIdu").val(empresa.id_ubigeo);
+    $("#cboEstado").val(empresa.estado);
+    editar = edit;
+  });
+}
+
+function RegistrarEmpresa() {
+  let url = editar === false ? "registrar-empresa.php" : "editar-empresa.php";
+  $.ajax({
+    url: url,
+    type: "GET",
+    data: $("#frm_empresa").serialize(),
+    success: function (response) {
+      cargarSucursal(response);
+      cargarContactos(response);
+      mostrarLogoss(response);
+    },
+  });
+
+  $("#frm_empresa").trigger("reset");
+}
