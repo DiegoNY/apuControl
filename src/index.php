@@ -53,7 +53,7 @@ $fecha = date('y/m/d');
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="empresas.php">Ver Empresas </a>
+                                <a class="nav-link" href="empresas.html">Ver Empresas </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.php">Salir</a>
