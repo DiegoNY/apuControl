@@ -136,7 +136,7 @@ class BaseDatos
     {
         $consulta = "SELECT * FROM `empresa` as e where (e.eliminada = 1 AND e.id = $id);";
         $res = mysqli_query($this->con, $consulta);
-        return $res;
+        return $res;    
     }
 
     public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial)

@@ -1,5 +1,5 @@
 <?php
-$fecha = date('d/m/y');
+$fecha = date('y/m/d');
 
 ?>
 
@@ -223,7 +223,7 @@ $fecha = date('d/m/y');
 
                                 <div class="tabla-grupo ">
                                     <div class="tablas-empresa  table-responsive conteiner-fluid" id="tabla">
-                                        <table id="tabla-grupos" class="table  table-hover" style="width:100%; ">
+                                        <table id="tabla-grupos" class="table table-borderless  table-hover" style="width:100%; ">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">id</th>
@@ -438,17 +438,11 @@ $fecha = date('d/m/y');
                                             <input type="submit" name="btn_registrar" value="Registrar Logo" class="btn-registrar-logo" id="btn_registrar">
                                         </div>
                                     </form>
-
                                 </div>
 
                                 <div class="contenedor-banderas">
                                     <div class="contenedor-img-banderas" id="contenedor-img-banderas">
-                                        <div class="contenedor-img">
-                                            <img src="img/icons8-bookmark.svg" alt="">
-                                        </div>
-                                        <div class="contenedor-img">
-                                            <img src="img/icons8-delete.svg" alt="">
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -457,7 +451,6 @@ $fecha = date('d/m/y');
 
                 </div>
             </div>
-
 
     </main>
     <footer></footer>

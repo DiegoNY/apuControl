@@ -34,21 +34,22 @@
         <nav>
             <div class="enlaces">
                 <h1>LISTA EMPRESAS</h1>
-                <a href="index.php" class="">Nueva</a>
+                <a href="index.php" class="btn btn-light link-secondary  btn-nueva-empresa">Nueva</a>
             </div>
 
             <div class="icon">
-                <img src="https://neliosoftware.com/es/wp-content/uploads/sites/3/2018/07/aziz-acharki-549137-unsplash-1200x775.jpg" alt="">
+                <img src="img/hombre-de-negocios.png" alt="">
             </div>
-        </nav>
+        </nav>  
         <div class="table">
 
             <div class="table">
                 <div class="tabla-empresas ">
                     <div class="tablas-empresa">
                         <table id="tabla_empresasas" class="table  table-borderless table-hover" style="width:100%">
-                            <thead>
+                            <thead id="table-header">
                                 <tr class="card-header">
+                                    <th scope="col">ID</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Ruc</th>
                                     <th scope="col">Social</th>
@@ -56,10 +57,10 @@
                                     <th scope="col">Grupo</th>
                                     <th scope="col">Rubro</th>
                                     <th scope="col">T.Envio</th>
-                                    <th scope="col">Tipo Integracion</th>
-                                    <th scope="col">Fecha de registro</th>
+                                    <th scope="col">T.Integracion</th>
+                                    <th scope="col">Fecha.R</th>
                                     <th scope="col">Estado comercial</th>
-                                    <th scope="col">Tipo de persona</th>
+                                    <th scope="col">T.Persona</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Opciones</th>
                                     <th scope="col">Eliminar</th>

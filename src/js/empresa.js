@@ -4,6 +4,7 @@ $(document).ready(function () {
     ajax: "mostrar-empresas.php",
     columns: [
       { data: "id" },
+      {data:"nom_comercial"},
       { data: "ruc" },
       { data: "razon_social" },
       { data: "id_ubigeo" },
@@ -32,21 +33,21 @@ $(document).ready(function () {
     language: {
         "decimal": "",
         "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Empresas",
         "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
         "infoFiltered": "(Filtrado de _MAX_ total entradas)",
         "infoPostFix": "",
         "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "lengthMenu": "Mostrar _MENU_ Empresas",
         "loadingRecords": "Cargando...",
         "processing": "Procesando...",
-        "search": "Buscar:",
+        "search": "Empresas",
         "zeroRecords": "Sin resultados encontrados",
         "paginate": {
             "first": "Primero",
             "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
+            "next": ">    >>",
+            "previous": "<<    <"
         },
     }
     
@@ -65,7 +66,8 @@ $(document).ready(function () {
   $(document).on("click", "#btn-editar-empresa", function () {
     let data = tablaEmpresa.row($(this).parents()).data();
     let id = data.id;
-    window.location.replace(`index.php?id=${id}&&edit=2`);
+    let ruc = data.ruc;
+    window.location.replace(`index.php?id=${id}&&edit=2&&ruc=${ruc}`);
   });
   
 });

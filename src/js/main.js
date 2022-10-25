@@ -5,6 +5,7 @@ var editarAcceso = false;
 var tableSucursal = "";
 var tablaContactos = "";
 var tablaAccesos = "";
+var tablaGrupos = '';
 
 $(document).ready(function () {
   //SE CARGA EL RUC AL FORMULARIO DE SUCURSAL
@@ -16,7 +17,8 @@ $(document).ready(function () {
   });
 
   //CRUD para los grupos //
-  let tablaGrupos = $("#tabla-grupos").DataTable({
+  tablaGrupos = $("#tabla-grupos").DataTable({
+    
     ajax: "mostrarGrupos.php",
     columns: [
       { data: "id" },
@@ -41,7 +43,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Grupos :",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -602,6 +604,8 @@ function RegistrarGrupo() {
     url: url,
     success: function (data) {
       mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
+      cargaGrupoEnFrm();
+      tablaGrupos.ajax.reload();
     },
   });
   $("#frm_grupo").trigger("reset");
@@ -634,14 +638,16 @@ const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 let id = urlParams.get("id");
 let edit = urlParams.get("edit");
+let ruc = urlParams.get("ruc");
 
-editarEmpresas(id, edit);
+editarEmpresas(id, edit, ruc);
 
-function editarEmpresas(id, edit) {
+
+function editarEmpresas(id, edit, ruc) {
   $.post("escuchar-empresa.php", { id }, function (response) {
     console.log(response);
     let empresa = JSON.parse(response);
-    console.log(empresa);
+
     $("#txtNombreCo").val(empresa.nom_comercial);
     $("#id").val(empresa.id);
     $("#txtRuc").val(empresa.ruc);
@@ -658,7 +664,11 @@ function editarEmpresas(id, edit) {
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#cboEstado").val(empresa.estado);
     editar = edit;
+    cargarSucursal(ruc);
+    cargarContactos(ruc);
+    mostrarLogoss(ruc);
   });
+
 }
 
 function RegistrarEmpresa() {
@@ -668,9 +678,16 @@ function RegistrarEmpresa() {
     type: "GET",
     data: $("#frm_empresa").serialize(),
     success: function (response) {
-      cargarSucursal(response);
-      cargarContactos(response);
-      mostrarLogoss(response);
+      let data = JSON.parse(response);
+      data.forEach((data) => {
+        let mensaje = data.mensaje;
+        let ruc = data.ruc;
+
+        cargarSucursal(ruc);
+        cargarContactos(ruc);
+        mostrarLogoss(ruc);
+        mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
+      })
     },
   });
 

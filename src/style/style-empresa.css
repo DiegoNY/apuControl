@@ -45,6 +45,7 @@ main nav .icon {
     height: 50px;
     width: 50px;
     border-radius: 15px;
+    display: flex;
 }
 main nav .icon img {
     height: 100%;
@@ -61,4 +62,46 @@ main nav .enlaces {
     height: 350px;
     background-color: var(--white);
     overflow-y: scroll;
+}
+
+#tabla_empresasas thead{
+    color: var(--white);
+    background-color: #3E48AD;
+    
+}
+
+.tablas-empresa #tabla_empresasas_wrapper .dataTables_length{
+    display: none;
+}
+
+.tablas-empresa #tabla_empresasas_wrapper  #tabla_empresasas_filter {
+    color: #333;
+    width: 100%;
+  
+    padding: 17px;
+}
+
+.tablas-empresa #tabla_empresasas_wrapper  #tabla_empresasas_filter label{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.tablas-empresa #tabla_empresasas_wrapper  #tabla_empresasas_paginate{
+    color: #e0a7a7;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 17px;
+}
+
+.tablas-empresa #tabla_empresasas_wrapper  #tabla_empresasas_paginate  {
+
+font-weight: bold;
+}
+
+.tablas-empresa #tabla_empresasas_wrapper  #tabla_empresasas_paginate span a{
+
+    background: #3E48AD;
+    color:  white;
+
 }
