@@ -66,8 +66,6 @@ $(document).ready(function () {
   $(document).on("click", "#btn-editar-empresa", function () {
     let data = tablaEmpresa.row($(this).parents()).data();
     let id = data.id;
-    let ruc = data.ruc;
-    window.location.replace(`index.php?id=${id}&&edit=2&&ruc=${ruc}`);
+    window.location.replace(`index.php?id=${id}&edit=2`);
   });
-  
 });

@@ -24,7 +24,7 @@ class BaseDatos
     //CRUD GRUPOS :
     public function editarGrupo($id, $nombre, $descripcion, $usuarioCreacion)
     {
-        $consulta = "update grupo as g set nombre = '$nombre', descripcion ='$descripcion', usuarioCreacion = '$usuarioCreacion' where (g.id = '$id');";
+        $consulta =   "update grupo as g set nombre = '$nombre', descripcion ='$descripcion', usuarioCreacion = '$usuarioCreacion' where (g.id = '$id');";
 
         $res = mysqli_query($this->con, $consulta);
 

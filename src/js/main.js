@@ -638,15 +638,16 @@ const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 let id = urlParams.get("id");
 let edit = urlParams.get("edit");
-let ruc = urlParams.get("ruc");
-
-editarEmpresas(id, edit, ruc);
 
 
-function editarEmpresas(id, edit, ruc) {
+editarEmpresas(id, edit);
+
+
+function editarEmpresas(id, edit) {
   $.post("escuchar-empresa.php", { id }, function (response) {
     console.log(response);
     let empresa = JSON.parse(response);
+    let ruc_em = empresa.ruc;
 
     $("#txtNombreCo").val(empresa.nom_comercial);
     $("#id").val(empresa.id);
@@ -664,9 +665,9 @@ function editarEmpresas(id, edit, ruc) {
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#cboEstado").val(empresa.estado);
     editar = edit;
-    cargarSucursal(ruc);
-    cargarContactos(ruc);
-    mostrarLogoss(ruc);
+    cargarSucursal(ruc_em);
+    cargarContactos(ruc_em);
+    mostrarLogoss(ruc_em);
   });
 
 }

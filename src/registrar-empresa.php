@@ -4,7 +4,7 @@ $resulta = extract($_GET);
 include 'connection/basedatos.php';
 $empresas = new BaseDatos();
 
-if (isset($txtRuc)) {
+if (isset($txtRuc) and !empty($txtRuc)) {
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo);
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
     $txtRuc = $empresas->sanitizar($txtRuc);
