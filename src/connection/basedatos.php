@@ -127,7 +127,7 @@ class BaseDatos
 
     public function verEmpresas()
     {
-        $consulta = "SELECT * FROM `empresa` as e where (e.eliminada = 1);";
+        $consulta = "CALL listarEmpresa();";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }

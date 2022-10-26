@@ -13,7 +13,7 @@ if(!$resultado){
 $json = array();
 
 while($row = mysqli_fetch_array($resultado)){
-    
+
     $json['data'][]= array(
         'id'=>$row['id'],
         'id_grupo' => $row['id_grupo'],
@@ -30,6 +30,7 @@ while($row = mysqli_fetch_array($resultado)){
         'estado'=>$row['estado'],
         'fecha_registro'=>$row['fecha_registro'],
         'estado_comercial'=>$row['estado_comercial'],
+        'logo'=>$row['logo'],
     );
 }
 $jsonString = json_encode($json);

@@ -8,7 +8,13 @@ var tablaAccesos = "";
 var tablaGrupos = '';
 
 $(document).ready(function () {
-  //SE CARGA EL RUC AL FORMULARIO DE SUCURSAL
+  /*                                      *
+   * ==================================== *
+   * Se carga el ruc a los formularios    *
+   * ==================================== *
+   */
+    
+  
   $("#txtRuc").keyup(function () {
     var ruc = $(this).val();
     $("#txtIdEmpresa").val(ruc);
@@ -18,7 +24,7 @@ $(document).ready(function () {
 
   //CRUD para los grupos //
   tablaGrupos = $("#tabla-grupos").DataTable({
-    
+
     ajax: "mostrarGrupos.php",
     columns: [
       { data: "id" },
@@ -55,15 +61,9 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".btn-delet-grup", function () {
-    if (confirm("Quieres eliminar el Grupo ?")) {
-      let data = tablaGrupos.row($(this).parents()).data();
-      console.log(data);
-      let id = data.id;
-      $.post("eliminarGrupo.php", { id }, function (response) {
-        console.log(response);
-        tablaGrupos.ajax.reload();
-      });
-    }
+    let data = tablaGrupos.row($(this).parents()).data()
+    let id = data.id;
+    eliminar("Asegurate de seleccionar el grupo correcto", id, tablaGrupos, "eliminarGrupo.php");
   });
 
   $(document).on("click", ".btn-edit-grup", function () {
@@ -113,7 +113,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Sucursal",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -145,21 +145,15 @@ $(document).ready(function () {
   $(document).on("click", ".btn-delete-sucursal", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = $(data).attr("id");
-
-    $.post("eliminar-sucursal.php", { id }, function (response) {
-      console.log(response);
-      tableSucursal.ajax.reload();
-    });
+    eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "eliminar-sucursal.php");
   });
 
   // BTN PARA AGREGAR ACCESOS //
   $(document).on("click", ".btn-agregar-acceso", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
-
     $.post("escuchar-sucursal.php", { id }, function (response) {
       let sucursal = JSON.parse(response);
-
       ideSuc = sucursal.id;
       //cargando los datos al frm de acceso se hara con un btn
       $("#txtIdSucursal").val(ideSuc);
@@ -196,7 +190,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Contactos ",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -210,11 +204,7 @@ $(document).ready(function () {
   $(document).on("click", ".btn-delete-contacto", function () {
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
-
-    $.post("eliminar-contactos.php", { id }, function (response) {
-      console.log(response);
-      tablaContactos.ajax.reload();
-    });
+    eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "eliminar-contactos.php");
   });
 
   $(document).on("click", ".btn-edit-contacto", function () {
@@ -263,7 +253,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Accesos",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -277,13 +267,7 @@ $(document).ready(function () {
   $(document).on("click", ".btn-delete-acceso", function () {
     let data = tablaAccesos.row($(this).parents()).data();
     let id = data.id;
-
-    console.log(id);
-
-    $.post("eliminar-acceso.php", { id }, function (response) {
-      console.log(response);
-      mostrarAccesos();
-    });
+    eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "eliminar-acceso.php");
   });
 
   $(document).on("click", ".btn-edit-acceso", function () {
@@ -356,7 +340,7 @@ function cargarSucursal(ruc) {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Sucursales :",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -397,7 +381,7 @@ function cargarContactos(ruc) {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Contactos ",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -437,7 +421,7 @@ function cargarAccesos(id_sucursal) {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Buscar:",
+      search: "Accesos ",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -452,6 +436,7 @@ function cargarAccesos(id_sucursal) {
 // ALERTAS //
 
 function mensajes(response, mensaje, error) {
+
   if (response == "ingresado") {
     Swal.fire("Registrado con exito", `${mensaje}`, "success").then(() => {
       console.log("tabla actualizada");
@@ -462,6 +447,31 @@ function mensajes(response, mensaje, error) {
       console.log("no hay datos");
     });
   }
+}
+
+function eliminar(mensaje, id, tabla, url) {
+  Swal.fire({
+    title: 'Estas Seguro ?',
+    text: mensaje,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+
+      $.post(url, { id }, function (response) {
+        console.log(response);
+        tabla.ajax.reload();
+      });
+    }
+  })
 }
 
 // CRUD DEL LOGO  //
@@ -552,10 +562,7 @@ function registrarAccesos() {
 //Para la sucursal
 
 function registrarSucursal() {
-  let url =
-    editarSucursall === false
-      ? "registrar-sucursal.php"
-      : "editar-sucursal.php";
+  let url = editarSucursall === false ? "registrar-sucursal.php" : "editar-sucursal.php";
   $.ajax({
     url: url,
     data: $("#frm-sucursal").serialize(),
@@ -669,7 +676,6 @@ function editarEmpresas(id, edit) {
     cargarContactos(ruc_em);
     mostrarLogoss(ruc_em);
   });
-
 }
 
 function RegistrarEmpresa() {

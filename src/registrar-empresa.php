@@ -36,5 +36,7 @@ if (isset($txtRuc) and !empty($txtRuc)) {
     }
 
 }else{
-    echo "sin datos";
+    $json[] = array('mensaje'=>"sin datos",'ruc'=>$txtRuc);
+    $jsonString = json_encode($json);
+    echo $jsonString;
 }
