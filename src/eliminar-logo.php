@@ -2,15 +2,19 @@
 
 include 'connection/basedatos.php';
 
-$id =$_POST['id'];
+    $id =$_POST['id'];
 
-$logo = new BaseDatos();
+    $logo = new BaseDatos();
 
-$resultado = $logo->eliminarBandera($id);
+    $resultado = $logo->eliminarBandera($id);
 
-if(!$resultado){
-    die("FALLO");
-}else{
+    if(!$resultado){
+        
+        die("FALLO");
+        
+    }else{
+    
     echo "borrado";
-}
+    
+    }
 
