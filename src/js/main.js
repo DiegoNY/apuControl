@@ -9,7 +9,6 @@ var tablaGrupos = '';
 
 
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
-
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 let id = urlParams.get("id");
@@ -577,6 +576,7 @@ function registrarSucursal() {
 }
 
 //Para los Contactos
+
 function registrarContactos() {
   let url =
     editarContacto === false
@@ -634,12 +634,20 @@ function cargaGrupoEnFrm() {
   });
 }
 
+/**
+ * Metodo Editar Empresa : 
+ * @param id = el parametreo que se recibe por GET 
+ * 
+ * *una vez recibido el paramertro valida si no es null para 
+ * *para poder ejecutarce asi evitando error de JSON 🙈
+ *
+ */
 editarEmpresas(id, edit);
 
 function editarEmpresas(id, edit) {
 
   if (id == null)
-    return;
+  return;
 
   $.post("escuchar-empresa.php", { id }, function (response) {
 
@@ -661,10 +669,13 @@ function editarEmpresas(id, edit) {
     $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#cboEstado").val(empresa.estado);
+    
     editar = edit;
+    
     cargarSucursal(ruc_em);
     cargarContactos(ruc_em);
     mostrarLogoss(ruc_em);
+
   });
 }
 
