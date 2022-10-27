@@ -40,9 +40,9 @@ $(document).ready(function () {
       { data: "fechaCreacion" },
       { data: "usuarioCreacion" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-grup"></i>`,
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-grup"></i>`,
       },
-      { defaultContent: `<i class="bi bi-x-circle-fill btn-delet-grup"></i>` },
+      { defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delet-grup"></i>` },
     ],
     language: {
       decimal: "",
@@ -334,12 +334,12 @@ function cargarSucursal(ruc) {
       { data: "direccion" },
       { data: "ubigeo" },
       {
-        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square btn-edit-sucursal"></i>
-                          <i class="bi bi-person-plus btn-agregar-acceso"></i></div>
+        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
+                          <i class="bi bi-shield-check btn-agregar-acceso text-success"></i></div>
         `,
       },
       {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-sucursal"></i>`,
+        defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>`,
       },
     ],
     language: {
@@ -380,10 +380,10 @@ function cargarContactos(ruc) {
       { data: "telefono" },
       { data: "correo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>`,
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto"></i>`,
       },
       {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-contacto"></i>`,
+        defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>`,
       },
     ],
     language: {
@@ -420,10 +420,10 @@ function cargarAccesos(id_sucursal) {
       { data: "idAcceso" },
       { data: "contrasena" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-acceso"></i>`,
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>`,
       },
       {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-acceso"></i>`,
+        defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-acceso"></i>`,
       },
     ],
     language: {
