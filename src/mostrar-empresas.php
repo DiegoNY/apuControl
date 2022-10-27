@@ -33,6 +33,7 @@ while($row = mysqli_fetch_array($resultado)){
         'logo'=>$row['logo'],
     );
 }
+
 $jsonString = json_encode($json);
 
 echo $jsonString;

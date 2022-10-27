@@ -634,7 +634,7 @@ function cargaGrupoEnFrm() {
 }
 
 /**
- * Metodo Editar Empresa : 
+ *  
  * @param id = el parametreo que se recibe por GET 
  * 
  * *una vez recibido el paramertro valida si no es null para 

@@ -46,6 +46,8 @@
 //     },
 //   });
 // }
+
+
 // eliminarEmpresa();
 // function eliminarEmpresa() {
 //   $(document).on("click", ".btn-delete-empresa", function () {
