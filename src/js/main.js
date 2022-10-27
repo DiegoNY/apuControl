@@ -465,7 +465,7 @@ function mensajes(response, mensaje, error) {
   }
 }
 
-function eliminar(mensaje, id, tabla, url) {
+export function eliminar(mensaje, id, tabla, url) {
   Swal.fire({
     title: 'Estas Seguro ?',
     text: mensaje,
