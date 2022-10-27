@@ -18,7 +18,7 @@ let edit = urlParams.get("edit");
 
 $(document).ready(function () {
 
-//  *Se carga el ruc a los formularios  
+  //  *Se carga el ruc a los formularios  
 
   $("#txtRuc").keyup(function () {
     var ruc = $(this).val();
@@ -27,7 +27,7 @@ $(document).ready(function () {
     $("#txtRucEmpresa").val(ruc);
   });
 
-// * Se inicializan las tablas para evitar errores al momento de ingresar nuevos datos 
+  // * Se inicializan las tablas para evitar errores al momento de ingresar nuevos datos 
 
   tablaGrupos = $("#tabla-grupos").DataTable({
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
   });
 
   tableSucursal = $("#tabla_sucursals").DataTable({
-    destroy:true,
+    destroy: true,
     ajax: "mostrar-sucursal.php?id=1",
     columns: [
       { data: "id" },
@@ -100,8 +100,9 @@ $(document).ready(function () {
       { data: "direccion" },
       { data: "ubigeo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-sucursal"></i>
-                      <i class="bi bi-person-plus btn-agregar-acceso"></i>
+        defaultContent: `
+        <i class="bi bi-pencil-square btn-edit-sucursal"></i>
+        <i class="bi bi-person-plus btn-agregar-acceso"></i>
         `,
       },
       {
@@ -170,7 +171,7 @@ $(document).ready(function () {
   //CRUD contactos
 
   tablaContactos = $("#tabla_contactoss").DataTable({
-    destroy:true,
+    destroy: true,
     ajax: "mostrar-contactos.php?id=1",
     columns: [
       { data: "id" },
@@ -235,8 +236,11 @@ $(document).ready(function () {
   //ACCESOS CRUD
 
   tablaAccesos = $("#tabla_accesos").DataTable({
-    destroy:true,
-    ajax: "mostrar-accesos.php?id=1",
+    destroy: true,
+    ajax: {
+      url: "mostrar-accesos.php?id=1",
+      dataSrc: ""
+    },
     columns: [
       { data: "id" },
       { data: "id_sucursal" },
@@ -330,8 +334,8 @@ function cargarSucursal(ruc) {
       { data: "direccion" },
       { data: "ubigeo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-sucursal"></i>
-                      <i class="bi bi-person-plus btn-agregar-acceso"></i>
+        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square btn-edit-sucursal"></i>
+                          <i class="bi bi-person-plus btn-agregar-acceso"></i></div>
         `,
       },
       {
@@ -364,7 +368,10 @@ function cargarSucursal(ruc) {
 function cargarContactos(ruc) {
   tablaContactos.destroy();
   tablaContactos = $("#tabla_contactoss").DataTable({
-    ajax: "mostrar-contactos.php?id=" + ruc,
+    ajax: {
+      url: "mostrar-contactos.php?id=" + ruc,
+      dataSrc: "data"
+    },
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -626,6 +633,7 @@ function RegistrarGrupo() {
 }
 
 cargaGrupoEnFrm();
+
 function cargaGrupoEnFrm() {
   $.ajax({
     url: "mostrar-grupo-formulario.php",
@@ -645,13 +653,15 @@ function cargaGrupoEnFrm() {
   });
 }
 
-
 editarEmpresas(id, edit);
 
-
 function editarEmpresas(id, edit) {
+
+  if (id == null)
+    return;
+
   $.post("escuchar-empresa.php", { id }, function (response) {
-    console.log(response);
+
     let empresa = JSON.parse(response);
     let ruc_em = empresa.ruc;
 
@@ -689,10 +699,15 @@ function RegistrarEmpresa() {
         let mensaje = data.mensaje;
         let ruc = data.ruc;
 
+        if(!ruc){
+          console.log("sin data")
+        }else{
         cargarSucursal(ruc);
         cargarContactos(ruc);
         mostrarLogoss(ruc);
         mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
+        }
+
       })
     },
   });

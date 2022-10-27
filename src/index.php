@@ -40,7 +40,7 @@ $fecha = date('y/m/d');
 
 </head>
 
-<body>
+<body id="body">
     <!-- Prueba index -->
     <header>
         <div class="container-fluid ">
@@ -441,7 +441,7 @@ $fecha = date('y/m/d');
 
                                 <div class="contenedor-banderas">
                                     <div class="contenedor-img-banderas" id="contenedor-img-banderas">
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -456,5 +456,6 @@ $fecha = date('y/m/d');
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="js/main.js"></script>
+</body>>
 
 </html>
