@@ -66,10 +66,11 @@ $(document).ready(function () {
     },
   });
 
-  $(document).on("click", ".btn-delet-grup", function () {
+  $(document).on("click", ".btn-delet-grup",async function () {
+    const alerta = await import('./alertas.js')
     let data = tablaGrupos.row($(this).parents()).data()
     let id = data.id;
-    eliminar("Asegurate de seleccionar el grupo correcto", id, tablaGrupos, "eliminarGrupo.php");
+    alerta.eliminar("Asegurate de seleccionar el grupo correcto", id, tablaGrupos, "eliminarGrupo.php");
   });
 
   $(document).on("click", ".btn-edit-grup", function () {
@@ -149,10 +150,11 @@ $(document).ready(function () {
     tableSucursal.ajax.reload();
   });
 
-  $(document).on("click", ".btn-delete-sucursal", function () {
+  $(document).on("click", ".btn-delete-sucursal",async function () {
+    const alerta = await import('./alertas.js')
     let data = tableSucursal.row($(this).parents()).data();
     let id = $(data).attr("id");
-    eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "eliminar-sucursal.php");
+    alerta.eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "eliminar-sucursal.php");
   });
 
   // BTN PARA AGREGAR ACCESOS //
@@ -209,10 +211,12 @@ $(document).ready(function () {
     },
   });
 
-  $(document).on("click", ".btn-delete-contacto", function () {
+  $(document).on("click", ".btn-delete-contacto",async function () {
+    
+    const alerta = await import('./alertas.js')
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
-    eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "eliminar-contactos.php");
+    alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "eliminar-contactos.php");
   });
 
   $(document).on("click", ".btn-edit-contacto", function () {
@@ -276,10 +280,12 @@ $(document).ready(function () {
     },
   });
 
-  $(document).on("click", ".btn-delete-acceso", function () {
+  $(document).on("click", ".btn-delete-acceso",async function () {
+    const alerta = await import('./alertas.js')
+
     let data = tablaAccesos.row($(this).parents()).data();
     let id = data.id;
-    eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "eliminar-acceso.php");
+    alerta.eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "eliminar-acceso.php");
   });
 
   $(document).on("click", ".btn-edit-acceso", function () {
@@ -463,31 +469,6 @@ function mensajes(response, mensaje, error) {
       console.log("no hay datos");
     });
   }
-}
-
-export function eliminar(mensaje, id, tabla, url) {
-  Swal.fire({
-    title: 'Estas Seguro ?',
-    text: mensaje,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
-
-      $.post(url, { id }, function (response) {
-        console.log(response);
-        tabla.ajax.reload();
-      });
-    }
-  })
 }
 
 // CRUD DEL LOGO  //

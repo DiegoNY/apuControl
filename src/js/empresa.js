@@ -61,13 +61,13 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".btn-delet", async function () {
-    const module = await import('./main.js');
+    const module = await import('./alertas.js');
 
     let data = tablaEmpresa.row($(this).parents()).data();
     console.log(data);
     let id = data.id;
     module.eliminar("Se eliminara la empresa",id,tablaEmpresa,"eliminar-empresa.php");
-    
+
   });
 
   $(document).on("click", "#btn-editar-empresa", function () {
