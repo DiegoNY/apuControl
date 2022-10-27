@@ -17,7 +17,6 @@
 }
 
 header {
-    height: 10vh;
     width: auto;
     background-color: var(--hospital-green);
 }
