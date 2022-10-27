@@ -327,7 +327,6 @@ $(function () {
   $("#tabs").tabs();
 });
 
-
 function cargarSucursal(ruc) {
   tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
