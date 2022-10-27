@@ -226,14 +226,13 @@ $fecha = date('y/m/d');
                                         <table id="tabla-grupos" class="table table-borderless  table-hover" style="width:100%; ">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">id</th>
-                                                    <th scope="col">Nombre </th>
-                                                    <th scope="col">Descripcion </th>
-                                                    <th scope="col">Fecha Creacion </th>
-                                                    <th scope="col">Usuario Creacion</th>
-                                                    <th scope="col">Estatus</th>
-                                                    <th scope="col">Editar</th>
-                                                    <th scope="col">Eliminar</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">NOMBRE</th>
+                                                    <th scope="col">DESCRIPCION </th>
+                                                    <th scope="col">FECHA-CREACION </th>
+                                                    <th scope="col">USUARIO-CREACION</th>
+                                                    <th scope="col">EDITAR</th>
+                                                    <th scope="col">ELIMINAR</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="listado-grupos">

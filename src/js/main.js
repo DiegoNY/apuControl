@@ -7,14 +7,19 @@ var tablaContactos = "";
 var tablaAccesos = "";
 var tablaGrupos = '';
 
+
+// *SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
+
+const valores = window.location.search;
+const urlParams = new URLSearchParams(valores);
+let id = urlParams.get("id");
+let edit = urlParams.get("edit");
+
+
 $(document).ready(function () {
-  /*                                      *
-   * ==================================== *
-   * Se carga el ruc a los formularios    *
-   * ==================================== *
-   */
-    
-  
+
+//  *Se carga el ruc a los formularios  
+
   $("#txtRuc").keyup(function () {
     var ruc = $(this).val();
     $("#txtIdEmpresa").val(ruc);
@@ -22,9 +27,11 @@ $(document).ready(function () {
     $("#txtRucEmpresa").val(ruc);
   });
 
-  //CRUD para los grupos //
+// * Se inicializan las tablas para evitar errores al momento de ingresar nuevos datos 
+
   tablaGrupos = $("#tabla-grupos").DataTable({
 
+    destroy: true,
     ajax: "mostrarGrupos.php",
     columns: [
       { data: "id" },
@@ -32,7 +39,6 @@ $(document).ready(function () {
       { data: "descripcion" },
       { data: "fechaCreacion" },
       { data: "usuarioCreacion" },
-      { data: "estado" },
       {
         defaultContent: `<i class="bi bi-pencil-square btn-edit-grup"></i>`,
       },
@@ -83,8 +89,8 @@ $(document).ready(function () {
     });
   });
 
-  //CRUD SUCURSAL  //
   tableSucursal = $("#tabla_sucursals").DataTable({
+    destroy:true,
     ajax: "mostrar-sucursal.php?id=1",
     columns: [
       { data: "id" },
@@ -164,6 +170,7 @@ $(document).ready(function () {
   //CRUD contactos
 
   tablaContactos = $("#tabla_contactoss").DataTable({
+    destroy:true,
     ajax: "mostrar-contactos.php?id=1",
     columns: [
       { data: "id" },
@@ -228,6 +235,7 @@ $(document).ready(function () {
   //ACCESOS CRUD
 
   tablaAccesos = $("#tabla_accesos").DataTable({
+    destroy:true,
     ajax: "mostrar-accesos.php?id=1",
     columns: [
       { data: "id" },
@@ -285,7 +293,8 @@ $(document).ready(function () {
     });
   });
 
-  //ubigeo cargado al formulario
+  // Ubigeo cargado al formulario
+
   $.ajax({
     url: "mostrar-ubigeo.php",
     type: "GET",
@@ -545,7 +554,6 @@ function registrarAccesos() {
     data: $("#frm-accesos").serialize(),
     type: "GET",
     success: function (response) {
-      console.log(response);
       mensajes(
         response,
         "Bien Se ingresaron los accesos 😀",
@@ -568,7 +576,6 @@ function registrarSucursal() {
     data: $("#frm-sucursal").serialize(),
     type: "GET",
     success: function (response) {
-      console.log(response);
       mensajes(
         response,
         "Ok, se registro la sucursal",
@@ -637,14 +644,6 @@ function cargaGrupoEnFrm() {
     },
   });
 }
-
-//PARA LA EMPRESA
-
-//recibo valores por post
-const valores = window.location.search;
-const urlParams = new URLSearchParams(valores);
-let id = urlParams.get("id");
-let edit = urlParams.get("edit");
 
 
 editarEmpresas(id, edit);
