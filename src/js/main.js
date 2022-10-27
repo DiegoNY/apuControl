@@ -8,7 +8,7 @@ var tablaAccesos = "";
 var tablaGrupos = '';
 
 
-// *SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
+// SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
@@ -18,7 +18,7 @@ let edit = urlParams.get("edit");
 
 $(document).ready(function () {
 
-  //  *Se carga el ruc a los formularios  
+  // Se carga el ruc a los formularios  
 
   $("#txtRuc").keyup(function () {
     var ruc = $(this).val();
@@ -27,7 +27,7 @@ $(document).ready(function () {
     $("#txtRucEmpresa").val(ruc);
   });
   
-  // *Cargando El ubigeo a los Formularios 
+  // Cargando El ubigeo a los Formularios 
 
   $.ajax({
     url: "mostrar-ubigeo.php",
@@ -46,7 +46,8 @@ $(document).ready(function () {
       $("#cboIdub").html(template);
     },
   });
-  // * Se inicializan las tablas para evitar errores al momento de ingresar nuevos datos 
+
+  // Se inicializan las tablas para evitar errores al momento de ingresar nuevos datos 
 
   tablaGrupos = $("#tabla-grupos").DataTable({
 
@@ -207,6 +208,8 @@ $(document).ready(function () {
     },
   });
 
+  //BOTONES ಠ_ಠ
+
   $(document).on("click", ".btn-delet-grup", async function () {
     const alerta = await import('./alertas.js')
     let data = tablaGrupos.row($(this).parents()).data()
@@ -324,6 +327,7 @@ $(document).ready(function () {
 $(function () {
   $("#tabs").tabs();
 });
+
 
 function cargarSucursal(ruc) {
   tableSucursal.destroy();
@@ -531,25 +535,24 @@ document.getElementById("btn_registrar").addEventListener("click", (e) => {
 });
 
 //CRUD ACCESOS
-function registrarAccesos() {
-  let url =
-    editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
-  $.ajax({
-    url: url,
-    data: $("#frm-accesos").serialize(),
-    type: "GET",
-    success: function (response) {
-      mensajes(
-        response,
-        "Bien Se ingresaron los accesos 😀",
-        "Completa Todos los campos"
-      );
-      editarAcceso = false;
-      tablaAccesos.ajax.reload();
-    },
-  });
 
+function registrarAccesos() {
+    let url = editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
+    
+    $.ajax({
+        url: url,
+        data: $("#frm-accesos").serialize(),
+        type: "GET",
+        success: function (response) {
+        mensajes(response,"Bien Se ingresaron los accesos 😀","Completa Todos los campos");
+        editarAcceso = false;
+        tablaAccesos.ajax.reload();
+      },
+
+    });
+    
   $("#frm-accesos").trigger("reset");
+
 }
 
 //Para la sucursal
