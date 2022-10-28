@@ -184,7 +184,7 @@ $fecha = date('y/m/d');
                 <div id="tabs" class="tabs">
 
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
+                        <li class="nav-item inactive">
                             <a class="nav-link active" aria-current="page" href="#tabs-1">Grupos</a>
                         </li>
                         <li class="nav-item">
@@ -196,12 +196,12 @@ $fecha = date('y/m/d');
                         <li class="nav-item">
                             <a class="nav-link active" href="#tabs-4">Accesos</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item inactive">
                             <a class="nav-link active" href="#tabs-5">Bandera</a>
                         </li>
                     </ul>
 
-                    <div id="tabs-1">
+                    <div id="tabs-1" class="inactive">
 
                         <div class="contenedor">
 
