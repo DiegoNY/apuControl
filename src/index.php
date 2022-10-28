@@ -205,8 +205,8 @@ $fecha = date('y/m/d');
                         <li class="nav-item">
                             <a class="nav-link active" href="#tabs-4">Accesos</a>
                         </li>
-                        <li class="nav-item inactive">
-                            <a class="nav-link active" href="#tabs-5">Bandera</a>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#tabs-5">Logo</a>
                         </li>
                     </ul>
 
