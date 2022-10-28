@@ -81,6 +81,14 @@ $(document).ready(function () {
     let data = tablaEmpresa.row($(this).parents()).data();
     let ruc = data.ruc;
     let nombre = data.nom_comercial;
+    
     window.location.replace(`sucursales.html?ruc=${ruc}&nombre=${nombre}`);
+  })
+
+  $(document).on("click","#btn-contactos",function(){
+    let data = tablaEmpresa.row($(this).parents()).data();
+    let ruc = data.ruc;
+    let nombre = data.nom_comercial;
+    window.location.replace(`contactos.html?ruc=${ruc}&nombre=${nombre}`);
   })
 });

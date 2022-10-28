@@ -1,17 +1,14 @@
 
 const valores = window.location.search;
 const urlParams =  new URLSearchParams(valores);
-
-let ruc = urlParams.get("ruc");
-let nombre = urlParams.get("nombre");
-let text = document.getElementById("texto-cambiante").innerText = `Sucursales de la Empresa ${nombre}`;
-
-
+const ruc = urlParams.get("ruc");
+const nombres = urlParams.get("nombre");
+const text = document.getElementById("texto-cambiante").innerText = `Sucursales de la Empresa ${nombres}`;
 
 
 cargarSucursal(ruc);
-
 function cargarSucursal(ruc) {
+  
     tableSucursal = $("#tabla_sucursals").DataTable({
       ajax: "mostrar-sucursal.php?id=" + ruc,
       columns: [
@@ -23,7 +20,7 @@ function cargarSucursal(ruc) {
         { data: "ubigeo" },
         {
           defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
-                            <i class="bi bi-shield-check btn-agregar-acceso text-success"></i></div>
+                            <i class="bi bi-shield-check btn-ver-acceso text-success"></i></div>
           `,
         },
         {
@@ -53,3 +50,10 @@ function cargarSucursal(ruc) {
     });
 
 }
+
+$(document).on("click",".btn-ver-acceso",function(){
+  let data = tableSucursal.row($(this).parents()).data();
+  let id = data.id;
+  let nombre = data.nombre;
+  window.location.replace(`accesos.html?id=${id}&nombre=${nombre}&ruc=${ruc}&empresa=${nombres}`);
+})

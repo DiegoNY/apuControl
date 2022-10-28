@@ -59,8 +59,8 @@ main nav .enlaces {
     gap: 17px;
 }
 
-main .cuadro {
-    height: 415px;
+main .tabla{
+    padding: 15px;
 }
 
 .contenedor-empresa{
@@ -69,33 +69,29 @@ main .cuadro {
     overflow-y: scroll;
 }
 
-main .tabla{
-    padding: 15px;
-}
-
-#tabla_sucursals thead{
+#tabla_contactoss thead{
     color: var(--white);
     background-color: #3E48AD;
     
 }
 
-.tablas-sucursales #tabla_sucursals_wrapper .dataTables_length{
+.tablas-contactos #tabla_contactoss_wrapper .dataTables_length{
     display: none;
 }
 
-.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_filter {
+.tablas-contactos #tabla_contactoss_wrapper  #tabla_contactoss_filter {
     color: #333;
     width: 100%;
   
     padding: 17px;
 }
 
-.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_filter label{
+.tablas-contactos #tabla_contactoss_wrapper  #tabla_contactoss_filter label{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
-.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_paginate{
+.tablas-contactos #tabla_contactoss_wrapper  #tabla_contactoss_paginate{
     color: #e0a7a7;
     width: 100%;
     display: flex;
@@ -104,26 +100,9 @@ main .tabla{
 }
 
 
-.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_paginate span a{
+.tablas-contactos #tabla_contactoss_wrapper  #tablacontactos_paginate span a{
 
     background: #3E48AD;
     color:  white;
-
-}
-
-
-
-.contenedor-iconos {
-
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-content: space-between;
-    gap: 30px;
-
-}
-.contenedor-iconos i{
-
-    cursor: pointer;
 
 }
