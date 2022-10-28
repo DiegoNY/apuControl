@@ -177,8 +177,8 @@ $fecha = date('y/m/d');
                         <div class="cont-form">
                             <label for="">Banderas</label>
                             <select name="" id="">
-                            <option value="">LOGO EMPRESA 1</option>
-                            <option value="">LOGO EMPRESA 2</option>
+                            <option value=""></option>
+                            <option value=""></option>
                             </select>
                         </div>
 

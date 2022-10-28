@@ -669,7 +669,8 @@ function editarEmpresas(id, edit) {
     $("#cboEstado").val(empresa.estado);
     
     editar = edit;
-    
+    tableSucursal.destroy;
+    tablaContactos.destroy;
     cargarSucursal(ruc_em);
     cargarContactos(ruc_em);
     mostrarLogoss(ruc_em);
@@ -690,14 +691,22 @@ function RegistrarEmpresa() {
         let mensaje = data.mensaje;
         let ruc = data.ruc;
 
-        if (!ruc) {
-          console.log("sin data")
-        } else {
-          cargarSucursal(ruc);
-          cargarContactos(ruc);
-          mostrarLogoss(ruc);
-          mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
+        switch (true) {
+          case !ruc:
+            mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
+              
+            break;
+          case  ruc  && mensaje == "ingresado":
+            cargarSucursal(ruc);
+            cargarContactos(ruc);
+            mostrarLogoss(ruc);
+            mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
+            break;
+
+          default:
+            break;
         }
+
       })
     },
   });

@@ -14,7 +14,7 @@ if (!isset($id)) {
         die("Consulta fallida llama al admin 😢");
     }
 
-    $json[] = array('mensaje' => "ingresado", 'ruc' => $txtRuc);
+    $json[] = array('mensaje' => "editado", 'ruc' => $txtRuc ) ;
     $jsonString = json_encode($json);
     echo $jsonString;
 }
