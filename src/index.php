@@ -395,6 +395,7 @@ $fecha = date('y/m/d');
                                     <input type="button" value="Registrar" onclick="registrarAccesos()" class="btn-registrar-accesos">
                                 </form>
                             </div>
+
                             <div class="tabla-accesos">
                                 <div class="tablas-accesos table-responsive" id="tabla">
                                     <table id="tabla_accesos" class="table table-hover" style="width:100%">
@@ -423,6 +424,7 @@ $fecha = date('y/m/d');
                                     </table>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
 
