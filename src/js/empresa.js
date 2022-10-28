@@ -12,10 +12,10 @@ $(document).ready(function () {
         }
       },
       { data: "nom_comercial" },
+      { data: "id_grupo" },
       { data: "ruc" },
       { data: "razon_social" },
       { data: "id_ubigeo" },
-      { data: "id_grupo" },
       { data: "id_rubro" },
       { data: "tipo_envio" },
       { data: "id_tipo_integracion" },
@@ -30,8 +30,8 @@ $(document).ready(function () {
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li id="btn-editar-empresa"><a class="dropdown-item">Editar</a></li>
-        <li id="btn-nose"><a class="dropdown-item" >Another action</a></li>
-        <li id="btn-nose"><a class="dropdown-item" >Another action</a></li>
+        <li id="btn-sucursales"><a class="dropdown-item" >Sucursales</a></li>
+        <li id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
       </ul>
     </div>`,
       },
@@ -76,4 +76,11 @@ $(document).ready(function () {
     let id = data.id;
     window.location.replace(`index.php?id=${id}&edit=2`);
   });
+
+  $(document).on("click","#btn-sucursales", function(){
+    let data = tablaEmpresa.row($(this).parents()).data();
+    let ruc = data.ruc;
+    let nombre = data.nom_comercial;
+    window.location.replace(`sucursales.html?ruc=${ruc}&nombre=${nombre}`);
+  })
 });

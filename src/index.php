@@ -83,18 +83,30 @@ $fecha = date('y/m/d');
                             <label for="txtNombreCo"> Nombre</label>
                             <input type="text" value="" name="txtNombreCo" id="txtNombreCo">
                         </div>
+                        
+                        
+                        <div class="cbo-id cont-form">
+                            <label for="cboIdGrupo">Grupo</label>
+                            <select id="cbogrupo" name="txtIdGrupo">
+                                <option value="value">value</option>
+                            </select>
+                        </div>
+
                         <div class="ruc cont-form">
                             <label for="txtRuc"> Ruc</label>
                             <input type="text" value="" name="txtRuc" id="txtRuc">
                         </div>
+
                         <div class="razon-social cont-form">
                             <label for="txtRazonSocial">Razon social</label>
                             <input type="text" value="" name="txtRazonSocial" id="txtRazonSocial">
                         </div>
+
                         <div class="direccion cont-form">
                             <label for="txtDireccion">Direccion</label>
                             <input type="text" value="" name="txtDireccion" id="txtDireccion">
                         </div>
+
                         <div class="tipo-sis cont-form">
 
                             <label for="cboTipoSistema">Tipo de sistema</label>
@@ -103,12 +115,7 @@ $fecha = date('y/m/d');
                                 <option value="APUGESCOM">APUGESCOM</option>
                             </select>
                         </div>
-                        <div class="cbo-id cont-form">
-                            <label for="cboIdGrupo">Grupo</label>
-                            <select id="cbogrupo" name="txtIdGrupo">
-                                <option value="value">value</option>
-                            </select>
-                        </div>
+
                         <div class="bdo-id cont-form">
                             <label for="cboIdRubro">Rubro</label>
                             <select name="cboIdRubro" id="cboIdRubro">
@@ -117,6 +124,7 @@ $fecha = date('y/m/d');
                                 <option value="MARKETS">MARKETS</option>
                             </select>
                         </div>
+
                         <div class="cbo-ti cont-form">
                             <label for="cboTipoEnvio">Tipo de envio</label>
                             <select name="cboTipoEnvio" id="cboTipoEnvio">
@@ -138,7 +146,11 @@ $fecha = date('y/m/d');
                         </div>
                         <div class="cont-form">
                             <label for="txtEstadoComercial">Estado comercial</label>
-                            <input type="text" name="txtEstadoComercial" id="txtEstadoComercial">
+                            <select name="txtEstadoComercial" id="txtEstadoComercial">
+                                <option value="INGRESADO">INGRESADO</option>
+                                <option value="POR_INSTALAR">POR INSTALAR</option>
+                                <option value="PRODUCCION">PRODUCCION</option>
+                            </select>
                         </div>
                         <div class="cont-form">
                             <label for="cboTipoPersona">Tipo de persona</label>
@@ -299,6 +311,7 @@ $fecha = date('y/m/d');
                                     </table>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
 

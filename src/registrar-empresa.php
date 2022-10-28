@@ -16,15 +16,15 @@ if (isset($txtRuc) and !empty($txtRuc)) {
     $cboTipoSistema = $empresas->sanitizar($cboTipoSistema);
     $cboIdTipoIntegracion = $empresas->sanitizar($cboIdTipoIntegracion);
     $cboTipoEnvio = $empresas->sanitizar( $cboTipoEnvio);
-    $txtEstado = $empresas->sanitizar($txtEstado);
     $txtFechaRegistro = $empresas->sanitizar($txtFechaRegistro);
     $txtEliminada = $empresas->sanitizar( $txtEliminada);
     $cboEstado = $empresas->sanitizar($cboEstado);
+    $txtEstadoComercial= $empresas->sanitizar($txtEstadoComercial);
 
 
-    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $txtEstado, $txtFechaRegistro, $txtEliminada, $cboEstado);
+    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial);
     //se registra una sucursal
-    $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"----",$cboIdu,$txtEstado,$txtRuc);
+    $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"----",$cboIdu,$txtEliminada,$txtRuc);
     
     $json = array();
     if ($response == TRUE) {

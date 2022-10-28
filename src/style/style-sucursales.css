@@ -1,0 +1,112 @@
+.inactive{
+    display: none;
+}
+
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --very-light-pink: #C7C7C7;
+    --text-input-field: #F7F7F7;
+    --hospital-green: #1b285b;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+}
+
+body{
+    font-family: 'Quicksand', sans-serif;
+    background-color : var(--white);
+    width: auto ;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+main nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 30px;
+    background-color: var(--hospital-green);
+}
+
+main nav h1{
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--white);
+}
+
+main nav .icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+    display: flex;
+}
+main nav .icon img {
+    height: 100%;
+    width: 100%;
+    border-radius: 25px;
+    border: white 1px solid;
+}
+
+main nav .enlaces {
+    display: flex;
+    gap: 17px;
+}
+
+main .cuadro {
+    height: 415px;
+}
+
+.contenedor-empresa{
+    height: 350px;
+    background-color: var(--white);
+    overflow-y: scroll;
+}
+
+main .tabla{
+    padding: 15px;
+}
+
+#tabla_sucursals thead{
+    color: var(--white);
+    background-color: #3E48AD;
+    
+}
+
+.tablas-sucursales #tabla_sucursals_wrapper .dataTables_length{
+    display: none;
+}
+
+.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_filter {
+    color: #333;
+    width: 100%;
+  
+    padding: 17px;
+}
+
+.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_filter label{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_paginate{
+    color: #e0a7a7;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 17px;
+}
+
+
+.tablas-sucursales #tabla_sucursals_wrapper  #tabla_sucursals_paginate span a{
+
+    background: #3E48AD;
+    color:  white;
+
+}

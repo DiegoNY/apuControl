@@ -685,6 +685,7 @@ function RegistrarEmpresa() {
     type: "GET",
     data: $("#frm_empresa").serialize(),
     success: function (response) {
+      console.log(response);
       let data = JSON.parse(response);
       data.forEach((data) => {
         let mensaje = data.mensaje;
@@ -698,10 +699,8 @@ function RegistrarEmpresa() {
           mostrarLogoss(ruc);
           mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
         }
-
       })
     },
   });
-
   $("#frm_empresa").trigger("reset");
 }
