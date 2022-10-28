@@ -173,6 +173,15 @@ $fecha = date('y/m/d');
                                 <option value="1" selected>Cliente</option>
                             </select>
                         </div>
+
+                        <div class="cont-form">
+                            <label for="">Banderas</label>
+                            <select name="" id="">
+                            <option value="">LOGO EMPRESA 1</option>
+                            <option value="">LOGO EMPRESA 2</option>
+                            </select>
+                        </div>
+
                         <div>
                             <input type="hidden" value="1" name="txtEstado">
                             <input type="hidden" value="1" name="txtEliminada">
@@ -228,6 +237,7 @@ $fecha = date('y/m/d');
                                         <div class="inactive">
                                             <input type="hidden" name="txtFechCre" id="txtFechCre" value="<?php echo $fecha; ?>">
                                         </div>
+                                        
                                         <input type="button" onclick="RegistrarGrupo()" value="Ingresar Grupo" class="btn-ingresar-grupo">
                                     </form>
                                 </div>
