@@ -19,8 +19,8 @@ function cargarSucursal(ruc) {
         { data: "direccion" },
         { data: "ubigeo" },
         {
-          defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
-                            <i class="bi bi-shield-check btn-ver-acceso text-success"></i></div>
+          defaultContent: `
+                            <i class="bi bi-shield-check btn-ver-acceso  text-center text-success"></i>
           `,
         },
         {

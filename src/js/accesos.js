@@ -20,9 +20,6 @@ function cargarAccesos(id_sucursal) {
         { data: "idAcceso" },
         { data: "contrasena" },
         {
-          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>`,
-        },
-        {
           defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-acceso"></i>`,
         },
       ],
