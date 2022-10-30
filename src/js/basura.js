@@ -113,5 +113,122 @@
 //   });
 // }
 
+ // Se inicializan las tablas para evitar errores al momento de ingresar nuevos datos 
 
+  // tablaGrupos = $("#tabla-grupos").DataTable({
 
+  //   destroy: true,
+  //   ajax: "mostrarGrupos.php",
+  //   columns: [
+  //     { data: "id" },
+  //     { data: "nombre" },
+  //     { data: "descripcion" },
+  //     { data: "fechaCreacion" },
+  //     { data: "usuarioCreacion" },
+  //     {
+  //       defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-grup"></i>`,
+  //     },
+  //     { defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delet-grup"></i>` },
+  //   ],
+  //   language: {
+  //     decimal: "",
+  //     emptyTable: "No hay información",
+  //     info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+  //     infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+  //     infoFiltered: "(Filtrado de _MAX_ total entradas)",
+  //     infoPostFix: "",
+  //     thousands: ",",
+  //     lengthMenu: "Mostrar _MENU_ Entradas",
+  //     loadingRecords: "Cargando...",
+  //     processing: "Procesando...",
+  //     search: "Grupos :",
+  //     zeroRecords: "Sin resultados encontrados",
+  //     paginate: {
+  //       first: "Primero",
+  //       last: "Ultimo",
+  //       next: "Siguiente",
+  //       previous: "Anterior",
+  //     },
+  //   },
+  // });
+
+  // tableSucursal = $("#tabla_sucursals").DataTable({
+  //   destroy: true,
+  //   ajax: "mostrar-sucursal.php?id=1",
+  //   columns: [
+  //     { data: "id" },
+  //     { data: "id_empresa" },
+  //     { data: "nombre" },
+  //     { data: "codigo_cofide" },
+  //     { data: "direccion" },
+  //     { data: "ubigeo" },
+  //     {
+  //       defaultContent: `
+  //       <i class="bi bi-pencil-square btn-edit-sucursal"></i>
+  //       <i class="bi bi-person-plus btn-agregar-acceso"></i>
+  //       `,
+  //     },
+  //     {
+  //       defaultContent: `<i class="bi bi-x-circle-fill btn-delete-sucursal"></i>`,
+  //     },
+  //   ],
+  //   language: {
+  //     decimal: "",
+  //     emptyTable: "No hay información",
+  //     info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+  //     infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+  //     infoFiltered: "(Filtrado de _MAX_ total entradas)",
+  //     infoPostFix: "",
+  //     thousands: ",",
+  //     lengthMenu: "Mostrar _MENU_ Entradas",
+  //     loadingRecords: "Cargando...",
+  //     processing: "Procesando...",
+  //     search: "Sucursal",
+  //     zeroRecords: "Sin resultados encontrados",
+  //     paginate: {
+  //       first: "Primero",
+  //       last: "Ultimo",
+  //       next: "Siguiente",
+  //       previous: "Anterior",
+  //     },
+  //   },
+  // });
+
+  // tablaContactos = $("#tabla_contactoss").DataTable({
+  //   destroy: true,
+  //   ajax: "mostrar-contactos.php?id=1",
+  //   columns: [
+  //     { data: "id" },
+  //     { data: "id_empresa" },
+  //     { data: "nombre" },
+  //     { data: "cargo" },
+  //     { data: "telefono" },
+  //     { data: "correo" },
+  //     {
+  //       defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>`,
+  //     },
+  //     {
+  //       defaultContent: `<i class="bi bi-x-circle-fill btn-delete-contacto"></i>`,
+  //     },
+  //   ],
+  //   language: {
+  //     decimal: "",
+  //     emptyTable: "No hay información",
+  //     info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+  //     infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+  //     infoFiltered: "(Filtrado de _MAX_ total entradas)",
+  //     infoPostFix: "",
+  //     thousands: ",",
+  //     lengthMenu: "Mostrar _MENU_ Entradas",
+  //     loadingRecords: "Cargando...",
+  //     processing: "Procesando...",
+  //     search: "Contactos ",
+  //     zeroRecords: "Sin resultados encontrados",
+  //     paginate: {
+  //       first: "Primero",
+  //       last: "Ultimo",
+  //       next: "Siguiente",
+  //       previous: "Anterior",
+  //     },
+  //   },
+  // });

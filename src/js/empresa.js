@@ -3,12 +3,12 @@ $(document).ready(function () {
   //empresa cargando data
   let tablaEmpresa = $("#tabla_empresasas").DataTable({
     destroy: true,
-    ajax: "mostrar-empresas.php",
+    ajax: "../processes/mostrar-empresas.php",
     columns: [
       { data: "id" },
       {
         data: 'logo', "render": function (data, type, row) {
-          return `<center><img src="${data}" style="width:50px; height:50px;"></center>`
+          return `<center><img src="../${data}" style="width:50px; height:50px;"></center>`
         }
       },
       { data: "nom_comercial" },

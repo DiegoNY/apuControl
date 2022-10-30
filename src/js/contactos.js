@@ -10,7 +10,7 @@ cargarContactos(ruc);
 function cargarContactos(ruc) {
     tablaContactos = $("#tabla_contactoss").DataTable({
       ajax: {
-        url: "mostrar-contactos.php?id=" + ruc,
+        url: "../processes/mostrar-contactos.php?id=" + ruc,
         dataSrc: "data"
       },
       columns: [

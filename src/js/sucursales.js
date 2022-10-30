@@ -10,7 +10,7 @@ cargarSucursal(ruc);
 function cargarSucursal(ruc) {
   
     tableSucursal = $("#tabla_sucursals").DataTable({
-      ajax: "mostrar-sucursal.php?id=" + ruc,
+      ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
       columns: [
         { data: "id" },
         { data: "id_empresa" },
