@@ -1,7 +1,7 @@
 <?php
 
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 
 $data = extract($_GET);
 

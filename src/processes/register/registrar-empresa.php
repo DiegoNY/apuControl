@@ -1,7 +1,7 @@
 <?php
 $resulta = extract($_GET);
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 $empresas = new BaseDatos();
 
 if (isset($txtRuc) and !empty($txtRuc)) {

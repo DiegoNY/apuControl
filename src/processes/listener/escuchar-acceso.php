@@ -1,6 +1,6 @@
 <?php 
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 
 $accesos = new BaseDatos();
 

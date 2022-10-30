@@ -1,5 +1,5 @@
 <?php
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 extract($_GET);
 
 $acceso = new BaseDatos();
@@ -10,5 +10,5 @@ if(!$res){
     die("Consulta fallida llama al admin 😢");
 }
 
-echo "Editado con exito ñaaaa :#";
+echo "ingresado";
 

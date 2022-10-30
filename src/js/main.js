@@ -93,14 +93,14 @@ $(document).ready(function () {
     const alerta = await import('./alertas.js')
     let data = tablaGrupos.row($(this).parents()).data()
     let id = data.id;
-    alerta.eliminar("Asegurate de seleccionar el grupo correcto", id, tablaGrupos, "eliminarGrupo.php");
+    alerta.eliminar("Asegurate de seleccionar el grupo correcto", id, tablaGrupos, "../processes/delete/eliminarGrupo.php");
   });
 
   $(document).on("click", ".btn-edit-grup", function () {
     let data = tablaGrupos.row($(this).parents()).data();
     console.log(data);
     let id = data.id;
-    $.post("escuchar-grupo.php", { id }, function (response) {
+    $.post("../processes/listener/escuchar-grupo.php", { id }, function (response) {
       let grupo = JSON.parse(response);
       $("#id_grupo").val(grupo.id);
       $("#txtNombre").val(grupo.nombre);
@@ -116,7 +116,7 @@ $(document).ready(function () {
   $(document).on("click", ".btn-edit-sucursal", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
-    $.post("escuchar-sucursal.php", { id }, function (response) {
+    $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
       let sucursal = JSON.parse(response);
       console.log(sucursal);
       $("#id-sucursal").val(sucursal.id);
@@ -135,13 +135,13 @@ $(document).ready(function () {
     const alerta = await import('./alertas.js')
     let data = tableSucursal.row($(this).parents()).data();
     let id = $(data).attr("id");
-    alerta.eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "eliminar-sucursal.php");
+    alerta.eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "../processes/delete/eliminar-sucursal.php");
   });
 
   $(document).on("click", ".btn-agregar-acceso", function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
-    $.post("escuchar-sucursal.php", { id }, function (response) {
+    $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
       let sucursal = JSON.parse(response);
       ideSuc = sucursal.id;
       //cargando los datos al frm de acceso se hara con un btn
@@ -156,14 +156,14 @@ $(document).ready(function () {
     const alerta = await import('./alertas.js')
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
-    alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "eliminar-contactos.php");
+    alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "../processes/delete/eliminar-contactos.php");
   });
 
   $(document).on("click", ".btn-edit-contacto", function () {
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
 
-    $.post("escuchar-contacto.php", { id }, function (response) {
+    $.post("../processes/listener/escuchar-contacto.php", { id }, function (response) {
       let contacto = JSON.parse(response);
       console.log(contacto);
       $("#id-contacto").val(contacto.id);
@@ -182,14 +182,14 @@ $(document).ready(function () {
 
     let data = tablaAccesos.row($(this).parents()).data();
     let id = data.id;
-    alerta.eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "eliminar-acceso.php");
+    alerta.eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "../processes/delete/eliminar-acceso.php");
   });
 
   $(document).on("click", ".btn-edit-acceso", function () {
     let data = tablaAccesos.row($(this).parents()).data();
     let id = data.id;
 
-    $.post("escuchar-acceso.php", { id }, function (response) {
+    $.post("../processes/listener/escuchar-acceso.php", { id }, function (response) {
       let accesos = JSON.parse(response);
       $("#id-acceso").val(accesos.id);
       $("#txtIdSucursal").val(accesos.id_sucursal);
@@ -377,7 +377,7 @@ $(document).on("click", ".btn-delete-logo", function () {
   let element = $(this)[0].parentElement;
   let id = $(element).attr("id-logo");
   console.log(id);
-  $.post("eliminar-logo.php", { id }, function (response) {
+  $.post("../processes/delete/eliminar-logo.php", { id }, function (response) {
     console.log(response);
     mostrarLogoss();
   });
@@ -391,7 +391,7 @@ document.getElementById("btn_registrar").addEventListener("click", (e) => {
 
   $.ajax({
     method: "post",
-    url: "registrar-logo.php",
+    url: "../processes/register/registrar-logo.php",
     data: frmdata,
     cache: false,
     processData: false,
@@ -414,7 +414,7 @@ document.getElementById("btn_registrar").addEventListener("click", (e) => {
 //CRUD ACCESOS
 
 function registrarAccesos() {
-    let url = editarAcceso === false ? "registrar-accesos.php" : "editar-acceso.php";
+    let url = editarAcceso === false ? "../processes/register/registrar-accesos.php" : "../processes/edit/editar-acceso.php";
     
     $.ajax({
         url: url,
@@ -429,13 +429,12 @@ function registrarAccesos() {
     });
     
   $("#frm-accesos").trigger("reset");
-
 }
 
 //Para la sucursal
 
 function registrarSucursal() {
-  let url = editarSucursall === false ? "registrar-sucursal.php" : "editar-sucursal.php";
+  let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
   $.ajax({
     url: url,
     data: $("#frm-sucursal").serialize(),
@@ -458,8 +457,8 @@ function registrarSucursal() {
 function registrarContactos() {
   let url =
     editarContacto === false
-      ? "registrar-contactos.php"
-      : "editar-contacto.php";
+      ? "../processes/register/registrar-contactos.php"
+      : "../processes/edit/editar-contacto.php";
   $.ajax({
     url: url,
     data: $("#frm-contactos").serialize(),
@@ -477,7 +476,7 @@ function registrarContactos() {
 //para los grupos
 
 function RegistrarGrupo() {
-  let url = editar === false ? "procesarGrupo.php" : "editar-grupo.php";
+  let url = editar === false ? "../processes/register/procesarGrupo.php" : "../processes/edit/editar-grupo.php";
   $.ajax({
     type: "GET",
     data: $("#frm_grupo").serialize(),
@@ -527,7 +526,7 @@ function editarEmpresas(id, edit) {
   if (id == null)
   return;
 
-  $.post("escuchar-empresa.php", { id }, function (response) {
+  $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
 
     let empresa = JSON.parse(response);
     let ruc_em = empresa.ruc;
@@ -559,7 +558,7 @@ function editarEmpresas(id, edit) {
 }
 
 function RegistrarEmpresa() {
-  let url = editar === false ? "../registrar-empresa.php" : "../editar-empresa.php";
+  let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
   $.ajax({
     url: url,
     type: "GET",
@@ -574,7 +573,7 @@ function RegistrarEmpresa() {
         switch (true) {
           case !ruc:
             mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
-              
+            
             break;
           case  ruc  && mensaje == "ingresado":
             cargarSucursal(ruc);
@@ -582,7 +581,8 @@ function RegistrarEmpresa() {
             mostrarLogoss(ruc);
             mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
             break;
-
+          case ruc && mensaje == "editado":
+            mensajes("ingresado","Editaste una Empresa con exito :D","error");
           default:
             break;
         }

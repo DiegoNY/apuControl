@@ -1,5 +1,5 @@
 <?php
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 
 $id = $_POST['id'];
 

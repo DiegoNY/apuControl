@@ -1,5 +1,5 @@
 <?php
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 
 $ruc = $_POST['txtRucEmpresa'];
 $nombre = $_POST['nombre'] ;
@@ -10,7 +10,7 @@ if (isset($nombre) && !empty($nombre)){
     $carpeta = './img';
     $ruta = $carpeta . '/' . $logo;
 
-    move_uploaded_file($temporal, $carpeta . '/' . $logo);
+    move_uploaded_file($temporal, "../.$carpeta". '/' . $logo);
 
     $bandera = new BaseDatos();
     $res =  $bandera->ingresarBandera($ruta, $nombre,$ruc);

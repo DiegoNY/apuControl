@@ -1,6 +1,6 @@
 <?php
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 extract($_GET);
 
 $empresa = new BaseDatos();

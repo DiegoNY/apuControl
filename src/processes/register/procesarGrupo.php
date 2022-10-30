@@ -3,7 +3,7 @@
 //con ajax se mandan los datos pro get los extraemos y capturamos las variables quew son los nombres de los formularios
 extract($_GET);
 
-include("connection/basedatos.php");
+include("../../connection/basedatos.php");
 $grupo = new BaseDatos();
 
 /**

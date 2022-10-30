@@ -1,6 +1,6 @@
 <?php
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 
 $resulrado = extract($_GET);
 

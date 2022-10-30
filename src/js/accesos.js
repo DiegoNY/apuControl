@@ -12,7 +12,7 @@ cargarAccesos(id);
 
 function cargarAccesos(id_sucursal) {
     tablaAccesos = $("#tabla_accesos").DataTable({
-      ajax: "mostrar-accesos.php?id=" + id_sucursal,
+      ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
       columns: [
         { data: "id" },
         { data: "id_sucursal" },

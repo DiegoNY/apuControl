@@ -1,14 +1,14 @@
-<?php 
+<?php
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 //data
 $id = $_POST['id'];
 //validacion
 if(isset($id)){
-    $acceso = new BaseDatos();
-    $id = $acceso->sanitizar($id);
+    $sucursal = new BaseDatos();
+    $id = $sucursal->sanitizar($id);
 
-    $res = $acceso->eliminarAcceso($id);
+    $res = $sucursal->eliminarSucursal($id);
     if(!isset($res)){
         die('Fallo ... ');
     }else{
@@ -17,3 +17,5 @@ if(isset($id)){
 }else{
     echo "alert-danger";
 }
+
+

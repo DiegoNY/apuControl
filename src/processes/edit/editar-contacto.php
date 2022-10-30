@@ -1,7 +1,7 @@
 <?php 
 echo "editando ... ";
 
-include 'connection/basedatos.php';
+include '../../connection/basedatos.php';
 
 extract($_GET);
 
@@ -15,4 +15,4 @@ if(!$resultado){
     die("Consulta Fallida");
 }
 
-echo "Editado con exito uwu ";
+echo "ingresado";

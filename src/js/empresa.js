@@ -66,7 +66,7 @@ $(document).ready(function () {
     let data = tablaEmpresa.row($(this).parents()).data();
     console.log(data);
     let id = data.id;
-    module.eliminar("Se eliminara la empresa",id,tablaEmpresa,"eliminar-empresa.php");
+    module.eliminar("Se eliminara la empresa",id,tablaEmpresa,"../processes/delete/eliminar-empresa.php");
 
   });
 
