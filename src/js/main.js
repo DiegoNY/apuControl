@@ -333,6 +333,7 @@ function cargarSucursal(ruc) {
 }
 
 function cargarContactos(ruc) {
+  tablaContactos.destroy();
   tablaContactos = $("#tabla_contactoss").DataTable({
     ajax: {
       url: "../processes/mostrar-contactos.php?id=" + ruc,
