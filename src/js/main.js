@@ -49,7 +49,7 @@ $(document).ready(function () {
   
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
-    ajax: "mostrar-sucursal.php",
+    ajax: "../processes/mostrar-sucursal.php",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -91,7 +91,7 @@ $(document).ready(function () {
 
   tablaContactos = $("#tabla_contactoss").DataTable({
     destroy: true,
-    ajax: "mostrar-contactos.php?id=1",
+    ajax: "../processes/mostrar-contactos.php?id=1",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
