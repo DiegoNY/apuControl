@@ -273,7 +273,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-delete-contacto", async function () {
 
-    const alerta = await import('./alertas.js')
+    const alerta = await import('./alertas.js') 
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
     alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "eliminar-contactos.php");
