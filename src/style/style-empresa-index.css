@@ -1,5 +1,11 @@
-.frm-empresa{
+/* .frm-empresa{
     display: flex;
-    flex-direction: column;
-    align-content: space-between;
-}
+    flex-wrap: wrap;
+    gap: 5px;
+} */
+
+/* .frm-empresa div{
+    width: 171px;
+    /* gap: 15px; 
+}*/
+
