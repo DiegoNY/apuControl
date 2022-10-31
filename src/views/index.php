@@ -486,7 +486,7 @@ $fecha = date('y/m/d');
 
                 </div>
             </div>
-
+        </div>
     </main>
     <footer></footer>
 
