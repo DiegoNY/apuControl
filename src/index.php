@@ -182,6 +182,7 @@ $fecha = date('y/m/d');
                 </div>
 
                 <div id="tabs" class="tabs">
+                    <input type="hidden" value="1" name="ruc_id" id="ruc_id">
 
                     <ul class="nav nav-tabs">
                         <li class="nav-item inactive">

@@ -87,7 +87,7 @@ $(document).ready(function () {
 
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
-    ajax: "mostrar-sucursal.php?id=1",
+    ajax: "mostrar-sucursal.php",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -559,7 +559,7 @@ function registrarSucursal() {
   let url = editarSucursall === false ? "registrar-sucursal.php" : "editar-sucursal.php";
   $.ajax({
     url: url,
-    data: $("#frm-sucursal").serialize(),
+    data: $("#frm-sucursal, #ruc_id").serialize(),
     type: "GET",
     success: function (response) {
       mensajes(
@@ -694,6 +694,7 @@ function RegistrarEmpresa() {
         if (!ruc) {
           console.log("sin data")
         } else {
+          document.getElementById("ruc_id").value = ruc;
           cargarSucursal(ruc);
           cargarContactos(ruc);
           mostrarLogoss(ruc);

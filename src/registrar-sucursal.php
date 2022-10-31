@@ -3,7 +3,7 @@
 
 include 'connection/basedatos.php';
 
-$data = extract($_GET);
+extract($_GET);
 
 if(isset($txtNombreSucursal) && !empty($txtNombreSucursal)){
 
@@ -13,10 +13,8 @@ $txtDireccionSucursal = $sucursal->sanitizar($txtDireccionSucursal);
 $txtEstado = $sucursal->sanitizar($txtEstado);
 $txtCodigoCofide = $sucursal->sanitizar($txtCodigoCofide);
 $cboIdu = $sucursal->sanitizar($cboIdu);
-$txtIdEmpresa = $sucursal->sanitizar($txtIdEmpresa);
 
-
-$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$txtEstado,$txtIdEmpresa);
+$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$txtEstado,$ruc_id);
 
 if($resultado == TRUE){
     echo "ingresado";
