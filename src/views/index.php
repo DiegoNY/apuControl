@@ -46,17 +46,17 @@ $fecha = date('y/m/d');
         <div class="container-fluid ">
             <nav class="navbar navbar-expand-lg navbar-light  py-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="">Bienvenido👋</a>
+                    <a class="navbar-brand text-light" href="">APC</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="empresas.html">Ver Empresas </a>
+                                <a class="nav-link" href="empresas.html">VER EMPRESAS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.php">Salir</a>
+                                <a class="nav-link" href="login.php">SALIR</a>
                             </li>
 
                             <li class="nav-item inactive">
@@ -83,8 +83,8 @@ $fecha = date('y/m/d');
                             <label for="txtNombreCo"> Nombre</label>
                             <input type="text" value="" name="txtNombreCo" id="txtNombreCo">
                         </div>
-                        
-                        
+
+
                         <div class="cbo-id cont-form">
                             <label for="cboIdGrupo">Grupo</label>
                             <select id="cbogrupo" name="txtIdGrupo">
@@ -169,17 +169,28 @@ $fecha = date('y/m/d');
                         <div class="cont-form">
                             <label for="cboEstado">Estado</label>
                             <select name="cboEstado" id="cboEstado">
-                                <option value="0">Posible Cliente</option>
-                                <option value="1" selected>Cliente</option>
+                                <option value="POSIBLE_CLIENTE">Posible Cliente</option>
+                                <option value="CLIENTE" selected>Cliente</option>
                             </select>
                         </div>
 
                         <div class="cont-form">
-                            <label for="">Banderas</label>
-                            <select name="" id="">
-                            <option value=""></option>
-                            <option value=""></option>
-                            </select>
+
+                            <label for="">Bandera</label>
+                            <div class="conteiner">
+                                 <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Bandera 
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <label for="" id="txtbander"></label>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                           
+
                         </div>
 
                         <div>
@@ -237,7 +248,7 @@ $fecha = date('y/m/d');
                                         <div class="inactive">
                                             <input type="hidden" name="txtFechCre" id="txtFechCre" value="<?php echo $fecha; ?>">
                                         </div>
-                                        
+
                                         <input type="button" onclick="RegistrarGrupo()" value="Ingresar Grupo" class="btn-ingresar-grupo">
                                     </form>
                                 </div>
@@ -321,7 +332,7 @@ $fecha = date('y/m/d');
                                     </table>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -434,7 +445,7 @@ $fecha = date('y/m/d');
                                     </table>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 

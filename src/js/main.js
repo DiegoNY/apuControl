@@ -208,7 +208,7 @@ $(function () {
 });
 
 function cargarSucursal(ruc) {
-  // tableSucursal.destroy();
+  tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
     ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
     columns: [
@@ -592,3 +592,6 @@ function RegistrarEmpresa() {
   });
   $("#frm_empresa").trigger("reset");
 }
+
+
+// CARGAR BANDERAAS EN EL FORMULARIO
