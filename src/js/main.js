@@ -437,7 +437,7 @@ function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
   $.ajax({
     url: url,
-    data: $("#frm-sucursal").serialize(),
+    data: $("#frm-sucursal, #ruc_id").serialize(),
     type: "GET",
     success: function (response) {
       mensajes(
@@ -569,6 +569,7 @@ function RegistrarEmpresa() {
       data.forEach((data) => {
         let mensaje = data.mensaje;
         let ruc = data.ruc;
+        document.getElementById("#ruc_id").value = ruc;
 
         switch (true) {
           case !ruc:
