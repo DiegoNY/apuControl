@@ -46,9 +46,126 @@ $(document).ready(function () {
     },
   });
 
+  tablaGrupos = $("#tabla-grupos").DataTable({
+
+    destroy: true,
+    ajax: "mostrarGrupos.php",
+    columns: [
+      { data: "id" },
+      { data: "nombre" },
+      { data: "descripcion" },
+      { data: "fechaCreacion" },
+      { data: "usuarioCreacion" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-grup"></i>`,
+      },
+      { defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delet-grup"></i>` },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Grupos :",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tableSucursal = $("#tabla_sucursals").DataTable({
+    destroy: true,
+    ajax: "mostrar-sucursal.php",
+    columns: [
+      { data: "id" },
+      { data: "id_empresa" },
+      { data: "nombre" },
+      { data: "codigo_cofide" },
+      { data: "direccion" },
+      { data: "ubigeo" },
+      {
+        defaultContent: `
+        <i class="bi bi-pencil-square btn-edit-sucursal"></i>
+        <i class="bi bi-person-plus btn-agregar-acceso"></i>
+        `,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-sucursal"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Sucursal",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tablaContactos = $("#tabla_contactoss").DataTable({
+    destroy: true,
+    ajax: "mostrar-contactos.php?id=1",
+    columns: [
+      { data: "id" },
+      { data: "id_empresa" },
+      { data: "nombre" },
+      { data: "cargo" },
+      { data: "telefono" },
+      { data: "correo" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>`,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-contacto"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Contactos ",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
   tablaAccesos = $("#tabla_accesos").DataTable({
     destroy: true,
-    ajax: {
       url: "../processes/mostrar-accesos.php?id=1",
       dataSrc: ""
     },
@@ -153,7 +270,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-delete-contacto", async function () {
 
-    const alerta = await import('./alertas.js')
+    const alerta = await import('./alertas.js') 
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
     alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "../processes/delete/eliminar-contactos.php");
@@ -437,7 +554,7 @@ function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
   $.ajax({
     url: url,
-    data: $("#frm-sucursal").serialize(),
+    data: $("#frm-sucursal, #ruc_id").serialize(),
     type: "GET",
     success: function (response) {
       mensajes(
@@ -585,6 +702,14 @@ function RegistrarEmpresa() {
             mensajes("ingresado","Editaste una Empresa con exito :D","error");
           default:
             break;
+        if (!ruc) {
+          console.log("sin data")
+        } else {
+          document.getElementById("ruc_id").value = ruc;
+          cargarSucursal(ruc);
+          cargarContactos(ruc);
+          mostrarLogoss(ruc);
+          mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
         }
 
       })

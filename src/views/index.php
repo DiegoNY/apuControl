@@ -190,6 +190,7 @@ $fecha = date('y/m/d');
                 </div>
 
                 <div id="tabs" class="tabs">
+                    <input type="hidden" value="1" name="ruc_id" id="ruc_id">
 
                     <ul class="nav nav-tabs">
                         <li class="nav-item inactive">
@@ -290,7 +291,7 @@ $fecha = date('y/m/d');
                                             <option value="164" selected>164</option>
                                         </select>
                                     </div>
-                                    <div>
+                                    <div class="inactive">
                                         <label for="txtIdEmpresa">Id Empresa</label>
                                         <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
                                     </div>
@@ -337,7 +338,7 @@ $fecha = date('y/m/d');
                                         <label for="txtCargo">Cargo</label>
                                         <input type="text" name="txtCargo" id="cargo-contacto">
                                     </div>
-                                    <div>
+                                    <div class="inactive">
                                         <label for="txtEmpresa">RUC Empresa</label>
                                         <input type="text" name="txtEmpresa" id="id-empresa-contacto">
                                     </div>
