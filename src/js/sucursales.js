@@ -21,10 +21,8 @@ function cargarSucursal(ruc) {
         {
           defaultContent: `
                             <i class="bi bi-shield-check btn-ver-acceso  text-center text-success"></i>
-          `,
-        },
-        {
-          defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>`,
+                            <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>
+          `
         },
       ],
       language: {
