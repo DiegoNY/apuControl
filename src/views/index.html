@@ -48,7 +48,7 @@
 
     <!-- Main navbar -->
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
-         <div class="d-flex flex-1 d-lg-none">
+        <div class="d-flex flex-1 d-lg-none">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
                 <i class="icon-paragraph-justify3"></i>
             </button>
@@ -257,7 +257,7 @@
             </ul>
         </div>
 
-         <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
+        <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
             <li class="nav-item nav-item-dropdown-lg dropdown">
                 <a href="#" class="navbar-nav-link navbar-nav-link-toggler" data-toggle="dropdown">
                     <i class="icon-bubbles4"></i>
@@ -452,14 +452,14 @@
                                 </span>
                             </a>
                         </li>
-                    
-                        
+
+
                         <!-- /main -->
 
                         <!-- Forms -->
                         <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">OTRAS OPCIONES</div> <i class="icon-menu"
-                                title="Forms"></i>
+                            <div class="text-uppercase font-size-xs line-height-xs">OTRAS OPCIONES</div> <i
+                                class="icon-menu" title="Forms"></i>
                         </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-pencil3"></i> <span>Nuevas</span></a>
@@ -635,171 +635,175 @@
                                 </div>
 
                                 <div class="card-body py-0">
-                                        <form id="frm_empresa" class="frm-empresa row">
-                                            <input type="hidden" id="id" name="id">
-                                            <fieldset class="mb-3 col-xl-6">
-                                                <legend class="text-uppercase font-size-sm font-weight-bold">Informacion basica de empresa</legend>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Nombre</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text" value="" name="txtNombreCo" id="txtNombreCo" class="form-control">
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group row">
-                                                  
-                                                    <label for="cboIdGrupo" class="col-form-label col-lg-2">Grupo</label>
-                                                      <div class="col-lg-10">
-                                                        <select id="cbogrupo" name="txtIdGrupo" class="form-control col-lg-9">
-                                                            <option value="value">value</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
 
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Ruc</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="password" value="" name="txtRuc" id="txtRuc" class="form-control">
-                                                    </div>
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Razon social</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text"  value="" name="txtRazonSocial" id="txtRazonSocial" class="form-control">
-                                                    </div>
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Direccion</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text" class="form-control" value="" name="txtDireccion" id="txtDireccion">
-                                                    </div>
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Distrito</label>
-                                                    <div class="col-lg-10">
-                                                        <select name="cboIdu" id="cboIdu" class="form-control">
-                                                            <option value="123">123</option>
-                                                            <option value="164" selected>164</option>
-                                                        </select>
-                                                    </div> 
-                                                </div>
+                                    <form id="frm_empresa" class="frm-empresa row">
+                                        <input type="hidden" id="id" name="id">
 
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Rubro</label>
-                                                    <div class="col-lg-10">
-                                                        <select name="cboIdRubro" id="cboIdRubro" class="form-control">
-                                                            <option value="EDS">EDS</option>
-                                                            <option value="BOTICAS" selected>BOTICAS</option>
-                                                            <option value="MARKETS">MARKETS</option>
-                                                        </select>
-                                                    </div> 
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">T.Persona</label>
-                                                    <div class="col-lg-10">
-                                                        <select name="cboTipoPersona" id="cboTipoPersona" class="form-control">
-                                                            <option value="NATURAL">Natural</option>
-                                                            <option value="JURIDICA" selected>Juridica</option>
-                                                        </select>
-                                                    </div> 
-                                                </div>
-            
-                                            </fieldset>
-                                            <fieldset class="mb-3 col-xl-6">
-                                                <legend class="text-uppercase font-size-sm font-weight-bold">Informacion  de Sistema</legend>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Nombre</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text" value="" name="txtNombreCo" id="txtNombreCo" class="form-control">
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group row">
-                                                  
-                                                    <label for="cboIdGrupo" class="col-form-label col-lg-2">Grupo</label>
-                                                      <div class="col-lg-10">
-                                                        <select id="cbogrupo" name="txtIdGrupo" class="form-control col-lg-9">
-                                                            <option value="value">value</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                        <fieldset class="mb-3 col-xl-6">
+                                            <legend class="text-uppercase font-size-sm font-weight-bold">Informacion
+                                                basica de empresa</legend>
 
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Ruc</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="password" value="" name="txtRuc" id="txtRuc" class="form-control">
-                                                    </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Nombre</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" value="" name="txtNombreCo" id="txtNombreCo"
+                                                        class="form-control">
                                                 </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Razon social</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text"  value="" name="txtRazonSocial" id="txtRazonSocial" class="form-control">
-                                                    </div>
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Direccion</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text" class="form-control" value="" name="txtDireccion" id="txtDireccion">
-                                                    </div>
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Distrito</label>
-                                                    <div class="col-lg-10">
-                                                        <select name="cboIdu" id="cboIdu" class="form-control">
-                                                            <option value="123">123</option>
-                                                            <option value="164" selected>164</option>
-                                                        </select>
-                                                    </div> 
-                                                </div>
-            
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Tipo persona</label>
-                                                    <div class="col-lg-10">
-                                                        <select name="cboTipoPersona" id="cboTipoPersona" class="form-control">
-                                                            <option value="NATURAL">Natural</option>
-                                                            <option value="JURIDICA" selected>Juridica</option>
-                                                        </select>
-                                                    </div> 
-                                                </div>
-            
-                                            </fieldset>
-                    
-                                            <div class="cont-form">
-                    
-                                                <label for="">Bandera</label>
-                                                <div class="conteiner">
-                                                     <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Bandera 
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <label for="" id="txtbander"></label>
-                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                                </div>
-                                               
-                    
                                             </div>
-                    
-                                            <div>
-                                                <input type="hidden" value="1" name="txtEstado">
-                                                <input type="hidden" value="1" name="txtEliminada">
-                                            </div>
-                                            <input type="button" onclick="RegistrarEmpresa()" value="Ingresar Empresa" class="btn-tabla-empresa">
-                    
 
-                                        </form>
+                                            <div class="form-group row">
+
+                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">Grupo</label>
+                                                <div class="col-lg-10">
+                                                    <select id="cbogrupo" name="txtIdGrupo"
+                                                        class="form-control ">
+                                                        <option value="value">value</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Ruc</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" value="" name="txtRuc" id="txtRuc"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Razon social</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" value="" name="txtRazonSocial"
+                                                        id="txtRazonSocial" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Direccion</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" value="" name="txtDireccion"
+                                                        id="txtDireccion">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Distrito</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboIdu" id="cboIdu" class="form-control">
+                                                        <option value="123">123</option>
+                                                        <option value="164" selected>164</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Rubro</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboIdRubro" id="cboIdRubro" class="form-control">
+                                                        <option value="EDS">EDS</option>
+                                                        <option value="BOTICAS" selected>BOTICAS</option>
+                                                        <option value="MARKETS">MARKETS</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">T.Persona</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboTipoPersona" id="cboTipoPersona"
+                                                        class="form-control">
+                                                        <option value="NATURAL">Natural</option>
+                                                        <option value="JURIDICA" selected>Juridica</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset class="mb-3 col-xl-6">
+                                            <legend class="text-uppercase font-size-sm font-weight-bold">Informacion de
+                                                Sistema</legend>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">T.Sistema</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboTipoSistema" id="cboTipoSistema"
+                                                        class="form-control ">
+                                                        <option value="GESFARMA">GESFARMA</option>
+                                                        <option value="APUGESCOM">APUGESCOM</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+
+                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T.Envio</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboTipoEnvio" id="cboTipoEnvio" class="form-control">
+                                                        <option value="OSE">OSE</option>
+                                                        <option value="SUNAT" selected>SUNAT</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="cboIdGrupo"
+                                                    class="col-form-label col-lg-2">T.Integracion</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
+                                                        class="form-control">
+                                                        <option value="DBF">DBF</option>
+                                                        <option value="TXT" selected>TXT</option>
+                                                        <option value="JSON">JSON</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">E.Comercial</label>
+                                                <div class="col-lg-10">
+                                                    <select name="txtEstadoComercial" id="txtEstadoComercial"
+                                                        class="form-control">
+                                                        <option value="INGRESADO">INGRESADO</option>
+                                                        <option value="POR_INSTALAR">POR INSTALAR</option>
+                                                        <option value="PRODUCCION">PRODUCCION</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Estado</label>
+                                                <div class="col-lg-10">
+                                                    <select name="cboEstado" id="cboEstado" class="form-control">
+                                                        <option value="POSIBLE_CLIENTE">Posible Cliente</option>
+                                                        <option value="CLIENTE" selected>Cliente</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                           
+                                        </fieldset>
+
+                                        <div class="col-lg-12">
+                                            
+                                            <div class="col-lg-12 ms-lg-auto text-right">
+                                                <input type="button" onclick="RegistrarEmpresa()" value="Ingresar Empresa" class="btn btn-primary ">
+                                            </div>
+
+                                        </div>
+                                      
+                                        <div class="inactive">
+                                            <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro"
+                                                value="<?php echo $fecha ?>">
+                                        </div>
+                                        <div>
+                                            <input type="hidden" value="1" name="txtEstado">
+                                            <input type="hidden" value="1" name="txtEliminada">
+                                        </div>
+
+                                    </form>
                                 </div>
 
                                 <div class="chart position-relative" id="traffic-sources">

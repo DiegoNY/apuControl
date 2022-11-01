@@ -636,7 +636,7 @@ function editarEmpresas(id, edit) {
     cargarSucursal(ruc_em);
     cargarContactos(ruc_em);
     mostrarLogoss(ruc_em);
-
+    
   });
 }
 

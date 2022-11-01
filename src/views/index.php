@@ -201,12 +201,8 @@ $fecha = date('y/m/d');
                 </div>
 
                 <div id="tabs" class="tabs">
-<<<<<<< HEAD
+                
                     <input type="hidden" value="1" name="ruc_id" id="ruc_id">
-
-=======
-                <input type="hidden" value="1" name="ruc_id" id="ruc_id">
->>>>>>> a02495ddbb52914da497a0fdb394c490893dc6d1
                     <ul class="nav nav-tabs">
                         <li class="nav-item inactive">
                             <a class="nav-link active" aria-current="page" href="#tabs-1">Grupos</a>
