@@ -6,9 +6,7 @@ $ubigeo = new BaseDatos();
 
 $resultado = $ubigeo->mostrarUbigeo();
 
-
 $json = array();
-
 
 while($row = mysqli_fetch_array($resultado)){
     $json[] = array(

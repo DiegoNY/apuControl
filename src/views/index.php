@@ -1,6 +1,5 @@
 <?php
 $fecha = date('y/m/d');
-
 ?>
 
 <!DOCTYPE html>
