@@ -1,31 +1,38 @@
 <?php
 include '../connection/basedatos.php';
 
-$id=$_GET['id'];
+extract($_GET);
 
-$contactos = new BaseDatos();
+if (!isset($id)) {
 
-$resultado = $contactos->verContactos($id);
+    $json = array();
 
-if(!$resultado){
-    die("Query failed");
+} else {
+
+    $contactos = new BaseDatos();
+
+    $resultado = $contactos->verContactos($id);
+
+    if (!$resultado) {
+        die("Query failed");
+    }
+
+    $json = array();
+
+    while ($row = mysqli_fetch_array($resultado)) {
+
+        $json['data'][] = array(
+
+            'id' => $row['id'],
+            'id_empresa' => $row['id_empresa'],
+            'nombre' => $row['nombre_contacto'],
+            'cargo' => $row['cargo'],
+            'telefono' => $row['telefono'],
+            'correo' => $row['correo'],
+        );
+    }
 }
 
-$json = array();
-
-while($row = mysqli_fetch_array($resultado)){
-    $json['data'][] = array(
-        'id' => $row['id'],
-        'id_empresa' => $row['id_empresa'],
-        'nombre' => $row['nombre_contacto'],
-        'cargo' => $row['cargo'],
-        'telefono' => $row['telefono'],
-        'correo' => $row['correo'],
-    );
-}
 $jsonString = json_encode($json);
 
 echo $jsonString;
-
-
-

@@ -17,7 +17,7 @@ $cboIdu = $sucursal->sanitizar($cboIdu);
 $resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$txtEstado,$ruc_id);
 
 if($resultado == TRUE){
-    echo "ingresado";
+    echo "ingresado"; 
 }else{
     echo "error";
 }
