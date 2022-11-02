@@ -2,7 +2,7 @@
 
 include '../../connection/basedatos.php';
 
-$resulrado = extract($_GET);
+extract($_GET);
 
 if (isset($txtIdSucursal) && !empty($txtIdSucursal)) {
 

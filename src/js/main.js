@@ -13,6 +13,12 @@ const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 let id = urlParams.get("id");
 let edit = urlParams.get("edit");
+let rucs = urlParams.get("ruc");
+
+if(!rucs){
+}else{
+    document.getElementById("ruc_id").value = rucs;
+}
 
 
 $(document).ready(function () {
@@ -311,11 +317,10 @@ function cargarSucursal(ruc) {
       { data: "ubigeo" },
       {
         defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
-                          <i class="bi bi-shield-check btn-agregar-acceso text-success"></i></div>
+                          <i class="bi bi-shield-check btn-agregar-acceso text-success"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
                           <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>
         `,
-      },
-     
+      }
     ],
     language: {
       decimal: "",
@@ -515,6 +520,7 @@ function registrarAccesos() {
         data: $("#frm-accesos").serialize(),
         type: "GET",
         success: function (response) {
+        console.log(response);
         mensajes(response,"Bien Se ingresaron los accesos 😀","Completa Todos los campos");
         editarAcceso = false;
         tablaAccesos.ajax.reload();
@@ -622,7 +628,7 @@ function editarEmpresas(id, edit) {
   return;
 
   $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
-
+    console.log(response);
     let empresa = JSON.parse(response);
     let ruc_em = empresa.ruc;
 
@@ -651,13 +657,6 @@ function editarEmpresas(id, edit) {
     
   });
 }
-
-
-/**
- * 
- * !AL REGISTRAR  LA EMPRESA  SE CARGAN EL RUC QUE SERA EL NECESARIO PARA PODER 
- * 
- */
 
 
 function RegistrarEmpresa() {
