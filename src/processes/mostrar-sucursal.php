@@ -8,7 +8,7 @@ extract($_GET);
 $sucursal = new BaseDatos();
 
 if(!isset($id))
-{
+{ 
     $json = array();
 }else{
     $resultado = $sucursal->mostrarSucursales($id);

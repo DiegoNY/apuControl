@@ -1,11 +1,3 @@
-/* .frm-empresa{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-} */
-
-/* .frm-empresa div{
-    width: 171px;
-    /* gap: 15px; 
-}*/
-
+.inactive{
+    display: none;
+}

@@ -49,6 +49,9 @@ $(document).ready(function () {
   
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
+    "scrollY": "358px",
+    "scrollCollapse": true,
+    "paging": false,
     ajax: "../processes/mostrar-sucursal.php",
     columns: [
       { data: "id" },
@@ -78,7 +81,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Sucursal",
+      search: "",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -91,7 +94,10 @@ $(document).ready(function () {
 
   tablaContactos = $("#tabla_contactoss").DataTable({
     destroy: true,
-    ajax: "../processes/mostrar-contactos.php?id=1",
+    "scrollY": "358px",
+    "scrollCollapse": true,
+    "paging": false,
+    ajax: "../processes/mostrar-contactos.php?",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -100,11 +106,11 @@ $(document).ready(function () {
       { data: "telefono" },
       { data: "correo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>`,
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>
+                          <i class="bi bi-x-circle-fill btn-delete-contacto"></i>
+        `,
       },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-contacto"></i>`,
-      },
+      
     ],
     language: {
       decimal: "",
@@ -117,7 +123,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Contactos ",
+      search: "",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -158,7 +164,7 @@ $(document).ready(function () {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Accesos",
+      search: "",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -235,7 +241,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-delete-contacto", async function () {
 
-    const alerta = await import('./alertas.js')
+    const alerta = await import('./alertas.js') 
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
     alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "../processes/delete/eliminar-contactos.php");
@@ -292,6 +298,9 @@ $(function () {
 function cargarSucursal(ruc) {
   tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
+    "scrollY": "358px",
+    "scrollCollapse": true,
+    "paging": false,
     ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
     columns: [
       { data: "id" },
@@ -303,24 +312,23 @@ function cargarSucursal(ruc) {
       {
         defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
                           <i class="bi bi-shield-check btn-agregar-acceso text-success"></i></div>
+                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>
         `,
       },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>`,
-      },
+     
     ],
     language: {
       decimal: "",
       emptyTable: "No hay información",
       info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
       infoFiltered: "(Filtrado de _MAX_ total entradas)",
       infoPostFix: "",
       thousands: ",",
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Sucursales :",
+      search: "",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -335,6 +343,9 @@ function cargarSucursal(ruc) {
 function cargarContactos(ruc) {
   tablaContactos.destroy();
   tablaContactos = $("#tabla_contactoss").DataTable({
+    "scrollY": "358px",
+    "scrollCollapse": true,
+    "paging": false,
     ajax: {
       url: "../processes/mostrar-contactos.php?id=" + ruc,
       dataSrc: "data"
@@ -347,11 +358,11 @@ function cargarContactos(ruc) {
       { data: "telefono" },
       { data: "correo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto"></i>`,
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto"></i>
+        <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
+        `,
       },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>`,
-      },
+     
     ],
     language: {
       decimal: "",
@@ -544,7 +555,7 @@ function registrarContactos() {
       : "../processes/edit/editar-contacto.php";
   $.ajax({
     url: url,
-    data: $("#frm-contactos").serialize(),
+    data: $("#frm-contactos, #ruc_id").serialize(),
     type: "GET",
     success: function (response) {
       console.log(response);
@@ -636,7 +647,7 @@ function editarEmpresas(id, edit) {
     cargarSucursal(ruc_em);
     cargarContactos(ruc_em);
     mostrarLogoss(ruc_em);
-
+    
   });
 }
 
@@ -652,7 +663,8 @@ function RegistrarEmpresa() {
       data.forEach((data) => {
         let mensaje = data.mensaje;
         let ruc = data.ruc;
-        document.getElementById("#ruc_id").value = ruc;
+
+        document.getElementById("ruc_id").value = ruc;
 
         switch (true) {
           case !ruc:
