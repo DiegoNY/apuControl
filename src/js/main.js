@@ -477,33 +477,33 @@ $(document).on("click", ".btn-delete-logo", function () {
   });
 });
 
-document.getElementById("btn_registrar").addEventListener("click", (e) => {
-  e.preventDefault();
+// document.getElementById("btn_registrar").addEventListener("click", (e) => {
+//   e.preventDefault();
 
-  let frm = document.getElementById("frm_logo");
-  let frmdata = new FormData(frm);
+//   let frm = document.getElementById("frm_logo");
+//   let frmdata = new FormData(frm);
 
-  $.ajax({
-    method: "post",
-    url: "../processes/register/registrar-logo.php",
-    data: frmdata,
-    cache: false,
-    processData: false,
-    contentType: false,
-    success: (response) => {
-      console.log(response);
-      let data = JSON.parse(response);
-      data.forEach((data) => {
-        mensajes(
-          data.mensaje,
-          "Ingresaste un Logo 😃",
-          "Seguro falto el nombre 😲"
-        );
-        mostrarLogoss(data.ruc);
-      });
-    },
-  });
-});
+//   $.ajax({
+//     method: "post",
+//     url: "../processes/register/registrar-logo.php",
+//     data: frmdata,
+//     cache: false,
+//     processData: false,
+//     contentType: false,
+//     success: (response) => {
+//       console.log(response);
+//       let data = JSON.parse(response);
+//       data.forEach((data) => {
+//         mensajes(
+//           data.mensaje,
+//           "Ingresaste un Logo 😃",
+//           "Seguro falto el nombre 😲"
+//         );
+//         mostrarLogoss(data.ruc);
+//       });
+//     },
+//   });
+// });
 
 //CRUD ACCESOS
 
@@ -523,9 +523,10 @@ function registrarAccesos() {
     });
     
   $("#frm-accesos").trigger("reset");
+
 }
 
-//Para la sucursal
+//PARA LA SUCURSAL
 
 function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
@@ -650,6 +651,14 @@ function editarEmpresas(id, edit) {
     
   });
 }
+
+
+/**
+ * 
+ * !AL REGISTRAR  LA EMPRESA  SE CARGAN EL RUC QUE SERA EL NECESARIO PARA PODER 
+ * 
+ */
+
 
 function RegistrarEmpresa() {
   let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
