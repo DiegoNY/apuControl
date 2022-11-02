@@ -4,7 +4,7 @@ $resulta = extract($_GET);
 include '../../connection/basedatos.php';
 $empresas = new BaseDatos();
 
-if (isset($txtRuc) and !empty($txtRuc)) {
+if (isset($txtRuc) and !empty($txtRuc)|| isset($txtNombreCo) and !empty($txtNombreCo)|| isset($txtRazonSocial) and !empty($txtRazonSocial)||isset($txtDireccion) and !empty($txtDireccion)){
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo);
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
     $txtRuc = $empresas->sanitizar($txtRuc);
@@ -37,7 +37,7 @@ if (isset($txtRuc) and !empty($txtRuc)) {
 
 }else{
     
-    $json[] = array('mensaje'=>"sin datos",'ruc'=>$txtRuc);
+    $json[] = array('mensaje'=>"sin datos");
     $jsonString = json_encode($json);
     echo $jsonString;
 }
