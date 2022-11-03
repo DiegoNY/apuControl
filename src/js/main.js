@@ -307,6 +307,7 @@ function cargarSucursal(ruc) {
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
+    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
     ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
     columns: [
       { data: "id" },
@@ -351,6 +352,7 @@ function cargarContactos(ruc) {
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
+    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
     ajax: {
       url: "../processes/mostrar-contactos.php?id=" + ruc,
       dataSrc: "data"
@@ -395,6 +397,7 @@ function cargarContactos(ruc) {
 function cargarAccesos(id_sucursal) {
   tablaAccesos.destroy();
   tablaAccesos = $("#tabla_accesos").DataTable({
+    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
     ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
     columns: [
       { data: "id" },

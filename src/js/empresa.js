@@ -9,6 +9,8 @@ $(document).ready(function () {
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
+    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
+    rowReorder:true,
     ajax: "../processes/mostrar-empresas.php",
     columns: [
       { data: "id" },
@@ -93,56 +95,3 @@ $(document).ready(function () {
     window.location.replace(`contactos.html?ruc=${ruc}&nombre=${nombre}`);
   })
 });
-
-// MostrarEmpresas();
-// function MostrarEmpresas() {
-//   $.ajax({
-//     url: "../processes/mostrar-empresas.php",
-//     type: "GET",
-//     success: function (response) {
-//       console.log(response);   
-//       let empresas = JSON.parse(response);
-//       let template = "";
-//       console.log(empresas);
-//       empresas.forEach((empresas) => {
-//         template += `
-//                           <tr>
-//         <td>${empresas.id}</td>
-//         <td>${empresas.nom_comercial}</td>
-//         <td>${empresas.id_grupo}</td>
-//         <td>${empresas.ruc}</td>
-//          <td>${empresas.id_rubro}</td>
-//         <td>${empresas.tipo_envio}</td>
-//         <td><span class="badge badge-success">${empresas.estado}</span></td>
-//         <td class="text-center">
-//             <div class="list-icons">
-//                 <div class="dropdown">
-//                     <a href="#" class="list-icons-item" data-toggle="dropdown">
-//                         <i class="icon-menu9"></i>
-//                     </a>
-
-//                     <div class="dropdown-menu dropdown-menu-right">
-//                         <a href="#" class="dropdown-item"><i
-//                                 class="icon-file-pdf" id="btn-editar-empresa"></i>
-//                             Export to .pdf</a>
-//                         <a href="#" class="dropdown-item"><i
-//                                 class="icon-file-excel"></i>
-//                             Export to .csv</a>
-//                         <a href="#" class="dropdown-item"><i
-//                                 class="icon-file-word"></i>
-//                             Export to .doc</a>
-//                     </div>
-//                 </div>
-//             </div>
-//         </td>
-//     </tr>
-                                         
-
-
-//           `;
-//       });
-
-//       $("#listado-empresas").html(template);
-//     },
-//   });
-// }
