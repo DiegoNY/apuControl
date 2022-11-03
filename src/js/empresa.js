@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
   //empresa cargando data
-  let tablaEmpresa = $("#tabla_empresasas").DataTable({ destroy: true,
+  let tablaEmpresa = $("#tabla_empresasas").DataTable({
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
@@ -9,8 +9,8 @@ $(document).ready(function () {
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
-    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
-    rowReorder:true,
+    "order": [[0, 'desc'], [1, 'desc']],
+    rowReorder: true,
     ajax: "../processes/mostrar-empresas.php",
     columns: [
       { data: "id" },
@@ -32,8 +32,8 @@ $(document).ready(function () {
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li id="btn-editar-empresa"><a class="dropdown-item">Editar</a></li>
-        <li  data-bs-toggle="modal" data-bs-target="#sucursales"><a class="dropdown-item" >Sucursales</a></li>
-        <li  data-bs-toggle="modal" data-bs-target="#contactos"><a class="dropdown-item" >Contactos</a></li>
+        <li  data-bs-toggle="modal" data-bs-target="#sucursales" id="btn-sucursales"><a class="dropdown-item"  >Sucursales</a></li>
+        <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
         <li class="btn-delet"><a class="dropdown-item">Eliminar</a></li>
       </ul>
     </div>`,
@@ -81,17 +81,115 @@ $(document).ready(function () {
   });
 
   $(document).on("click", "#btn-sucursales", function () {
+
     let data = tablaEmpresa.row($(this).parents()).data();
     let ruc = data.ruc;
-    let nombre = data.nom_comercial;
 
-    window.location.replace(`sucursales.html?ruc=${ruc}&nombre=${nombre}`);
+    cargarSucursal(ruc);
+
   })
 
   $(document).on("click", "#btn-contactos", function () {
     let data = tablaEmpresa.row($(this).parents()).data();
     let ruc = data.ruc;
-    let nombre = data.nom_comercial;
-    window.location.replace(`contactos.html?ruc=${ruc}&nombre=${nombre}`);
+
+    cargarContactos(ruc)
+
   })
+
+  function cargarSucursal(ruc) {
+
+    tableSucursal = $("#tabla_sucursals").DataTable({
+      destroy: true,
+      "scrollY": "358px",
+      "scrollCollapse": true,
+      "paging": false,
+      "order": [[0, 'desc'], [1, 'desc']],
+      ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
+      columns: [
+        { data: "id" },
+        { data: "id_empresa" },
+        { data: "nombre" },
+        { data: "codigo_cofide" },
+        { data: "direccion" },
+        { data: "ubigeo" },
+        {
+          defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
+                            <i class="bi bi-shield-check btn-agregar-acceso text-success"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
+                            <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>
+          `,
+        }
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "Mostrar _MENU_ Entradas",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
+      },
+    });
+  }
+
+  function cargarContactos(ruc) {
+    tablaContactos = $("#tabla_contactoss").DataTable({
+      "scrollY": "358px",
+      "scrollCollapse": true,
+      "paging": false,
+      "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
+      destroy:true,
+      ajax: {
+        url: "../processes/mostrar-contactos.php?id=" + ruc,
+        dataSrc: "data"
+      },
+      columns: [
+        { data: "id" },
+        { data: "id_empresa" },
+        { data: "nombre" },
+        { data: "cargo" },
+        { data: "telefono" },
+        { data: "correo" },
+        {
+          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto"></i>
+          <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
+          `,
+        },
+       
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "Mostrar _MENU_ Entradas",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "Contactos ",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
+      },
+    });
+  }
+  
+
 });

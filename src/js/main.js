@@ -478,7 +478,6 @@ function mostrarLogoss(id) {
 $(document).on("click", ".btn-delete-logo", function () {
   let element = $(this)[0].parentElement;
   let id = $(element).attr("id-logo");
-  console.log(id);
   $.post("../processes/delete/eliminar-logo.php", { id }, function (response) {
     console.log(response);
     mostrarLogoss();
