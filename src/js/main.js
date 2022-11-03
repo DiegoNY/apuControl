@@ -15,9 +15,9 @@ let id = urlParams.get("id");
 let edit = urlParams.get("edit");
 let rucs = urlParams.get("ruc");
 
-if(!rucs){
-}else{
-    document.getElementById("ruc_id").value = rucs;
+if (!rucs) {
+} else {
+  document.getElementById("ruc_id").value = rucs;
 }
 
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
     $("#id-empresa-contacto").val(ruc);
     $("#txtRucEmpresa").val(ruc);
   });
-  
+
   // Cargando El ubigeo a los Formularios 
 
   $.ajax({
@@ -52,7 +52,7 @@ $(document).ready(function () {
     },
   });
 
-  
+
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
     "scrollY": "358px",
@@ -116,7 +116,7 @@ $(document).ready(function () {
                           <i class="bi bi-x-circle-fill btn-delete-contacto"></i>
         `,
       },
-      
+
     ],
     language: {
       decimal: "",
@@ -247,7 +247,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-delete-contacto", async function () {
 
-    const alerta = await import('./alertas.js') 
+    const alerta = await import('./alertas.js')
     let data = tablaContactos.row($(this).parents()).data();
     let id = data.id;
     alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "../processes/delete/eliminar-contactos.php");
@@ -307,7 +307,7 @@ function cargarSucursal(ruc) {
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
-    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
+    "order": [[0, 'desc'], [1, 'desc']],
     ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
     columns: [
       { data: "id" },
@@ -352,7 +352,7 @@ function cargarContactos(ruc) {
     "scrollY": "358px",
     "scrollCollapse": true,
     "paging": false,
-    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
+    "order": [[0, 'desc'], [1, 'desc']],
     ajax: {
       url: "../processes/mostrar-contactos.php?id=" + ruc,
       dataSrc: "data"
@@ -369,7 +369,7 @@ function cargarContactos(ruc) {
         <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
         `,
       },
-     
+
     ],
     language: {
       decimal: "",
@@ -397,7 +397,7 @@ function cargarContactos(ruc) {
 function cargarAccesos(id_sucursal) {
   tablaAccesos.destroy();
   tablaAccesos = $("#tabla_accesos").DataTable({
-    "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
+    "order": [[0, 'desc'], [1, 'desc']],
     ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
     columns: [
       { data: "id" },
@@ -484,52 +484,52 @@ $(document).on("click", ".btn-delete-logo", function () {
   });
 });
 
-// document.getElementById("btn_registrar").addEventListener("click", (e) => {
-//   e.preventDefault();
+document.getElementById("btn_registrar").addEventListener("click", (e) => {
+  
+  e.preventDefault();
 
-//   let frm = document.getElementById("frm_logo");
-//   let frmdata = new FormData(frm);
-
-//   $.ajax({
-//     method: "post",
-//     url: "../processes/register/registrar-logo.php",
-//     data: frmdata,
-//     cache: false,
-//     processData: false,
-//     contentType: false,
-//     success: (response) => {
-//       console.log(response);
-//       let data = JSON.parse(response);
-//       data.forEach((data) => {
-//         mensajes(
-//           data.mensaje,
-//           "Ingresaste un Logo 😃",
-//           "Seguro falto el nombre 😲"
-//         );
-//         mostrarLogoss(data.ruc);
-//       });
-//     },
-//   });
-// });
+  let frm = document.getElementById("frm_logo");
+  let frmdata = new FormData(frm);
+  $.ajax({
+    method: "POST",
+    url: "../processes/register/registrar-logo.php",
+    data:(frmdata,nombre,ruc),
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (response) => {
+      console.log(response);
+      let data = JSON.parse(response);
+      data.forEach((data) => {
+        mensajes(
+          data.mensaje,
+          "Ingresaste un Logo 😃",
+          "Seguro falto el nombre 😲"
+        );
+        mostrarLogoss(data.ruc);
+      });
+    },
+  });
+});
 
 //CRUD ACCESOS
 
 function registrarAccesos() {
-    let url = editarAcceso === false ? "../processes/register/registrar-accesos.php" : "../processes/edit/editar-acceso.php";
-    
-    $.ajax({
-        url: url,
-        data: $("#frm-accesos").serialize(),
-        type: "GET",
-        success: function (response) {
-        console.log(response);
-        mensajes(response,"Bien Se ingresaron los accesos 😀","Completa Todos los campos");
-        editarAcceso = false;
-        tablaAccesos.ajax.reload();
-      },
+  let url = editarAcceso === false ? "../processes/register/registrar-accesos.php" : "../processes/edit/editar-acceso.php";
 
-    });
-    
+  $.ajax({
+    url: url,
+    data: $("#frm-accesos").serialize(),
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      mensajes(response, "Bien Se ingresaron los accesos 😀", "Completa Todos los campos");
+      editarAcceso = false;
+      tablaAccesos.ajax.reload();
+    },
+
+  });
+
   $("#frm-accesos").trigger("reset");
 
 }
@@ -627,10 +627,9 @@ editarEmpresas(id, edit);
 function editarEmpresas(id, edit) {
 
   if (id == null)
-  return;
+    return;
 
   $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
-    console.log(response);
     let empresa = JSON.parse(response);
     let ruc_em = empresa.ruc;
 
@@ -649,46 +648,54 @@ function editarEmpresas(id, edit) {
     $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#cboEstado").val(empresa.estado);
-    
+
     editar = edit;
     tableSucursal.destroy;
     tablaContactos.destroy;
     cargarSucursal(ruc_em);
     cargarContactos(ruc_em);
     mostrarLogoss(ruc_em);
-    
+
   });
 }
 
 
 function RegistrarEmpresa() {
+
+  let frm = document.getElementById("frm_empresa");
+  let frmdata = new FormData(frm);
   let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
   $.ajax({
     url: url,
-    type: "GET",
-    data: $("#frm_empresa").serialize(),
+    type: "POST",
+    data: $(frm).serialize(),frmdata,
+    cache: false,
+    processData: false,
+    contenType: false,
     success: function (response) {
       console.log(response);
       let data = JSON.parse(response);
+      
       data.forEach((data) => {
         let mensaje = data.mensaje;
         let ruc = data.ruc;
-
         document.getElementById("ruc_id").value = ruc;
 
         switch (true) {
           case !ruc:
             mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
-            
-            break;
-          case  ruc  && mensaje == "ingresado":
+          break;
+          
+          case ruc && mensaje == "ingresado":
+            tableSucursal.destroy;
+            tablaContactos.destroy;
             cargarSucursal(ruc);
             cargarContactos(ruc);
             mostrarLogoss(ruc);
             mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
             break;
           case ruc && mensaje == "editado":
-            mensajes("ingresado","Editaste una Empresa con exito :D","error");
+            mensajes("ingresado", "Editaste una Empresa con exito :D", "error");
           default:
             break;
         }

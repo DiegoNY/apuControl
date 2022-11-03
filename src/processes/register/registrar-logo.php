@@ -1,9 +1,9 @@
 <?php
 include '../../connection/basedatos.php';
 
-$ruc = $_POST['txtRucEmpresa'];
-$nombre = $_POST['nombre'] ;
-$logo = $_FILES['logo']['name'] ;
+$ruc = $_POST['txtRuc'];
+$nombre = $_POST['txtNombreCo'];
+$logo = $_FILES['logo']['name'];
 $temporal = $_FILES['logo']['tmp_name'];
 
 if (isset($nombre) && !empty($nombre)){
