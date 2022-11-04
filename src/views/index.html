@@ -612,19 +612,53 @@
                             <!-- Traffic sources -->
                             <div class="card">
                                 <div class="card-header header-elements-inline">
-                                    <h6 class="card-title">Registrar empresa</h6>
+                                    <h6 class="card-title font-weight-bold">Registrar empresa</h6>
                                     <div class="header-elements">
                                     </div>
                                 </div>
 
                                 <div class="card-body py-0">
 
-                                    <form id="frm_empresa" enctype="multipart/form-data" method="POST" class="frm-empresa row">
+                                    <form id="frm_empresa" enctype="multipart/form-data" method="POST"
+                                        class="frm-empresa row">
                                         <input type="hidden" id="id" name="id">
 
                                         <fieldset class="mb-3 col-xl-6">
                                             <legend class="text-uppercase font-size-sm font-weight-bold">Informacion
                                                 basica de empresa</legend>
+
+                                            <div class="form-group row">
+
+                                                <div class="form-group row col-lg-6">
+
+                                                    <label class="col-form-label col-lg-3">Ruc</label>
+                                                    
+                                                    <div class="col-lg-9">
+                                                        <input type="text" ruc_ids value="" maxlength="11" name="txtRuc"
+                                                            id="txtRuc" class="form-control">
+                                                    </div>
+
+                                                    <input type="button" id="btn_ruc">
+                                                    Enviar
+                                                    </input>
+
+                                                </div>
+
+
+                                                <div class="form-group row col-lg-6">
+
+                                                    <label for="cboIdGrupo"
+                                                        class="col-form-label col-lg-3">Grupo</label>
+                                                    <div class="col-lg-9">
+                                                        <select id="cbogrupo" name="txtIdGrupo" class="form-control">
+                                                            <option value="value">value</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
 
                                             <div class="form-group row">
                                                 <label class="col-form-label col-lg-2">Nombre</label>
@@ -634,23 +668,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-
-                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">Grupo</label>
-                                                <div class="col-lg-10">
-                                                    <select id="cbogrupo" name="txtIdGrupo" class="form-control">
-                                                        <option value="value">value</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Ruc</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" value="" name="txtRuc" id="txtRuc"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
 
                                             <div class="form-group row">
                                                 <label class="col-form-label col-lg-2">Razon social</label>
@@ -673,7 +690,8 @@
                                                 <div class="col-lg-10">
                                                     <select name="cboIdu" id="cboIdu" class="form-control">
                                                         <option value="123">123</option>
-                                                        <option value="164" selected>164</option>
+                                                        <option value="164">164</option>
+                                                        <option value="" selected></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -682,8 +700,9 @@
                                                 <label class="col-form-label col-lg-2">Rubro</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboIdRubro" id="cboIdRubro" class="form-control">
+                                                        <option value="" selected></option>
                                                         <option value="EDS">EDS</option>
-                                                        <option value="BOTICAS" selected>BOTICAS</option>
+                                                        <option value="BOTICAS">BOTICAS</option>
                                                         <option value="MARKETS">MARKETS</option>
                                                     </select>
                                                 </div>
@@ -694,8 +713,10 @@
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoPersona" id="cboTipoPersona"
                                                         class="form-control">
+
+                                                        <option value="" selected></option>
                                                         <option value="NATURAL">Natural</option>
-                                                        <option value="JURIDICA" selected>Juridica</option>
+                                                        <option value="JURIDICA">Juridica</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -711,6 +732,7 @@
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoSistema" id="cboTipoSistema"
                                                         class="form-control ">
+                                                        <option value="" selected></option>
                                                         <option value="GESFARMA">GESFARMA</option>
                                                         <option value="APUGESCOM">APUGESCOM</option>
                                                     </select>
@@ -723,8 +745,9 @@
                                                 <label for="cboIdGrupo" class="col-form-label col-lg-2">T.Envio</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoEnvio" id="cboTipoEnvio" class="form-control">
+                                                        <option value="" selected></option>
                                                         <option value="OSE">OSE</option>
-                                                        <option value="SUNAT" selected>SUNAT</option>
+                                                        <option value="SUNAT">SUNAT</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -736,8 +759,9 @@
                                                 <div class="col-lg-10">
                                                     <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
                                                         class="form-control">
+                                                        <option value="" selected></option>
                                                         <option value="DBF">DBF</option>
-                                                        <option value="TXT" selected>TXT</option>
+                                                        <option value="TXT">TXT</option>
                                                         <option value="JSON">JSON</option>
                                                     </select>
                                                 </div>
@@ -749,6 +773,7 @@
                                                 <div class="col-lg-10">
                                                     <select name="txtEstadoComercial" id="txtEstadoComercial"
                                                         class="form-control">
+                                                        <option value="" selected></option>
                                                         <option value="INGRESADO">INGRESADO</option>
                                                         <option value="POR_INSTALAR">POR INSTALAR</option>
                                                         <option value="PRODUCCION">PRODUCCION</option>
@@ -760,8 +785,9 @@
                                                 <label class="col-form-label col-lg-2">Estado</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboEstado" id="cboEstado" class="form-control">
+                                                        <option value="" selected></option>
                                                         <option value="POSIBLE_CLIENTE">Posible Cliente</option>
-                                                        <option value="CLIENTE" selected>Cliente</option>
+                                                        <option value="CLIENTE">Cliente</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -776,8 +802,9 @@
                                                     </div>
 
                                                     <label class="custom-file col-lg-10">
-                                                         
-                                                        <input type="file" name="logo" id="logo" class="custom-file-input">
+
+                                                        <input type="file" name="logo" id="logo"
+                                                            class="custom-file-input">
                                                         <span class="custom-file-label">Ingresa Logo</span>
                                                     </label>
 
@@ -791,7 +818,8 @@
                                         <div class="col-lg-12">
 
                                             <div class="mb-3 col-lg-12 ms-lg-auto text-right">
-                                                <input type="submit" onclick="RegistrarEmpresa()" value="Enviar" class="btn btn-primary " id="btn_registrar">
+                                                <input type="button" onclick="RegistrarEmpresa()" value="Enviar"
+                                                    class="btn btn-primary " id="btn_registrar">
                                             </div>
                                         </div>
 

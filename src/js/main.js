@@ -6,14 +6,19 @@ var tableSucursal = "";
 var tablaContactos = "";
 var tablaAccesos = "";
 var tablaGrupos = '';
-
-
+var ruc_id = document.getElementById("ruc_id");
+var direccion_input = document.getElementById("txtDireccion");
+var estado = document.getElementById("");
+var condicion = document.getElementById("");
+var nombre_co = document.getElementById("txtNombreCo");
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 let id = urlParams.get("id");
 let edit = urlParams.get("edit");
 let rucs = urlParams.get("ruc");
+
+
 
 if (!rucs) {
 } else {
@@ -23,14 +28,8 @@ if (!rucs) {
 
 $(document).ready(function () {
 
-  // Se carga el ruc a los formularios  
 
-  $("#txtRuc").keyup(function () {
-    var ruc = $(this).val();
-    $("#txtIdEmpresa").val(ruc);
-    $("#id-empresa-contacto").val(ruc);
-    $("#txtRucEmpresa").val(ruc);
-  });
+
 
   // Cargando El ubigeo a los Formularios 
 
@@ -43,7 +42,7 @@ $(document).ready(function () {
       ubigeo.forEach((ubigeo) => {
         template += `
 
-        <option value="${ubigeo.id}">${ubigeo.distrito}</option>
+        <option id="${ubigeo.ubigeo}" value="${ubigeo.id}">${ubigeo.distrito}</option>
 
         `;
       });
@@ -294,6 +293,13 @@ $(document).ready(function () {
     });
   });
 
+  $(document).on("click", "#btn_ruc",function(){
+
+     let ruc = $("#txtRuc").val();
+     validarRuc(ruc);
+
+  })
+
 
 });
 
@@ -484,33 +490,33 @@ $(document).on("click", ".btn-delete-logo", function () {
   });
 });
 
-document.getElementById("btn_registrar").addEventListener("click", (e) => {
-  
-  e.preventDefault();
+// document.getElementById("btn_registrar").addEventListener("click", (e) => {
 
-  let frm = document.getElementById("frm_logo");
-  let frmdata = new FormData(frm);
-  $.ajax({
-    method: "POST",
-    url: "../processes/register/registrar-logo.php",
-    data:(frmdata,nombre,ruc),
-    cache: false,
-    processData: false,
-    contentType: false,
-    success: (response) => {
-      console.log(response);
-      let data = JSON.parse(response);
-      data.forEach((data) => {
-        mensajes(
-          data.mensaje,
-          "Ingresaste un Logo 😃",
-          "Seguro falto el nombre 😲"
-        );
-        mostrarLogoss(data.ruc);
-      });
-    },
-  });
-});
+//   e.preventDefault();
+
+//   let frm = document.getElementById("frm_logo");
+//   let frmdata = new FormData(frm);
+//   $.ajax({
+//     method: "POST",
+//     url: "../processes/register/registrar-logo.php",
+//     data: (frmdata, nombre, ruc),
+//     cache: false,
+//     processData: false,
+//     contentType: false,
+//     success: (response) => {
+//       console.log(response);
+//       let data = JSON.parse(response);
+//       data.forEach((data) => {
+//         mensajes(
+//           data.mensaje,
+//           "Ingresaste un Logo 😃",
+//           "Seguro falto el nombre 😲"
+//         );
+//         mostrarLogoss(data.ruc);
+//       });
+//     },
+//   });
+// });
 
 //CRUD ACCESOS
 
@@ -668,24 +674,22 @@ function RegistrarEmpresa() {
   $.ajax({
     url: url,
     type: "POST",
-    data: $(frm).serialize(),frmdata,
+    data: $(frm).serialize(),
     cache: false,
     processData: false,
     contenType: false,
     success: function (response) {
-      console.log(response);
       let data = JSON.parse(response);
-      
       data.forEach((data) => {
         let mensaje = data.mensaje;
         let ruc = data.ruc;
-        document.getElementById("ruc_id").value = ruc;
+        ruc_id.value = ruc;
 
         switch (true) {
           case !ruc:
             mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
-          break;
-          
+            break;
+
           case ruc && mensaje == "ingresado":
             tableSucursal.destroy;
             tablaContactos.destroy;
@@ -707,4 +711,57 @@ function RegistrarEmpresa() {
 }
 
 
+
+
+function validarRuc() {
+  $.ajax({
+    url: '../processes/validator/consulta-ruc.php?',
+    data: $("#txtRuc").serialize(),
+    type: 'POST',
+    success: function (res) {
+      console.log(res);
+      let data = JSON.parse(res);
+
+      console.log(data);
+
+      data.forEach((data) => {
+
+        let nombre = data.data.nombre;
+        let condicion = data.data.condicion;
+        let estado = data.data.estado;
+        let ubigeo = data.data.ubigeo;
+        let direccion = data.data.direccion;
+
+        direccion_input.value = direccion;
+        nombre_co.value = nombre;
+
+        //capturar la opcion con id = ubigeo 
+        let ubigeo_option = document.getElementById(`${ubigeo}`);
+        //seleccionarla
+        ubigeo_option.setAttribute("selected", "true")
+
+        console.log(nombre);
+        console.log(condicion);
+        console.log(estado);
+        console.log(ubigeo);
+        console.log(direccion);
+
+        switch (estado) {
+          case estado = "ACTIVO":
+            console.log("Estado activo")
+            break;
+
+          case estado = "INACTIVO":
+            console.log("estado inactivo");
+            break;
+
+          default:
+            break;
+        }
+
+      })
+
+    },
+  })
+}
 // CARGAR BANDERAAS EN EL FORMULARIO

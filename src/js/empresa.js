@@ -1,3 +1,5 @@
+let tableSucursal = "";
+
 
 $(document).ready(function () {
   //empresa cargando data
@@ -97,6 +99,15 @@ $(document).ready(function () {
 
   })
 
+  $(document).on("click", "#btn-accesos", function () {
+
+    let data = tableSucursal.row($(this).parents()).data();
+    let id = data.id;
+    cargarAccesos(id);
+
+  })
+
+  
   function cargarSucursal(ruc) {
 
     tableSucursal = $("#tabla_sucursals").DataTable({
@@ -114,21 +125,20 @@ $(document).ready(function () {
         { data: "direccion" },
         { data: "ubigeo" },
         {
-          defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
-                            <i class="bi bi-shield-check btn-agregar-acceso text-success"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
-                            <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>
+          defaultContent: `<div>
+                            <i class="bi bi-shield-check btn-agregar-acceso text-success"  data-bs-toggle="modal" id="btn-accesos" data-bs-target="#accesos"></i></div>
           `,
         }
       ],
       language: {
         decimal: "",
         emptyTable: "No hay información",
-        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        info: "La Empresa tiene _TOTAL_ Sucursales",
         infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
         thousands: ",",
-        lengthMenu: "Mostrar _MENU_ Entradas",
+        lengthMenu: "Mostrar _MENU_ Sucursales",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: "",
@@ -148,8 +158,8 @@ $(document).ready(function () {
       "scrollY": "358px",
       "scrollCollapse": true,
       "paging": false,
-      "order": [[ 0, 'desc' ], [ 1, 'desc' ]],
-      destroy:true,
+      "order": [[0, 'desc'], [1, 'desc']],
+      destroy: true,
       ajax: {
         url: "../processes/mostrar-contactos.php?id=" + ruc,
         dataSrc: "data"
@@ -166,7 +176,7 @@ $(document).ready(function () {
           <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
           `,
         },
-       
+
       ],
       language: {
         decimal: "",
@@ -190,6 +200,48 @@ $(document).ready(function () {
       },
     });
   }
-  
+
+
+  function cargarAccesos(id_sucursal) {
+    tablaAccesos = $("#tabla_accesos").DataTable({
+      destroy: true,
+      "scrollY": "358px",
+      "scrollCollapse": true,
+      "paging": false,
+      "order": [[0, 'desc'], [1, 'desc']],
+      ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
+      columns: [
+        { data: "id" },
+        { data: "id_sucursal" },
+        { data: "nombreAcceso" },
+        { data: "idAcceso" },
+        { data: "contrasena" },
+        {
+          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>
+                           <i class="bi bi-x-circle-fill text-danger btn-delete-acceso"></i>`,
+        },
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _TOTAL_ Accesos",
+        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "Mostrar _MENU_ Entradas",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "Accesos ",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
+      },
+    });
+  }
 
 });

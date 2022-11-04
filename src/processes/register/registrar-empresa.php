@@ -2,13 +2,10 @@
 extract($_POST);
 
 include '../../connection/basedatos.php';
-include '../validator/consulta-ruc.php';
 $empresas = new BaseDatos();
-$sunat = new Sunat();
 
-//$res = $sunat->consultaRucSunat($txtRuc);
 
-if (isset($txtRuc) and !empty($txtRuc)|| isset($txtNombreCo) and !empty($txtNombreCo)|| isset($txtRazonSocial) and !empty($txtRazonSocial)||isset($txtDireccion) and !empty($txtDireccion)){
+if (isset($txtRuc) and !empty($txtRuc)|| isset($txtNombreCo) and !empty($txtNombreCo)|| isset($txtRazonSocial) and !empty($txtRazonSocial)||isset($txtDireccion) and !empty($txtDireccion)||isset($txtIdGrupo) and !empty($txtIdGrupo)||isset($cboTipoPersona) and !empty($cboTipoPersona)||isset($cboIdu) and !empty($cboIdu)||isset($cboTipoSistema) and !empty($cboTipoSistema)||isset($cboIdTipoIntegracion) and !empty($cboIdTipoIntegracion)){
    
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo ?? "----");
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
