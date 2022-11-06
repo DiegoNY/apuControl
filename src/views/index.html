@@ -98,11 +98,12 @@
         <div class="navbar-brand text-center text-lg-left">
             <a href="index.html" class="d-inline-block">
                 <img src="../img/ellipsis-solid (1).svg" class="d-none d-sm-block" alt="">
-                <img src="../../../../global_assets/images/logo_icon_light.png" class="d-sm-none" alt="">
+                <img src="../global_assets/images/logo_icon_light.png" class="d-sm-none" alt="">
             </a>
         </div>
 
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
+
             <ul class="navbar-nav">
                 <!-- <li class="nav-item dropdown">
                     <a href="#" class="navbar-nav-link" data-toggle="dropdown">
@@ -219,7 +220,7 @@
                             <ul class="media-list">
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="../../../../global_assets/images/demo/users/face18.jpg" width="36"
+                                        <img src="../global_assets/images/demo/users/face18.jpg" width="36"
                                             height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
@@ -232,7 +233,7 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="../../../../global_assets/images/demo/users/face24.jpg" width="36"
+                                        <img src="../global_assets/images/demo/users/face24.jpg" width="36"
                                             height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
@@ -245,7 +246,7 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="../../../../global_assets/images/demo/users/face17.jpg" width="36"
+                                        <img src="../global_assets/images/demo/users/face17.jpg" width="36"
                                             height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
@@ -258,7 +259,7 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="../../../../global_assets/images/demo/users/face19.jpg" width="36"
+                                        <img src="../global_assets/images/demo/users/face19.jpg" width="36"
                                             height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
@@ -271,7 +272,7 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="../../../../global_assets/images/demo/users/face16.jpg" width="36"
+                                        <img src="../global_assets/images/demo/users/face16.jpg" width="36"
                                             height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
@@ -291,6 +292,7 @@
                     </div>
                 </li>
             </ul>
+            
         </div>
 
         <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
@@ -365,7 +367,7 @@
 
                             <li class="media">
                                 <div class="mr-3">
-                                    <img src="../../../../global_assets/images/demo/users/face4.jpg" width="36"
+                                    <img src="../global_assets/images/demo/users/face4.jpg" width="36"
                                         height="36" class="rounded-circle" alt="">
                                 </div>
                                 <div class="media-body">
@@ -382,7 +384,7 @@
 
                             <li class="media">
                                 <div class="mr-3">
-                                    <img src="../../../../global_assets/images/demo/users/face25.jpg" width="36"
+                                    <img src="../global_assets/images/demo/users/face25.jpg" width="36"
                                         height="36" class="rounded-circle" alt="">
                                 </div>
                                 <div class="media-body">
@@ -425,6 +427,7 @@
                 </div>
             </li>
         </ul>
+
     </div>
     <!-- /main navbar -->
 
@@ -633,14 +636,13 @@
 
                                                     <label class="col-form-label col-lg-3">Ruc</label>
                                                     
-                                                    <div class="col-lg-9">
+                                                    <div class="col-lg-6">
                                                         <input type="text" ruc_ids value="" maxlength="11" name="txtRuc"
                                                             id="txtRuc" class="form-control">
                                                     </div>
 
-                                                    <input type="button" id="btn_ruc">
-                                                    Enviar
-                                                    </input>
+                                                    <input type="button" id="btn_ruc" class="form-control col-lg-3" value="Validar">
+                                    
 
                                                 </div>
 
@@ -728,7 +730,7 @@
                                                 Sistema</legend>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">T.Sistema</label>
+                                                <label class="col-form-label col-lg-2">T. Sistema</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoSistema" id="cboTipoSistema"
                                                         class="form-control ">
@@ -742,7 +744,7 @@
 
                                             <div class="form-group row">
 
-                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T.Envio</label>
+                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T. Envio</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoEnvio" id="cboTipoEnvio" class="form-control">
                                                         <option value="" selected></option>
@@ -755,7 +757,7 @@
                                             <div class="form-group row">
 
                                                 <label for="cboIdGrupo"
-                                                    class="col-form-label col-lg-2">T.Integracion</label>
+                                                    class="col-form-label col-lg-2">T. Integracion</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
                                                         class="form-control">
@@ -769,7 +771,7 @@
 
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">E.Comercial</label>
+                                                <label class="col-form-label col-lg-2">E. Comercial</label>
                                                 <div class="col-lg-10">
                                                     <select name="txtEstadoComercial" id="txtEstadoComercial"
                                                         class="form-control">
@@ -1298,6 +1300,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/main.js"></script>
     <!--- Scripts-->
+
 </body>
 
 <!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/default/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Aug 2022 19:50:27 GMT -->

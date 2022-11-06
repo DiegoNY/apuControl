@@ -303,9 +303,6 @@ $(document).ready(function () {
 
 });
 
-$(function () {
-  $("#tabs").tabs();
-});
 
 function cargarSucursal(ruc) {
   tableSucursal.destroy();
