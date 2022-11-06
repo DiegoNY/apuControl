@@ -761,4 +761,5 @@ function validarRuc() {
     },
   })
 }
+
 // CARGAR BANDERAAS EN EL FORMULARIO
