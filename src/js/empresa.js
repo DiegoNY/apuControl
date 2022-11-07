@@ -189,7 +189,7 @@ $(document).ready(function () {
         lengthMenu: "Mostrar _MENU_ Entradas",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
-        search: "Contactos ",
+        search: " ",
         zeroRecords: "Sin resultados encontrados",
         paginate: {
           first: "Primero",
@@ -232,7 +232,7 @@ $(document).ready(function () {
         lengthMenu: "Mostrar _MENU_ Entradas",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
-        search: "Accesos ",
+        search: " ",
         zeroRecords: "Sin resultados encontrados",
         paginate: {
           first: "Primero",

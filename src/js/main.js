@@ -10,7 +10,7 @@ var ruc_id = document.getElementById("ruc_id");
 var direccion_input = document.getElementById("txtDireccion");
 var estado = document.getElementById("");
 var condicion = document.getElementById("");
-var nombre_co = document.getElementById("txtNombreCo");
+var razon_so= document.getElementById("txtRazonSocial");
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
@@ -293,10 +293,10 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", "#btn_ruc",function(){
+  $(document).on("click", "#btn_ruc", function () {
 
-     let ruc = $("#txtRuc").val();
-     validarRuc(ruc);
+    let ruc = $("#txtRuc").val();
+    validarRuc(ruc);
 
   })
 
@@ -385,7 +385,7 @@ function cargarContactos(ruc) {
       lengthMenu: "Mostrar _MENU_ Entradas",
       loadingRecords: "Cargando...",
       processing: "Procesando...",
-      search: "Contactos ",
+      search: "",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -443,12 +443,12 @@ function cargarAccesos(id_sucursal) {
 function mensajes(response, mensaje, error) {
 
   if (response == "ingresado") {
-    Swal.fire("Registrado con exito", `${mensaje}`, "success").then(() => {
+    Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
       mostrarLogoss();
     });
   } else {
-    Swal.fire("Completa todos los campos", `${error}`, "error").then(() => {
+    Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
       console.log("no hay datos");
     });
   }
@@ -708,35 +708,31 @@ function RegistrarEmpresa() {
 }
 
 
-
-
 function validarRuc() {
   $.ajax({
     url: '../processes/validator/consulta-ruc.php?',
     data: $("#txtRuc").serialize(),
     type: 'POST',
     success: function (res) {
-      
+
       let data = JSON.parse(res);
       console.log(data);
 
       data.forEach((data) => {
 
-        let nombre = data.data.nombre;
+        
+
+        let razon = data.data.nombre || "";
         let condicion = data.data.condicion;
         let estado = data.data.estado;
         let ubigeo = data.data.ubigeo;
-        let direccion = data.data.direccion;
+        let direccion = data.data.direccion || "";
+
 
         direccion_input.value = direccion;
-        nombre_co.value = nombre;
+        razon_so.value = razon;
 
-        //capturar la opcion con id = ubigeo 
-        let ubigeo_option = document.getElementById(`${ubigeo}`);
-        //seleccionarla
-        ubigeo_option.setAttribute("selected", "true")
 
-        console.log(nombre);
         console.log(condicion);
         console.log(estado);
         console.log(ubigeo);
@@ -745,11 +741,17 @@ function validarRuc() {
         switch (estado) {
           case estado = "ACTIVO":
             console.log("Estado activo")
+            informacionEmpresaNueva(estado, condicion,razon);
+            //capturar la opcion con id = ubigeo 
+            let ubigeo_option = document.getElementById(`${ubigeo}`);
+            //seleccionarla
+            ubigeo_option.setAttribute("selected", "true")
             break;
 
           case estado = "INACTIVO":
             console.log("estado inactivo");
             break;
+
 
           default:
             break;
@@ -760,5 +762,44 @@ function validarRuc() {
     },
   })
 }
+
+
+function informacionEmpresaNueva(estado, condicion, nombre) {
+
+  Swal.fire({
+    title: `${nombre}`,
+    html: `
+    <div class="col-lg-12">
+
+        <div class="card-body">
+
+
+         <div class="card-body">
+          
+          <div>
+
+            <p class="text-center mb-2 font-size-sm">Estado <span class="badge bg-success text-light">${estado}</span></p>
+
+          </div>
+
+          <hr>
+
+          <p class="text-center mb-2 font-size-sm"> Condición  <span class="badge bg-info text-light">${condicion}</span></p>
+
+         </div>
+
+
+        </div>
+
+      </div>`,
+    confirm: 'Sign in',
+    focusConfirm: false,
+
+  }).then((result) => {
+
+  })
+
+}
+
 
 // CARGAR BANDERAAS EN EL FORMULARIO
