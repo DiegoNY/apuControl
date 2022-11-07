@@ -670,12 +670,14 @@ function RegistrarEmpresa() {
   let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
   $.ajax({
     url: url,
-    type: "POST",
+    type: "GET",
     data: $(frm).serialize(),
     cache: false,
     processData: false,
     contenType: false,
     success: function (response) {
+      console.log(response);
+
       let data = JSON.parse(response);
       data.forEach((data) => {
         let mensaje = data.mensaje;
@@ -704,7 +706,7 @@ function RegistrarEmpresa() {
       })
     },
   });
-  $("#frm_empresa").trigger("reset");
+  //$("#frm_empresa").trigger("reset");
 }
 
 
@@ -728,7 +730,7 @@ function validarRuc() {
         let estado = data.data.estado;
         let ubigeo = data.data.ubigeo;
         let direccion = data.data.direccion || "";
-        let error = data.error
+        let error = data.data.error;
 
 
         direccion_input.value = direccion;
@@ -738,9 +740,20 @@ function validarRuc() {
 
         switch (error) {
           case error = "RUC debe contener 11 digitos":
-
+            Swal.fire(
+              'Error',
+              `${error}`,
+              'warning'
+            )
             break;
 
+          case error = "RUC invalido":
+            Swal.fire(
+              'Error',
+              `${error}`,
+              'warning'
+            )
+            break;
           default:
             break;
         }
@@ -748,18 +761,24 @@ function validarRuc() {
 
         switch (estado) {
           case estado = "ACTIVO":
-            console.log("Estado activo")
+
             informacionEmpresaNueva(estado, condicion, razon);
             //capturar la opcion con id = ubigeo 
             let ubigeo_option = document.getElementById(`${ubigeo}`);
             //seleccionarla
-            ubigeo_option.setAttribute("selected", "true")
+            ubigeo_option.setAttribute("selected", "true");
+
             break;
 
           case estado = "INACTIVO":
-            console.log("estado inactivo");
-            break;
 
+            Swal.fire(
+              'Error',
+              `<p class="text-center mb-2 font-size-sm">Estado <span class="badge bg-success text-light">${estado}</span></p>
+              `,
+              'warning'
+            )
+            break;
 
           default:
             break;
@@ -770,6 +789,7 @@ function validarRuc() {
     },
   })
 }
+
 
 
 function informacionEmpresaNueva(estado, condicion, nombre) {

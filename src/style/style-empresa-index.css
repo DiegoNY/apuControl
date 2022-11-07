@@ -2,4 +2,13 @@
     display: none;
 }
 
+.opciones-tabla-empresa{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    
+}
 
+.opciones-tabla-empresa i{
+    cursor: pointer;
+}

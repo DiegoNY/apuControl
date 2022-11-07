@@ -43,6 +43,3 @@ export function eliminar(mensaje, id, tabla, url) {
 
 }
 
-export function mensajeSunat(error){
-
-}

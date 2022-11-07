@@ -115,14 +115,35 @@ class BaseDatos
     //CRUD EMPRESAS
     public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial)
     {
-        $consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial');";
-        $res = mysqli_query($this->con, $consulta);
+        $validar = mysqli_query($this->con,"SELECT count(*) as total FROM empresa WHERE ruc = '$ruc'");
+        $datos = mysqli_fetch_array($validar);
 
-        if ($res == TRUE) {
+        if($datos['total'] == 0)
+        {
+            $consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial');";
+            $res = mysqli_query($this->con, $consulta);
             return TRUE;
-        } else {
+        }else{
             return FALSE;
         }
+        
+        /*$consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial');";
+        //;
+
+        if(){
+            return TRUE;
+        }else{
+            
+        }*/
+
+
+        /*echo $res;
+        if ($res == TRUE) {
+            
+        } else {
+            
+        }*/
+    
     }
 
     public function verEmpresas()

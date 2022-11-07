@@ -1,5 +1,5 @@
 <?php
-extract($_POST);
+extract($_GET);
 
 include '../../connection/basedatos.php';
 $empresas = new BaseDatos();
@@ -22,19 +22,21 @@ if (isset($txtRuc) and !empty($txtRuc)|| isset($txtNombreCo) and !empty($txtNomb
     $txtEliminada = $empresas->sanitizar( $txtEliminada);
     $cboEstado = $empresas->sanitizar($cboEstado);
     $txtEstadoComercial= $empresas->sanitizar($txtEstadoComercial);
-
+    //echo 'dasdas';die;
     $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial);
-    //se registra una sucursal
-    $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"----",$cboIdu,$txtEliminada,$txtRuc);
     
+   
   
     $json = array();
     if ($response == TRUE) {
+        $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"----",$cboIdu,$txtEliminada,$txtRuc);
         $json[] = array('mensaje'=>"ingresado",'ruc'=>$txtRuc);
         $jsonString = json_encode($json);
         echo $jsonString;
     } else {
-        echo "sin datos";
+        $json[] = array('mensaje'=>"no se inserto");
+        $jsonString = json_encode($json);
+        echo $jsonString;
     }
 
 }else{
