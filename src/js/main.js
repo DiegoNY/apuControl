@@ -732,8 +732,11 @@ function validarRuc() {
         nombre_co.value = nombre;
 
         //capturar la opcion con id = ubigeo 
+
         let ubigeo_option = document.getElementById(`${ubigeo}`);
+        
         //seleccionarla
+
         ubigeo_option.setAttribute("selected", "true")
 
         console.log(nombre);
