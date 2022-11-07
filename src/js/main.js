@@ -10,7 +10,7 @@ var ruc_id = document.getElementById("ruc_id");
 var direccion_input = document.getElementById("txtDireccion");
 var estado = document.getElementById("");
 var condicion = document.getElementById("");
-var razon_so= document.getElementById("txtRazonSocial");
+var razon_so = document.getElementById("txtRazonSocial");
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
@@ -320,9 +320,9 @@ function cargarSucursal(ruc) {
       { data: "direccion" },
       { data: "ubigeo" },
       {
-        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal"></i>
+        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
                           <i class="bi bi-shield-check btn-agregar-acceso text-success"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
-                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"></i>
+                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"  ></i>
         `,
       }
     ],
@@ -718,30 +718,38 @@ function validarRuc() {
       let data = JSON.parse(res);
       console.log(data);
 
+
+
       data.forEach((data) => {
 
-        
 
         let razon = data.data.nombre || "";
         let condicion = data.data.condicion;
         let estado = data.data.estado;
         let ubigeo = data.data.ubigeo;
         let direccion = data.data.direccion || "";
+        let error = data.error
 
 
         direccion_input.value = direccion;
         razon_so.value = razon;
 
 
-        console.log(condicion);
-        console.log(estado);
-        console.log(ubigeo);
-        console.log(direccion);
+
+        switch (error) {
+          case error = "RUC debe contener 11 digitos":
+
+            break;
+
+          default:
+            break;
+        }
+
 
         switch (estado) {
           case estado = "ACTIVO":
             console.log("Estado activo")
-            informacionEmpresaNueva(estado, condicion,razon);
+            informacionEmpresaNueva(estado, condicion, razon);
             //capturar la opcion con id = ubigeo 
             let ubigeo_option = document.getElementById(`${ubigeo}`);
             //seleccionarla

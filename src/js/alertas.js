@@ -16,44 +16,7 @@ export function mensajes(response, mensaje, error) {
 }
 
 export function eliminar(mensaje, id, tabla, url) {
-    // Swal.fire({
-    //     title: 'Estas Seguro ?',
-    //     text: mensaje,
-    //     icon: '',
-    //     showCancelButton: true,
-    //     confirmButtonColor: '#3085d6',
-    //     cancelButtonColor: '#d33',
-    //     confirmButtonText: 'Si, Eliminar ahora!'
-    // }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         Swal.fire(
-    //             'Borrado',
-    //             '',
-    //             'success'
-    //         )
-
-    //         $.post(url, { id }, function (response) {
-    //             console.log(response);
-    //             tabla.ajax.reload();
-    //         });
-    //     }
-    // })
-
-    // Swal.fire({
-    //     title: mensaje,
-    //     showDenyButton: true,
-    //     showCancelButton: true,
-    //     confirmButtonText: 'Eliminar',
-    //   }).then((result) => {
-    //     /* Read more about isConfirmed, isDenied below */
-    //     if (result.isConfirmed) {
-    //       Swal.fire('Eliminado', '', 'danger')
-        
-    //     } else if (result.isDenied) {
-    //       Swal.fire('No eliminaste la empresa', '', 'info')
-    //     }
-    //   })
-
+   
       Swal.fire({
         title: 'Eliminaras una empresa',
         icon: 'info',
@@ -80,3 +43,6 @@ export function eliminar(mensaje, id, tabla, url) {
 
 }
 
+export function mensajeSunat(error){
+
+}

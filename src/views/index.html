@@ -591,38 +591,45 @@
 
                                             <div class="form-group row">
 
-                                                <div class=" row col-lg-6">
+                                                <div class="content row">
 
-                                                    <label class="col-form-label col-lg-2">Ruc</label>
 
-                                                    <div class="col-lg-9 row">
+                                                    <div class=" row col-lg-6">
 
-                                                        <div class="col-lg-8 p-0">
-                                                            <input type="text" ruc_ids value="" maxlength="11"
-                                                                name="txtRuc" id="txtRuc" class="form-control">
+                                                        <label class="col-form-label col-lg-2">Ruc</label>
+
+                                                        <div class="col-lg-10 row">
+
+                                                            <div class="col-lg-8 p-0">
+                                                                <input type="text" ruc_ids value="" maxlength="11"
+                                                                    name="txtRuc" id="txtRuc" class="form-control">
+                                                            </div>
+
+                                                            <input type="button" id="btn_ruc"
+                                                                class="form-control col-lg-4" value="Validar">
+
                                                         </div>
 
-                                                        <input type="button" id="btn_ruc" class="form-control col-lg-4"
-                                                            value="Validar">
+
 
                                                     </div>
 
 
+                                                    <div class=" row col-lg-6">
 
-                                                </div>
+                                                        <label for="cboIdGrupo"
+                                                            class="col-form-label col-lg-3">Grupo</label>
+                                                        <div class="col-lg-9">
+                                                            <select id="cbogrupo" name="txtIdGrupo"
+                                                                class="form-control">
+                                                                <option value="value">value</option>
+                                                            </select>
+                                                        </div>
 
-
-                                                <div class=" row col-lg-6">
-
-                                                    <label for="cboIdGrupo"
-                                                        class="col-form-label col-lg-3">Grupo</label>
-                                                    <div class="col-lg-9">
-                                                        <select id="cbogrupo" name="txtIdGrupo" class="form-control">
-                                                            <option value="value">value</option>
-                                                        </select>
                                                     </div>
 
                                                 </div>
+
 
                                             </div>
 
@@ -850,7 +857,8 @@
                                             <div class="card-body row">
 
                                                 <div class="col-lg-5">
-                                                    <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#sucursal">
+                                                    <button class=" btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#sucursal">
                                                         Nueva Sucursal +
                                                     </button>
                                                 </div>
@@ -935,8 +943,9 @@
                                             <div class="card-body row">
 
                                                 <div class="col-lg-5">
-                                                    <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactos">
-                                                        Nuevo Contacto + 
+                                                    <button class=" btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#contactos">
+                                                        Nuevo Contacto +
                                                     </button>
                                                 </div>
 
@@ -1014,7 +1023,7 @@
                                             </div>
 
                                         </div>
-                                       
+
                                     </div>
                                 </div>
 
@@ -1211,33 +1220,30 @@
                             <div class="row">
                                 <div class="col-lg-10 offset-lg-1">
                                     <form id="frm-contactos">
-                                        <input type="hidden" id="id-contacto"
-                                            name="id_contacto">
+                                        <input type="hidden" id="id-contacto" name="id_contacto">
 
                                         <div class="form-group">
                                             <label>Ingresa Nombre:</label>
-                                            <input type="text" class="form-control"
-                                                name="txtNombre" id="nombre-contacto">
+                                            <input type="text" class="form-control" name="txtNombre"
+                                                id="nombre-contacto">
                                         </div>
 
 
                                         <div class="form-group">
                                             <label>Ingresa Cargo:</label>
-                                            <input type="text" class="form-control"
-                                                name="txtCargo" id="cargo-contacto">
+                                            <input type="text" class="form-control" name="txtCargo" id="cargo-contacto">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Ingresa Correo:</label>
-                                            <input type="text" class="form-control"
-                                                name="txtCorreo" id="correo-contacto">
+                                            <input type="text" class="form-control" name="txtCorreo"
+                                                id="correo-contacto">
                                         </div>
 
 
                                         <div class="form-group">
                                             <label>Ingresa Telefono:</label>
-                                            <input type="text" class="form-control"
-                                                name="txtTelefono"
+                                            <input type="text" class="form-control" name="txtTelefono"
                                                 id="telefono-contacto">
                                         </div>
 
@@ -1245,8 +1251,7 @@
                                         <div class="inactive">
 
                                             <label for="txtIdEmpresa">Id Empresa</label>
-                                            <input type="text" name="txtIdEmpresa"
-                                                id="txtIdEmpresa">
+                                            <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
 
                                         </div>
 
@@ -1254,10 +1259,8 @@
                                         <input type="hidden" value="1" name="txtEstado">
 
                                         <div class="text-right">
-                                            <button type="button" value="Registrar"
-                                                onclick="registrarContactos();"
-                                                class="btn text-light"
-                                                style="background-color:  #31334D;">Enviar<i
+                                            <button type="button" value="Registrar" onclick="registrarContactos();"
+                                                class="btn text-light" style="background-color:  #31334D;">Enviar<i
                                                     class="icon-paperplane ml-2"></i></button>
                                         </div>
                                     </form>
@@ -1269,7 +1272,7 @@
                     </div>
 
                 </div>
-            
+
             </div>
         </div>
     </div>
