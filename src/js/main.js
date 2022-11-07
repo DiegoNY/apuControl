@@ -716,9 +716,8 @@ function validarRuc() {
     data: $("#txtRuc").serialize(),
     type: 'POST',
     success: function (res) {
-      console.log(res);
+      
       let data = JSON.parse(res);
-
       console.log(data);
 
       data.forEach((data) => {
