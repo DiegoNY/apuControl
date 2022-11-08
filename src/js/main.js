@@ -19,7 +19,7 @@ const urlParams = new URLSearchParams(valores);
 let id = urlParams.get("id");
 let edit = urlParams.get("edit");
 let rucs = urlParams.get("ruc");
-
+const btn_registrar_empresa = document.getElementById("btn_registrar");
 
 
 if (!rucs) {
@@ -441,6 +441,15 @@ $(document).ready(function () {
 });
 
 
+
+document.getElementById("btn_registrar").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  let frm = document.getElementById("frm_empresa");
+  // let frmdata = new FormData(frm);
+
+});
+
 function cargarSucursal(ruc) {
   tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
@@ -813,46 +822,29 @@ function editarEmpresas(id, edit) {
 
 function RegistrarEmpresa() {
 
+ 
+  let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
   let frm = document.getElementById("frm_empresa");
   let frmdata = new FormData(frm);
-  let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
+
   $.ajax({
+    method: "post",
     url: url,
-    type: "GET",
-    data: $(frm).serialize(),
+    data: frmdata,
     cache: false,
     processData: false,
-    contenType: false,
-    success: function (response) {
-
+    contentType: false,
+    success: (response) => {
       console.log(response);
-
-      let data = JSON.parse(response);
-      data.forEach((data) => {
-        let mensaje = data.mensaje;
-        let ruc = data.ruc;
-        ruc_id.value = ruc;
-
-        switch (true) {
-          case !ruc:
-            mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
-            break;
-
-          case ruc && mensaje == "ingresado":
-            tableSucursal.destroy;
-            tablaContactos.destroy;
-            cargarSucursal(ruc);
-            cargarContactos(ruc);
-            mostrarLogoss(ruc);
-            mensajes(mensaje, "Empresa Ingresada Con exito", "Te faltan Datos");
-            break;
-          case ruc && mensaje == "editado":
-            mensajes("ingresado", "Editaste una Empresa con exito :D", "error");
-          default:
-            break;
-        }
-
-      })
+      //let data = JSON.parse(response);
+      /*data.forEach((data) => {
+        mensajes(
+          data.mensaje,
+          "Ingresaste un Logo 😃",
+          "Seguro falto el nombre 😲"
+        );
+        mostrarLogoss(data.ruc);
+      });*/
     },
   });
 }

@@ -1,7 +1,26 @@
 <?php
-extract($_GET);
-
 include '../../connection/basedatos.php';
+
+$ruc = $_POST['txtRuc'];
+$nombre = $_POST['txtRazonSocial'];
+$logo = $_FILES['logo']['name'];
+$temporal = $_FILES['logo']['tmp_name'];
+
+
+if (isset($nombre) && !empty($nombre)){
+    $carpeta = './img';
+    $ruta = $carpeta . '/' . $logo;
+    move_uploaded_file($temporal, "../.$carpeta". '/' . $logo);
+
+    $bandera = new BaseDatos();
+    $res =  $bandera->ingresarBandera($ruta, $nombre,$ruc);
+    
+}
+
+
+extract($_POST);
+
+
 $empresas = new BaseDatos();
 
 
@@ -22,10 +41,8 @@ if (isset($txtRuc) and !empty($txtRuc)|| isset($txtNombreCo) and !empty($txtNomb
     $txtEliminada = $empresas->sanitizar( $txtEliminada);
     $cboEstado = $empresas->sanitizar($cboEstado);
     $txtEstadoComercial= $empresas->sanitizar($txtEstadoComercial);
-    //echo 'dasdas';die;
     $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial);
-    
-   
+
   
     $json = array();
     if ($response == TRUE) {

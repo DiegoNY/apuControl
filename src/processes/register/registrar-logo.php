@@ -15,7 +15,7 @@ if (isset($nombre) && !empty($nombre)){
     $bandera = new BaseDatos();
     $res =  $bandera->ingresarBandera($ruta, $nombre,$ruc);
 
-$json = array();
+    $json = array();
     if ($res === TRUE) {
         
         $json[] = array('mensaje'=>"ingresado",'ruc'=>$ruc);

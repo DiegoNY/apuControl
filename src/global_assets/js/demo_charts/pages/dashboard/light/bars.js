@@ -38,8 +38,8 @@ var DashboardBars = function() {
             }
 
             // Main variables
-            var d3Container = d3.select(element),
-                width = d3Container.node().getBoundingClientRect().width;
+            //var d3Container = d3.select(element),
+            //   width = d3Container.node().getBoundingClientRect().width;
             
 
 
