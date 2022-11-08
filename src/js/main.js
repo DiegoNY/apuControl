@@ -321,7 +321,8 @@ function cargarSucursal(ruc) {
       { data: "ubigeo" },
       {
         defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
-                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"  ></i>
+                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
+                          <i class="bi bi-x-circle-fill text-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         `,
       }
     ],
