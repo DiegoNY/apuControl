@@ -28,7 +28,7 @@ $(document).ready(function () {
       { data: "tipo_envio" },
       { data: "estado_comercial" },
       {
-        defaultContent: `<div class="dropdown  ">
+        defaultContent: `<div class="opciones-tabla-empresa"><div class="dropdown  ">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-calendar3 text-primary"></i>
       </button>
@@ -38,7 +38,7 @@ $(document).ready(function () {
         <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
         <li class="btn-delet"><a class="dropdown-item">Eliminar</a></li>
       </ul>
-    </div>`,
+    </div><div><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#empresa" id="btn-contactos"></i></div></div>`,
       },
     ],
     language: {
@@ -189,7 +189,7 @@ $(document).ready(function () {
         lengthMenu: "Mostrar _MENU_ Entradas",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
-        search: "Contactos ",
+        search: " ",
         zeroRecords: "Sin resultados encontrados",
         paginate: {
           first: "Primero",
@@ -232,7 +232,7 @@ $(document).ready(function () {
         lengthMenu: "Mostrar _MENU_ Entradas",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
-        search: "Accesos ",
+        search: " ",
         zeroRecords: "Sin resultados encontrados",
         paginate: {
           first: "Primero",

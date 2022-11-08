@@ -542,67 +542,24 @@
             <!-- Inner content -->
             <div class="content-inner">
 
-                <!-- Page header -->
-                <div class="page-header page-header-light">
-                    <div class="page-header-content header-elements-lg-inline">
-                        <div class="page-title d-flex">
-                            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Dato</span>
-                                -
-                                Empresas</h4>
-                            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+               <!-- Page header -->
+               <div class="page-header page-header-light">
+
+
+                <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                            <span class="breadcrumb-item active">Ingreso de Empresa</span>
                         </div>
 
-                        <div class="header-elements d-none">
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn btn-link btn-float text-body"><i
-                                        class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-                                <a href="#" class="btn btn-link btn-float text-body"><i
-                                        class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-                                <a href="#" class="btn btn-link btn-float text-body"><i
-                                        class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
-                            </div>
-                        </div>
+                        <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
                     </div>
 
-                    <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
-                        <div class="d-flex">
-                            <div class="breadcrumb">
-                                <a href="vista-empresa.html" class="breadcrumb-item"><i
-                                        class="bi bi-columns-gap bg-black"></i> Datos</a>
-                                <span class="breadcrumb-item active">Empresas</span>
-                            </div>
 
-                            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
-                        </div>
-
-                        <div class="header-elements d-none">
-                            <div class="breadcrumb justify-content-center">
-                                <a href="#" class="breadcrumb-elements-item">
-                                    <i class="icon-comment-discussion mr-2"></i>
-                                    Support
-                                </a>
-
-                                <div class="breadcrumb-elements-item dropdown p-0">
-                                    <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
-                                        <i class="icon-gear mr-2"></i>
-                                        Settings
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item"><i class="icon-user-lock"></i> Account
-                                            security</a>
-                                        <a href="#" class="dropdown-item"><i class="icon-statistics"></i> Analytics</a>
-                                        <a href="#" class="dropdown-item"><i class="icon-accessibility"></i>
-                                            Accessibility</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item"><i class="icon-gear"></i> All settings</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!-- /page header -->
+            </div>
+            <!-- /page header -->
 
                 <!-- Content area -->
                 <div class="content">
@@ -618,7 +575,7 @@
                                 <div class="card-body">
 
                                     <table class="table datatable-basic " id="tabla_empresasas">
-                                        <thead style="background-color: #252B36; color: white;">
+                                        <thead class="display" style="background-color: #252B36; width:100%; color: white;">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Logo</th>
@@ -671,7 +628,7 @@
                             <!-- Modal -->
                             <div class="modal fade" id="sucursales" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header py-2 text-light"
                                             style="background-color: #252B36; color: white;">
@@ -685,12 +642,11 @@
 
 
                                                     <div class="gridjs-example-server-search border-top">
-                                                        <div role="complementary" class="gridjs gridjs-container"
-                                                            style="width: 100%;">
+                                                        <div role="complementary" class="gridjs gridjs-container" >
 
                                                             <div class="gridjs-wrapper" style="height: auto;">
                                                                 <table role="grid" class="gridjs-table table"
-                                                                    style="height: auto" id="tabla_sucursals">
+                                                                    style="height: auto;" id="tabla_sucursals" width="100%" >
                                                                     <thead class="gridjs-thead"
                                                                         style="background-color: #252B36; color: white;">
                                                                         <tr class="gridjs-tr">
@@ -902,6 +858,226 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" id="empresa" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header py-2 text-light" style="background-color: #252B36;">
+                                            <h5 class="modal-title" id="exampleModalLabel">Empresa</h5>
+                                        </div>
+                                        <div class="modal-body py-0">
+
+                                            <form id="frm_empresa" enctype="multipart/form-data" method="POST"
+                                            class="frm-empresa row">
+                                            <input type="hidden" id="id" name="id">
+    
+                                            <fieldset class="mb-3 col-xl-6">
+                                 
+                                                <div class="form-group row">
+    
+                                                    <div class="content row">
+    
+    
+                                                        <div class=" row col-lg-6">
+    
+                                                            <label class="col-form-label col-lg-2">Ruc</label>
+    
+                                                            <div class="col-lg-10 row">
+    
+                                                                <div class="col-lg-12 ">
+                                                                    <input type="text" ruc_ids value="" maxlength="11"
+                                                                        name="txtRuc" id="txtRuc" class="form-control">
+                                                                </div>
+    
+                                                            </div>
+    
+    
+    
+                                                        </div>
+    
+    
+                                                        <div class=" row col-lg-6">
+    
+                                                            <label for="cboIdGrupo"
+                                                                class="col-form-label col-lg-3">Grupo</label>
+                                                            <div class="col-lg-9">
+                                                                <select id="cbogrupo" name="txtIdGrupo"
+                                                                    class="form-control">
+                                                                    <option value="value">value</option>
+                                                                </select>
+                                                            </div>
+    
+                                                        </div>
+    
+                                                    </div>
+    
+    
+                                                </div>
+    
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Nombre</label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" value="" name="txtNombreCo" id="txtNombreCo"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+    
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Razon social</label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" value="" name="txtRazonSocial"
+                                                            id="txtRazonSocial" class="form-control">
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Direccion</label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" class="form-control" value="" name="txtDireccion"
+                                                            id="txtDireccion">
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Distrito</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboIdu" id="cboIdu" class="form-control">
+                                                            <option value="123">123</option>
+                                                            <option value="164">164</option>
+                                                            <option value="" selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Rubro</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboIdRubro" id="cboIdRubro" class="form-control">
+                                                            <option value="" selected></option>
+                                                            <option value="EDS">EDS</option>
+                                                            <option value="BOTICAS">BOTICAS</option>
+                                                            <option value="MARKETS">MARKETS</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">T.Persona</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboTipoPersona" id="cboTipoPersona"
+                                                            class="form-control">
+    
+                                                            <option value="" selected></option>
+                                                            <option value="NATURAL">Natural</option>
+                                                            <option value="JURIDICA">Juridica</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+
+                                                    <label class="col-form-label col-lg-2">Fecha de registro</label>
+
+                                                    <div class="col-lg-10">
+                                                        <input type="text" name="txtFechaRegistro" id="txtFechaRegistro"
+                                                            value="" class="form-control">
+                                                    </div>
+
+                                                </div>
+                                            
+                                            </fieldset>
+    
+                                            <fieldset class="mb-3 col-xl-6">
+                                                <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
+                                                    de
+                                                    Sistema</legend>
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">T. Sistema</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboTipoSistema" id="cboTipoSistema"
+                                                            class="form-control ">
+                                                            <option value="" selected></option>
+                                                            <option value="GESFARMA">GESFARMA</option>
+                                                            <option value="APUGESCOM">APUGESCOM</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+    
+                                                <div class="form-group row">
+    
+                                                    <label for="cboIdGrupo" class="col-form-label col-lg-2">T. Envio</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboTipoEnvio" id="cboTipoEnvio" class="form-control">
+                                                            <option value="" selected></option>
+                                                            <option value="OSE">OSE</option>
+                                                            <option value="SUNAT">SUNAT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group row">
+    
+                                                    <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
+                                                        Integracion</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
+                                                            class="form-control">
+                                                            <option value="" selected></option>
+                                                            <option value="DBF">DBF</option>
+                                                            <option value="TXT">TXT</option>
+                                                            <option value="JSON">JSON</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">E. Comercial</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="txtEstadoComercial" id="txtEstadoComercial"
+                                                            class="form-control">
+                                                            <option value="" selected></option>
+                                                            <option value="INGRESADO">INGRESADO</option>
+                                                            <option value="POR_INSTALAR">POR INSTALAR</option>
+                                                            <option value="PRODUCCION">PRODUCCION</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Estado</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="cboEstado" id="cboEstado" class="form-control">
+                                                            <option value="" selected></option>
+                                                            <option value="POSIBLE_CLIENTE">Posible Cliente</option>
+                                                            <option value="CLIENTE">Cliente</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            
+    
+                                            </fieldset>
+    
+                                          
+    
+                                           
+                                            <div>
+                                                <input type="hidden" value="1" name="txtEstado">
+                                                <input type="hidden" value="1" name="txtEliminada">
+                                            </div>
+    
+                                        </form>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
                             <!-- /Modal -->
 
                         </div>
@@ -928,7 +1104,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2022 - 2022. <a href="#">APU LOGIN Wep App</a>
+                        &copy; 2022 - 2022. <a href="#">INGENIEROS SAC</a>
                     </span>
                     <ul class="navbar-nav ml-lg-auto"></ul>
                 </div>
