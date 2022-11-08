@@ -1,9 +1,9 @@
 <?php 
 include '../connection/basedatos.php';
 
-$grupos = new BaseDatos();
+$tipoIntegracion = new BaseDatos();
 
-$resultado = $grupos->verGrupos();
+$resultado = $tipoIntegracion->mostrarTiposIntegracion();
 
 if(!$resultado){
     die('Query Failed');
@@ -16,10 +16,8 @@ while($row = mysqli_fetch_array($resultado)){
  $json[] = array(
     'id' => $row['id'],
     'nombre' => $row['nombre'],
-    'descripcion' =>$row['descripcion'],
     'estado' => $row['estado'],
-    'usuarioCreacion' => $row['usuarioCreacion'],
-    'fechaCreacion' => $row['fechaCreacion'],
+    'fecha' => $row['fecha'],
  );  
 
 

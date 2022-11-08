@@ -18,7 +18,7 @@ export function mensajes(response, mensaje, error) {
 export function eliminar(mensaje, id, tabla, url) {
    
       Swal.fire({
-        title: 'Eliminaras una empresa',
+        title: `${mensaje}`,
         icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

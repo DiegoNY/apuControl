@@ -309,6 +309,114 @@ class BaseDatos
         return $res;
     }
 
+    //crud TIPO INTEGRACION 
+
+    public function registrarTipoIntegracion($estado,$nombre,$fecha){
+
+        $consulta = "insert into `tipo_integracion`(nombre,estado,fecha) values ('$nombre','$estado','$fecha');";
+        
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res == TRUE) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
+    }
+
+    public function mostrarTiposIntegracion(){
+
+        $consulta = "SELECT * FROM `tipo_integracion` as tp where (tp.estado = 1);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+    public function mostrarTipoIntegracion($id){
+
+        $consulta = "SELECT * FROM `tipo_integracion` as tpi where (tpi.estado = 1 and $id = tpi.id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+
+    public function eliminarTipoIntegracion($id){
+
+        $consulta = "update tipo_integracion as ti set estado = 0 where  ti.id = $id";
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    
+    public function editarTipoIntegracion($id,$nombre){
+        $consulta = "update tipo_integracion as ti set nombre = '$nombre' where (ti.id = $id)";
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //crud TIPO SISTEMA 
+
+    public function registrarTipoSistema($estado,$nombre,$fecha){
+
+        $consulta = "insert into `tipo_sistema`(nombre,estado,fecha) values ('$nombre','$estado','$fecha');";
+        
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res == TRUE) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
+    }
+
+    public function mostrarTiposSistema(){
+        $consulta = "SELECT * FROM `tipo_sistema` as ts where (ts.estado = 1);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+    public function mostrarTipoSistema($id){
+        $consulta = "SELECT * FROM `tipo_sistema` as ts where (ts.estado = 1 and $id = ts.id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+
+    public function eliminarTipoSistema($id){
+
+        $consulta = "update tipo_sistema as ts set estado = 0 where  ts.id = $id";
+        $res = mysqli_query($this->con, $consulta);
+        
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    
+    public function editarTipoSistema($id,$nombre){
+
+        $consulta = "update tipo_sistema as ts set nombre = '$nombre' where (ts.id = $id)";
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    //CRUD TIPO INTEGRACION 
+
+
     
     //conectar la BD
     public function conectardb()

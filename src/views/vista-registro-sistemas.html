@@ -337,8 +337,8 @@
     <!-- Page content -->
     <div class="page-content">
 
-        <!-- Main sidebar -->
-        <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg">
+         <!-- Main sidebar -->
+         <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg">
 
             <!-- Sidebar content -->
             <div class="sidebar-content">
@@ -470,264 +470,6 @@
                 <!-- Content area -->
                 <div class="content">
 
-                    <!-- Main charts -->
-                    <div class="row">
-                        <div class="col">
-
-                            <!-- Traffic sources -->
-                            <div class="card">
-                                <div class="card-header header-elements-inline">
-                                    <h6 class="card-title font-weight-bold">Registrar empresa</h6>
-                                    <div class="header-elements">
-                                    </div>
-                                </div>
-
-                                <div class="card-body py-0">
-
-                                    <form id="frm_empresa" enctype="multipart/form-data" method="POST"
-                                        class="frm-empresa row">
-                                        <input type="hidden" id="id" name="id">
-
-                                        <fieldset class="mb-3 col-xl-6">
-                                            <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
-                                                basica de empresa</legend>
-
-                                            <div class="form-group row">
-
-                                                <div class="content row">
-
-
-                                                    <div class=" row col-lg-6">
-
-                                                        <label class="col-form-label col-lg-2">Ruc</label>
-
-                                                        <div class="col-lg-10 row">
-
-                                                            <div class="col-lg-8 p-0">
-                                                                <input type="text" ruc_ids value="" maxlength="11"
-                                                                    name="txtRuc" id="txtRuc" class="form-control">
-                                                            </div>
-
-                                                            <input type="button" id="btn_ruc"
-                                                                class="form-control col-lg-4" value="Validar">
-
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-                                                    <div class=" row col-lg-6">
-
-                                                        <label for="cboIdGrupo"
-                                                            class="col-form-label col-lg-3">Grupo</label>
-                                                        <div class="col-lg-9">
-                                                            <select id="cbogrupo" name="txtIdGrupo"
-                                                                class="form-control">
-                                                                <option value="value">value</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-
-                                            </div>
-
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Razon social</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" value="" name="txtRazonSocial"
-                                                        id="txtRazonSocial" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Nombre</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" value="" name="txtNombreCo" id="txtNombreCo"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-
-
-
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Direccion</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" class="form-control" value="" name="txtDireccion"
-                                                        id="txtDireccion">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Distrito</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboIdu" id="cboIdu" class="form-control">
-                                                        <option value="123">123</option>
-                                                        <option value="164">164</option>
-                                                        <option value="" selected></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Rubro</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboIdRubro" id="cboIdRubro" class="form-control">
-                                                        <option value="" selected></option>
-                                                        <option value="EDS">EDS</option>
-                                                        <option value="BOTICAS">BOTICAS</option>
-                                                        <option value="MARKETS">MARKETS</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">T.Persona</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboTipoPersona" id="cboTipoPersona"
-                                                        class="form-control">
-
-                                                        <option value="" selected></option>
-                                                        <option value="NATURAL">Natural</option>
-                                                        <option value="JURIDICA">Juridica</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-
-                                        <fieldset class="mb-3 col-xl-6">
-                                            <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
-                                                de
-                                                Sistema</legend>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">T. Sistema</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboTipoSistema" id="cboTipoSistema"
-                                                        class="form-control ">
-                                                        <option value="" selected></option>
-                                                        <option value="GESFARMA">GESFARMA</option>
-                                                        <option value="APUGESCOM">APUGESCOM</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row">
-
-                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T. Envio</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboTipoEnvio" id="cboTipoEnvio" class="form-control">
-                                                        <option value="" selected></option>
-                                                        <option value="OSE">OSE</option>
-                                                        <option value="SUNAT">SUNAT</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-
-                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
-                                                    Integracion</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
-                                                        class="form-control">
-                                                        <option value="" selected></option>
-                                                        <option value="DBF">DBF</option>
-                                                        <option value="TXT">TXT</option>
-                                                        <option value="JSON">JSON</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">E. Comercial</label>
-                                                <div class="col-lg-10">
-                                                    <select name="txtEstadoComercial" id="txtEstadoComercial"
-                                                        class="form-control">
-                                                        <option value="" selected></option>
-                                                        <option value="INGRESADO">INGRESADO</option>
-                                                        <option value="POR_INSTALAR">POR INSTALAR</option>
-                                                        <option value="PRODUCCION">PRODUCCION</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Estado</label>
-                                                <div class="col-lg-10">
-                                                    <select name="cboEstado" id="cboEstado" class="form-control">
-                                                        <option value="" selected></option>
-                                                        <option value="POSIBLE_CLIENTE">Posible Cliente</option>
-                                                        <option value="CLIENTE">Cliente</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-
-                                                <div class="col-lg-12 row">
-
-
-                                                    <div class="col-lg-2" style="height: 20px; width: 100%;">
-                                                        <img src="" alt="logo de la empresa">
-                                                    </div>
-
-                                                    <label class="custom-file col-lg-10">
-
-                                                        <input type="file" name="logo" id="logo"
-                                                            class="custom-file-input">
-                                                        <span class="custom-file-label">Ingresa Logo</span>
-                                                    </label>
-
-
-                                                </div>
-
-                                            </div>
-
-                                        </fieldset>
-
-                                        <div class="col-lg-12">
-
-                                            <div class="mb-3 col-lg-12 ms-lg-auto text-right">
-                                                <input type="button" onclick="RegistrarEmpresa()" value="Enviar"
-                                                    class="btn btn-primary " id="btn_registrar">
-                                            </div>
-                                        </div>
-
-                                        <div class="inactive">
-                                            <input type="hidden" name="txtFechaRegistro" id="txtFechaRegistro"
-                                                value="<?php echo $fecha ?>">
-                                        </div>
-                                        <div>
-                                            <input type="hidden" value="1" name="txtEstado">
-                                            <input type="hidden" value="1" name="txtEliminada">
-                                        </div>
-
-                                    </form>
-                                </div>
-
-                                <!-- 
-                                <div class="chart position-relative inactives" id="traffic-sources">
-                                </div> -->
-
-                            </div>
-
-                            <!-- /traffic sources -->
-
-                        </div>
-                    </div>
-                    <!-- /main charts -->
-
-
                     <!-- Dashboard content -->
                     <div class="row">
                         <div class="col">
@@ -741,17 +483,17 @@
                                         <ul role="tablist"
                                             class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
                                             <li role="tab" tabindex="-1"
-                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab"
+                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
                                                 aria-controls="tabs-hover-1" aria-labelledby="ui-id-100"
                                                 aria-selected="false" aria-expanded="false"><a href="#tabs-hover-1"
                                                     role="presentation" tabindex="-1" class="ui-tabs-anchor"
-                                                    id="ui-id-100">Sucursal</a></li>
+                                                    id="ui-id-100">Tipo Sistema</a></li>
                                             <li role="tab" tabindex="0"
-                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab "
                                                 aria-controls="tabs-hover-2" aria-labelledby="ui-id-101"
                                                 aria-selected="true" aria-expanded="true"><a href="#tabs-hover-2"
                                                     role="presentation" tabindex="-1" class="ui-tabs-anchor"
-                                                    id="ui-id-101">contactos</a></li>
+                                                    id="ui-id-101">Tipo Integracion</a></li>
 
                                         </ul>
                                         <div id="tabs-hover-1" aria-labelledby="ui-id-100" role="tabpanel"
@@ -761,10 +503,10 @@
 
                                             <div class="card-body row">
 
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-5 mb-3">
                                                     <button class=" btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#sucursal">
-                                                        Nueva Sucursal +
+                                                        data-bs-target="#tipo-sistema">
+                                                        Nuevo Tipo Sistema + 
                                                     </button>
                                                 </div>
 
@@ -777,18 +519,14 @@
 
                                                             <div class="gridjs-wrapper" style="height: auto;">
                                                                 <table role="grid" class="gridjs-table table"
-                                                                    style="height: auto" id="tabla_sucursals">
+                                                                    style="height: auto" id="tabla_ts">
                                                                     <thead class="gridjs-thead"
                                                                         style="background-color: #252B36; color: white;">
                                                                         <tr class="gridjs-tr">
+                                                                            
                                                                             <th data-column-id="title"
                                                                                 class="gridjs-th">
                                                                                 <div class="gridjs-th-content">#
-                                                                                </div>
-                                                                            </th>
-                                                                            <th data-column-id="director"
-                                                                                class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Ruc
                                                                                 </div>
                                                                             </th>
                                                                             <th data-column-id="producer"
@@ -798,17 +536,7 @@
                                                                             </th>
                                                                             <th data-column-id="producer"
                                                                                 class="gridjs-th">
-                                                                                <div class="gridjs-th-content">C.Cofide
-                                                                                </div>
-                                                                            </th>
-                                                                            <th data-column-id="producer"
-                                                                                class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Direccion
-                                                                                </div>
-                                                                            </th>
-                                                                            <th data-column-id="producer"
-                                                                                class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Ubigeo
+                                                                                <div class="gridjs-th-content">Fecha
                                                                                 </div>
                                                                             </th>
                                                                             <th data-column-id="producer"
@@ -816,9 +544,10 @@
                                                                                 <div class="gridjs-th-content">Opciones
                                                                                 </div>
                                                                             </th>
+                                                                         
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody class="gridjs-tbody">
+                                                                    <tbody class="gridjs-tbody" id="listado_tipo_sistema">
 
                                                                         <tr class="gridjs-tr">
                                                                             <td data-column-id="title"
@@ -826,6 +555,9 @@
                                                                             </td>
                                                                             <td data-column-id="director"
                                                                                 class="gridjs-td">George Lucas</td>
+                                                                            <td data-column-id="producer"
+                                                                                class="gridjs-td">Rick McCallum</td>
+
                                                                             <td data-column-id="producer"
                                                                                 class="gridjs-td">Rick McCallum</td>
                                                                         </tr>
@@ -847,11 +579,14 @@
                                             aria-hidden="false">
                                             <div class="card-body row">
 
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-5 mb-3">
+                                                   
+
                                                     <button class=" btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#contactos">
-                                                        Nuevo Contacto +
-                                                    </button>
+                                                    data-bs-target="#tipo-integracion">
+                                                    Nueva Integracion +
+                                                  </button>
+
                                                 </div>
 
                                                 <div class="table-responsive col-lg-12">
@@ -863,7 +598,7 @@
 
                                                             <div class="gridjs-wrapper" style="height: auto;">
                                                                 <table role="grid" class="gridjs-table table"
-                                                                    style="height: auto" id="tabla_contactoss">
+                                                                    style="height: auto" id="tabla_nueva_integracion">
                                                                     <thead class="gridjs-thead"
                                                                         style="background-color: #252B36; color: white;">
                                                                         <tr class="gridjs-tr">
@@ -872,50 +607,32 @@
                                                                                 <div class="gridjs-th-content">#
                                                                                 </div>
                                                                             </th>
+                                                                            
                                                                             <th data-column-id="director"
-                                                                                class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Ruc
-                                                                                </div>
-                                                                            </th>
-                                                                            <th data-column-id="producer"
                                                                                 class="gridjs-th">
                                                                                 <div class="gridjs-th-content">Nombre
                                                                                 </div>
                                                                             </th>
+                                                                            
                                                                             <th data-column-id="producer"
                                                                                 class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Cargo
+                                                                                <div class="gridjs-th-content">Fecha
                                                                                 </div>
                                                                             </th>
-                                                                            <th data-column-id="producer"
-                                                                                class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Telefono
-                                                                                </div>
-                                                                            </th>
-                                                                            <th data-column-id="producer"
-                                                                                class="gridjs-th">
-                                                                                <div class="gridjs-th-content">Correo
-                                                                                </div>
-                                                                            </th>
-
+                                                                            
                                                                             <th data-column-id="producer"
                                                                                 class="gridjs-th">
                                                                                 <div class="gridjs-th-content">Opciones
                                                                                 </div>
                                                                             </th>
+
+                                                                            
+                                                                           
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody class="gridjs-tbody">
+                                                                    <tbody class="gridjs-tbody" id="listado_tipo_integraciones">
 
-                                                                        <tr class="gridjs-tr">
-                                                                            <td data-column-id="title"
-                                                                                class="gridjs-td">Revenge of the Sith
-                                                                            </td>
-                                                                            <td data-column-id="director"
-                                                                                class="gridjs-td">George Lucas</td>
-                                                                            <td data-column-id="producer"
-                                                                                class="gridjs-td">Rick McCallum</td>
-                                                                        </tr>
+                                                                       
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -973,50 +690,36 @@
     <!-- /page content -->
 
 
-    <!-- Modal Accesos -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Tipo Integracion -->
+    <div class="modal fade" id="tipo-sistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header py-2 text-light" style="background-color: #252B36;">
-                    <h5 class="modal-title" id="exampleModalLabel">Accesos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tipo Sistema</h5>
                 </div>
                 <div class="modal-body py-0">
 
                     <div class="card-body">
 
 
-                        <form id="frm-accesos" class=" row">
+                        <form id="frm_tipo_sistema" class=" row">
 
                             <fieldset class="col-xl-12">
 
-                                <input type="hidden" name="txtIdSucursal" id="txtIdSucursal">
+                                <input type="hidden" name="txtFecha" id="txtFecha">
                                 <input type="hidden" name="txtEstado" value="1">
+                                <input type="hidden" name="id_tipo_sistema" id="id_tipo_sistema">
 
-                                <div class="form-group row">
-                                    <label class="col-form-label col-lg-2">Plataforma</label>
-                                    <div class="col-lg-10">
-                                        <select class="form-control" name="txtNombreAcceso" id="txtNombreAcceso">
-                                            <option value="ANYDESK">ANYDESK</option>
-                                            <option value="TEM_VIEWER" selected>TEM VIEWER</option>
-                                            <option value="AC">another access</option>
-                                        </select>
+
+                            
+                                <div class="row">
+                                    <label class="col-lg-12">Nombre</label>
+                                    <div class="col-lg-12">
+                                        <input type="text" name="txtNombre" id="txtNombre" class="form-control">
                                     </div>
                                 </div>
 
-
-                                <div class="form-group row">
-                                    <label class="col-form-label col-lg-2">Usuario</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" name="txtIdAcceso" id="txtIdAcceso" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-form-label col-lg-2">Contraseña</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" name="txtContraseña" id="txtContraseña" class="form-control">
-                                    </div>
-                                </div>
+                           
 
                             </fieldset>
 
@@ -1028,242 +731,56 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" onclick="registrarAccesos()" class="btn btn-primary">Guardar</button>
+                    <button type="button" onclick="registrarTipoSistema()" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Modal Sucursal -->
-
-    <div class="modal fade" id="sucursal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tipo-integracion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header py-2 text-light" style="background-color: #252B36;">
-                    <h5 class="modal-title" id="exampleModalLabel">Sucursal</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tipo Integracion</h5>
                 </div>
                 <div class="modal-body py-0">
 
                     <div class="card-body">
 
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-12 ">
-                                    <form id="frm-sucursal">
+                        <form id="frm_tipo_integracion" class=" row">
 
-                                        <div class="row">
+                            <fieldset class="col-xl-12">
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Ingresa Nombre:</label>
-                                                    <input type="text" class="form-control" name="txtNombreSucursal"
-                                                        id="txtNombreSucursal">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-lg-6">
-                                            
-                                                <div class="form-group">
-                                                    <label>Ingresa Direccion:</label>
-                                                    <input type="text" class="form-control" name="txtDireccionSucursal"
-                                                        id="txtDireccionSucursal">
-                                                </div>
-                                            
-                                            </div>
+                                <input type="hidden" name="txtFechaIntegracion" id="txtFecha">
+                                <input type="hidden" name="txtEstadoIntegracion" value="1">
+                                <input type="hidden" name="id_tipo_integracion" id="id_tipo_integracion">
 
-                                        </div>
-
-
-
-
-
-                                        <div class="form-group">
-                                            <label>Ingresa codigo cofide:</label>
-                                            <input type="text" class="form-control" name="txtCodigoCofide"
-                                                id="txtCodigoCofide">
-                                        </div>
-
-                                        <div class="form-group ">
-                                            <label for="cboIdu">Distrito :</label>
-
-                                            <select name="cboIdu" id="cboIdub" class="form-control">
-                                                <option value="123">123</option>
-                                                <option value="164" selected>164
-                                                </option>
-                                            </select>
-
-                                        </div>
-
-
-                                        <div class="inactive">
-
-                                            <label for="txtIdEmpresa">Id Empresa</label>
-                                            <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
-
-                                        </div>
-
-                                        <fieldset class="row">
-
-                                            <input type="hidden" name="txtIdSucursal" id="txtIdSucursa" value="">
-                                            <input type="hidden" name="txtEstado" value="1">
-
-                                            <div class="col-lg-4">
-
-                                                <div class="form-group ">
-                                                    <label>Plataforma</label>
-                                                    <div>
-                                                        <select class="form-control" name="txtNombreAcceso"
-                                                            id="txtNombreAcceso">
-                                                            <option value="ANYDESK">ANYDESK</option>
-                                                            <option value="TEM_VIEWER" selected>TEM VIEWER</option>
-                                                            <option value="AC">another access</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-lg-4">
-
-                                                <div class="form-group">
-                                                    <label>Usuario</label>
-
-                                                    <input type="text" name="txtIdAcceso" id="txtIdAcceso"
-                                                        class="form-control">
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-lg-4">
-
-                                                <div class="form-group">
-                                                    <label>Contraseña</label>
-                                                    <input type="text" name="txtContraseña" id="txtContraseña"
-                                                        class="form-control ">
-                                                </div>
-
-                                            </div>
-
-                                        </fieldset>
-
-                                        <fieldset>
-
-                                            <table class="table">
-                                                <thead class="table-light">
-                                                    <th>Plataforma</th>
-                                                   <th>Usuario</th>
-                                                   <th>Contraseña</th>
-                                                </thead>
-                                                <tbody id="tabla_accesoss">
-                                                    <tr>
-                                                        <td>Plataforma</td>
-                                                        <td>usuario</td>
-                                                        <td>Contraseña</td>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <td>Plataforma</td>
-                                                        <td>usuario</td>
-                                                        <td>Contraseña</td>
-                                                    </tr>
-                                                </tbody>
-                                              </table>
-
-                                        </fieldset>
-
-                                        <input type="hidden" value="1" name="txtEstado">
-
-                                        <div class="text-right">
-                                            <button type="button" value="Registrar" onclick="registrarSucursal();"
-                                                class="btn text-light" style="background-color:  #31334D;">Enviar<i
-                                                    class="icon-paperplane ml-2"></i></button>
-                                        </div>
-                                    </form>
+                            
+                                <div class="row">
+                                    <label class="col-lg-12">Nombre</label>
+                                    <div class="col-lg-12">
+                                        <input type="text" name="txtNombreIntegracion" id="txtNombreIntegracion" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Modal Contactos -->
+                           
 
+                            </fieldset>
 
-    <div class="modal fade" id="contactos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header py-2 text-light" style="background-color: #252B36;">
-                    <h5 class="modal-title" id="exampleModalLabel">Contactos</h5>
-                </div>
-                <div class="modal-body py-0">
-
-                    <div class="card-body">
-
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-10 offset-lg-1">
-                                    <form id="frm-contactos">
-                                        <input type="hidden" id="id-contacto" name="id_contacto">
-
-                                        <div class="form-group">
-                                            <label>Ingresa Nombre:</label>
-                                            <input type="text" class="form-control" name="txtNombre"
-                                                id="nombre-contacto">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label>Ingresa Cargo:</label>
-                                            <input type="text" class="form-control" name="txtCargo" id="cargo-contacto">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Ingresa Correo:</label>
-                                            <input type="text" class="form-control" name="txtCorreo"
-                                                id="correo-contacto">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label>Ingresa Telefono:</label>
-                                            <input type="text" class="form-control" name="txtTelefono"
-                                                id="telefono-contacto">
-                                        </div>
-
-
-                                        <div class="inactive">
-
-                                            <label for="txtIdEmpresa">Id Empresa</label>
-                                            <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
-
-                                        </div>
-
-
-                                        <input type="hidden" value="1" name="txtEstado">
-
-                                        <div class="text-right">
-                                            <button type="button" value="Registrar" onclick="registrarContactos();"
-                                                class="btn text-light" style="background-color:  #31334D;">Enviar<i
-                                                    class="icon-paperplane ml-2"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
 
 
                     </div>
 
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="registrarTipoIntegracion()" class="btn btn-primary">Guardar</button>
+                </div>
             </div>
         </div>
     </div>
+
 
     <!-- /Modal -->
 

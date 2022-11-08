@@ -4,13 +4,9 @@ let tableSucursal = "";
 $(document).ready(function () {
   //empresa cargando data
   let tablaEmpresa = $("#tabla_empresasas").DataTable({
-    "scrollY": "358px",
     "scrollCollapse": true,
-    "paging": false,
     destroy: true,
-    "scrollY": "358px",
-    "scrollCollapse": true,
-    "paging": false,
+    "paging": true,
     "order": [[0, 'desc'], [1, 'desc']],
     rowReorder: true,
     ajax: "../processes/mostrar-empresas.php",
@@ -49,7 +45,7 @@ $(document).ready(function () {
       "infoFiltered": "(Filtrado de _MAX_ total entradas)",
       "infoPostFix": "",
       "thousands": ",",
-      "lengthMenu": "Mostrar _MENU_ Empresas",
+      "lengthMenu": "",
       "loadingRecords": "Cargando...",
       "processing": "Procesando...",
       "search": "",
@@ -57,13 +53,14 @@ $(document).ready(function () {
       "paginate": {
         "first": "Primero",
         "last": "Ultimo",
-        "next": ">    >>",
-        "previous": "<<    <"
+        "next": "Siguiente",
+        "previous": "Anterior"
       },
     }
 
   });
 
+  
   $(document).on("click", ".btn-delet", async function () {
     const module = await import('./alertas.js');
 
