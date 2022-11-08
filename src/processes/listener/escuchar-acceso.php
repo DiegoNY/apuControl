@@ -2,9 +2,9 @@
 
 include '../../connection/basedatos.php';
 
-$accesos = new BaseDatos();
-
 $id = $_POST['id'];
+
+$accesos = new BaseDatos();
 
 $resultado = $accesos->mostrarAcceso($id);
 
@@ -25,6 +25,7 @@ while($row = mysqli_fetch_array($resultado)){
         'contrasena'=>$row['contraseña'],
     );
 }
+
 $jsonString = json_encode($json[0]);
 
 echo $jsonString;

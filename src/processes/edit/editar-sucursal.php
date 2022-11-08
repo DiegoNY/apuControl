@@ -4,7 +4,8 @@ extract($_GET);
 
 $sucursal = new BaseDatos();
 
-$res = $sucursal->editarSucursal($id_sucursal,$txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$ruc_id);
+$res = $sucursal->editarSucursal($txtIdSucursal,$txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$ruc_id);
+$acce = $acceso->editarAcceso($txtIdSucursal,$txtNombreAcceso,$txtIdAcceso,$txtContraseña,$id_acceso);
 
 if(!$res){
     die("Consulta fallida llama al admin 😢");

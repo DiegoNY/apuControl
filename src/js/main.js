@@ -321,7 +321,6 @@ function cargarSucursal(ruc) {
       { data: "ubigeo" },
       {
         defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
-                          <i class="bi bi-shield-check btn-agregar-acceso text-success"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
                           <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal"  ></i>
         `,
       }
@@ -487,33 +486,7 @@ $(document).on("click", ".btn-delete-logo", function () {
   });
 });
 
-// document.getElementById("btn_registrar").addEventListener("click", (e) => {
 
-//   e.preventDefault();
-
-//   let frm = document.getElementById("frm_logo");
-//   let frmdata = new FormData(frm);
-//   $.ajax({
-//     method: "POST",
-//     url: "../processes/register/registrar-logo.php",
-//     data: (frmdata, nombre, ruc),
-//     cache: false,
-//     processData: false,
-//     contentType: false,
-//     success: (response) => {
-//       console.log(response);
-//       let data = JSON.parse(response);
-//       data.forEach((data) => {
-//         mensajes(
-//           data.mensaje,
-//           "Ingresaste un Logo 😃",
-//           "Seguro falto el nombre 😲"
-//         );
-//         mostrarLogoss(data.ruc);
-//       });
-//     },
-//   });
-// });
 
 //CRUD ACCESOS
 
