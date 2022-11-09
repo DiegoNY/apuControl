@@ -109,9 +109,8 @@ $(document).ready(function () {
 
     tableSucursal = $("#tabla_sucursals").DataTable({
       destroy: true,
-      "scrollY": "358px",
       "scrollCollapse": true,
-      "paging": false,
+      "paging": true,
       "order": [[0, 'desc'], [1, 'desc']],
       ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
       columns: [
@@ -135,7 +134,7 @@ $(document).ready(function () {
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
         thousands: ",",
-        lengthMenu: "Mostrar _MENU_ Sucursales",
+        lengthMenu: "",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: "",
@@ -152,9 +151,8 @@ $(document).ready(function () {
 
   function cargarContactos(ruc) {
     tablaContactos = $("#tabla_contactoss").DataTable({
-      "scrollY": "358px",
       "scrollCollapse": true,
-      "paging": false,
+      "paging": true,
       "order": [[0, 'desc'], [1, 'desc']],
       destroy: true,
       ajax: {
@@ -183,7 +181,7 @@ $(document).ready(function () {
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
         thousands: ",",
-        lengthMenu: "Mostrar _MENU_ Entradas",
+        lengthMenu: "",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: " ",
@@ -202,9 +200,8 @@ $(document).ready(function () {
   function cargarAccesos(id_sucursal) {
     tablaAccesos = $("#tabla_accesos").DataTable({
       destroy: true,
-      "scrollY": "358px",
       "scrollCollapse": true,
-      "paging": false,
+      "paging": true,
       "order": [[0, 'desc'], [1, 'desc']],
       ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
       columns: [
@@ -226,7 +223,7 @@ $(document).ready(function () {
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
         thousands: ",",
-        lengthMenu: "Mostrar _MENU_ Entradas",
+        lengthMenu: "",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: " ",
