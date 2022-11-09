@@ -1,6 +1,5 @@
 let tableSucursal = "";
 
-
 $(document).ready(function () {
   //empresa cargando data
   let tablaEmpresa = $("#tabla_empresasas").DataTable({
