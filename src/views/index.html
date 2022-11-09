@@ -93,13 +93,13 @@
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
 
             <ul class="navbar-nav">
-                
-                   
+
+
             </ul>
 
             <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item dropdown">
-                  
+
 
                     <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-300">
                         <div class="dropdown-content-header">
@@ -397,7 +397,8 @@
                                 <li class="nav-item"><a href="vista-grupos.html" class="nav-link">Grupos</a></li>
 
 
-                                <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link">Informacion Sistema</a>
+                                <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link">Informacion
+                                        Sistema</a>
                                 </li>
 
                                 <li class="nav-item"><a href="#" class="nav-link">Tipo Integracion</a></li>
@@ -472,8 +473,8 @@
 
                                 <div class="card-body py-0">
 
-                                    <form action="../processes/register/registrar-logo.php" id="frm_empresa" enctype="multipart/form-data" method="post"
-                                        class="frm-empresa row">
+                                    <form action="../processes/register/registrar-logo.php" id="frm_empresa"
+                                        enctype="multipart/form-data" method="post" class="frm-empresa row">
                                         <input type="hidden" id="id" name="id">
 
                                         <fieldset class="mb-3 col-xl-6">
@@ -493,7 +494,8 @@
 
                                                             <div class="row">
                                                                 <input type="text" ruc_ids value="" maxlength="11"
-                                                                    name="txtRuc" id="txtRuc" class="form-control col-lg-8">
+                                                                    name="txtRuc" id="txtRuc"
+                                                                    class="form-control col-lg-8">
                                                                 <input type="button" id="btn_ruc"
                                                                     class="form-control col-lg-4" value="Validar">
                                                             </div>
@@ -660,22 +662,22 @@
 
                                             <div class="row">
 
-                                            
 
 
-                                                    <div class="col-lg-3" style="height: 40px; width: 40px;">
-                                                        <img src="" alt="logo de la empresa" style="height: 100%; width: 100%;">
-                                                    </div>
 
-                                                    <label class="custom-file col-lg-9">
+                                                <div class="col-lg-3" style="height: 40px; width: 40px;">
+                                                    <img src="" alt="logo de la empresa"
+                                                        style="height: 100%; width: 100%;">
+                                                </div>
 
-                                                        <input type="file" name="logo" id="logo"
-                                                            class="custom-file-input">
-                                                        <span class="custom-file-label">Ingresa Logo</span>
-                                                    </label>
+                                                <label class="custom-file col-lg-9">
+
+                                                    <input type="file" name="logo" id="logo" class="custom-file-input">
+                                                    <span class="custom-file-label">Ingresa Logo</span>
+                                                </label>
 
 
-                                                
+
 
                                             </div>
 
@@ -686,7 +688,7 @@
                                             <div class="mb-3 col-lg-12 ms-lg-auto text-right">
                                                 <input type="button" onclick="RegistrarEmpresa()" value="Enviar"
                                                     class="btn btn-primary " id="btn_registrar">
-                                                
+
                                             </div>
                                         </div>
 
@@ -976,7 +978,8 @@
 
                             <fieldset class="col-xl-12">
 
-                                <input type="hidden" name="txtIdSucursal" id="txtIdSucursal">
+                                <input type="hidden" name="txtIdSucursale" id="txtIdSucursale">
+
                                 <input type="hidden" name="txtEstado" value="1">
 
                                 <div class="form-group row">
@@ -984,7 +987,7 @@
                                     <div class="col-lg-10">
                                         <select class="form-control" name="txtNombreAcceso" id="txtNombreAcceso">
                                             <option value="ANYDESK">ANYDESK</option>
-                                            <option value="TEM_VIEWER" selected>TEM VIEWER</option>
+                                            <option value="TEAM_VIEWER" selected>TEAM VIEWER</option>
                                             <option value="AC">another access</option>
                                         </select>
                                     </div>
@@ -1048,21 +1051,22 @@
                                                         id="txtNombreSucursal">
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-lg-6">
-                                            
+
                                                 <div class="form-group">
                                                     <label>Ingresa Direccion:</label>
                                                     <input type="text" class="form-control" name="txtDireccionSucursal"
                                                         id="txtDireccionSucursal">
                                                 </div>
-                                            
+
                                             </div>
 
                                         </div>
 
 
 
+                                        <input type="hidden" name="txtIdSucursal" id="txtIdSucursal">
 
 
                                         <div class="form-group">
@@ -1090,73 +1094,33 @@
 
                                         </div>
 
-                                        <fieldset class="row">
+                                      <fieldset>
 
-                                            <input type="hidden" name="txtIdSucursal" id="txtIdSucursa" value="">
-                                            <input type="hidden" name="txtEstado" value="1">
-
-                                            <div class="col-lg-4">
-
-                                                <div class="form-group ">
-                                                    <label>Plataforma</label>
-                                                    <div>
-                                                        <select class="form-control" name="txtNombreAcceso"
-                                                            id="txtNombreAcceso">
-                                                            <option value="ANYDESK">ANYDESK</option>
-                                                            <option value="TEM_VIEWER" selected>TEM VIEWER</option>
-                                                            <option value="AC">another access</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-lg-4">
-
-                                                <div class="form-group">
-                                                    <label>Usuario</label>
-
-                                                    <input type="text" name="txtIdAcceso" id="txtIdAcceso"
-                                                        class="form-control">
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-lg-4">
-
-                                                <div class="form-group">
-                                                    <label>Contraseña</label>
-                                                    <input type="text" name="txtContraseña" id="txtContraseña"
-                                                        class="form-control ">
-                                                </div>
-
-                                            </div>
-
-                                        </fieldset>
-
-                                        <fieldset>
-
-                                            <table class="table">
+                                            <table class="table" id="tabla_accesoss">
                                                 <thead class="table-light">
                                                     <th>Plataforma</th>
-                                                   <th>Usuario</th>
-                                                   <th>Contraseña</th>
+                                                    <th>Usuario</th>
+                                                    <th>Contraseña</th>
                                                 </thead>
-                                                <tbody id="tabla_accesoss">
+                                                <tbody >
                                                     <tr>
-                                                        <td>Plataforma</td>
-                                                        <td>usuario</td>
-                                                        <td>Contraseña</td>
+                                                        <td> TEAMVIEWER </td>
+                                                        <td> <input type="text" class="form-control" id="usuariosa" name="usuariosa"  > </td>
+                                                        <td><input type="text" class="form-control" id="contraseñaa" name="contraseñaa" > </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
-                                                        <td>Plataforma</td>
-                                                        <td>usuario</td>
-                                                        <td>Contraseña</td>
+                                                        <td> ANYDESK </td>
+                                                        <td> <input type="text" class="form-control" id="usuario_ANY" name="usuario_ANY"  > </td>
+                                                        <td><input type="text" class="form-control" id="contraseña_ANY" name="contraseña_ANY"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> ESCRITORIO_REMOTO </td>
+                                                        <td> <input type="text" class="form-control" id="usuario_ER" name="usuario_ER"  > </td>
+                                                        <td><input type="text" class="form-control" id="contraseña_ER" name="contraseña_ER"  > </td>
                                                     </tr>
                                                 </tbody>
-                                              </table>
+                                            </table>
 
                                         </fieldset>
 
@@ -1164,7 +1128,7 @@
 
                                         <div class="text-right">
                                             <button type="button" value="Registrar" onclick="registrarSucursal();"
-                                                class="btn text-light" style="background-color:  #31334D;">Enviar<i
+                                                class="btn text-light" id="btn_registrar_sucursal" style="background-color:  #31334D;">Enviar<i
                                                     class="icon-paperplane ml-2"></i></button>
                                         </div>
                                     </form>

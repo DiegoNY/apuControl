@@ -4,6 +4,9 @@ include '../connection/basedatos.php';
 
 $id = $_GET['id'];
 
+extract($_POST);
+
+
 $accesos = new BaseDatos();
 
 $resultado = $accesos->mostrarAccesos($id);

@@ -165,12 +165,7 @@ $(document).ready(function () {
         { data: "cargo" },
         { data: "telefono" },
         { data: "correo" },
-        {
-          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto"></i>
-          <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
-          `,
-        },
-
+        
       ],
       language: {
         decimal: "",
@@ -210,9 +205,9 @@ $(document).ready(function () {
         { data: "idAcceso" },
         { data: "contrasena" },
         {
-          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>
+         defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>
                            <i class="bi bi-x-circle-fill text-danger btn-delete-acceso"></i>`,
-        },
+        }, 
       ],
       language: {
         decimal: "",

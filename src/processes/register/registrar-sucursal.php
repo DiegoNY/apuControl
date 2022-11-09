@@ -19,7 +19,9 @@ $cantidad_sucursales = $resultado[1];
 
 $id_sucursal = $cantidad_sucursales + 1;
 
-$resultadoss = $sucursal->registrarAccesos($id_sucursal, $txtNombreAcceso, $txtIdAcceso, $txtContraseña, $txtEstado);
+$anydes = $sucursal->registrarAccesos($id_sucursal, "TEAM_VIEWER", $usuariosa, $contraseñaa, $txtEstado);
+$teamvieew = $sucursal->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY, $contraseña_ANY, $txtEstado);
+$escritortii = $sucursal->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado);
 
 
 if($resultado == TRUE){

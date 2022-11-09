@@ -18,7 +18,7 @@ let id = urlParams.get("id");
 let edit = urlParams.get("edit");
 let rucs = urlParams.get("ruc");
 const btn_registrar_empresa = document.getElementById("btn_registrar");
-
+const ides = document.querySelector("#txtIdSucursal");
 
 if (!rucs) {
 } else {
@@ -27,9 +27,6 @@ if (!rucs) {
 
 
 $(document).ready(function () {
-
-
-
 
   // Cargando El ubigeo a los Formularios 
 
@@ -54,8 +51,6 @@ $(document).ready(function () {
 
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
-    
-    "scrollCollapse": true,
     "paging": true,
     ajax: "../processes/mostrar-sucursal.php",
     columns: [
@@ -99,10 +94,9 @@ $(document).ready(function () {
 
   tablaContactos = $("#tabla_contactoss").DataTable({
     destroy: true,
-   
     "scrollCollapse": true,
     "paging": true,
-    ajax: "../processes/mostrar-contactos.php?",
+    ajax: "../processes/mostrar-contactos.php",
     columns: [
       { data: "id" },
       { data: "id_empresa" },
@@ -197,11 +191,11 @@ $(document).ready(function () {
       $("#cboIdu").val(sucursal.ubigeo);
       $("#txtIdEmpresa").val(sucursal.id_empresa);
       editarSucursall = true;
-      ides = sucursal.id;
-    });
+      ides.value = sucursal.id;
 
+    });
     $("#txtIdSucursa").val(id);
-    tableSucursal.ajax.reload();
+    cargarAccesos(id);
   });
 
   $(document).on("click", ".btn-delete-sucursal", async function () {
@@ -217,8 +211,9 @@ $(document).ready(function () {
     $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
       let sucursal = JSON.parse(response);
       ideSuc = sucursal.id;
+      editarAcceso = false;
       //cargando los datos al frm de acceso se hara con un btn
-      $("#txtIdSucursal").val(ideSuc);
+      $("#txtIdSucursale").val(ideSuc);
       cargarAccesos(ideSuc);
     });
   });
@@ -309,7 +304,7 @@ function cargarSucursal(ruc) {
       {
         defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
                           <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
-                          <i class="bi bi-x-circle-fill text-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                          <i class="bi bi-key text-success btn-agregar-acceso "  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         `,
       }
     ],
@@ -383,45 +378,43 @@ function cargarContactos(ruc) {
   });
 }
 
-function cargarAccesos(id_sucursal) {
-  tablaAccesos.destroy();
-  tablaAccesos = $("#tabla_accesos").DataTable({
-    "order": [[0, 'desc'], [1, 'desc']],
-    ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
-    columns: [
-      { data: "id" },
-      { data: "id_sucursal" },
-      { data: "nombreAcceso" },
-      { data: "idAcceso" },
-      { data: "contrasena" },
-      {
-        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>`,
-      },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill text-danger btn-delete-acceso"></i>`,
-      },
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "Mostrar _MENU_ Entradas",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "Accesos ",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
+function cargarAccesos(id) {
+
+
+
+  $.post("../processes/mostrar-accesos.php", { id}, function (response) {
+    
+    let accesos = JSON.parse(response);
+
+    
+    let accceso1 = Object.values(accesos.data[0]);
+
+    let anydes = Object.value(accesos.data[0]);
+
+
+    let id = accceso1[0];
+    let id_sucursal = accceso1[1];
+    let nombre = accceso1[2]; 
+    let usuario = accceso1[3];
+    let contraseña = accceso1[4];
+
+
+    console.log(id,nombre,usuario,contraseña,id_sucursal);
+    
+    $("#usuariosa").val(usuario);
+    console.log("d");
+    $("#contraseñaa").val(contraseña);
+    $("#txtNombreAcceso").val(accesos.nombreAcceso);
+    $("#txtIdAcceso").val(accesos.idAcceso);
+    $("#txtContraseña").val(accesos.contrasena);
+  
+    editarAcceso = true;
+  
   });
+
+
+
+
 }
 
 // ALERTAS //
@@ -431,7 +424,6 @@ function mensajes(response, mensaje, error) {
   if (response == "ingresado") {
     Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
-      mostrarLogoss();
     });
   } else {
     Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
@@ -498,6 +490,7 @@ function registrarAccesos() {
 
 //PARA LA SUCURSAL
 
+
 function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
   $.ajax({
@@ -510,6 +503,7 @@ function registrarSucursal() {
         "Ok, se registro la sucursal",
         "Te falta llenar algunos datos importantes ☹"
       );
+
       editarSucursall = false;
       tableSucursal.ajax.reload();
     },
@@ -529,7 +523,7 @@ function registrarContactos() {
     data: $("#frm-contactos, #ruc_id").serialize(),
     type: "GET",
     success: function (response) {
-      console.log(response);
+
       mensajes(response, "Contacto Registrado", "Rellena todos los campos ❌");
       editarContacto = false;
       tablaContactos.ajax.reload();
@@ -611,7 +605,7 @@ function editarEmpresas(id, edit) {
 
 function RegistrarEmpresa() {
 
- 
+
   let url = editar === false ? "../processes/register/registrar-empresa.php" : "../processes/edit/editar-empresa.php";
   let frm = document.getElementById("frm_empresa");
   let frmdata = new FormData(frm);
@@ -625,15 +619,31 @@ function RegistrarEmpresa() {
     contentType: false,
     success: (response) => {
       console.log(response);
-      //let data = JSON.parse(response);
-      /*data.forEach((data) => {
+      let data = JSON.parse(response);
+      data.forEach((data) => {
         mensajes(
           data.mensaje,
-          "Ingresaste un Logo 😃",
-          "Seguro falto el nombre 😲"
+          "EMPRESA INGRESADA",
+          "LA EMPRESA YA EXISTE"
         );
-        mostrarLogoss(data.ruc);
-      });*/
+
+
+
+        if(data.mensaje === "ingresado" ){
+          console.log("entre")
+          cargarSucursal(data.ruc);
+          cargarContactos(data.ruc);
+          
+        }else{
+        
+        console.log("entre aca")
+        
+        }
+
+        ruc_id.value = data.ruc;
+
+
+      });
     },
   });
 }
@@ -760,7 +770,7 @@ function informacionEmpresaNueva(estado, condicion, nombre) {
 
 
 cargarTipointegracion();
-function cargarTipointegracion(){
+function cargarTipointegracion() {
 
   $.ajax({
     url: "../processes/mostrar-tipo-integracion.php",
@@ -783,9 +793,9 @@ function cargarTipointegracion(){
 }
 
 cargarTiposSistemas();
-function cargarTiposSistemas(){
-  
-    
+function cargarTiposSistemas() {
+
+
   $.ajax({
     url: "../processes/mostrar-tipo-sistema.php",
     type: "GET",
