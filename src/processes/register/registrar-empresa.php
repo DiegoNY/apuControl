@@ -46,7 +46,7 @@ if (isset($txtRuc) and !empty($txtRuc)|| isset($txtNombreCo) and !empty($txtNomb
   
     $json = array();
     if ($response == TRUE) {
-        $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"----",$cboIdu,$txtEliminada,$txtRuc);
+        $registroSucursal = $empresas->registrarSucursal($txtNombreCo,$txtDireccion,"",$cboIdu,$txtEliminada,$txtRuc);
         $json[] = array('mensaje'=>"ingresado",'ruc'=>$txtRuc);
         $jsonString = json_encode($json);
         echo $jsonString;

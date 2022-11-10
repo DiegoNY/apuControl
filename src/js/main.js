@@ -178,24 +178,31 @@ $(document).ready(function () {
 
 
   $(document).on("click", ".btn-edit-sucursal", function () {
+    
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
-
+    
+    $("#txtIdSucursa").val(id);
+    
     $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
+
       let sucursal = JSON.parse(response);
       console.log(sucursal);
+      
       $("#id-sucursal").val(sucursal.id);
       $("#txtNombreSucursal").val(sucursal.nombre);
       $("#txtDireccionSucursal").val(sucursal.direccion);
       $("#txtCodigoCofide").val(sucursal.codigo_cofide);
       $("#cboIdu").val(sucursal.ubigeo);
       $("#txtIdEmpresa").val(sucursal.id_empresa);
+      
       editarSucursall = true;
       ides.value = sucursal.id;
-
+      
+      cargarAccesos(id);
+    
     });
-    $("#txtIdSucursa").val(id);
-    cargarAccesos(id);
+    
   });
 
   $(document).on("click", ".btn-delete-sucursal", async function () {
@@ -278,15 +285,6 @@ $(document).ready(function () {
 });
 
 
-
-document.getElementById("btn_registrar").addEventListener("click", (e) => {
-  e.preventDefault();
-
-  let frm = document.getElementById("frm_empresa");
-  // let frmdata = new FormData(frm);
-
-});
-
 function cargarSucursal(ruc) {
   tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
@@ -349,7 +347,8 @@ function cargarContactos(ruc) {
       { data: "telefono" },
       { data: "correo" },
       {
-        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto"></i>
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
+        data-bs-target="#contactos"></i>
         <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
         `,
       },
@@ -381,34 +380,33 @@ function cargarContactos(ruc) {
 function cargarAccesos(id) {
 
 
-
   $.post("../processes/mostrar-accesos.php", { id}, function (response) {
     
     let accesos = JSON.parse(response);
-
+     
     
-    let accceso1 = Object.values(accesos.data[0]);
+    let teamViewer = accesos['data'][0];
+    console.log(teamViewer);
+    let anydes = accesos['data'][1];
 
-    let anydes = Object.value(accesos.data[0]);
+    let escritorioRemoto = accesos['data'][2];
 
-
-    let id = accceso1[0];
-    let id_sucursal = accceso1[1];
-    let nombre = accceso1[2]; 
-    let usuario = accceso1[3];
-    let contraseña = accceso1[4];
-
-
-    console.log(id,nombre,usuario,contraseña,id_sucursal);
+   
+    $("#id_TV").val(teamViewer['id']);
+    $("#usuariosa").val(teamViewer['idAcceso']);
+    $("#contraseñaa").val(teamViewer['contrasena']);
     
-    $("#usuariosa").val(usuario);
-    console.log("d");
-    $("#contraseñaa").val(contraseña);
-    $("#txtNombreAcceso").val(accesos.nombreAcceso);
-    $("#txtIdAcceso").val(accesos.idAcceso);
-    $("#txtContraseña").val(accesos.contrasena);
-  
+    $("#id_ANY").val(anydes['id']);
+    $("#usuario_ANY").val(anydes['idAcceso']);
+    $("#contraseña_ANY").val(anydes['contrasena']);
+
+    $("#id_ER").val(escritorioRemoto['id']);
+    $("#usuario_ER").val(escritorioRemoto['idAcceso']);
+    $("#contraseña_ER").val(escritorioRemoto['contrasena']);
+    
+    
     editarAcceso = true;
+
   
   });
 

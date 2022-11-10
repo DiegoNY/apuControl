@@ -33,7 +33,7 @@ $(document).ready(function () {
         <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
         <li class="btn-delet"><a class="dropdown-item">Eliminar</a></li>
       </ul>
-    </div><div><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#empresa" id="btn-contactos"></i></div></div>`,
+    </div><div><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`,
       },
     ],
     language: {
@@ -100,6 +100,16 @@ $(document).ready(function () {
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
     cargarAccesos(id);
+
+  })
+
+  $(document).on("click","#mostrarTodo",function(){
+
+
+    let data = tablaEmpresa.row($(this).parents()).data();
+    let id = data.id;
+
+    datosCompletosEmpresa(id);
 
   })
 

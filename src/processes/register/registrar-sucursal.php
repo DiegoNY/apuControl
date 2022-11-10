@@ -23,6 +23,7 @@ $anydes = $sucursal->registrarAccesos($id_sucursal, "TEAM_VIEWER", $usuariosa, $
 $teamvieew = $sucursal->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY, $contraseña_ANY, $txtEstado);
 $escritortii = $sucursal->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado);
 
+//SI AUMENTAN MAS ACCESOS SE AGREGA UNA LINEA MAS HACERLA DINAMICA CON ARRAYS 
 
 if($resultado == TRUE){
     echo "ingresado"; 
