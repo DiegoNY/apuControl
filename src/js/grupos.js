@@ -1,4 +1,10 @@
 let editar = false;
+const hoy = new Date();
+
+var fechaInput = document.getElementById("txtFechCre").value = hoy.toLocaleDateString();
+
+
+
 
 $(document).ready(function(){
 
@@ -41,7 +47,7 @@ $(document).ready(function(){
 
   $(document).on("click", ".btn-editar-grupo", function () {
 
-
+    
     let element = (this).parentElement.parentElement;
     let id = element.getAttribute("id_grupo");
     

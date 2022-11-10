@@ -11,6 +11,11 @@ var tablaGrupos = '';
 var ruc_id = document.getElementById("ruc_id");
 var direccion_input = document.getElementById("txtDireccion");
 var razon_so = document.getElementById("txtRazonSocial");
+
+const hoy = new Date();
+
+var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocaleDateString();
+
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
@@ -24,6 +29,7 @@ if (!rucs) {
 } else {
   document.getElementById("ruc_id").value = rucs;
 }
+
 
 
 $(document).ready(function () {
@@ -302,7 +308,6 @@ function cargarSucursal(ruc) {
       {
         defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
                           <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
-                          <i class="bi bi-key text-success btn-agregar-acceso "  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         `,
       }
     ],
@@ -572,7 +577,9 @@ function editarEmpresas(id, edit) {
 
   $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
     let empresa = JSON.parse(response);
+    console.log(empresa);
     let ruc_em = empresa.ruc;
+
 
     $("#txtNombreCo").val(empresa.nom_comercial);
     $("#id").val(empresa.id);
@@ -586,8 +593,8 @@ function editarEmpresas(id, edit) {
     $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
     $("#txtFechaRegistro").val(empresa.fecha_registro);
     $("#txtEstadoComercial").val(empresa.estado_comercial);
-    $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboIdu").val(empresa.id_ubigeo);
+    $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboEstado").val(empresa.estado);
 
     editar = edit;

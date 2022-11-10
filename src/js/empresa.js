@@ -1,6 +1,27 @@
 let tableSucursal = "";
 
 $(document).ready(function () {
+
+  
+  $.ajax({
+    url: "../processes/mostrar-ubigeo.php",
+    type: "GET",
+    success: function (response) {
+      let ubigeo = JSON.parse(response);
+      let template = "";
+      ubigeo.forEach((ubigeo) => {
+        template += `
+
+        <option id="${ubigeo.ubigeo}" value="${ubigeo.id}">${ubigeo.distrito}</option>
+
+        `;
+      });
+      $("#cboIdu").html(template);
+      $("#cboIdub").html(template);
+    },
+  });
+
+
   //empresa cargando data
   let tablaEmpresa = $("#tabla_empresasas").DataTable({
     "scrollCollapse": true,
@@ -114,6 +135,40 @@ $(document).ready(function () {
   })
 
   
+  function datosCompletosEmpresa(id){
+
+    
+  $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
+    let empresa = JSON.parse(response);
+
+    console.log(empresa);
+
+
+    $("#txtNombreCo").val(empresa.nom_comercial);
+    $("#txtRuc").val(empresa.ruc);
+    $("#txtRazonSocial").val(empresa.razon_social);
+    $("#txtDireccion").val(empresa.direccion);
+    $("#cbogrupo").val(empresa.id_grupo);
+    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
+    $("#cboIdRubro").val(empresa.id_rubro);
+    $("#cboTipoEnvio").val(empresa.tipo_envio);
+    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
+    $("#txtFechaRegistro").val(empresa.fecha_registro);
+    $("#txtEstadoComercial").val(empresa.estado_comercial);
+    $("#cboTipoPersona").val(empresa.tipo_persona);
+    $("#cboIdu").val(empresa.id_ubigeo);
+    $("#cboEstado").val(empresa.estado);
+
+
+
+  });
+
+
+  }
+
+
+  
+
   function cargarSucursal(ruc) {
 
     tableSucursal = $("#tabla_sucursals").DataTable({

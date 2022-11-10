@@ -590,7 +590,7 @@
 
                                                                         <input type="text" ruc_ids value=""
                                                                             maxlength="11" name="txtRuc" id="txtRuc"
-                                                                            class="form-control">
+                                                                            class="form-control" disabled>
                                                                        
 
                                                                 </div>
@@ -604,10 +604,7 @@
 
                                                                 <label for="cboIdGrupo">Grupo</label>
                                                                 <div>
-                                                                    <select id="cbogrupo" name="txtIdGrupo"
-                                                                        class="form-control">
-                                                                        <option value="value">value</option>
-                                                                    </select>
+                                                                  <input type="text" id="txtIdGrupo" class="form-control" disabled> 
                                                                 </div>
 
                                                             </div>
@@ -624,7 +621,7 @@
                                                         <label class="col-form-label col-lg-2">Nombre</label>
                                                         <div class="col-lg-10">
                                                             <input type="text" value="" name="txtNombreCo"
-                                                                id="txtNombreCo" class="form-control">
+                                                                id="txtNombreCo" class="form-control" disabled>
                                                         </div>
                                                     </div>
 
@@ -633,7 +630,7 @@
                                                         <label class="col-form-label col-lg-2">Razon social</label>
                                                         <div class="col-lg-10">
                                                             <input type="text" value="" name="txtRazonSocial"
-                                                                id="txtRazonSocial" class="form-control">
+                                                                id="txtRazonSocial" class="form-control" disabled>
                                                         </div>
                                                     </div>
 
@@ -641,14 +638,14 @@
                                                         <label class="col-form-label col-lg-2">Direccion</label>
                                                         <div class="col-lg-10">
                                                             <input type="text" class="form-control" value=""
-                                                                name="txtDireccion" id="txtDireccion">
+                                                                name="txtDireccion" id="txtDireccion" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">Distrito</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboIdu" id="cboIdu" class="form-control">
+                                                            <select name="cboIdu" id="cboIdu" class="form-control" disabled>
                                                                 <option value="123">123</option>
                                                                 <option value="164">164</option>
                                                                 <option value="" selected></option>
@@ -659,26 +656,18 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">Rubro</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboIdRubro" id="cboIdRubro"
-                                                                class="form-control">
-                                                                <option value="" selected></option>
-                                                                <option value="EDS">EDS</option>
-                                                                <option value="BOTICAS">BOTICAS</option>
-                                                                <option value="MARKETS">MARKETS</option>
-                                                            </select>
+                                                            
+                                                            <input type="text" id="cboIdRubro" class="form-control" disabled>
+
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">T.Persona</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboTipoPersona" id="cboTipoPersona"
-                                                                class="form-control">
+                                                            
+                                                            <input type="text" id="cboTipoPersona" class="form-control" disabled>
 
-                                                                <option value="" selected></option>
-                                                                <option value="NATURAL">Natural</option>
-                                                                <option value="JURIDICA">Juridica</option>
-                                                            </select>
                                                         </div>
                                                     </div>
 
@@ -688,7 +677,7 @@
 
                                                         <div class="col-lg-10">
                                                             <input type="text" name="txtFechaRegistro"
-                                                                id="txtFechaRegistro" value="" class="form-control">
+                                                                id="txtFechaRegistro" value="" class="form-control" disabled>
                                                         </div>
 
                                                     </div>
@@ -704,12 +693,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">T. Sistema</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboTipoSistema" id="cboTipoSistema"
-                                                                class="form-control ">
-                                                                <option value="" selected></option>
-                                                                <option value="GESFARMA">GESFARMA</option>
-                                                                <option value="APUGESCOM">APUGESCOM</option>
-                                                            </select>
+                                                           <input type="text" id="cboTipoSistema" class="form-control" disabled>
                                                         </div>
                                                     </div>
 
@@ -719,12 +703,7 @@
                                                         <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
                                                             Envio</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboTipoEnvio" id="cboTipoEnvio"
-                                                                class="form-control">
-                                                                <option value="" selected></option>
-                                                                <option value="OSE">OSE</option>
-                                                                <option value="SUNAT">SUNAT</option>
-                                                            </select>
+                                                          <input type="text" id="cboTipoEnvio" class="form-control" disabled>
                                                         </div>
                                                     </div>
 
@@ -733,13 +712,7 @@
                                                         <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
                                                             Integracion</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboIdTipoIntegracion"
-                                                                id="cboIdTipoIntegracion" class="form-control">
-                                                                <option value="" selected></option>
-                                                                <option value="DBF">DBF</option>
-                                                                <option value="TXT">TXT</option>
-                                                                <option value="JSON">JSON</option>
-                                                            </select>
+                                                          <input type="text" class="form-control" id="cboIdTipoIntegracion" disabled>
                                                         </div>
                                                     </div>
 
@@ -747,25 +720,14 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">E. Comercial</label>
                                                         <div class="col-lg-10">
-                                                            <select name="txtEstadoComercial" id="txtEstadoComercial"
-                                                                class="form-control">
-                                                                <option value="" selected></option>
-                                                                <option value="INGRESADO">INGRESADO</option>
-                                                                <option value="POR_INSTALAR">POR INSTALAR</option>
-                                                                <option value="PRODUCCION">PRODUCCION</option>
-                                                            </select>
+                                                            <input type="text" id="txtEstadoComercial" class="form-control" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">Estado</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboEstado" id="cboEstado"
-                                                                class="form-control">
-                                                                <option value="" selected></option>
-                                                                <option value="POSIBLE_CLIENTE">Posible Cliente</option>
-                                                                <option value="CLIENTE">Cliente</option>
-                                                            </select>
+                                                            <input type="text" class="form-control" id="cboEstado" disabled>
                                                         </div>
                                                     </div>
 
