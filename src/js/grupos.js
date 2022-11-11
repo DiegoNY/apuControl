@@ -1,7 +1,22 @@
 let editar = false;
 const hoy = new Date();
-
+const btnAgregarGrupo = document.getElementById("btn_agregar_grupo");
 var fechaInput = document.getElementById("txtFechCre").value = hoy.toLocaleDateString();
+
+fetch('../processes/pruebaSession.php')
+  .then(response => response.json())
+  .then(nombre => {
+
+    
+    let usuario = nombre.usuario[0];
+    
+    if(usuario === null){
+      window.location.replace('login.html');
+    }else{
+    let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+    let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+    }
+  });
 
 
 
@@ -69,6 +84,14 @@ $(document).ready(function(){
 
   })
 
+  btnAgregarGrupo.addEventListener("click", function(){
+
+
+    editar = false;
+    document.getElementById('frm_grupo').reset();
+    
+
+  })
 
 })
 
@@ -86,6 +109,7 @@ function RegistrarGrupo() {
       },
     });
     $("#frm_grupo").trigger("reset");
+    mostrarGrupos();
   
   }
   
@@ -127,3 +151,16 @@ function RegistrarGrupo() {
     })
   }
   
+
+  function mensajes(response, mensaje, error) {
+
+    if (response == "ingresado") {
+      Swal.fire("REGISTRADA", ``, "success").then(() => {
+        console.log("tabla actualizada");
+      });
+    } else {
+      Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
+        console.log("no hay datos");
+      });
+    }
+  }

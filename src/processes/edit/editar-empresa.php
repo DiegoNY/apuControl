@@ -1,7 +1,8 @@
 <?php
 
 include '../../connection/basedatos.php';
-extract($_GET);
+
+extract($_POST);
 
 $empresa = new BaseDatos();
 

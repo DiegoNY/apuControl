@@ -234,7 +234,6 @@
   // });
 
 
-
 //   $(document).on("click", "#btn-sucursales", function () {
 //     let data = tablaEmpresa.row($(this).parents()).data();
 //     let ruc = data.ruc;
@@ -242,3 +241,6 @@
 
 //     window.location.replace(`sucursales.html?ruc=${ruc}&nombre=${nombre}`);
 //   })
+
+
+

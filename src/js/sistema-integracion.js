@@ -1,6 +1,26 @@
 
 var editarIntegracion = false;
 var editarSistema = false;
+const btnAgregarTipoIntegracion = document.getElementById('btn_agregar_tipo_integracion');
+const btnAgregarTipoSistem = document.getElementById('btn_agregar_tipo_sistema');
+const btnAgregarRubro = document.getElementById('btn_agregar_rubro');
+
+
+fetch('../processes/pruebaSession.php')
+  .then(response => response.json())
+  .then(nombre => {
+
+    
+    let usuario = nombre.usuario[0];
+    
+    if(usuario === null){
+      window.location.replace('login.html');
+    }else{
+    let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+    let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+    }
+  });
+
 
 $(document).ready(function(){
 
@@ -110,6 +130,24 @@ $(document).ready(function(){
       editarIntegracion = true;
       mostrarTipoIntegracion();
     });
+
+  })
+
+  btnAgregarTipoIntegracion.addEventListener('click',function(){
+
+    editarIntegracion = false;
+    
+    document.getElementById('frm_tipo_integracion').reset();
+    
+
+  })
+
+  btnAgregarTipoSistem.addEventListener('click',function(){
+
+    editarSistema = false;
+
+    document.getElementById('frm_tipo_sistema').reset();
+    
 
   })
 

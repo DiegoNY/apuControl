@@ -12,9 +12,31 @@ var ruc_id = document.getElementById("ruc_id");
 var direccion_input = document.getElementById("txtDireccion");
 var razon_so = document.getElementById("txtRazonSocial");
 
+const btnes = document.getElementById("btn_reset");
+const btnAgregarContacto = document.getElementById("btn_reset_contacto")
+
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocaleDateString();
+
+//se llama al usuario logueado
+
+fetch('../processes/pruebaSession.php')
+  .then(response => response.json())
+  .then(nombre => {
+
+    
+    let usuario = nombre.usuario[0];
+    
+    if(usuario === null){
+      window.location.replace('login.html');
+    }else{
+    let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+    let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+    }
+  });
+
+
 
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
@@ -184,31 +206,31 @@ $(document).ready(function () {
 
 
   $(document).on("click", ".btn-edit-sucursal", function () {
-    
+
     let data = tableSucursal.row($(this).parents()).data();
     let id = data.id;
-    
+
     $("#txtIdSucursa").val(id);
-    
+
     $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
 
       let sucursal = JSON.parse(response);
       console.log(sucursal);
-      
+
       $("#id-sucursal").val(sucursal.id);
       $("#txtNombreSucursal").val(sucursal.nombre);
       $("#txtDireccionSucursal").val(sucursal.direccion);
       $("#txtCodigoCofide").val(sucursal.codigo_cofide);
       $("#cboIdu").val(sucursal.ubigeo);
       $("#txtIdEmpresa").val(sucursal.id_empresa);
-      
+
       editarSucursall = true;
       ides.value = sucursal.id;
-      
+
       cargarAccesos(id);
-    
+
     });
-    
+
   });
 
   $(document).on("click", ".btn-delete-sucursal", async function () {
@@ -285,6 +307,21 @@ $(document).ready(function () {
 
     let ruc = $("#txtRuc").val();
     validarRuc(ruc);
+
+  })
+
+
+  btnes.addEventListener("click", function () {
+
+    editarSucursall = false;
+    document.getElementById('frm-sucursal').reset();
+  }
+  )
+
+  btnAgregarContacto.addEventListener("click",function(){
+
+    editarContacto = false;
+    document.getElementById('frm-contactos').reset();
 
   })
 
@@ -385,22 +422,22 @@ function cargarContactos(ruc) {
 function cargarAccesos(id) {
 
 
-  $.post("../processes/mostrar-accesos.php", { id}, function (response) {
-    
+  $.post("../processes/mostrar-accesos.php", { id }, function (response) {
+
     let accesos = JSON.parse(response);
-     
-    
+
+
     let teamViewer = accesos['data'][0];
     console.log(teamViewer);
     let anydes = accesos['data'][1];
 
     let escritorioRemoto = accesos['data'][2];
 
-   
+
     $("#id_TV").val(teamViewer['id']);
     $("#usuariosa").val(teamViewer['idAcceso']);
     $("#contraseñaa").val(teamViewer['contrasena']);
-    
+
     $("#id_ANY").val(anydes['id']);
     $("#usuario_ANY").val(anydes['idAcceso']);
     $("#contraseña_ANY").val(anydes['contrasena']);
@@ -408,11 +445,11 @@ function cargarAccesos(id) {
     $("#id_ER").val(escritorioRemoto['id']);
     $("#usuario_ER").val(escritorioRemoto['idAcceso']);
     $("#contraseña_ER").val(escritorioRemoto['contrasena']);
-    
-    
+
+
     editarAcceso = true;
 
-  
+
   });
 
 
@@ -634,15 +671,15 @@ function RegistrarEmpresa() {
 
 
 
-        if(data.mensaje === "ingresado" ){
+        if (data.mensaje === "ingresado") {
           console.log("entre")
           cargarSucursal(data.ruc);
           cargarContactos(data.ruc);
-          
-        }else{
-        
-        console.log("entre aca")
-        
+
+        } else {
+
+          console.log("entre aca")
+
         }
 
         ruc_id.value = data.ruc;
@@ -819,3 +856,5 @@ function cargarTiposSistemas() {
     }
   })
 }
+
+

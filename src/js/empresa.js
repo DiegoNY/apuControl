@@ -1,8 +1,28 @@
 let tableSucursal = "";
 
+const valores = window.location.search;
+const urlParams = new URLSearchParams(valores);
+
+fetch('../processes/pruebaSession.php')
+  .then(response => response.json())
+  .then(nombre => {
+
+    
+    let usuario = nombre.usuario[0];
+    
+    if(usuario === null){
+      window.location.replace('login.html');
+    }else{
+    let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+    let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+    }
+  });
+
+
+
 $(document).ready(function () {
 
-  
+
   $.ajax({
     url: "../processes/mostrar-ubigeo.php",
     type: "GET",
@@ -37,9 +57,9 @@ $(document).ready(function () {
           return `<center><img src="../${data}" style="width:50px; height:50px;"></center>`
         }
       },
+      { data: "ruc" },
       { data: "nom_comercial" },
       { data: "id_grupo" },
-      { data: "ruc" },
       { data: "id_rubro" },
       { data: "tipo_envio" },
       { data: "estado_comercial" },
@@ -80,7 +100,7 @@ $(document).ready(function () {
 
   });
 
-  
+
   $(document).on("click", ".btn-delet", async function () {
     const module = await import('./alertas.js');
 
@@ -124,7 +144,7 @@ $(document).ready(function () {
 
   })
 
-  $(document).on("click","#mostrarTodo",function(){
+  $(document).on("click", "#mostrarTodo", function () {
 
 
     let data = tablaEmpresa.row($(this).parents()).data();
@@ -134,40 +154,40 @@ $(document).ready(function () {
 
   })
 
-  
-  function datosCompletosEmpresa(id){
 
-    
-  $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
-    let empresa = JSON.parse(response);
-
-    console.log(empresa);
+  function datosCompletosEmpresa(id) {
 
 
-    $("#txtNombreCo").val(empresa.nom_comercial);
-    $("#txtRuc").val(empresa.ruc);
-    $("#txtRazonSocial").val(empresa.razon_social);
-    $("#txtDireccion").val(empresa.direccion);
-    $("#cbogrupo").val(empresa.id_grupo);
-    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
-    $("#cboIdRubro").val(empresa.id_rubro);
-    $("#cboTipoEnvio").val(empresa.tipo_envio);
-    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
-    $("#txtFechaRegistro").val(empresa.fecha_registro);
-    $("#txtEstadoComercial").val(empresa.estado_comercial);
-    $("#cboTipoPersona").val(empresa.tipo_persona);
-    $("#cboIdu").val(empresa.id_ubigeo);
-    $("#cboEstado").val(empresa.estado);
+    $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
+      let empresa = JSON.parse(response);
+
+      console.log(empresa);
+
+
+      $("#txtNombreCo").val(empresa.nom_comercial);
+      $("#txtRuc").val(empresa.ruc);
+      $("#txtRazonSocial").val(empresa.razon_social);
+      $("#txtDireccion").val(empresa.direccion);
+      $("#cbogrupo").val(empresa.id_grupo);
+      $("#cboTipoSistema").val(empresa.id_tipo_sistema);
+      $("#cboIdRubro").val(empresa.id_rubro);
+      $("#cboTipoEnvio").val(empresa.tipo_envio);
+      $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
+      $("#txtFechaRegistro").val(empresa.fecha_registro);
+      $("#txtEstadoComercial").val(empresa.estado_comercial);
+      $("#cboTipoPersona").val(empresa.tipo_persona);
+      $("#cboIdu").val(empresa.id_ubigeo);
+      $("#cboEstado").val(empresa.estado);
 
 
 
-  });
+    });
 
 
   }
 
 
-  
+
 
   function cargarSucursal(ruc) {
 
@@ -230,7 +250,7 @@ $(document).ready(function () {
         { data: "cargo" },
         { data: "telefono" },
         { data: "correo" },
-        
+
       ],
       language: {
         decimal: "",
@@ -270,9 +290,8 @@ $(document).ready(function () {
         { data: "idAcceso" },
         { data: "contrasena" },
         {
-         defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-acceso"></i>
-                           <i class="bi bi-x-circle-fill text-danger btn-delete-acceso"></i>`,
-        }, 
+          defaultContent: ``,
+        },
       ],
       language: {
         decimal: "",

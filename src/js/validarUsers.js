@@ -19,6 +19,7 @@ btn.addEventListener("click", function (e) {
             if(datas == "no existe"){
                 alert("usuario ingresado no es valido");
             }else{
+                console.log(datas);
                 window.location =`../views/vista-empresa.html?usuario=${datas.usuario}`;
             }
             
