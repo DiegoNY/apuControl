@@ -77,20 +77,20 @@ const App = function () {
         });
 
         // Add class on mouse enter
-        sidebarMainElement.on('mouseenter', function() {
-            clearTimeout(timerFinish);
-            timerStart = setTimeout(function() {
-                sidebarMainElement.hasClass(resizeClass) && sidebarMainElement.addClass(unfoldClass);
-            }, unfoldDelay);
-        });
+        // sidebarMainElement.on('mouseenter', function() {
+        //     clearTimeout(timerFinish);
+        //     timerStart = setTimeout(function() {
+        //         sidebarMainElement.hasClass(resizeClass) && sidebarMainElement.addClass(unfoldClass);
+        //     }, unfoldDelay);
+        // });
 
-        // Remove class on mouse leave
-        sidebarMainElement.on('mouseleave', function() {
-            clearTimeout(timerStart);
-            timerFinish = setTimeout(function() {
-                sidebarMainElement.removeClass(unfoldClass);
-            }, unfoldDelay);
-        });
+        // // Remove class on mouse leave
+        // sidebarMainElement.on('mouseleave', function() {
+        //     clearTimeout(timerStart);
+        //     timerFinish = setTimeout(function() {
+        //         sidebarMainElement.removeClass(unfoldClass);
+        //     }, unfoldDelay);
+        // });
     };
 
     // Toggle main sidebar

@@ -171,12 +171,16 @@ function mostrarGrupos() {
 function mensajes(response, mensaje, error) {
 
   if (response == "ingresado") {
+
     Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
     });
+    
   } else {
+
     Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
       console.log("no hay datos");
     });
+  
   }
 }

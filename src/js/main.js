@@ -35,8 +35,10 @@ var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocal
      window.location.replace('login.html');
 
     }else{
+
     let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
     let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+   
     }
   });
 
@@ -227,8 +229,11 @@ $(document).ready(function () {
       $("#txtNombreSucursal").val(sucursal.nombre);
       $("#txtDireccionSucursal").val(sucursal.direccion);
       $("#txtCodigoCofide").val(sucursal.codigo_cofide);
-      $("#cboIdu").val(sucursal.ubigeo);
+      $("#cboIdu").val(empresa.id_ubigeo);
       $("#txtIdEmpresa").val(sucursal.id_empresa);
+
+      //ub = document.getElementById(`${sucursal.ubigeo}`).value;
+      console.log(ub);
 
       editarSucursall = true;
       ides.value = sucursal.id;
@@ -342,8 +347,9 @@ $(document).ready(function () {
 
 
 function cargarSucursal(ruc) {
-  tableSucursal.destroy();
+  
   tableSucursal = $("#tabla_sucursals").DataTable({
+    destroy:true,
     "scrollCollapse": true,
     "paging": true,
     "order": [[0, 'desc'], [1, 'desc']],
@@ -587,7 +593,6 @@ function registrarContactos() {
 
 //para los grupos
 
-cargaGrupoEnFrm();
 
 function cargaGrupoEnFrm() {
   $.ajax({
@@ -608,17 +613,6 @@ function cargaGrupoEnFrm() {
   });
 }
 
-
-
-/**
- *  
- * @param id = el parametreo que se recibe por GET 
- * 
- * *una vez recibido el paramertro valida si no es null para 
- * *para poder ejecutarce asi evitando error de JSON 🙈
- *
- */
-editarEmpresas(id, edit);
 
 function editarEmpresas(id, edit) {
 
@@ -824,7 +818,6 @@ function informacionEmpresaNueva(estado, condicion, nombre) {
 }
 
 
-cargarTipointegracion();
 function cargarTipointegracion() {
 
   $.ajax({
@@ -847,7 +840,6 @@ function cargarTipointegracion() {
 
 }
 
-cargarTiposSistemas();
 function cargarTiposSistemas() {
 
 
@@ -869,5 +861,18 @@ function cargarTiposSistemas() {
     }
   })
 }
+
+cargarTiposSistemas();
+cargaGrupoEnFrm();
+cargarTipointegracion();
+/**
+ *  
+ * @param id = el parametreo que se recibe por GET 
+ * 
+ * *una vez recibido el paramertro valida si no es null para 
+ * *para poder ejecutarce asi evitando error de JSON 🙈
+ *
+ */
+ editarEmpresas(id, edit);
 
 
