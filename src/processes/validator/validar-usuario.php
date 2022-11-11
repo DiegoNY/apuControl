@@ -29,14 +29,5 @@ if($res == false){
 
    echo $nombreUsers;
 
-//    if($nombreUsers === $res){
-
-//     echo $nombreUsers;
-//    }else{
-
-//     echo json_encode('no existe');
-
-//    }
-    
 }
 

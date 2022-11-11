@@ -83,7 +83,6 @@
 </head>
 
 <body>
-
     <!-- Main navbar -->
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
         <div class="d-flex flex-1 d-lg-none">
@@ -110,12 +109,12 @@
             </ul>
 
             <ul class="navbar-nav ml-lg-auto">
-                
+
             </ul>
         </div>
 
         <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
-           
+
 
             <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
                 <a href="#"
@@ -128,7 +127,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Mi perfil</a>
                     <div class="dropdown-divider"></div>
-                    <a href="login.html" class="dropdown-item"><i class="icon-switch2"></i>Salir</a>
+                    <a href="login.html" id="btnSalir" class="dropdown-item"><i class="icon-switch2"></i>Salir</a>
                 </div>
             </li>
         </ul>
@@ -210,7 +209,8 @@
                                 <li class="nav-item"><a href="vista-grupos.html" class="nav-link">Grupos</a></li>
 
 
-                                <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link">Info Sistema</a></li>
+                                <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link">Info
+                                        Sistema</a></li>
 
                             </ul>
                         </li>
@@ -513,7 +513,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cerrar</button>
-                                          
+
                                         </div>
                                     </div>
                                 </div>
@@ -555,7 +555,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cerrar</button>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -588,10 +588,10 @@
 
                                                                 <div>
 
-                                                                        <input type="text" ruc_ids value=""
-                                                                            maxlength="11" name="txtRuc" id="txtRuc"
-                                                                            class="form-control" disabled>
-                                                                       
+                                                                    <input type="text" ruc_ids value="" maxlength="11"
+                                                                        name="txtRuc" id="txtRuc" class="form-control"
+                                                                        disabled>
+
 
                                                                 </div>
 
@@ -604,7 +604,8 @@
 
                                                                 <label for="cboIdGrupo">Grupo</label>
                                                                 <div>
-                                                                  <input type="text" id="txtIdGrupo" class="form-control" disabled> 
+                                                                    <input type="text" id="txtIdGrupo"
+                                                                        class="form-control" disabled>
                                                                 </div>
 
                                                             </div>
@@ -645,7 +646,8 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">Distrito</label>
                                                         <div class="col-lg-10">
-                                                            <select name="cboIdu" id="cboIdu" class="form-control" disabled>
+                                                            <select name="cboIdu" id="cboIdu" class="form-control"
+                                                                disabled>
                                                                 <option value="123">123</option>
                                                                 <option value="164">164</option>
                                                                 <option value="" selected></option>
@@ -656,8 +658,9 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">Rubro</label>
                                                         <div class="col-lg-10">
-                                                            
-                                                            <input type="text" id="cboIdRubro" class="form-control" disabled>
+
+                                                            <input type="text" id="cboIdRubro" class="form-control"
+                                                                disabled>
 
                                                         </div>
                                                     </div>
@@ -665,8 +668,9 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">T.Persona</label>
                                                         <div class="col-lg-10">
-                                                            
-                                                            <input type="text" id="cboTipoPersona" class="form-control" disabled>
+
+                                                            <input type="text" id="cboTipoPersona" class="form-control"
+                                                                disabled>
 
                                                         </div>
                                                     </div>
@@ -677,7 +681,8 @@
 
                                                         <div class="col-lg-10">
                                                             <input type="text" name="txtFechaRegistro"
-                                                                id="txtFechaRegistro" value="" class="form-control" disabled>
+                                                                id="txtFechaRegistro" value="" class="form-control"
+                                                                disabled>
                                                         </div>
 
                                                     </div>
@@ -693,7 +698,8 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">T. Sistema</label>
                                                         <div class="col-lg-10">
-                                                           <input type="text" id="cboTipoSistema" class="form-control" disabled>
+                                                            <input type="text" id="cboTipoSistema" class="form-control"
+                                                                disabled>
                                                         </div>
                                                     </div>
 
@@ -703,7 +709,8 @@
                                                         <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
                                                             Envio</label>
                                                         <div class="col-lg-10">
-                                                          <input type="text" id="cboTipoEnvio" class="form-control" disabled>
+                                                            <input type="text" id="cboTipoEnvio" class="form-control"
+                                                                disabled>
                                                         </div>
                                                     </div>
 
@@ -712,7 +719,8 @@
                                                         <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
                                                             Integracion</label>
                                                         <div class="col-lg-10">
-                                                          <input type="text" class="form-control" id="cboIdTipoIntegracion" disabled>
+                                                            <input type="text" class="form-control"
+                                                                id="cboIdTipoIntegracion" disabled>
                                                         </div>
                                                     </div>
 
@@ -720,14 +728,16 @@
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">E. Comercial</label>
                                                         <div class="col-lg-10">
-                                                            <input type="text" id="txtEstadoComercial" class="form-control" disabled>
+                                                            <input type="text" id="txtEstadoComercial"
+                                                                class="form-control" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="col-form-label col-lg-2">Estado</label>
                                                         <div class="col-lg-10">
-                                                            <input type="text" class="form-control" id="cboEstado" disabled>
+                                                            <input type="text" class="form-control" id="cboEstado"
+                                                                disabled>
                                                         </div>
                                                     </div>
 

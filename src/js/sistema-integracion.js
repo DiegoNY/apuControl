@@ -4,9 +4,12 @@ var editarSistema = false;
 const btnAgregarTipoIntegracion = document.getElementById('btn_agregar_tipo_integracion');
 const btnAgregarTipoSistem = document.getElementById('btn_agregar_tipo_sistema');
 const btnAgregarRubro = document.getElementById('btn_agregar_rubro');
+const btnSalir = document.getElementById("btnSalir");
 
 
-fetch('../processes/pruebaSession.php')
+(async() =>{
+
+  await fetch('../processes/pruebaSession.php')
   .then(response => response.json())
   .then(nombre => {
 
@@ -14,13 +17,16 @@ fetch('../processes/pruebaSession.php')
     let usuario = nombre.usuario[0];
     
     if(usuario === null){
-      window.location.replace('login.html');
+      
+     window.location.replace('login.html');
+
     }else{
     let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
     let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
     }
   });
 
+})()
 
 $(document).ready(function(){
 
@@ -149,6 +155,13 @@ $(document).ready(function(){
     document.getElementById('frm_tipo_sistema').reset();
     
 
+  })
+
+  btnSalir.addEventListener("click",async function(){
+
+  
+    fetch('../processes/validator/terminar-sesion.php');
+    
   })
 
 })

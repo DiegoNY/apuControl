@@ -1,23 +1,32 @@
 let tableSucursal = "";
+const btnSalir = document.getElementById("btnSalir");
 
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 
-fetch('../processes/pruebaSession.php')
-  .then(response => response.json())
-  .then(nombre => {
+(async () => {
 
-    
-    let usuario = nombre.usuario[0];
-    
-    if(usuario === null){
-      window.location.replace('login.html');
-    }else{
-    let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
-    let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
-    }
-  });
+  await fetch('../processes/pruebaSession.php')
+    .then(response => response.json())
+    .then(nombre => {
 
+
+      let usuario = nombre.usuario[0];
+
+      if (usuario === null) {
+
+        window.location.replace('login.html');
+
+      } else {
+
+        let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+        let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+
+      }
+    });
+
+
+})()
 
 
 $(document).ready(function () {
@@ -154,6 +163,12 @@ $(document).ready(function () {
 
   })
 
+  btnSalir.addEventListener("click",async function(){
+
+  
+    fetch('../processes/validator/terminar-sesion.php');
+    
+  })
 
   function datosCompletosEmpresa(id) {
 
@@ -185,7 +200,6 @@ $(document).ready(function () {
 
 
   }
-
 
 
 
