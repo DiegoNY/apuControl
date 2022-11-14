@@ -1,33 +1,28 @@
 <?php 
-include '../../connection/basedatos.php';
 
-$tipo = new BaseDatos();
+include '../connection/basedatos.php';
 
+$rubro = new BaseDatos();
 
-$id = $_POST['id'];
-
-$resultado = $tipo->mostrarTipoSistema($id);
-
+$resultado = $rubro->mostrarRubros();
 
 if(!$resultado){
     die('Query Failed');
 }
 
 $json = array();
+$form = array();
 while($row = mysqli_fetch_array($resultado)){
 
  $json[] = array(
     'id' => $row['id'],
     'nombre' => $row['nombre'],
     'estado' => $row['estado'],
-    'proveedor' => $row['proveedor'],
     'fecha' => $row['fecha'],
  );  
 
 
 }
 
-$jsonString =  json_encode($json[0]);
+$jsonString =  json_encode($json);
 echo $jsonString;
-
-?>

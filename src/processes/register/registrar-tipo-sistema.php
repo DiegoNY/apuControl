@@ -15,10 +15,10 @@ if (isset($txtNombre) && !empty($txtNombre)) {
     $nombre = $tipoSIstema->sanitizar($txtNombre);
     $estado = $tipoSIstema->sanitizar($txtEstado);
     $fecha = $tipoSIstema->sanitizar($txtFecha);
-
+    $proveedor = $tipoSIstema->sanitizar($txtProveedor);
     //La insercion y la respuesta 👌
 
-    $res = $tipoSIstema->registrartipoSIstema($estado,$nombre,$fecha);
+    $res = $tipoSIstema->registrartipoSIstema($estado,$nombre,$fecha,$proveedor);
     if ($res == TRUE) {
 
         echo "ingresado";

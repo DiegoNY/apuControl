@@ -292,11 +292,18 @@
                                                     role="presentation" tabindex="-1" class="ui-tabs-anchor"
                                                     id="ui-id-101">Tipo Integracion</a></li>
                                             <li role="tab" tabindex="1"
-                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab inactive"
+                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab "
                                                 aria-controls="tabs-hover-2" aria-labelledby="ui-id-101"
                                                 aria-selected="true" aria-expanded="true"><a href="#tabs-hover-3"
                                                     role="presentation" tabindex="-1" class="ui-tabs-anchor"
-                                                    id="ui-id-101">Rubro</a></li>
+                                                    id="ui-id-101">Rubros</a></li>
+
+                                                    <li role="tab" tabindex="1"
+                                                    class="ui-tabs-tab ui-corner-top ui-state-default ui-tab "
+                                                    aria-controls="tabs-hover-2" aria-labelledby="ui-id-101"
+                                                    aria-selected="true" aria-expanded="true"><a href="#tabs-hover-4"
+                                                        role="presentation" tabindex="-1" class="ui-tabs-anchor"
+                                                        id="ui-id-101">Cargos</a></li>
 
                                         </ul>
                                         <div id="tabs-hover-1" aria-labelledby="ui-id-100" role="tabpanel"
@@ -377,6 +384,7 @@
 
 
                                         </div>
+                                        
                                         <div id="tabs-hover-2" aria-labelledby="ui-id-101" role="tabpanel"
                                             class="ui-tabs-panel ui-corner-bottom ui-widget-content"
                                             aria-hidden="false">
@@ -448,6 +456,8 @@
                                             </div>
 
                                         </div>
+
+                                        
                                         <div id="tabs-hover-3" aria-labelledby="ui-id-101" role="tabpanel"
                                             class="ui-tabs-panel ui-corner-bottom ui-widget-content"
                                             aria-hidden="false">
@@ -457,9 +467,82 @@
                                                    
 
                                                     <button class=" btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#tipo-integracion">
+                                                    data-bs-target="#rubro">
                                                     Rubro +
                                                   </button>
+
+                                                </div>
+
+                                                <div class="table-responsive col-lg-12">
+
+
+                                                    <div class="gridjs-example-server-search border-top">
+                                                        <div role="complementary" class="gridjs gridjs-container"
+                                                            style="width: 100%;">
+
+                                                            <div class="gridjs-wrapper" style="height: auto;">
+                                                                <table role="grid" class="gridjs-table table"
+                                                                    style="height: auto" id="tabla_nueva_integracion">
+                                                                    <thead class="gridjs-thead"
+                                                                        style="background-color: #252B36; color: white;">
+                                                                        <tr class="gridjs-tr">
+                                                                            <th data-column-id="title"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">#
+                                                                                </div>
+                                                                            </th>
+                                                                            
+                                                                            <th data-column-id="director"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">Nombre
+                                                                                </div>
+                                                                            </th>
+                                                                            
+                                                                            <th data-column-id="producer"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">Fecha
+                                                                                </div>
+                                                                            </th>
+                                                                            
+                                                                            <th data-column-id="producer"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">Opciones
+                                                                                </div>
+                                                                            </th>
+
+                                                                            
+                                                                           
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="gridjs-tbody" id="listado_tipo_integraciones">
+
+                                                                       
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div id="gridjs-temp" class="gridjs-temp"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div id="tabs-hover-4" aria-labelledby="ui-id-101" role="tabpanel"
+                                            class="ui-tabs-panel ui-corner-bottom ui-widget-content"
+                                            aria-hidden="false">
+                                            <div class="card-body row">
+
+                                                <div class="col-lg-5 mb-3">
+                                                   
+
+                                                    <button class=" btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#cargo">
+                                                    Cargo +
+                                                    </button>
+
 
                                                 </div>
 
@@ -592,6 +675,15 @@
                                         <input type="text" name="txtNombre" id="txtNombre" class="form-control">
                                     </div>
                                 </div>
+                                
+                                <div class="row">
+
+                                    <label class="col-lg-12">Proveedor</label>
+                                    <div class="col-lg-12">
+                                        <input type="text" name="txtProveedor" id="txtProveedor" class="form-control">
+                                    </div>
+
+                                </div>
 
                            
 
@@ -650,6 +742,95 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" onclick="registrarTipoIntegracion()" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rubro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2 text-light" style="background-color: #252B36;">
+                    <h5 class="modal-title" id="exampleModalLabel">Rubros</h5>
+                </div>
+                <div class="modal-body py-0">
+
+                    <div class="card-body">
+
+
+                        <form id="frmRubro" class=" row">
+
+                            <fieldset class="col-xl-12">
+
+                                <input type="hidden" name="txtFechaIntegracion" id="txtFecha">
+                                <input type="hidden" name="txtEstadoIntegracion" value="1">
+                                <input type="hidden" name="id_tipo_integracion" id="id_tipo_integracion">
+
+                            
+                                <div class="row">
+                                    <label class="col-lg-12">Nombre</label>
+                                    <div class="col-lg-12">
+                                        <input type="text" name="nombre" id="nombre" class="form-control">
+                                    </div>
+                                </div>
+
+                           
+
+                            </fieldset>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnRegistraRubro" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cargo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2 text-light" style="background-color: #252B36;">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargos</h5>
+                </div>
+                <div class="modal-body py-0">
+
+                    <div class="card-body">
+
+
+                        <form id="frmCargo" class=" row">
+
+                            <fieldset class="col-xl-12">
+
+                                <input type="hidden" name="txtFechaIntegracion" id="txtFecha">
+                                <input type="hidden" name="txtEstadoIntegracion" value="1">
+                                <input type="hidden" name="id_tipo_integracion" id="id_tipo_integracion">
+
+                            
+                                <div class="row">
+                                    <label class="col-lg-12">Nombre Cargo</label>
+                                    <div class="col-lg-12">
+                                        <input type="text" name="txtNombreIntegracion" id="txtNombreIntegracion" class="form-control">
+                                    </div>
+                                </div>
+
+                           
+
+                            </fieldset>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnRegistrarCargos" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>

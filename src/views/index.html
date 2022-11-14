@@ -17,17 +17,6 @@
     <link rel="stylesheet" href="../style/style-empresa-index.css">
     <!-- /global stylesheets -->
 
-    <!-- Theme JS files -->
-    <script src="../global_assets/js/demo_pages/dashboard.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/streamgraph.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/sparklines.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/lines.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/areas.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/donuts.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/bars.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/progress.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/pies.js"></script>
-    <script src="../global_assets/js/demo_charts/pages/dashboard/light/bullets.js"></script>
     <!-- /theme JS files -->
     <!-- DataTable -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -458,22 +447,22 @@
 
                                             <div class="row">
 
-
-
-
-                                                <div class="col-lg-3" style="height: 40px; width: 40px;">
-                                                    <img src="" alt="logo de la empresa"
-                                                        style="height: 100%; width: 100%;">
-                                                </div>
-
-                                                <label class="custom-file col-lg-9">
+                                                <label class="custom-file ">
 
                                                     <input type="file" name="logo" id="logo" class="custom-file-input">
                                                     <span class="custom-file-label">Ingresa Logo</span>
                                                 </label>
 
 
+                                            </div>
 
+                                            <div class="row">
+
+                                                
+                                                <div class="col-lg-12" style="height: 140px; width: 140px;">
+                                                    <img src="" alt="logo de la empresa"
+                                                        style="height: 100%; width: 100%;" id="preview_logo">
+                                                </div>
 
                                             </div>
 
@@ -605,15 +594,7 @@
                                                                     </thead>
                                                                     <tbody class="gridjs-tbody">
 
-                                                                        <tr class="gridjs-tr">
-                                                                            <td data-column-id="title"
-                                                                                class="gridjs-td">Revenge of the Sith
-                                                                            </td>
-                                                                            <td data-column-id="director"
-                                                                                class="gridjs-td">George Lucas</td>
-                                                                            <td data-column-id="producer"
-                                                                                class="gridjs-td">Rick McCallum</td>
-                                                                        </tr>
+                                                                       
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -692,15 +673,7 @@
                                                                     </thead>
                                                                     <tbody class="gridjs-tbody">
 
-                                                                        <tr class="gridjs-tr">
-                                                                            <td data-column-id="title"
-                                                                                class="gridjs-td">Revenge of the Sith
-                                                                            </td>
-                                                                            <td data-column-id="director"
-                                                                                class="gridjs-td">George Lucas</td>
-                                                                            <td data-column-id="producer"
-                                                                                class="gridjs-td">Rick McCallum</td>
-                                                                        </tr>
+                                                                   
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -838,6 +811,8 @@
                                 <div class="col-lg-12 ">
                                     <form id="frm-sucursal">
 
+                                        <input type="hidden" id="ruc_id_su" name="ruc_id_su" value="">
+
                                         <div class="row">
 
                                             <div class="col-lg-6">
@@ -848,15 +823,26 @@
                                                 </div>
                                             </div>
 
+                                            
                                             <div class="col-lg-6">
 
-                                                <div class="form-group">
-                                                    <label>Ingresa Direccion:</label>
-                                                    <input type="text" class="form-control" name="txtDireccionSucursal"
-                                                        id="txtDireccionSucursal">
+
+                                                <div class="form-group ">
+                                                    <label for="cboIdu">Distrito :</label>
+        
+                                                    <select name="cboIdu" id="cboIdub" class="form-control">
+                                                        <option value="123">123</option>
+                                                        <option value="164" selected>164
+                                                        </option>
+                                                    </select>
+        
                                                 </div>
 
+                                             
+
                                             </div>
+
+                                            
 
                                         </div>
 
@@ -865,22 +851,15 @@
                                         <input type="hidden" name="txtIdSucursal" id="txtIdSucursal">
 
 
+                                       
+
                                         <div class="form-group">
-                                            <label>Ingresa codigo cofide:</label>
-                                            <input type="text" class="form-control" name="txtCodigoCofide"
-                                                id="txtCodigoCofide">
+                                            <label>Ingresa Direccion:</label>
+                                            <input type="text" class="form-control" name="txtDireccionSucursal"
+                                                id="txtDireccionSucursal">
                                         </div>
 
-                                        <div class="form-group ">
-                                            <label for="cboIdu">Distrito :</label>
-
-                                            <select name="cboIdu" id="cboIdub" class="form-control">
-                                                <option value="123">123</option>
-                                                <option value="164" selected>164
-                                                </option>
-                                            </select>
-
-                                        </div>
+                                      
 
 
                                         <div class="inactive">
@@ -890,38 +869,110 @@
 
                                         </div>
 
-                                      <fieldset>
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                              <button class="nav-link active" id="accesoTab-tab" data-bs-toggle="tab" data-bs-target="#accesoTab" type="button" role="tab" aria-controls="accesoTab" aria-selected="true">Accesos</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                              <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab" data-bs-target="#infoSucu" type="button" role="tab" aria-controls="infoSucu" aria-selected="false">Estación</button>
+                                            </li>
+                                    
+                                          </ul>
+                                          <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="accesoTab" role="tabpanel" aria-labelledby="accesoTab-tab">
 
-                                            <table class="table" id="tabla_accesoss">
-                                                <thead class="table-light">
-                                                    <th>Plataforma</th>
-                                                    <th>Usuario</th>
-                                                    <th>Contraseña</th>
-                                                </thead>
-                                                <tbody >
-                                                    <tr>
-                                                        <input type="hidden"id="id_TV" name="id_TV">
-                                                        <td> TEAMVIEWER </td>
-                                                        <td> <input type="text" class="form-control" id="usuariosa" name="usuariosa"  > </td>
-                                                        <td><input type="text" class="form-control" id="contraseñaa" name="contraseñaa" > </td>
-                                                    </tr>
 
-                                                    <tr>
-                                                        <input type="hidden"id="id_ANY" name="id_ANY">
-                                                        <td> ANYDESK </td>
-                                                        <td> <input type="text" class="form-control" id="usuario_ANY" name="usuario_ANY"  > </td>
-                                                        <td><input type="text" class="form-control" id="contraseña_ANY" name="contraseña_ANY"> </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <input type="hidden"id="id_ER" name="id_ER">
-                                                        <td> ESCRITORIO_REMOTO </td>
-                                                        <td> <input type="text" class="form-control" id="usuario_ER" name="usuario_ER"  > </td>
-                                                        <td><input type="text" class="form-control" id="contraseña_ER" name="contraseña_ER"  > </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                <fieldset>
 
-                                        </fieldset>
+                                                    <table class="table" id="tabla_accesoss">
+                                                        <thead class="table-light">
+                                                            <th>Plataforma</th>
+                                                            <th>Usuario</th>
+                                                            <th>Contraseña</th>
+                                                        </thead>
+                                                        <tbody >
+                                                            <tr>
+                                                                <input type="hidden"id="id_TV" name="id_TV">
+                                                                <td> TEAMVIEWER </td>
+                                                                <td> <input type="text" class="form-control" id="usuariosa" name="usuariosa"  > </td>
+                                                                <td><input type="text" class="form-control" id="contraseñaa" name="contraseñaa" > </td>
+                                                            </tr>
+        
+                                                            <tr>
+                                                                <input type="hidden"id="id_ANY" name="id_ANY">
+                                                                <td> ANYDESK </td>
+                                                                <td> <input type="text" class="form-control" id="usuario_ANY" name="usuario_ANY"  > </td>
+                                                                <td><input type="text" class="form-control" id="contraseña_ANY" name="contraseña_ANY"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <input type="hidden"id="id_ER" name="id_ER">
+                                                                <td> ESCRITORIO_REMOTO </td>
+                                                                <td> <input type="text" class="form-control" id="usuario_ER" name="usuario_ER"  > </td>
+                                                                <td><input type="text" class="form-control" id="contraseña_ER" name="contraseña_ER"  > </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+        
+                                                </fieldset>
+
+
+
+                                            </div>
+                                            <!-- TAB de INFORMACION DE SUCURSAL-->
+                                            <div class="tab-pane fade" id="infoSucu" role="tabpanel" aria-labelledby="infoSucu-tab">
+
+
+                                                <div class="row">
+
+                                                    <div class="col-lg-6">
+        
+                                                        <div class="form-group">
+                                                            <label>Ingresa codigo COFIDE: </label>
+                                                            <input type="text" class="form-control" name="txtCodigoCofide"
+                                                                id="txtCodigoCofide">
+                                                        </div>
+        
+                                                    </div>
+        
+                                                    <div class="col-lg-6">
+        
+                                                        <div class="form-group">
+                                                            <label >Ingresa codigo APU: </label>
+                                                            <input type="text" class="form-control" name="codigoApu"
+                                                                id="codigoApu">
+                                                        </div>
+        
+                                                    </div>
+        
+                                                </div>
+        
+                                                <div class="row">
+        
+                                                    <label class="custom-file ">
+        
+                                                        <input type="file" name="logoSu" id="logoSu" class="custom-file-input">
+                                                        <span class="custom-file-label">Ingresa Logo</span>
+                                                    </label>
+        
+        
+                                                </div>
+        
+                                                <div class="row">
+        
+                                                    
+                                                    <div class="col-lg-12" style="height: 140px; width: 140px;">
+                                                        <img src="" alt="logo de la empresa"
+                                                            style="height: 100%; width: 100%;" id="preview_logo_su">
+                                                    </div>
+        
+                                                </div>
+                                               
+
+
+
+                                            </div>
+                                          </div>
+                                      
 
                                         <input type="hidden" value="1" name="txtEstado">
 
@@ -974,7 +1025,7 @@
 
                                         <div class="form-group">
                                             <label>Ingresa Correo:</label>
-                                            <input type="text" class="form-control" name="txtCorreo"
+                                            <input type="email" class="form-control" name="txtCorreo"
                                                 id="correo-contacto">
                                         </div>
 

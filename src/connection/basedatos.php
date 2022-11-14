@@ -115,6 +115,40 @@ class BaseDatos
         }
     }
 
+    //Ingresar Bandera Sucursal 
+
+     //CRUD BANDERA
+     public function ingresarBanderaSu($logo, $nombre, $idSucursal)
+     {
+         $consulta = "INSERT INTO `banderaSucursal`(nombre,bandera,idSucursal) VALUES('$nombre','$logo','$idSucursal');";
+         $res = mysqli_query($this->con, $consulta);
+ 
+         if ($res == TRUE) {
+             return TRUE;
+         } else {
+             return FALSE;
+         }
+
+     }
+ 
+     public function  traerBanderaSu($id)
+     {
+         $consulta = "SELECT * FROM `banderasucursal` as b where(b.idSucursal = $id);";
+         $res = mysqli_query($this->con, $consulta);
+         return $res;
+     }
+ 
+     public function eliminarBanderaSu($id)
+     {
+         $consulta = "DELETE  FROM `banderasucursal`  WHERE( id = '$id');";
+         $res = mysqli_query($this->con, $consulta);
+         if ($res == TRUE) {
+             return TRUE;
+         } else {
+             return FALSE;
+         }
+     }
+ 
 
     //CRUD EMPRESAS
     public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial)
@@ -225,9 +259,9 @@ class BaseDatos
     }
     //CRUD SUCURSAL
 
-    public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa)
+    public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa,$codigoApu)
     {
-        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa')";
+        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu')";
 
         $contar_sucursales = mysqli_query($this->con, "SELECT count(*) as total FROM sucursal");
         $cantidad_sucursales = mysqli_fetch_array($contar_sucursales);
@@ -380,10 +414,10 @@ class BaseDatos
     }
     //crud TIPO SISTEMA 
 
-    public function registrarTipoSistema($estado, $nombre, $fecha)
+    public function registrarTipoSistema($estado, $nombre, $fecha,$proveedor)
     {
 
-        $consulta = "insert into `tipo_sistema`(nombre,estado,fecha) values ('$nombre','$estado','$fecha');";
+        $consulta = "insert into `tipo_sistema`(nombre,estado,fecha,proveedor) values ('$nombre','$estado','$fecha','$proveedor');";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -420,10 +454,10 @@ class BaseDatos
         }
     }
 
-    public function editarTipoSistema($id, $nombre)
+    public function editarTipoSistema($id, $nombre,$proveedor)
     {
 
-        $consulta = "update tipo_sistema as ts set nombre = '$nombre' where (ts.id = $id)";
+        $consulta = "update tipo_sistema as ts set nombre = '$nombre', proveedor = '$proveedor' where (ts.id = $id)";
         $res = mysqli_query($this->con, $consulta);
 
         if ($res == TRUE) {
@@ -449,6 +483,60 @@ class BaseDatos
 
     }
 
+    //RUBRO
+
+    public function  registrarRubro($nombre,$estado,$fecha){
+
+        $consulta = "INSERT INTO `rubro`(nombre,estado,fecha) VALUES ('$nombre','$estado','$fecha');";
+        
+        $res = mysqli_query($this->con,$consulta);
+        
+
+        if($res == TRUE){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+
+    }
+    
+    public function eliminarRubro($id){
+
+        $consulta = "UPDATE `rubro` AS r SET estado = 0 WHERE(r.id = $id);";
+        $res = mysqli_query($this->con,$consulta);
+        
+
+        if($res == TRUE){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+
+    }
+
+    public function editarRubro($id,$nombre,$fecha){
+
+        $consulta = "UPDATE`rubro` as r  SET nombre = '$nombre',fecha = '$fecha' WHERE(r.id = $id);";
+        
+        $res = mysqli_query($this->con,$consulta);
+        
+
+        if($res == TRUE){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+
+
+    }
+
+    public function mostrarRubros(){
+
+        $consulta = "SELECT * FROM rubro AS  r where(r.estado = 1);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+
+    }
 
     //conectar la BD
     public function conectardb()

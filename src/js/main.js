@@ -11,36 +11,42 @@ var tablaGrupos = '';
 var ruc_id = document.getElementById("ruc_id");
 var direccion_input = document.getElementById("txtDireccion");
 var razon_so = document.getElementById("txtRazonSocial");
-
+var rucIdSU = document.getElementById("ruc_id_su");
 const btnes = document.getElementById("btn_reset");
-const btnAgregarContacto = document.getElementById("btn_reset_contacto")
+const btnAgregarContacto = document.getElementById("btn_reset_contacto");
 const btnSalir = document.getElementById("btnSalir");
+
+const logo = document.getElementById("logo");
+const preview_logo = document.getElementById("preview_logo");
+
+const banderaSucursal = document.getElementById("logoSu")
+const previewBandera = document.getElementById("preview_logo_su");
 
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocaleDateString();
 
 //se llama al usuario logueado
-(async() =>{
+(async () => {
 
   await fetch('../processes/pruebaSession.php')
-  .then(response => response.json())
-  .then(nombre => {
+    .then(response => response.json())
+    .then(nombre => {
 
-    
-    let usuario = nombre.usuario[0];
-    
-    if(usuario === null){
-      
-     window.location.replace('login.html');
 
-    }else{
+      let usuario = nombre.usuario[0];
 
-    let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
-    let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
-   
-    }
-  });
+      if (usuario === null) {
+
+        window.location.replace('login.html');
+
+      } else {
+
+        let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+        let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+
+      }
+    });
 
 })()
 
@@ -62,294 +68,10 @@ if (!rucs) {
 
 
 
-$(document).ready(function () {
-
-  // Cargando El ubigeo a los Formularios 
-
-  $.ajax({
-    url: "../processes/mostrar-ubigeo.php",
-    type: "GET",
-    success: function (response) {
-      let ubigeo = JSON.parse(response);
-      let template = "";
-      ubigeo.forEach((ubigeo) => {
-        template += `
-
-        <option id="${ubigeo.ubigeo}" value="${ubigeo.id}">${ubigeo.distrito}</option>
-
-        `;
-      });
-      $("#cboIdu").html(template);
-      $("#cboIdub").html(template);
-    },
-  });
-
-
-  tableSucursal = $("#tabla_sucursals").DataTable({
-    destroy: true,
-    "paging": true,
-    ajax: "../processes/mostrar-sucursal.php",
-    columns: [
-      { data: "id" },
-      { data: "id_empresa" },
-      { data: "nombre" },
-      { data: "codigo_cofide" },
-      { data: "direccion" },
-      { data: "ubigeo" },
-      {
-        defaultContent: `
-        <i class="bi bi-pencil-square btn-edit-sucursal"></i>
-        <i class="bi bi-person-plus btn-agregar-acceso"></i>
-        `,
-      },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-sucursal"></i>`,
-      },
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-
-  tablaContactos = $("#tabla_contactoss").DataTable({
-    destroy: true,
-    "scrollCollapse": true,
-    "paging": true,
-    ajax: "../processes/mostrar-contactos.php",
-    columns: [
-      { data: "id" },
-      { data: "id_empresa" },
-      { data: "nombre" },
-      { data: "cargo" },
-      { data: "telefono" },
-      { data: "correo" },
-      {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-contacto"></i>
-                          <i class="bi bi-x-circle-fill btn-delete-contacto"></i>
-        `,
-      },
-
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-
-  tablaAccesos = $("#tabla_accesos").DataTable({
-    destroy: true,
-    ajax: {
-      url: "../processes/mostrar-accesos.php?id=1",
-      dataSrc: ""
-    },
-    columns: [
-      { data: "id" },
-      { data: "id_sucursal" },
-      { data: "nombreAcceso" },
-      { data: "idAcceso" },
-      { data: "contrasena" },
-      {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-acceso"></i>`,
-      },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-acceso"></i>`,
-      },
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "Mostrar _MENU_ Entradas",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-
-  //BOTONES ಠ_ಠ
-
-
-  $(document).on("click", ".btn-edit-sucursal", function () {
-
-    let data = tableSucursal.row($(this).parents()).data();
-    let id = data.id;
-
-    $("#txtIdSucursa").val(id);
-
-    $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
-
-      let sucursal = JSON.parse(response);
-      console.log(sucursal);
-
-      $("#id-sucursal").val(sucursal.id);
-      $("#txtNombreSucursal").val(sucursal.nombre);
-      $("#txtDireccionSucursal").val(sucursal.direccion);
-      $("#txtCodigoCofide").val(sucursal.codigo_cofide);
-      $("#cboIdu").val(empresa.id_ubigeo);
-      $("#txtIdEmpresa").val(sucursal.id_empresa);
-
-      //ub = document.getElementById(`${sucursal.ubigeo}`).value;
-      console.log(ub);
-
-      editarSucursall = true;
-      ides.value = sucursal.id;
-
-      cargarAccesos(id);
-
-    });
-
-  });
-
-  $(document).on("click", ".btn-delete-sucursal", async function () {
-    const alerta = await import('./alertas.js')
-    let data = tableSucursal.row($(this).parents()).data();
-    let id = $(data).attr("id");
-    alerta.eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "../processes/delete/eliminar-sucursal.php");
-  });
-
-  $(document).on("click", ".btn-agregar-acceso", function () {
-    let data = tableSucursal.row($(this).parents()).data();
-    let id = data.id;
-    $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
-      let sucursal = JSON.parse(response);
-      ideSuc = sucursal.id;
-      editarAcceso = false;
-      //cargando los datos al frm de acceso se hara con un btn
-      $("#txtIdSucursale").val(ideSuc);
-      cargarAccesos(ideSuc);
-    });
-  });
-
-
-  $(document).on("click", ".btn-delete-contacto", async function () {
-
-    const alerta = await import('./alertas.js')
-    let data = tablaContactos.row($(this).parents()).data();
-    let id = data.id;
-    alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "../processes/delete/eliminar-contactos.php");
-  });
-
-  $(document).on("click", ".btn-edit-contacto", function () {
-    let data = tablaContactos.row($(this).parents()).data();
-    let id = data.id;
-
-    $.post("../processes/listener/escuchar-contacto.php", { id }, function (response) {
-      let contacto = JSON.parse(response);
-      console.log(contacto);
-      $("#id-contacto").val(contacto.id);
-      $("#nombre-contacto").val(contacto.nombre_contacto);
-      $("#cargo-contacto").val(contacto.cargo);
-      $("#correo-contacto").val(contacto.correo);
-      $("#id-empresa-contacto").val(contacto.id_empresa);
-      $("#telefono-contacto").val(contacto.telefono);
-      editarContacto = true;
-    });
-    tablaContactos.ajax.reload();
-  });
-
-  $(document).on("click", ".btn-delete-acceso", async function () {
-    const alerta = await import('./alertas.js')
-
-    let data = tablaAccesos.row($(this).parents()).data();
-    let id = data.id;
-    alerta.eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "../processes/delete/eliminar-acceso.php");
-  });
-
-  $(document).on("click", ".btn-edit-acceso", function () {
-    let data = tablaAccesos.row($(this).parents()).data();
-    let id = data.id;
-
-    $.post("../processes/listener/escuchar-acceso.php", { id }, function (response) {
-      let accesos = JSON.parse(response);
-      $("#id-acceso").val(accesos.id);
-      $("#txtIdSucursal").val(accesos.id_sucursal);
-      $("#txtNombreAcceso").val(accesos.nombreAcceso);
-      $("#txtIdAcceso").val(accesos.idAcceso);
-      $("#txtContraseña").val(accesos.contrasena);
-      editarAcceso = true;
-    });
-  });
-
-  $(document).on("click", "#btn_ruc", function () {
-
-    let ruc = $("#txtRuc").val();
-    validarRuc(ruc);
-
-  })
-
-
-  btnes.addEventListener("click", function () {
-
-    editarSucursall = false;
-    document.getElementById('frm-sucursal').reset();
-  }
-  )
-
-  btnAgregarContacto.addEventListener("click",function(){
-
-    editarContacto = false;
-    document.getElementById('frm-contactos').reset();
-
-  })
-
-  btnSalir.addEventListener("click",async function(){
-
-  
-    fetch('../processes/validator/terminar-sesion.php');
-    
-  })
-  
-});
-
-
 function cargarSucursal(ruc) {
-  
+  tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
-    destroy:true,
+    destroy: true,
     "scrollCollapse": true,
     "paging": true,
     "order": [[0, 'desc'], [1, 'desc']],
@@ -393,6 +115,7 @@ function cargarSucursal(ruc) {
 function cargarContactos(ruc) {
   tablaContactos.destroy();
   tablaContactos = $("#tabla_contactoss").DataTable({
+    destroy: true,
     "scrollCollapse": true,
     "paging": true,
     "order": [[0, 'desc'], [1, 'desc']],
@@ -552,10 +275,16 @@ function registrarAccesos() {
 
 function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
+  let frm = document.getElementById("frm-sucursal");
+  frmData = new FormData(frm);
+
   $.ajax({
     url: url,
-    data: $("#frm-sucursal, #ruc_id").serialize(),
-    type: "GET",
+    data: frmData,
+    cache: false,
+    processData: false,
+    contentType: false,
+    type: "post",
     success: function (response) {
       mensajes(
         response,
@@ -619,36 +348,8 @@ function editarEmpresas(id, edit) {
   if (id == null)
     return;
 
-  $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
-    let empresa = JSON.parse(response);
-    console.log(empresa);
-    let ruc_em = empresa.ruc;
+  datosCompletosEmpresa(id);
 
-
-    $("#txtNombreCo").val(empresa.nom_comercial);
-    $("#id").val(empresa.id);
-    $("#txtRuc").val(empresa.ruc);
-    $("#txtRazonSocial").val(empresa.razon_social);
-    $("#txtDireccion").val(empresa.direccion);
-    $("#cbogrupo").val(empresa.id_grupo);
-    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
-    $("#cboIdRubro").val(empresa.id_rubro);
-    $("#cboTipoEnvio").val(empresa.tipo_envio);
-    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
-    $("#txtFechaRegistro").val(empresa.fecha_registro);
-    $("#txtEstadoComercial").val(empresa.estado_comercial);
-    $("#cboIdu").val(empresa.id_ubigeo);
-    $("#cboTipoPersona").val(empresa.tipo_persona);
-    $("#cboEstado").val(empresa.estado);
-
-    editar = edit;
-    tableSucursal.destroy;
-    tablaContactos.destroy;
-    cargarSucursal(ruc_em);
-    cargarContactos(ruc_em);
-    mostrarLogoss(ruc_em);
-
-  });
 }
 
 
@@ -690,12 +391,52 @@ function RegistrarEmpresa() {
         }
 
         ruc_id.value = data.ruc;
-
-
+        rucIdSU.value = data.ruc;
       });
     },
   });
 }
+
+function datosCompletosEmpresa(id) {
+
+
+  $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
+    let empresa = JSON.parse(response);
+
+    console.log(empresa);
+
+
+    $("#txtNombreCo").val(empresa.nom_comercial);
+    $("#txtRuc").val(empresa.ruc);
+    $("#txtRazonSocial").val(empresa.razon_social);
+    $("#txtDireccion").val(empresa.direccion);
+    $("#cbogrupo").val(empresa.id_grupo);
+    $("#cboTipoSistema").val(empresa.id_tipo_sistema);
+    $("#cboIdRubro").val(empresa.id_rubro);
+    $("#cboTipoEnvio").val(empresa.tipo_envio);
+    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
+    $("#txtFechaRegistro").val(empresa.fecha_registro);
+    $("#txtEstadoComercial").val(empresa.estado_comercial);
+    $("#cboTipoPersona").val(empresa.tipo_persona);
+    $("#cboEstado").val(empresa.estado);
+    rucIdSU.value = empresa.ruc;
+
+    cargarUbigeoEmpresa(empresa.id_ubigeo);
+
+
+    editar = edit;
+    tableSucursal.destroy;
+    tablaContactos.destroy;
+    cargarSucursal(empresa.ruc);
+    cargarContactos(empresa.ruc);
+    mostrarLogoss(empresa.ruc);
+
+
+  });
+
+
+}
+
 
 
 function validarRuc() {
@@ -754,6 +495,7 @@ function validarRuc() {
             //capturar la opcion con id = ubigeo 
             let ubigeo_option = document.getElementById(`${ubigeo}`);
             //seleccionarla
+            console.log(ubigeo_option);
             ubigeo_option.setAttribute("selected", "true");
 
             break;
@@ -852,14 +594,67 @@ function cargarTiposSistemas() {
 
       tipoSistema.forEach((tipoSistema) => {
         template += `
-        
-        <option value="${tipoSistema.nombre}">${tipoSistema.nombre}</option>
+       
+        <option value="${tipoSistema.nombre}">${tipoSistema.nombre}  - PROVEEDOR :  ${tipoSistema.proveedor} </option>
         
         `;
       });
       $("#cboTipoSistema").html(template);
     }
   })
+}
+
+function cargarUbigeoEmpresa(id) {
+
+  $.ajax({
+    url: "../processes/mostrar-ubigeo.php",
+    type: "GET",
+    success: function (response) {
+      let ubigeo = JSON.parse(response);
+      let template = "";
+      ubigeo.forEach((ubigeo) => {
+        template += `
+
+        <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.distrito}</option>
+
+        `;
+      });
+      $("#cboIdu").html(template);
+      $("#cboIdub").html(template);
+
+      let ub = document.getElementById(id);
+      ub.setAttribute("selected", "true");
+    },
+  });
+
+}
+// previsualizacion de logo :o
+
+previewImgenes(logo, preview_logo);
+previewImgenes(banderaSucursal, previewBandera);
+
+function previewImgenes(img, preview) {
+
+  img.addEventListener("change", () => {
+
+
+    const archivos = img.files;
+
+    if (!archivos || !archivos.length) {
+
+      preview.src = "";
+      return;
+
+    }
+
+    const primerArchivo = archivos[0];
+    const objURL = URL.createObjectURL(primerArchivo);
+
+    preview.src = objURL;
+
+  });
+
+
 }
 
 cargarTiposSistemas();
@@ -873,6 +668,264 @@ cargarTipointegracion();
  * *para poder ejecutarce asi evitando error de JSON 🙈
  *
  */
- editarEmpresas(id, edit);
+editarEmpresas(id, edit);
+
+
+
+
+$.ajax({
+  url: "../processes/mostrar-ubigeo.php",
+  type: "GET",
+  success: function (response) {
+    let ubigeo = JSON.parse(response);
+    let template = "";
+    ubigeo.forEach((ubigeo) => {
+      template += `
+
+        <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.distrito}</option>
+
+        `;
+    });
+    $("#cboIdu").html(template);
+    $("#cboIdub").html(template);
+  },
+});
+
+
+$(document).ready(function () {
+
+
+  tableSucursal = $("#tabla_sucursals").DataTable({
+    destroy: true,
+    "paging": true,
+    
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tablaContactos = $("#tabla_contactoss").DataTable({
+    destroy: true,
+    "scrollCollapse": true,
+    "paging": true,
+    
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tablaAccesos = $("#tabla_accesos").DataTable({
+    destroy: true,
+    ajax: {
+      url: "../processes/mostrar-accesos.php?id=1",
+      dataSrc: ""
+    },
+    columns: [
+      { data: "id" },
+      { data: "id_sucursal" },
+      { data: "nombreAcceso" },
+      { data: "idAcceso" },
+      { data: "contrasena" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-acceso"></i>`,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-acceso"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+
+})
+
+
+//BOTONES ಠ_ಠ
+
+
+$(document).on("click", ".btn-edit-sucursal", function () {
+
+  let data = tableSucursal.row($(this).parents()).data();
+  let id = data.id;
+
+  $("#txtIdSucursa").val(id);
+
+  $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
+
+    let sucursal = JSON.parse(response);
+    console.log(sucursal);
+
+    $("#id-sucursal").val(sucursal.id);
+    $("#txtNombreSucursal").val(sucursal.nombre);
+    $("#txtDireccionSucursal").val(sucursal.direccion);
+    $("#txtCodigoCofide").val(sucursal.codigo_cofide);
+    $("#cboIdub").val(sucursal.ubigeo);
+    $("#txtIdEmpresa").val(sucursal.id_empresa);
+
+    //ub = document.getElementById(`${sucursal.ubigeo}`).value;
+    //console.log(ub);
+
+    editarSucursall = true;
+    ides.value = sucursal.id;
+
+    cargarAccesos(id);
+
+  });
+
+});
+
+$(document).on("click", ".btn-delete-sucursal", async function () {
+  const alerta = await import('./alertas.js')
+  let data = tableSucursal.row($(this).parents()).data();
+  let id = $(data).attr("id");
+  alerta.eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "../processes/delete/eliminar-sucursal.php");
+});
+
+$(document).on("click", ".btn-agregar-acceso", function () {
+  let data = tableSucursal.row($(this).parents()).data();
+  let id = data.id;
+  $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
+    let sucursal = JSON.parse(response);
+    ideSuc = sucursal.id;
+    editarAcceso = false;
+    //cargando los datos al frm de acceso se hara con un btn
+    $("#txtIdSucursale").val(ideSuc);
+    cargarAccesos(ideSuc);
+  });
+});
+
+
+$(document).on("click", ".btn-delete-contacto", async function () {
+
+  const alerta = await import('./alertas.js')
+  let data = tablaContactos.row($(this).parents()).data();
+  let id = data.id;
+  alerta.eliminar("Seguro de eliminar el contacto ? ", id, tablaContactos, "../processes/delete/eliminar-contactos.php");
+});
+
+$(document).on("click", ".btn-edit-contacto", function () {
+  let data = tablaContactos.row($(this).parents()).data();
+  let id = data.id;
+
+  $.post("../processes/listener/escuchar-contacto.php", { id }, function (response) {
+    let contacto = JSON.parse(response);
+    console.log(contacto);
+    $("#id-contacto").val(contacto.id);
+    $("#nombre-contacto").val(contacto.nombre_contacto);
+    $("#cargo-contacto").val(contacto.cargo);
+    $("#correo-contacto").val(contacto.correo);
+    $("#id-empresa-contacto").val(contacto.id_empresa);
+    $("#telefono-contacto").val(contacto.telefono);
+    editarContacto = true;
+  });
+  tablaContactos.ajax.reload();
+});
+
+$(document).on("click", ".btn-delete-acceso", async function () {
+  const alerta = await import('./alertas.js')
+
+  let data = tablaAccesos.row($(this).parents()).data();
+  let id = data.id;
+  alerta.eliminar("Seguro de eliminar el acceso ? ", id, tablaAccesos, "../processes/delete/eliminar-acceso.php");
+});
+
+$(document).on("click", ".btn-edit-acceso", function () {
+  let data = tablaAccesos.row($(this).parents()).data();
+  let id = data.id;
+
+  $.post("../processes/listener/escuchar-acceso.php", { id }, function (response) {
+    let accesos = JSON.parse(response);
+    $("#id-acceso").val(accesos.id);
+    $("#txtIdSucursal").val(accesos.id_sucursal);
+    $("#txtNombreAcceso").val(accesos.nombreAcceso);
+    $("#txtIdAcceso").val(accesos.idAcceso);
+    $("#txtContraseña").val(accesos.contrasena);
+    editarAcceso = true;
+  });
+});
+
+$(document).on("click", "#btn_ruc", function () {
+
+  let ruc = $("#txtRuc").val();
+  validarRuc(ruc);
+
+})
+
+
+btnes.addEventListener("click", function () {
+
+  editarSucursall = false;
+  document.getElementById('frm-sucursal').reset();
+}
+)
+
+btnAgregarContacto.addEventListener("click", function () {
+
+  editarContacto = false;
+  document.getElementById('frm-contactos').reset();
+
+})
+
+btnSalir.addEventListener("click", async function () {
+
+
+  fetch('../processes/validator/terminar-sesion.php');
+
+})
+
+
 
 

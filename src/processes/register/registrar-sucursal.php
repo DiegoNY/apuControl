@@ -1,7 +1,24 @@
 <?php
 
 include '../../connection/basedatos.php';
-extract($_GET);
+
+
+$nombre = $_POST['txtNombreSucursal'];
+$logo = $_FILES['logoSu']['name'];
+$temporal = $_FILES['logoSu']['tmp_name'];
+
+
+if (isset($nombre) && !empty($nombre)) {
+    $carpeta = './img';
+    $ruta = $carpeta . '/' . $logo;
+    move_uploaded_file($temporal, "../.$carpeta" . '/' . $logo);
+    
+}
+
+
+
+
+extract($_POST);
 
 if(isset($txtNombreSucursal) && !empty($txtNombreSucursal)){
 
@@ -13,7 +30,7 @@ $txtEstado = $sucursal->sanitizar($txtEstado);
 $txtCodigoCofide = $sucursal->sanitizar($txtCodigoCofide);
 $cboIdu = $sucursal->sanitizar($cboIdu);
 
-$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide,$cboIdu,$txtEstado,$ruc_id);
+$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide ?? "",$cboIdu,$txtEstado,$ruc_id_su,$codigoApu ?? "");
 
 $cantidad_sucursales = $resultado[1];
 
@@ -25,8 +42,17 @@ $escritortii = $sucursal->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $u
 
 //SI AUMENTAN MAS ACCESOS SE AGREGA UNA LINEA MAS HACERLA DINAMICA CON ARRAYS 
 
+$res =  $sucursal->ingresarBanderaSu($ruta, $nombre,$id_sucursal);
+
+
+
+
+
+
 if($resultado == TRUE){
     echo "ingresado"; 
+    
+
 }else{
     echo "error";
 }

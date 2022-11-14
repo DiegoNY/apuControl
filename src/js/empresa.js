@@ -41,7 +41,7 @@ $(document).ready(function () {
       ubigeo.forEach((ubigeo) => {
         template += `
 
-        <option id="${ubigeo.ubigeo}" value="${ubigeo.id}">${ubigeo.distrito}</option>
+        <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}">${ubigeo.distrito}</option>
 
         `;
       });
@@ -123,9 +123,10 @@ $(document).ready(function () {
   $(document).on("click", "#btn-editar-empresa", function () {
 
     let data = tablaEmpresa.row($(this).parents()).data();
-    let ruc = data.ruc
+    let ruc = data.ruc;
     let id = data.id;
     window.location.replace(`index.html?id=${id}&edit=2&ruc=${ruc}`);
+
   });
 
   $(document).on("click", "#btn-sucursales", function () {
@@ -191,10 +192,11 @@ $(document).ready(function () {
       $("#txtFechaRegistro").val(empresa.fecha_registro);
       $("#txtEstadoComercial").val(empresa.estado_comercial);
       $("#cboTipoPersona").val(empresa.tipo_persona);
-      $("#cboIdu").val(empresa.id_ubigeo);
       $("#cboEstado").val(empresa.estado);
 
-
+      let ubigeo_option = document.getElementById(`${empresa.id_ubigeo}`);
+      //seleccionarla
+      ubigeo_option.setAttribute("selected", "true");
 
     });
 

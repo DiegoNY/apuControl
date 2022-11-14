@@ -17,6 +17,7 @@ while($row = mysqli_fetch_array($resultado)){
     'id' => $row['id'],
     'nombre' => $row['nombre'],
     'estado' => $row['estado'],
+    'proveedor' => $row['proveedor'],
     'fecha' => $row['fecha'],
  );  
 
