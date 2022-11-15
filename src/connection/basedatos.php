@@ -538,6 +538,73 @@ class BaseDatos
 
     }
 
+    //cargos
+
+    public function mostrarCargos(){
+
+        $consulta = "SELECT * FROM `cargos`;";
+        $res= mysqli_query($this->con,$consulta);
+
+        if($res == TRUE){
+
+            return TRUE;
+            die;
+        }else{
+
+            return FALSE;
+            die;
+
+        }
+
+    }
+
+    
+    public function registrarCargo($nombre,$fecha){
+
+        $consulta = "INSERT INTO `cargos`(nombre,fecha) VALUES($nombre,$fecha);";
+        $res = mysqli_query($this->con, $consulta);
+
+        if($res == TRUE){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function eliminarCargo($id){
+
+        $consulta = "UPDATE `cargos` AS c SET estado = 0 WHERE(c.id = $id);";
+        
+        $res = mysqli_query($this->con, $consulta);
+
+        if($res == TRUE){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function editarCargo($id,$nombre){
+
+        $consulta = "UPDATE `cargos` AS c SET nombre = '$nombre' where(c.id = $id);";
+
+        $res = mysqli_query($this->con, $consulta);
+
+        if($res == TRUE){
+
+            return TRUE;
+            die;
+
+        }else{
+
+            return FALSE;
+            die;
+        }
+    }
+    
+ 
     //conectar la BD
     public function conectardb()
     {
@@ -546,4 +613,5 @@ class BaseDatos
             die("Conexión a la base de datos falló " . mysqli_connect_error() . mysqli_connect_errno());
         }
     }
+    
 }
