@@ -644,7 +644,7 @@ function cargarUbigeoEmpresa(id) {
 // previsualizacion de logo :o
 
 previewImgenes(logo, preview_logo);
-previewImgenes(banderaSucursal, previewBandera);
+//previewImgenes(banderaSucursal, previewBandera);
 
 function previewImgenes(img, preview) {
 

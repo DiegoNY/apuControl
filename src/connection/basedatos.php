@@ -131,10 +131,10 @@ class BaseDatos
 
      }
  
-     public function  traerBanderaSu($id)
+     public function  traerBanderaSu()
      {
-         $consulta = "SELECT * FROM `banderasucursal` as b where(b.idSucursal = $id);";
-         $res = mysqli_query($this->con, $consulta);
+         $consulta = "SELECT * FROM `banderasucursal` as b where(b.estado = 1);";
+         $res = mysqli_query($this->con, $consulta); 
          return $res;
      }
  

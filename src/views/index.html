@@ -381,8 +381,9 @@
                                                 Sistema</legend>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">T. Sistema</label>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-6">
+                                                    <label class="col-form-label">T. Sistema</label>
+
                                                     <select name="cboTipoSistema" id="cboTipoSistema"
                                                         class="form-control ">
                                                         <option value="" selected></option>
@@ -390,7 +391,8 @@
                                                         <option value="APUGESCOM">APUGESCOM</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-6">
+                                                    <label class="col-form-label">Proveedor</label>
                                                     <input type="text" class="form-control" name="proveedor" id="proveedor">
                                                 </div>
                                             </div>
@@ -540,7 +542,7 @@
 
                                                 <div class="col-lg-5">
                                                     <button id="btn_reset" class=" btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#sucursal" disabled>
+                                                        data-bs-target="#sucursal" >
                                                         Nueva Sucursal +
                                                     </button>
                                                 </div>
@@ -949,30 +951,18 @@
         
                                                 </div>
         
-                                                <div class="row">
-        
-                                                    <label class="custom-file ">
-        
-                                                        <input type="file" name="logoSu" id="logoSu" class="custom-file-input">
-                                                        <span class="custom-file-label">Ingresa Logo</span>
-                                                    </label>
-        
-        
-                                                </div>
-        
-                                                <div class="row">
-        
-                                                    
-                                                    <div class="col-lg-12" style="height: 140px; width: 140px;">
-                                                        <img src="" alt="logo de la empresa"
-                                                            style="height: 100%; width: 100%;" id="preview_logo_su">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-lg-2">Plataforma</label>
+                                                    <div class="col-lg-10">
+                                                        <select class="form-control" name="txtNombreAcceso" id="txtNombreAcceso">
+                                                            <option value="ANYDESK">ANYDESK</option>
+                                                            <option value="TEAM_VIEWER" selected>TEAM VIEWER</option>
+                                                            <option value="AC">another access</option>
+                                                        </select>
                                                     </div>
-        
                                                 </div>
-                                               
-
-
-
+                
+        
                                             </div>
                                           </div>
                                       
