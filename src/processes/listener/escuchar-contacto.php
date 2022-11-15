@@ -22,6 +22,7 @@ while($row = mysqli_fetch_array($resultado)){
         'cargo'=>$row['cargo'],
         'telefono'=>$row['telefono'],
         'correo'=>$row['correo'],
+        'detalle'=>$row['detalle'],
     );
 }
 $jsonString = json_encode($json[0]);

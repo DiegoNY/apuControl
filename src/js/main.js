@@ -414,12 +414,18 @@ function datosCompletosEmpresa(id) {
     $("#cboTipoSistema").val(empresa.id_tipo_sistema);
     $("#cboIdRubro").val(empresa.id_rubro);
     $("#cboTipoEnvio").val(empresa.tipo_envio);
-    $("#cboIdTipoIntegracion").val(empresa.id_tipo_integracion);
     $("#txtFechaRegistro").val(empresa.fecha_registro);
     $("#txtEstadoComercial").val(empresa.estado_comercial);
     $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboEstado").val(empresa.estado);
+    $("#proveedor").val(empresa.proveedor);
     rucIdSU.value = empresa.ruc;
+
+    preview_logo.setAttribute("src",`.${empresa.img}`);
+
+    let opcionTipoIntegra = document.getElementById(`${empresa.id_tipo_integracion}`);
+    
+    opcionTipoIntegra.setAttribute("selected","true");
 
     cargarUbigeoEmpresa(empresa.id_ubigeo);
 
@@ -565,14 +571,15 @@ function cargarTipointegracion() {
   $.ajax({
     url: "../processes/mostrar-tipo-integracion.php",
     type: "GET",
-    success: function (response) {
-      let tipoIntegra = JSON.parse(response);
+    success:  function (response) {
+   
+      let tipoIntegra =  JSON.parse(response);
       let template = "";
 
       tipoIntegra.forEach((tipoIntegra) => {
         template += `
         
-        <option value="${tipoIntegra.nombre}">${tipoIntegra.nombre}</option>
+        <option id="${tipoIntegra.nombre}" value="${tipoIntegra.nombre}">${tipoIntegra.nombre}</option>
         
         `;
       });
@@ -595,7 +602,7 @@ function cargarTiposSistemas() {
       tipoSistema.forEach((tipoSistema) => {
         template += `
        
-        <option value="${tipoSistema.nombre}">${tipoSistema.nombre}  - PROVEEDOR :  ${tipoSistema.proveedor} </option>
+        <option value="${tipoSistema.nombre}">${tipoSistema.nombre}</option>
         
         `;
       });
@@ -928,4 +935,31 @@ btnSalir.addEventListener("click", async function () {
 
 
 
+//validando email 
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
 
+// si el email es valido el boton de enviar se activa 
+const validate = () => {
+
+  const email = $('#correo-contacto').val();
+
+  if (validateEmail(email)) {
+
+    let enviaContacto = document.getElementById("btnEnviarContacto");
+    enviaContacto.removeAttribute("disabled");
+  } else {
+    let enviaContacto = document.getElementById("btnEnviarContacto");
+
+    enviaContacto.setAttribute("disabled","");
+
+  }
+  return false;
+}
+
+$('#correo-contacto').on('input', validate);

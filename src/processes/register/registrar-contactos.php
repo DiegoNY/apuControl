@@ -13,7 +13,7 @@ $txtTelefono = $contactos->sanitizar($txtTelefono);
 $txtCorreo = $contactos->sanitizar($txtCorreo);
 $txtEstado = $contactos->sanitizar($txtEstado);
  
-$resultado = $contactos->registrarContactos($txtNombre,$txtCargo,$ruc_id,$txtTelefono,$txtCorreo,$txtEstado);
+$resultado = $contactos->registrarContactos($txtNombre,$txtCargo,$ruc_id,$txtTelefono,$txtCorreo,$txtEstado,$detalleContacto);
 
 if($resultado == TRUE){
     echo "ingresado";

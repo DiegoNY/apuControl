@@ -151,14 +151,14 @@ class BaseDatos
  
 
     //CRUD EMPRESAS
-    public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial)
+    public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial,$proveedor,$img)
     {
         $validar = mysqli_query($this->con, "SELECT count(*) as total FROM empresa WHERE ruc = '$ruc'");
         $datos = mysqli_fetch_array($validar);
 
         if ($datos['total'] == 0) {
 
-            $consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial');";
+            $consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial,proveedor,imglogo) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial','$proveedor','$img');";
             $res = mysqli_query($this->con, $consulta);
             return TRUE;
         } else {
@@ -180,9 +180,9 @@ class BaseDatos
         return $res;
     }
 
-    public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial)
+    public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial,$proveedor)
     {
-        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',ruc = '$ruc',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',fecha_registro = '$fecha_registro',estado_comercial = '$estado_comercial' where (e.id = '$id');";
+        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',ruc = '$ruc',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',fecha_registro = '$fecha_registro',estado_comercial = '$estado_comercial',proveedor = '$proveedor' where (e.id = '$id');";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -212,9 +212,9 @@ class BaseDatos
         return $res;
     }
 
-    public function registrarContactos($nombre, $cargo, $id_empresa, $telefono, $correo, $estado)
+    public function registrarContactos($nombre, $cargo, $id_empresa, $telefono, $correo, $estado,$detalle)
     {
-        $consulta = "insert into `contactos`(id_empresa,nombre_contacto,cargo,telefono,correo,estado) values ('$id_empresa','$nombre','$cargo','$telefono','$correo','$estado');";
+        $consulta = "insert into `contactos`(id_empresa,nombre_contacto,cargo,telefono,correo,estado,detalle) values ('$id_empresa','$nombre','$cargo','$telefono','$correo','$estado','$detalle');";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -238,9 +238,9 @@ class BaseDatos
         }
     }
 
-    public function editarContacto($id, $nombre, $cargo, $id_empresa, $telefono, $correo)
+    public function editarContacto($id, $nombre, $cargo, $id_empresa, $telefono, $correo,$detalle)
     {
-        $consulta = "update contactos as c set nombre_contacto = '$nombre', cargo ='$cargo', telefono = '$telefono', correo = '$correo' where (c.id = '$id' and c.id_empresa = '$id_empresa');";
+        $consulta = "update contactos as c set nombre_contacto = '$nombre', cargo ='$cargo', telefono = '$telefono', correo = '$correo',detalle = '$detalle' where (c.id = '$id' and c.id_empresa = '$id_empresa');";
 
         $res = mysqli_query($this->con, $consulta);
 

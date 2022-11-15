@@ -10,7 +10,7 @@ $empresa = new BaseDatos();
 
 if (isset($id) and !empty($id) ) {
 
-    $res = $empresa->editarEmpresas($id, $txtIdGrupo ?? "------", $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEstadoComercial);
+    $res = $empresa->editarEmpresas($id, $txtIdGrupo ?? "------", $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEstadoComercial,$proveedor);
 
     if (!$res) {
         die("Consulta fallida llama al admin 😢");

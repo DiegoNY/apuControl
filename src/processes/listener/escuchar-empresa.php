@@ -34,6 +34,8 @@ if (!isset($id)) {
             'estado' => $row['estado'],
             'fecha_registro' => $row['fecha_registro'],
             'estado_comercial' => $row['estado_comercial'],
+            'proveedor' => $row['proveedor'],
+            'img' => $row['imglogo'],
         );
     }
 

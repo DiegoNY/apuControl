@@ -382,13 +382,16 @@
 
                                             <div class="form-group row">
                                                 <label class="col-form-label col-lg-2">T. Sistema</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-5">
                                                     <select name="cboTipoSistema" id="cboTipoSistema"
                                                         class="form-control ">
                                                         <option value="" selected></option>
                                                         <option value="GESFARMA">GESFARMA</option>
                                                         <option value="APUGESCOM">APUGESCOM</option>
                                                     </select>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" name="proveedor" id="proveedor">
                                                 </div>
                                             </div>
 
@@ -1011,29 +1014,43 @@
                                     <form id="frm-contactos">
                                         <input type="hidden" id="id-contacto" name="id_contacto">
 
-                                        <div class="form-group">
-                                            <label>Ingresa Nombre:</label>
-                                            <input type="text" class="form-control" name="txtNombre"
-                                                id="nombre-contacto">
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" name="txtNombre"
+                                                    id="nombre-contacto">
+
+                                            </div>
+                                            
+                                            <div class="col-lg-6">
+                                                <label>Cargo </label>
+                                                <input type="text" class="form-control" name="txtCargo" id="cargo-contacto">
+    
+                                            </div>
+
                                         </div>
-
-
-                                        <div class="form-group">
-                                            <label>Ingresa Cargo:</label>
-                                            <input type="text" class="form-control" name="txtCargo" id="cargo-contacto">
-                                        </div>
+                                        
 
                                         <div class="form-group">
-                                            <label>Ingresa Correo:</label>
-                                            <input type="email" class="form-control" name="txtCorreo"
+                                            <label>Correo</label>
+                                            <input type="email"  class="form-control" name="txtCorreo"
                                                 id="correo-contacto">
                                         </div>
 
+                                        
 
                                         <div class="form-group">
-                                            <label>Ingresa Telefono:</label>
+                                            <label>Telefono</label>
                                             <input type="text" class="form-control" name="txtTelefono"
                                                 id="telefono-contacto">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Detalle</label>
+                                            <input type="email" class="form-control" name="detalleContacto"
+                                                id="detalleContacto">
                                         </div>
 
 
@@ -1049,8 +1066,8 @@
 
                                         <div class="text-right">
                                             <button   type="button" value="Registrar" onclick="registrarContactos();"
-                                                class="btn text-light" style="background-color:  #31334D;">Enviar<i
-                                                    class="icon-paperplane ml-2"></i></button>
+                                                class="btn text-light" style="background-color:  #31334D;" id="btnEnviarContacto"  >Enviar<i
+                                                    class="icon-paperplane ml-2" ></i></button>
                                         </div>
                                     </form>
                                 </div>
