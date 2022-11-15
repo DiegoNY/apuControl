@@ -380,7 +380,10 @@ function RegistrarEmpresa() {
 
 
         if (data.mensaje === "ingresado") {
-          console.log("entre")
+          console.log("entre");
+          btnAgregarContacto.removeAttribute("disabled");
+          btnes.removeAttribute("disabled");
+        
           cargarSucursal(data.ruc);
           cargarContactos(data.ruc);
 
@@ -395,6 +398,10 @@ function RegistrarEmpresa() {
       });
     },
   });
+
+
+  
+
 }
 
 function datosCompletosEmpresa(id) {
@@ -442,7 +449,6 @@ function datosCompletosEmpresa(id) {
 
 
 }
-
 
 
 function validarRuc() {
