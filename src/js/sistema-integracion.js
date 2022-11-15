@@ -1,17 +1,24 @@
 
 var editarIntegracion = false;
 var editarSistema = false;
+var editarRubro = false;
+var editarCargo = false;
+
 const btnAgregarTipoIntegracion = document.getElementById('btn_agregar_tipo_integracion');
 const btnAgregarTipoSistem = document.getElementById('btn_agregar_tipo_sistema');
 const btnAgregarRubro = document.getElementById('btn_agregar_rubro');
 const btnAgregarCargo = document.getElementById('btnAgregarCargo');
-
 const btnSalir = document.getElementById("btnSalir");
+
+const eliminarRubro = document.getElementById("btnEliminarRubro");
+const eliminarCargo = document.getElementsByClassName("btnEliminarCargo");
 
 
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFecha").value = hoy.toLocaleDateString();
+var fechaRubro = document.getElementById("fecha").value = hoy.toLocaleDateString();
+var fechaCargo = document.getElementById("fechaCargo").value = hoy.toLocaleDateString();
 var frmRubro = document.getElementById("frmRubro");
 var frmCargo = document.getElementById("frmCargo");
 var btnRegistrarRubro = document.getElementById("btnRegistraRubro");
@@ -211,52 +218,196 @@ function mensajes(response, mensaje, error) {
   }
 }
 
-btnRegistrarCargo.addEventListener("click",function(){
+btnRegistrarCargo.addEventListener("click", function () {
 
   let frmData = new FormData(frmCargo);
-
-  registrar(frmData,'../processes/register/restrar-cargos.php');
-
+  let url =  editarCargo === false ? '../processes/register/registrar-cargos.php':'../processes/edit/editar-cargo.php';
+  registrar(frmData, url);
+  
 
 })
 
 
-btnRegistrarRubro.addEventListener("click",function(){
+btnRegistrarRubro.addEventListener("click", function () {
 
   let frmData = new FormData(frmRubro);
-
-  registrar(frmData,'../processes/register/registrar-rubro.php');
-
+  let url = editarRubro === false ? '../processes/register/registrra-rubro.php':'../processes/edit/editar-rubro.php';
+  registrar(frmData, url);
 
 })
 
 
-function registrar(data,urlAPI){
+function registrar(data, urlAPI) {
 
-  postData(urlAPI,data)
+  postData(urlAPI, data)
     .then(data => data.json())
     .then(response => {
 
       mensajes(response);
-
+      cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+      cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
     });
-
+  
+  
 }
 
 
 function postData(urlAPI, data) {
-    
+
   const response = fetch(urlAPI,
-      {
-          method: 'POST',
-          body: data,
-      }
+    {
+      method: 'POST',
+      body: data,
+    }
   );
 
   return response;
 
 }
 
+cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+
+cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
+
+function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
+
+  fetch(urlAPI)
+    .then(response => response.json())
+    .then(data => {
+
+      let template = '';
+      
+        template = `
+        ${data.map(datas => ` 
+        
+        <tr ${id}="${datas.id}">
+        
+        <td>${datas.id}</td>
+        <td>${datas.nombre}</td>
+        <td>${datas.fecha}</td>
+        <td>
+
+        <i class="bi bi-pencil   text-center text-primary " data-bs-toggle="modal"
+        data-bs-target="#${modal}" id="${edits}"></i>
+        <i class="bi bi-x-circle-fill text-danger ${deletes}"></i>
+        
+        </td>
+
+      </tr>`).slice().join('')}
+       `;
+      
+       document.getElementById(listado).innerHTML = template;
+
+
+    })
+
+
+
+}
+
+
+$(document).on("click", ".btnEliminarCargo",function(){
+
+    let element = (this).parentElement.parentElement;
+    
+    let id = element.getAttribute("idcargo");
+
+    Swal.fire({
+      title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+      icon: '',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar Sistema'
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+  
+        $.post("../processes/delete/eliminar-cargo.php", { id }, function (response) {
+          console.log(response);
+          cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
+  
+        });
+  
+      }
+    })
+  
+
+})
+
+$(document).on("click","#btnEditarCargo",function(){
+
+  
+  let element = (this).parentElement.parentElement;
+    
+  let id = element.getAttribute("idcargo");
+  console.log(id);
+  $.post("../processes/listener/escuchar-cargos.php", { id }, function (response) {
+    console.log(response)
+    let cargo = JSON.parse(response);
+    $("#nombreCargo").val(cargo.nombre);
+    $("#fechaCargo").val(cargo.fecha);
+    $("#idCargo").val(cargo.id);
+    editarCargo = true;
+  });
+
+
+})
+$(document).on("click","#btnEditarRubro",function(){
+
+  let element = (this).parentElement.parentElement;
+    
+  let id = element.getAttribute("idrubro");
+  console.log(id);
+  $.post("../processes/listener/escuchar-rubros.php", { id }, function (response) {
+    console.log(response)
+    let rubro = JSON.parse(response);
+    $("#nombre").val(rubro.nombre);
+    $("#fecha").val(rubro.fecha);
+    $("#idRubro").val(rubro.id);
+    editarRubro = true;
+  });
+
+
+})
+$(document).on("click", ".btnEliminarRubro",function(){
+
+  let element = (this).parentElement.parentElement;
+    
+  let id = element.getAttribute("idrubro");
+
+  Swal.fire({
+    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    icon: '',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar Sistema'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+
+      $.post("../processes/delete/eliminar-rubro.php", { id }, function (response) {
+        console.log(response);
+        cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+
+      });
+
+    }
+  })
+
+
+})
 
 $(document).on("click", ".btn-delete-tipoSistema", async function () {
 
@@ -392,8 +543,18 @@ btnSalir.addEventListener("click", async function () {
 
 })
 
-btnAgregarRubro.addEventListener("click",function(){
+btnAgregarRubro.addEventListener("click", function () {
 
-  frmRubro.reset();
+  editarRubro = false;
+  document.getElementById('frmRubro').reset();
 
 })
+
+btnAgregarCargo.addEventListener("click", function () {
+
+  editarCargo = false;
+  document.getElementById('frmCargo').reset();
+
+})
+
+

@@ -514,9 +514,9 @@ class BaseDatos
 
     }
 
-    public function editarRubro($id,$nombre,$fecha){
+    public function editarRubro($id,$nombre){
 
-        $consulta = "UPDATE`rubro` as r  SET nombre = '$nombre',fecha = '$fecha' WHERE(r.id = $id);";
+        $consulta = "UPDATE`rubro` as r  SET nombre = '$nombre' WHERE(r.id = $id);";
         
         $res = mysqli_query($this->con,$consulta);
         
@@ -538,20 +538,47 @@ class BaseDatos
 
     }
 
+    public function mostrarRubro($id){
+
+        $consulta = "SELECT * FROM rubro AS  r where(r.estado = 1 and r.id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+
+    }
+
     //cargos
 
     public function mostrarCargos(){
 
-        $consulta = "SELECT * FROM `cargos`;";
+        $consulta = "SELECT * FROM `cargos` AS c WHERE(c.estado = 1);";
         $res= mysqli_query($this->con,$consulta);
 
         if($res == TRUE){
 
-            return TRUE;
+            return $res;
             die;
         }else{
 
-            return FALSE;
+            return "error";
+            die;
+
+        }
+
+    }
+
+    public function mostrarCargo($id){
+
+        $consulta = "SELECT * FROM `cargos` AS c WHERE (c.id = $id);";
+        $res= mysqli_query($this->con,$consulta);
+
+        if($res == TRUE){
+
+            return $res;
+            
+
+        }else{
+
+            return "error";
             die;
 
         }
@@ -559,9 +586,9 @@ class BaseDatos
     }
 
     
-    public function registrarCargo($nombre,$fecha){
+    public function registrarCargo($nombre,$fecha,$estado){
 
-        $consulta = "INSERT INTO `cargos`(nombre,fecha) VALUES($nombre,$fecha);";
+        $consulta = "INSERT INTO `cargos` (nombre,fecha,estado) VALUES('$nombre','$fecha','$estado');";
         $res = mysqli_query($this->con, $consulta);
 
         if($res == TRUE){
@@ -613,5 +640,5 @@ class BaseDatos
             die("Conexión a la base de datos falló " . mysqli_connect_error() . mysqli_connect_errno());
         }
     }
-    
+
 }
