@@ -30,7 +30,7 @@ while($row = mysqli_fetch_array($resultado)){
         'estado'=>$row['estado'],
         'fecha_registro'=>$row['fecha_registro'],
         'estado_comercial'=>$row['estado_comercial'],
-        'logo'=>$row['logo'],
+        'logo'=>$row['imglogo'],
     );
 }
 
