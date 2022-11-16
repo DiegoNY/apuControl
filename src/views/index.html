@@ -275,7 +275,7 @@
 
                                                     <div class="col-lg-6">
 
-                                                        <label>Ruc</label>
+                                                        <label class="font-weight-semibold">Ruc</label>
 
                                                         <div>
 
@@ -296,7 +296,7 @@
 
                                                     <div class="col-lg-6">
 
-                                                        <label for="cboIdGrupo">Grupo</label>
+                                                        <label for="cboIdGrupo" class="font-weight-semibold">Grupo</label>
                                                         <div>
                                                             <select id="cbogrupo" name="txtIdGrupo"
                                                                 class="form-control">
@@ -313,7 +313,7 @@
 
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Razon social</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">Razon social</label>
                                                 <div class="col-lg-10">
                                                     <input type="text" value="" name="txtRazonSocial"
                                                         id="txtRazonSocial" class="form-control">
@@ -321,7 +321,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Nombre Comercial</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">Nombre Comercial</label>
                                                 <div class="col-lg-10">
                                                     <input type="text" value="" name="txtNombreCo" id="txtNombreCo"
                                                         class="form-control">
@@ -332,7 +332,7 @@
 
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Direccion</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">Direccion</label>
                                                 <div class="col-lg-10">
                                                     <input type="text" class="form-control" value="" name="txtDireccion"
                                                         id="txtDireccion">
@@ -340,7 +340,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Distrito</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">Distrito</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboIdu" id="cboIdu" class="form-control">
                                                         <option value="123">123</option>
@@ -351,7 +351,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Rubro</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">Rubro</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboIdRubro" id="cboIdRubro" class="form-control">
                                                         <option value="" selected></option>
@@ -363,14 +363,14 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">T.Persona</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">T.Persona</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoPersona" id="cboTipoPersona"
                                                         class="form-control">
 
-                                                        <option value="" selected></option>
-                                                        <option value="NATURAL">Natural</option>
-                                                        <option value="JURIDICA">Juridica</option>
+                                                        <option value="" selected id="defaultTipoPersona"></option>
+                                                        <option value="NATURAL" id="natu">Natural</option>
+                                                        <option value="JURIDICA" id="juri">Juridica</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -384,7 +384,7 @@
 
                                             <div class="form-group row">
                                                 <div class="col-lg-6">
-                                                    <label class="col-form-label">T. Sistema</label>
+                                                    <label class="col-form-label font-weight-semibold">T. Sistema</label>
 
                                                     <select name="cboTipoSistema" id="cboTipoSistema"
                                                         class="form-control ">
@@ -394,7 +394,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="col-form-label">Proveedor</label>
+                                                    <label class="col-form-label font-weight-semibold">Proveedor</label>
                                                     <input type="text" class="form-control" name="proveedor"
                                                         id="proveedor">
                                                 </div>
@@ -403,7 +403,7 @@
 
                                             <div class="form-group row">
 
-                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T. Envio</label>
+                                                <label for="cboIdGrupo" class="col-form-label col-lg-2 font-weight-semibold">T. Envio</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoEnvio" id="cboTipoEnvio" class="form-control">
                                                         <option value="" selected></option>
@@ -415,7 +415,7 @@
 
                                             <div class="form-group row">
 
-                                                <label for="cboIdGrupo" class="col-form-label col-lg-2">T.
+                                                <label for="cboIdGrupo" class="col-form-label col-lg-2 font-weight-semibold">T.
                                                     Integracion</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
@@ -430,7 +430,7 @@
 
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">E. Comercial</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">E. Comercial</label>
                                                 <div class="col-lg-10">
                                                     <select name="txtEstadoComercial" id="txtEstadoComercial"
                                                         class="form-control">
@@ -443,7 +443,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Estado</label>
+                                                <label class="col-form-label col-lg-2 font-weight-semibold">Estado</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboEstado" id="cboEstado" class="form-control">
                                                         <option value="" selected></option>
@@ -969,9 +969,10 @@
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-lg-2">Bandera</label>
 
-                                                    <select class="form-control col-lg-10" id="exampleFormControlSelect1"
-                                                        onChange="imageChanged()" name="banderaEmpresa">
-                                                      
+                                                    <select class="form-control col-lg-10"
+                                                        id="exampleFormControlSelect1" onChange="imageChanged()"
+                                                        name="banderaEmpresa">
+
                                                     </select>
 
                                                     <div id="imageSelected"></div>
@@ -1033,28 +1034,34 @@
 
                                             <div class="col-lg-6">
                                                 <label>Cargo </label>
-                                                <select name="txtCargo"
-                                                id="cargo-contacto" class="form-control">
-                                                    
+                                                <select name="txtCargo" id="cargo-contacto" class="form-control">
+
                                                 </select>
                                             </div>
 
                                         </div>
 
 
-                                        <div class="form-group">
-                                            <label>Correo</label>
-                                            <input type="email" class="form-control" name="txtCorreo"
-                                                id="correo-contacto">
+                                        <div class="row">
+
+
+                                            <div class="col-lg-6">
+                                                <label>Correo</label>
+                                                <input type="email" class="form-control" name="txtCorreo"
+                                                    id="correo-contacto">
+                                            </div>
+
+
+
+                                            <div class="col-lg-6">
+                                                <label>Telefono</label>
+                                                <input type="text" class="form-control" name="txtTelefono"
+                                                    id="telefono-contacto">
+                                            </div>
+
+
                                         </div>
 
-
-
-                                        <div class="form-group">
-                                            <label>Telefono</label>
-                                            <input type="text" class="form-control" name="txtTelefono"
-                                                id="telefono-contacto">
-                                        </div>
 
                                         <div class="form-group">
                                             <label>Detalle</label>

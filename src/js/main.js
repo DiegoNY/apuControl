@@ -522,7 +522,7 @@ function validarRuc() {
     success: function (res) {
 
       let data = JSON.parse(res);
-
+      
 
       data.forEach((data) => {
 
@@ -533,7 +533,7 @@ function validarRuc() {
         let ubigeo = data.data.ubigeo;
         let direccion = data.data.direccion || "";
         let error = data.data.error;
-
+        let documento = data.data.numeroDocumento;
 
         direccion_input.value = direccion;
         razon_so.value = razon;
@@ -569,6 +569,23 @@ function validarRuc() {
             let ubigeo_option = document.getElementById(`${ubigeo}`);
             //seleccionarla
             ubigeo_option.setAttribute("selected", "true");
+            
+            let numeros = documento.split('');
+            let primerosNumerosRuc = numeros[0]+numeros[1]
+
+            if(primerosNumerosRuc === "20"){
+
+              let optionDefault = document.getElementById("defaultTipoPersona");
+              optionDefault.removeAttribute("selected");
+
+              let tipoPersonaNatu = document.getElementById("juri");
+              tipoPersonaNatu.setAttribute("selected","true");
+            }else{
+              
+              let tipoPersonaNatu = document.getElementById("natu");
+              tipoPersonaNatu.setAttribute("selected","true");
+              console.log("NATURAL");
+            }
 
             break;
 
@@ -988,7 +1005,7 @@ btnAgregarContacto.addEventListener("click", function () {
 
 })
 
-btnSalir.addEventListener("click", async function () {
+btnSalir.addEventListener("click", function () {
 
 
   fetch('../processes/validator/terminar-sesion.php');
@@ -1015,9 +1032,10 @@ const validate = () => {
 
     let enviaContacto = document.getElementById("btnEnviarContacto");
     enviaContacto.removeAttribute("disabled");
+  
   } else {
-    let enviaContacto = document.getElementById("btnEnviarContacto");
 
+    let enviaContacto = document.getElementById("btnEnviarContacto");
     enviaContacto.setAttribute("disabled", "");
 
   }

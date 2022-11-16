@@ -133,6 +133,12 @@ $(document).ready(function () {
 
     let data = tablaEmpresa.row($(this).parents()).data();
     let ruc = data.ruc;
+    let nombreEmpresa = data.nom_comercial;
+    let nombreEmpresaSucursal = document.getElementById("exampleModalLabel");
+
+    nombreEmpresaSucursal.innerText = `Sucursale Empresa  ${nombreEmpresa}`
+
+    console.log(nombreEmpresa);
 
     cargarSucursal(ruc);
 
