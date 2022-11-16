@@ -3,21 +3,6 @@
 include '../../connection/basedatos.php';
 
 
-$nombre = $_POST['txtNombreSucursal'];
-$logo = $_FILES['logoSu']['name'];
-$temporal = $_FILES['logoSu']['tmp_name'];
-
-
-if (isset($nombre) && !empty($nombre)) {
-    $carpeta = './img';
-    $ruta = $carpeta . '/' . $logo;
-    move_uploaded_file($temporal, "../.$carpeta" . '/' . $logo);
-    
-}
-
-
-
-
 extract($_POST);
 
 if(isset($txtNombreSucursal) && !empty($txtNombreSucursal)){
@@ -42,7 +27,6 @@ $escritortii = $sucursal->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $u
 
 //SI AUMENTAN MAS ACCESOS SE AGREGA UNA LINEA MAS HACERLA DINAMICA CON ARRAYS 
 
-$res =  $sucursal->ingresarBanderaSu($ruta, $nombre,$id_sucursal);
 
 
 

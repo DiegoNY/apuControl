@@ -3,15 +3,20 @@ var editarIntegracion = false;
 var editarSistema = false;
 var editarRubro = false;
 var editarCargo = false;
-
+var editarBanddera = false;
 const btnAgregarTipoIntegracion = document.getElementById('btn_agregar_tipo_integracion');
 const btnAgregarTipoSistem = document.getElementById('btn_agregar_tipo_sistema');
 const btnAgregarRubro = document.getElementById('btn_agregar_rubro');
 const btnAgregarCargo = document.getElementById('btnAgregarCargo');
+const btnAgregarBandera = document.getElementById('btnRegistrarBandera');
 const btnSalir = document.getElementById("btnSalir");
 
 const eliminarRubro = document.getElementById("btnEliminarRubro");
 const eliminarCargo = document.getElementsByClassName("btnEliminarCargo");
+
+const logo = document.getElementById("logo");
+const preview_logo = document.getElementById("preview_logo");
+
 
 
 const hoy = new Date();
@@ -231,7 +236,7 @@ btnRegistrarCargo.addEventListener("click", function () {
 btnRegistrarRubro.addEventListener("click", function () {
 
   let frmData = new FormData(frmRubro);
-  let url = editarRubro === false ? '../processes/register/registrra-rubro.php':'../processes/edit/editar-rubro.php';
+  let url = editarRubro === false ? '../processes/register/registrar-rubro.php':'../processes/edit/editar-rubro.php';
   registrar(frmData, url);
 
 })
@@ -269,8 +274,48 @@ cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnElimi
 
 cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
 
-function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
+cargarBandera();
 
+function cargarBandera() {
+ try{
+  fetch("../processes/mostrar-banderas.php")
+    .then(response => response.json())
+    .then(data => {
+
+      let template = '';
+      
+        template = `
+        ${data.map(datas => ` 
+        
+        <tr idBandera="${datas.id}">
+        
+        <td>${datas.id}</td>
+        <td>${datas.nombre}</td>
+        <td><img style="heigth:50px; width:150px;" src=".${datas.bandera}"></td>
+        <td>
+
+        <i class="bi bi-pencil   text-center text-primary " data-bs-toggle="modal"
+        data-bs-target="#bandera" id="btnEditarBanderas"></i>
+        <i class="bi bi-x-circle-fill text-danger btnEliminarBanderas"></i>
+        
+        </td>
+
+      </tr>`).slice().join('')}
+       `;
+      
+       document.getElementById("listadoBanderas").innerHTML = template;
+
+
+    })
+
+  }catch(e){
+    console.warn("Error" + e);
+  }
+
+}
+
+function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
+ try{
   fetch(urlAPI)
     .then(response => response.json())
     .then(data => {
@@ -301,7 +346,9 @@ function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
 
     })
 
-
+  }catch(e){
+    console.warn("Error" + e);
+  }
 
 }
 
@@ -400,6 +447,61 @@ $(document).on("click", ".btnEliminarRubro",function(){
       $.post("../processes/delete/eliminar-rubro.php", { id }, function (response) {
         console.log(response);
         cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+
+      });
+
+    }
+  })
+
+
+})
+$(document).on("click","#btnEditarBanderas",function(){
+
+  let element = (this).parentElement.parentElement;
+    
+  let id = element.getAttribute("idbandera");
+  console.log(id);
+  $.post("../processes/listener/escuchar-bandera.php", { id }, function (response) {
+    console.log(response)
+    let bandera = JSON.parse(response);
+    $("#nombreBandera").val(bandera.nombre);
+    $("#idBandera").val(bandera.id);
+
+    let img = document.querySelector("#preview_logo");
+    img.setAttribute("src",`.${bandera.bandera}`);
+    logo.setAttribute("files",`${bandera.bandera}`);
+
+  });
+
+  editarBanddera = true;
+
+
+})
+$(document).on("click", ".btnEliminarBanderas",function(){
+
+  let element = (this).parentElement.parentElement;
+    
+  let id = element.getAttribute("idbandera");
+
+  Swal.fire({
+    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    icon: '',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+
+      $.post("../processes/delete/eliminar-bandera.php", { id }, function (response) {
+        console.log(response);
+        cargarBandera();
 
       });
 
@@ -557,4 +659,58 @@ btnAgregarCargo.addEventListener("click", function () {
 
 })
 
+btnAgregarBandera.addEventListener("click", function(){
 
+  registrarBandera();
+
+})
+
+
+
+logo.addEventListener("change", () => {
+
+
+  const archivos = logo.files;
+
+  if (!archivos || !archivos.length) {
+
+    preview.src = "";
+    return;
+
+  }
+
+  const primerArchivo = archivos[0];
+  const objURL = URL.createObjectURL(primerArchivo);
+
+  preview_logo.src = objURL;
+
+});
+
+
+function registrarBandera(){
+  let url = editarBanddera === false ? "../processes/register/registrar-bandera.php":"../processes/edit/editar-bandera.php"
+  let frm = document.querySelector("#frmBandera");
+  let dataFrm = new FormData(frm);
+ 
+  $.ajax({
+    url: url,
+    data: dataFrm,
+    cache: false,
+    processData: false,
+    contentType: false,
+    type: "post",
+    success: function (response) {
+      console.log(response);
+      mensajes(
+        response,
+        "Ok, se registro la bandera",
+        "Te falta llenar algunos datos importantes ☹"
+      );
+      cargarBandera();
+      
+     editarBanddera = false;
+    },
+  });
+  
+
+}

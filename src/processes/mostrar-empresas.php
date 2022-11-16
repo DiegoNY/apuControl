@@ -9,7 +9,7 @@ $resultado = $empresas->verEmpresas();
 if(!$resultado){
     die("Query failed");
 }
-
+ 
 $json = array();
 
 while($row = mysqli_fetch_array($resultado)){

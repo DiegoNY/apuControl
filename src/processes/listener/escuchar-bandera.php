@@ -1,10 +1,15 @@
-<?php 
+<?php
 
-include '../connection/basedatos.php';
+
+include '../../connection/basedatos.php';
+
+
+extract($_POST);
 
 $banderas = new BaseDatos();
 
-$resultado = $banderas->traerBanderaSu();
+
+$resultado = $banderas->escucharBanderaSu($id);
 
 if(!$resultado){
     die("Error");
@@ -22,6 +27,6 @@ while($row = mysqli_fetch_array($resultado)){
     );
 }
 
-$jsonString = json_encode($json);
+$jsonString = json_encode($json[0]);
 
 echo $jsonString;

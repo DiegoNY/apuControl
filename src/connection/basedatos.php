@@ -118,9 +118,9 @@ class BaseDatos
     //Ingresar Bandera Sucursal 
 
      //CRUD BANDERA
-     public function ingresarBanderaSu($logo, $nombre, $idSucursal)
+     public function ingresarBanderaSu($logo, $nombre, $idSucursal,$estado)
      {
-         $consulta = "INSERT INTO `banderaSucursal`(nombre,bandera,idSucursal) VALUES('$nombre','$logo','$idSucursal');";
+         $consulta = "INSERT INTO `banderaSucursal`(nombre,bandera,idSucursal,estado) VALUES('$nombre','$logo','$idSucursal','$estado');";
          $res = mysqli_query($this->con, $consulta);
  
          if ($res == TRUE) {
@@ -137,7 +137,24 @@ class BaseDatos
          $res = mysqli_query($this->con, $consulta); 
          return $res;
      }
- 
+
+     public function  escucharBanderaSu($id)
+     {
+         $consulta = "SELECT * FROM `banderasucursal` as b where(b.estado = 1 and b.id = $id);";
+         $res = mysqli_query($this->con, $consulta); 
+         return $res;
+     }
+     
+     public function editarBandera($id,$nombre,$logo){
+        $consulta = "UPDATE `banderaSucursal` AS b SET nombre = '$nombre',bandera= '$logo' WHERE(b.id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+
+        if ($res == TRUE) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }     
+    }
      public function eliminarBanderaSu($id)
      {
          $consulta = "DELETE  FROM `banderasucursal`  WHERE( id = '$id');";

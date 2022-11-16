@@ -242,7 +242,6 @@ $(document).on("click", ".btn-delete-logo", function () {
   let element = $(this)[0].parentElement;
   let id = $(element).attr("id-logo");
   $.post("../processes/delete/eliminar-logo.php", { id }, function (response) {
-    console.log(response);
     mostrarLogoss();
   });
 });
@@ -258,7 +257,6 @@ function registrarAccesos() {
     data: $("#frm-accesos").serialize(),
     type: "GET",
     success: function (response) {
-      console.log(response);
       mensajes(response, "Bien Se ingresaron los accesos 😀", "Completa Todos los campos");
       editarAcceso = false;
       tablaAccesos.ajax.reload();
@@ -320,6 +318,71 @@ function registrarContactos() {
   $("#frm-contactos").trigger("reset");
 }
 
+function cargarCargos() {
+  $.ajax({
+
+    url: "../processes/mostrar-cargos.php",
+    type: "GET",
+
+    success: function (response) {
+
+      let data = JSON.parse(response);
+
+      let template = "";
+
+      console.log(data);
+      data.forEach((cargos) => {
+
+        template += `
+
+        <option value="${cargos.nombre}">${cargos.nombre}</option>
+        
+        `
+
+      })
+      $("#cargo-contacto").html(template);
+
+    }
+
+
+  });
+}
+
+cargarCargos();
+
+function cargarRubros() {
+
+  $.ajax({
+
+    url: "../processes/mostrar-rubros.php",
+    type: "GET",
+
+    success: function (response) {
+
+      let data = JSON.parse(response);
+
+      let template = "";
+
+      console.log(data);
+      data.forEach((rubros) => {
+
+        template += `
+
+        <option value="${rubros.nombre}">${rubros.nombre}</option>
+        
+        `
+
+      })
+      $("#cboIdRubro").html(template);
+
+    }
+
+
+  });
+
+}
+
+cargarRubros();
 //para los grupos
 
 
@@ -349,6 +412,8 @@ function editarEmpresas(id, edit) {
     return;
 
   datosCompletosEmpresa(id);
+  btnAgregarContacto.removeAttribute("disabled");
+  btnes.removeAttribute("disabled");
 
 }
 
@@ -368,7 +433,6 @@ function RegistrarEmpresa() {
     processData: false,
     contentType: false,
     success: (response) => {
-      console.log(response);
       let data = JSON.parse(response);
       data.forEach((data) => {
         mensajes(
@@ -380,10 +444,9 @@ function RegistrarEmpresa() {
 
 
         if (data.mensaje === "ingresado") {
-          console.log("entre");
           btnAgregarContacto.removeAttribute("disabled");
           btnes.removeAttribute("disabled");
-        
+
           cargarSucursal(data.ruc);
           cargarContactos(data.ruc);
 
@@ -400,7 +463,7 @@ function RegistrarEmpresa() {
   });
 
 
-  
+
 
 }
 
@@ -410,7 +473,6 @@ function datosCompletosEmpresa(id) {
   $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
     let empresa = JSON.parse(response);
 
-    console.log(empresa);
 
 
     $("#txtNombreCo").val(empresa.nom_comercial);
@@ -426,13 +488,14 @@ function datosCompletosEmpresa(id) {
     $("#cboTipoPersona").val(empresa.tipo_persona);
     $("#cboEstado").val(empresa.estado);
     $("#proveedor").val(empresa.proveedor);
+    $("#id").val(empresa.id);
     rucIdSU.value = empresa.ruc;
 
-    preview_logo.setAttribute("src",`.${empresa.img}`);
+    preview_logo.setAttribute("src", `.${empresa.img}`);
 
     let opcionTipoIntegra = document.getElementById(`${empresa.id_tipo_integracion}`);
-    
-    opcionTipoIntegra.setAttribute("selected","true");
+
+    opcionTipoIntegra.setAttribute("selected", "true");
 
     cargarUbigeoEmpresa(empresa.id_ubigeo);
 
@@ -459,8 +522,6 @@ function validarRuc() {
     success: function (res) {
 
       let data = JSON.parse(res);
-      console.log(data);
-
 
 
       data.forEach((data) => {
@@ -507,7 +568,6 @@ function validarRuc() {
             //capturar la opcion con id = ubigeo 
             let ubigeo_option = document.getElementById(`${ubigeo}`);
             //seleccionarla
-            console.log(ubigeo_option);
             ubigeo_option.setAttribute("selected", "true");
 
             break;
@@ -577,9 +637,9 @@ function cargarTipointegracion() {
   $.ajax({
     url: "../processes/mostrar-tipo-integracion.php",
     type: "GET",
-    success:  function (response) {
-   
-      let tipoIntegra =  JSON.parse(response);
+    success: function (response) {
+
+      let tipoIntegra = JSON.parse(response);
       let template = "";
 
       tipoIntegra.forEach((tipoIntegra) => {
@@ -644,7 +704,6 @@ function cargarUbigeoEmpresa(id) {
 // previsualizacion de logo :o
 
 previewImgenes(logo, preview_logo);
-//previewImgenes(banderaSucursal, previewBandera);
 
 function previewImgenes(img, preview) {
 
@@ -711,7 +770,7 @@ $(document).ready(function () {
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
     "paging": true,
-    
+
     language: {
       decimal: "",
       emptyTable: "No hay información",
@@ -738,7 +797,7 @@ $(document).ready(function () {
     destroy: true,
     "scrollCollapse": true,
     "paging": true,
-    
+
     language: {
       decimal: "",
       emptyTable: "No hay información",
@@ -819,7 +878,6 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
 
     let sucursal = JSON.parse(response);
-    console.log(sucursal);
 
     $("#id-sucursal").val(sucursal.id);
     $("#txtNombreSucursal").val(sucursal.nombre);
@@ -875,7 +933,6 @@ $(document).on("click", ".btn-edit-contacto", function () {
 
   $.post("../processes/listener/escuchar-contacto.php", { id }, function (response) {
     let contacto = JSON.parse(response);
-    console.log(contacto);
     $("#id-contacto").val(contacto.id);
     $("#nombre-contacto").val(contacto.nombre_contacto);
     $("#cargo-contacto").val(contacto.cargo);
@@ -962,10 +1019,62 @@ const validate = () => {
   } else {
     let enviaContacto = document.getElementById("btnEnviarContacto");
 
-    enviaContacto.setAttribute("disabled","");
+    enviaContacto.setAttribute("disabled", "");
 
   }
   return false;
 }
 
 $('#correo-contacto').on('input', validate);
+
+cargarBanderas();
+function cargarBanderas() {
+
+
+  try {
+    fetch("../processes/mostrar-banderas.php")
+      .then(response => response.json())
+      .then(data => {
+
+        let template = '';
+
+        template = `
+          ${data.map(datas => ` 
+         
+          <option
+            value="${datas.id}"  meta-img=".${datas.bandera}">
+            ${datas.nombre}
+          </option>
+         
+          `).slice().join('')}
+         `;
+
+        document.getElementById("exampleFormControlSelect1").innerHTML = template;
+
+
+
+      })
+
+  } catch (e) {
+    console.warn("Error" + e);
+  }
+
+}
+
+
+function imageChanged() {
+  let selector = document.querySelector("#exampleFormControlSelect1");
+  let divImage = document.querySelector("#imageSelected");
+  let selectedOption = selector.options[selector.selectedIndex];
+  
+  try{
+
+  let image = selectedOption.getAttribute("meta-img");
+
+  divImage.innerHTML = "<img src='" + image + "' style='width:100%; height:150px; margin-left:110px;'>"
+  }catch(e){
+    console.warn("Error aun no se carga los datos");
+  }
+}
+
+imageChanged()
