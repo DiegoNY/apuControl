@@ -9,6 +9,7 @@ const btnAgregarTipoSistem = document.getElementById('btn_agregar_tipo_sistema')
 const btnAgregarRubro = document.getElementById('btn_agregar_rubro');
 const btnAgregarCargo = document.getElementById('btnAgregarCargo');
 const btnAgregarBandera = document.getElementById('btnRegistrarBandera');
+const btnAgregarBandera1 = document.getElementById('btnAgregarBandera');
 const btnSalir = document.getElementById("btnSalir");
 
 const eliminarRubro = document.getElementById("btnEliminarRubro");
@@ -665,7 +666,14 @@ btnAgregarBandera.addEventListener("click", function(){
 
 })
 
+btnAgregarBandera1.addEventListener("click",function(){
 
+  editarBanddera = false;
+  document.getElementById('frmBandera').reset();
+  
+  document.getElementById('preview_logo').setAttribute("src","");
+
+})
 
 logo.addEventListener("change", () => {
 

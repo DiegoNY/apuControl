@@ -27,9 +27,11 @@
     --danger-100: #fdeeee;
     --white: #fff;
     --light: #f0f2f5;
-    --light-100: rgba(255, 255, 255, 0.1);
+    --light-100:
+    rgba(255, 255, 255, 0.1);
     --dark: #252b36;
-    --dark-100: rgba(0, 0, 0, 0.1);
+    --dark-100:
+    rgba(0, 0, 0, 0.1);
     --teal: #26A69A;
     --teal-100: #e9f6f5;
     --indigo: #5C6BC0;
@@ -45,8 +47,10 @@
     --breakpoint-md: 769px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    --font-family-sans-serif:
+    "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace
 }
 
 *,
@@ -59,7 +63,7 @@ html {
     font-family: sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
 }
 
 article,
@@ -15049,12 +15053,12 @@ input[type=file] {
     }
 
     .custom-scrollbars ::-webkit-scrollbar-track {
-        background: #eee
+        background: #eee;
     }
 
     .custom-scrollbars ::-webkit-scrollbar-thumb {
         background-color: #999;
-        border-radius: .4rem
+        border-radius: .4rem;
     }
 }
 

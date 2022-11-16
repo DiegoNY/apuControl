@@ -202,7 +202,7 @@ function cargarAccesos(id) {
 // ALERTAS //
 
 function mensajes(response, mensaje, error) {
-
+  
   if (response == "ingresado") {
     Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
@@ -601,27 +601,26 @@ function informacionEmpresaNueva(estado, condicion, nombre) {
     html: `
     <div class="col-lg-12">
 
-        <div class="card-body">
+      <div class="card-body">
 
 
-         <div class="card-body">
+        <div class="card-body ">
           
-          <div>
+          
+          <div class="row d-flex justify-content-center">
+           
+            <p class=" mb-2 font-size-sm">Estado <span class="badge bg-success text-light">${estado}</span>   Condición <span class="badge bg-info text-light">${condicion}</span></p>
 
-            <p class="text-center mb-2 font-size-sm">Estado <span class="badge bg-success text-light">${estado}</span></p>
+            <p class=" mb-2 font-size-sm"> </p>
 
           </div>
 
-          <hr>
-
-          <p class="text-center mb-2 font-size-sm"> Condición  <span class="badge bg-info text-light">${condicion}</span></p>
-
-         </div>
-
-
         </div>
 
-      </div>`,
+
+      </div>
+
+    </div>`,
     confirm: 'Sign in',
     focusConfirm: false,
 

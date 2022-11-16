@@ -12,3 +12,9 @@
 .opciones-tabla-empresa i{
     cursor: pointer;
 }
+
+#btn_ruc{
+
+    background-color: #4D5F82;
+    color: whitesmoke;
+}
