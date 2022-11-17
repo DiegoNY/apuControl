@@ -410,11 +410,11 @@ function editarEmpresas(id, edit) {
 
   if (id == null)
     return;
-
+  editar = true;
   datosCompletosEmpresa(id);
   btnAgregarContacto.removeAttribute("disabled");
   btnes.removeAttribute("disabled");
-
+  
 }
 
 
