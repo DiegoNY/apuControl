@@ -77,7 +77,9 @@ $(document).ready(function () {
           return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-pink text-light">${data}</span></p>`
         
         }else{
+
           return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-success text-light">${data}</span></p>`
+        
         }
         
 
