@@ -278,11 +278,17 @@ class BaseDatos
 
     public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa,$codigoApu)
     {
-        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu')";
+        $cantidadSucursales = mysqli_query($this->con, "SELECT count(*)as total from sucursal as s WHERE(s.id_empresa = '$id_empresa');");
+        $data = mysqli_fetch_array($cantidadSucursales);
+        $numeroSucursalEmpresa = $data['total']+1;
+
+        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu,numerosucursal_empresa) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu','$numeroSucursalEmpresa')";
+
 
         $contar_sucursales = mysqli_query($this->con, "SELECT count(*) as total FROM sucursal");
         $cantidad_sucursales = mysqli_fetch_array($contar_sucursales);
 
+     
         $res = mysqli_query($this->con, $consulta);
 
         return [$res, $cantidad_sucursales['total']];
