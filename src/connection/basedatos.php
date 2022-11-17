@@ -197,9 +197,9 @@ class BaseDatos
         return $res;
     }
 
-    public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial,$proveedor)
+    public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial,$proveedor,$bandera)
     {
-        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',ruc = '$ruc',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',fecha_registro = '$fecha_registro',estado_comercial = '$estado_comercial',proveedor = '$proveedor' where (e.id = '$id');";
+        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',ruc = '$ruc',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',fecha_registro = '$fecha_registro',estado_comercial = '$estado_comercial',proveedor = '$proveedor',imglogo = '$bandera' where (e.id = '$id');";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -276,13 +276,13 @@ class BaseDatos
     }
     //CRUD SUCURSAL
 
-    public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa,$codigoApu)
+    public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa,$codigoApu,$bandera)
     {
         $cantidadSucursales = mysqli_query($this->con, "SELECT count(*)as total from sucursal as s WHERE(s.id_empresa = '$id_empresa');");
         $data = mysqli_fetch_array($cantidadSucursales);
         $numeroSucursalEmpresa = $data['total']+1;
 
-        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu,numerosucursal_empresa) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu','$numeroSucursalEmpresa')";
+        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu,numerosucursal_empresa,bandera) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu','$numeroSucursalEmpresa','$bandera')";
 
 
         $contar_sucursales = mysqli_query($this->con, "SELECT count(*) as total FROM sucursal");
@@ -320,10 +320,10 @@ class BaseDatos
         }
     }
 
-    public function editarSucursal($id, $nombre, $direccion, $cod_cofide, $id_ubigeo, $id_empresa)
+    public function editarSucursal($id, $nombre, $direccion, $cod_cofide, $id_ubigeo, $id_empresa,$bandera)
     {
         $consulta = "update sucursal as s set 
-        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo' where  (s.id = $id)";
+        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo', bandera = '$bandera' where  (s.id = $id)";
 
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {
@@ -344,7 +344,7 @@ class BaseDatos
 
     public function editarAcceso($id_sucursal, $nombre, $id_acceso, $contraseña, $id)
     {
-        $consulta = "UPDATE accesos as a set nombreAcceso = '$nombre',idAcceso = '$id_acceso',contraseña='$contraseña', id_sucursal = '$id_sucursal' where(a.id = $id);";
+        $consulta = "UPDATE accesos as a set nombreAcceso = '$nombre',idAcceso = '$id_acceso',contraseña='$contraseña' where(a.id = $id);";
 
         $res = mysqli_query($this->con, $consulta);
 

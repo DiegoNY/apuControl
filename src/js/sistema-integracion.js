@@ -470,7 +470,10 @@ $(document).on("click","#btnEditarBanderas",function(){
 
     let img = document.querySelector("#preview_logo");
     img.setAttribute("src",`.${bandera.bandera}`);
-    logo.setAttribute("files",`${bandera.bandera}`);
+    
+    const urlLogo = document.getElementById("urlLogo");
+    urlLogo.value = bandera.bandera;
+
 
   });
 
@@ -679,7 +682,7 @@ logo.addEventListener("change", () => {
 
 
   const archivos = logo.files;
-
+  
   if (!archivos || !archivos.length) {
 
     preview.src = "";
@@ -691,6 +694,23 @@ logo.addEventListener("change", () => {
   const objURL = URL.createObjectURL(primerArchivo);
 
   preview_logo.src = objURL;
+
+  const urlLogoEdit = document.getElementById("urlLogo").value || null;
+  
+  urlComparar = "./img/"+ primerArchivo.name;
+
+  if(urlComparar === urlLogoEdit ){
+      
+    const edi = document.getElementById("editarLogo");
+    edi.value = "no editar";
+
+  }else{ 
+    
+
+    const edi = document.getElementById("editarLogo");
+    edi.value = "editar";
+ 
+  }
 
 });
 

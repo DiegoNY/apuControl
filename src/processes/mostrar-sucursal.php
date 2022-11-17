@@ -29,6 +29,7 @@ if(!isset($id))
             'direccion'=>$row['direccion'],
             'ubigeo'=>$row['ubigeo'],
             'id_empresa'=>$row['id_empresa'],
+            'numeroSucursalEmpresa'=>$row['numerosucursal_empresa'],
         );
     }
     

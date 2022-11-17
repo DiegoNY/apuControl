@@ -18,8 +18,7 @@ const btnSalir = document.getElementById("btnSalir");
 
 const logo = document.getElementById("logo");
 const preview_logo = document.getElementById("preview_logo");
-
-const banderaSucursal = document.getElementById("logoSu")
+const banderaSucursal = document.getElementById("logoSu");
 const previewBandera = document.getElementById("preview_logo_su");
 
 const hoy = new Date();
@@ -69,7 +68,7 @@ if (!rucs) {
 
 
 function cargarSucursal(ruc) {
-  tableSucursal.destroy();
+   tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
     "scrollCollapse": true,
@@ -77,7 +76,7 @@ function cargarSucursal(ruc) {
     "order": [[0, 'desc'], [1, 'desc']],
     ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
     columns: [
-      { data: "id" },
+      { data: "numeroSucursalEmpresa" },
       { data: "id_empresa" },
       { data: "nombre" },
       { data: "codigo_cofide" },
@@ -489,13 +488,22 @@ function datosCompletosEmpresa(id) {
     $("#cboEstado").val(empresa.estado);
     $("#proveedor").val(empresa.proveedor);
     $("#id").val(empresa.id);
+    $("#urlLogo").val(empresa.img);
     rucIdSU.value = empresa.ruc;
 
     preview_logo.setAttribute("src", `.${empresa.img}`);
+    try {
+      
+      let opcionTipoIntegra = document.getElementById(`${empresa.id_tipo_integracion}`);
 
-    let opcionTipoIntegra = document.getElementById(`${empresa.id_tipo_integracion}`);
+       opcionTipoIntegra.setAttribute("selected", "true");
 
-    opcionTipoIntegra.setAttribute("selected", "true");
+    } catch (e) {
+
+      console.warn("Error" + e)
+    
+    }
+  
 
     cargarUbigeoEmpresa(empresa.id_ubigeo);
 
@@ -740,6 +748,24 @@ function previewImgenes(img, preview) {
 
     preview.src = objURL;
 
+    
+  const urlLogoEdit = document.getElementById("urlLogo").value || null;
+  
+  urlComparar = "./img/"+ primerArchivo.name;
+
+  if(urlComparar === urlLogoEdit ){
+      
+    const edi = document.getElementById("editarLogo");
+    edi.value = "no editar";
+
+  }else{
+    
+
+    const edi = document.getElementById("editarLogo");
+    edi.value = "editar";
+ 
+  }
+
   });
 
 
@@ -887,6 +913,7 @@ $(document).ready(function () {
 $(document).on("click", ".btn-edit-sucursal", function () {
 
   let data = tableSucursal.row($(this).parents()).data();
+  console.log(data);
   let id = data.id;
 
   $("#txtIdSucursa").val(id);
@@ -894,19 +921,25 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
 
     let sucursal = JSON.parse(response);
-
+    console.log(sucursal);
     $("#id-sucursal").val(sucursal.id);
     $("#txtNombreSucursal").val(sucursal.nombre);
     $("#txtDireccionSucursal").val(sucursal.direccion);
     $("#txtCodigoCofide").val(sucursal.codigo_cofide);
     $("#cboIdub").val(sucursal.ubigeo);
     $("#txtIdEmpresa").val(sucursal.id_empresa);
-
+    $("#exampleFormControlSelect1").val(sucursal.banderaEmpresa);
+    $("#codigoApu").val(sucursal.codigoApu);
     //ub = document.getElementById(`${sucursal.ubigeo}`).value;
     //console.log(ub);
-
+    
     editarSucursall = true;
     ides.value = sucursal.id;
+    bandera = sucursal.banderaEmpresa
+    
+    const imgSucursall = document.getElementById("imagenSucursal") || null;
+    imgSucursall.setAttribute("src",`${bandera}`);
+    
 
     cargarAccesos(id);
 
@@ -955,6 +988,7 @@ $(document).on("click", ".btn-edit-contacto", function () {
     $("#correo-contacto").val(contacto.correo);
     $("#id-empresa-contacto").val(contacto.id_empresa);
     $("#telefono-contacto").val(contacto.telefono);
+    $("#detalleContacto").val(contacto.detalle);
     editarContacto = true;
   });
   tablaContactos.ajax.reload();
@@ -993,8 +1027,11 @@ $(document).on("click", "#btn_ruc", function () {
 
 btnes.addEventListener("click", function () {
 
+  const imgSucursall = document.getElementById("imagenSucursal") || null;
   editarSucursall = false;
   document.getElementById('frm-sucursal').reset();
+  imgSucursall.removeAttribute("src","");
+
 }
 )
 
@@ -1059,7 +1096,7 @@ function cargarBanderas() {
           ${data.map(datas => ` 
          
           <option
-            value="${datas.id}"  meta-img=".${datas.bandera}">
+           id=".${datas.bandera}" value=".${datas.bandera}"  meta-img=".${datas.bandera}">
             ${datas.nombre}
           </option>
          
@@ -1088,7 +1125,7 @@ function imageChanged() {
 
   let image = selectedOption.getAttribute("meta-img");
 
-  divImage.innerHTML = "<img src='" + image + "' style='width:100%; height:150px; margin-left:110px;'>"
+  divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; margin-left:110px;'>"
   }catch(e){
     console.warn("Error aun no se carga los datos");
   }

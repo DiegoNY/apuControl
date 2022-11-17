@@ -23,6 +23,8 @@ while($row = mysqli_fetch_array($resultado)){
         'direccion'=>$row['direccion'],
         'ubigeo'=>$row['ubigeo'],
         'id_empresa'=>$row['id_empresa'],
+        'banderaEmpresa'=>$row['bandera'],
+        'codigoApu'=>$row['codigoApu'],
     );
 }
 $jsonString = json_encode($json[0]);

@@ -46,13 +46,13 @@ if (isset($txtRuc) and !empty($txtRuc) || isset($txtNombreCo) and !empty($txtNom
     $json = array();
     if ($response == TRUE) {
 
-        $registroSucursal = $empresas->registrarSucursal($txtNombreCo, $txtDireccion, "", $cboIdu, $txtEliminada, $txtRuc,"");
+        $registroSucursal = $empresas->registrarSucursal($txtNombreCo, $txtDireccion, "", $cboIdu, $txtEliminada, $txtRuc,"","");
 
         $id_sucursal= $registroSucursal[1] + 1;
 
-        $anydes = $empresas->registrarAccesos($id_sucursal, "TEAM_VIEWER", $usuariosa, $contraseñaa, $txtEstado);
-        $teamvieew = $empresas->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY, $contraseña_ANY, $txtEstado);
-        $escritortii = $empresas->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado);
+        $anydes = $empresas->registrarAccesos($id_sucursal, "TEAM_VIEWER", $usuariosa ?? "", $contraseñaa ?? "", $txtEstado);
+        $teamvieew = $empresas->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY ?? "", $contraseña_ANY ?? "", $txtEstado);
+        $escritortii = $empresas->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER ?? "", $contraseña_ER ?? "", $txtEstado);
 
         $json[] = array('mensaje' => "ingresado", 'ruc' => $txtRuc);
         $jsonString = json_encode($json);

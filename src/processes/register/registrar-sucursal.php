@@ -15,8 +15,9 @@ $txtEstado = $sucursal->sanitizar($txtEstado);
 $txtCodigoCofide = $sucursal->sanitizar($txtCodigoCofide);
 $cboIdu = $sucursal->sanitizar($cboIdu);
 
-$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide ?? "",$cboIdu,$txtEstado,$ruc_id_su,$codigoApu ?? "");
+$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide ?? "",$cboIdu,$txtEstado,$ruc_id_su,$codigoApu ?? "",$banderaEmpresa ?? "");
 
+//Se cuentan las sucursales, los accesos estan ligados al id de la sucursal :: 
 $cantidad_sucursales = $resultado[1];
 
 $id_sucursal = $cantidad_sucursales + 1;
@@ -26,11 +27,6 @@ $teamvieew = $sucursal->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY,
 $escritortii = $sucursal->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado);
 
 //SI AUMENTAN MAS ACCESOS SE AGREGA UNA LINEA MAS HACERLA DINAMICA CON ARRAYS 
-
-
-
-
-
 
 
 if($resultado == TRUE){

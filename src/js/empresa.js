@@ -61,21 +61,32 @@ $(document).ready(function () {
     ajax: "../processes/mostrar-empresas.php",
     columns: [
       { data: "id" },
-      {
-        data: 'logo', "render": function (data, type, row) {
-          return `<center><img src="../${data}" style="width:50px; height:50px;"></center>`
-        }
-      },
       { data: "ruc" },
       { data: "nom_comercial" },
       { data: "id_grupo" },
       { data: "id_rubro" },
       { data: "tipo_envio" },
+      { data: 'id_tipo_sistema',"render":function(data){
+        
+        if(data === "GESFARMA"){
+
+          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-warning text-light">${data}</span></p>`
+
+        }else if(data === "APUGESCOM"){
+
+          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-pink text-light">${data}</span></p>`
+        
+        }else{
+          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-success text-light">${data}</span></p>`
+        }
+        
+
+      }},
       { data: "estado_comercial" },
       {
         defaultContent: `<div class="opciones-tabla-empresa"><div class="dropdown  ">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-calendar3 text-primary"></i>
+      <i class="bi bi-calendar3 text-info"></i>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li id="btn-editar-empresa"><a class="dropdown-item">Editar</a></li>
@@ -83,7 +94,7 @@ $(document).ready(function () {
         <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
         <li class="btn-delet"><a class="dropdown-item">Eliminar</a></li>
       </ul>
-    </div><div><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`,
+    </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`,
       },
     ],
     language: {
@@ -199,6 +210,7 @@ $(document).ready(function () {
       $("#txtEstadoComercial").val(empresa.estado_comercial);
       $("#cboTipoPersona").val(empresa.tipo_persona);
       $("#cboEstado").val(empresa.estado);
+      $("#txtIdGrupo").val(empresa.id_grupo);
 
       let ubigeo_option = document.getElementById(`${empresa.id_ubigeo}`);
       //seleccionarla
@@ -220,7 +232,7 @@ $(document).ready(function () {
       "order": [[0, 'desc'], [1, 'desc']],
       ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
       columns: [
-        { data: "id" },
+        { data: "numeroSucursalEmpresa"},
         { data: "id_empresa" },
         { data: "nombre" },
         { data: "codigo_cofide" },
@@ -302,7 +314,7 @@ $(document).ready(function () {
     tablaAccesos = $("#tabla_accesos").DataTable({
       destroy: true,
       "scrollCollapse": true,
-      "paging": true,
+      "paging": false,
       "order": [[0, 'desc'], [1, 'desc']],
       ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
       columns: [

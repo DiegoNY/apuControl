@@ -262,7 +262,9 @@
                                     <form action="../processes/register/registrar-logo.php" id="frm_empresa"
                                         enctype="multipart/form-data" method="post" class="frm-empresa row">
                                         <input type="hidden" id="id" name="id">
-
+                                        <input type="hidden" id="editarLogo" name="editarLogo" value="">
+                                        <input type="hidden" id="urlLogo" name="urlLogo" value="">
+                                            
                                         <fieldset class="mb-3 col-xl-6">
                                             <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
                                                 basica de empresa</legend>
@@ -976,7 +978,11 @@
 
                                                     </select>
 
-                                                    <div id="imageSelected"></div>
+                                                    <div id="imageSelected">
+
+                                                        <img id='imagenSucursal' src="" style='width:100%; height:150px; margin-left:110px;'>
+
+                                                    </div>
 
                                                 </div>
 

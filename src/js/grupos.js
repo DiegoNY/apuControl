@@ -120,12 +120,10 @@ function RegistrarGrupo() {
     url: url,
     success: function (data) {
       mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
-      cargaGrupoEnFrm();
       mostrarGrupos();
     },
   });
   $("#frm_grupo").trigger("reset");
-  mostrarGrupos();
 
 }
 
