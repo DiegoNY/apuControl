@@ -67,7 +67,8 @@ if (!rucs) {
 
 
 
-function cargarSucursal(ruc) {
+ function cargarSucursal(ruc) {
+  try{
    tableSucursal.destroy();
   tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
@@ -109,9 +110,57 @@ function cargarSucursal(ruc) {
       },
     },
   });
+
+}catch(e){
+
+ 
+   tableSucursal = $("#tabla_sucursals").DataTable({
+    destroy: true,
+    "scrollCollapse": true,
+    "paging": true,
+    "order": [[0, 'desc'], [1, 'desc']],
+    ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
+    columns: [
+      { data: "numeroSucursalEmpresa" },
+      { data: "id_empresa" },
+      { data: "nombre" },
+      { data: "codigo_cofide" },
+      { data: "direccion" },
+      { data: "ubigeo" },
+      {
+        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
+                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
+        `,
+      }
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tableSucursal.destroy();
+}
 }
 
 function cargarContactos(ruc) {
+  try{
   tablaContactos.destroy();
   tablaContactos = $("#tabla_contactoss").DataTable({
     destroy: true,
@@ -158,6 +207,56 @@ function cargarContactos(ruc) {
       },
     },
   });
+}catch(e){
+
+  tablaContactos = $("#tabla_contactoss").DataTable({
+    destroy: true,
+    "scrollCollapse": true,
+    "paging": true,
+    "order": [[0, 'desc'], [1, 'desc']],
+    ajax: {
+      url: "../processes/mostrar-contactos.php?id=" + ruc,
+      dataSrc: "data"
+    },
+    columns: [
+      { data: "id" },
+      { data: "id_empresa" },
+      { data: "nombre" },
+      { data: "cargo" },
+      { data: "telefono" },
+      { data: "correo" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
+        data-bs-target="#contactos"></i>
+        <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
+        `,
+      },
+
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+  tablaContactos.destroy();
+
+}
 }
 
 function cargarAccesos(id) {

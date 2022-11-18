@@ -62,6 +62,7 @@ $(document).ready(function () {
     columns: [
       { data: "id" },
       { data: "ruc" },
+      { data: "razon_social" },
       { data: "nom_comercial" },
       { data: "id_grupo" },
       { data: "id_rubro" },
@@ -84,7 +85,19 @@ $(document).ready(function () {
         
 
       }},
-      { data: "estado_comercial" },
+      { data: "estado_comercial","render":function(data){
+
+          if(data === "INGRESADO"){
+             return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
+          }else if(data === "POR_INSTALAR"){
+            return `<p class="text-center "> <span class="badge bg-warning text-light">${data}</span></p>`
+          }else{
+
+            return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
+
+          }
+
+      } },
       {
         defaultContent: `<div class="opciones-tabla-empresa"><div class="dropdown  ">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -217,6 +230,10 @@ $(document).ready(function () {
       let ubigeo_option = document.getElementById(`${empresa.id_ubigeo}`);
       //seleccionarla
       ubigeo_option.setAttribute("selected", "true");
+
+      const img = document.querySelector("#preview_logo");
+      img.setAttribute("src",`.${empresa.img}`)
+
 
     });
 
