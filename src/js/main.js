@@ -113,7 +113,8 @@ if (!rucs) {
 
 }catch(e){
 
- 
+  console.warn("Error"+e + "Solucionando");
+
    tableSucursal = $("#tabla_sucursals").DataTable({
     destroy: true,
     "scrollCollapse": true,
@@ -121,7 +122,11 @@ if (!rucs) {
     "order": [[0, 'desc'], [1, 'desc']],
     ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
     columns: [
-      { data: "numeroSucursalEmpresa" },
+      { data: "numeroSucursalEmpresa","render":function(data){
+
+        return `<input type="hidden" value="${data}"> ${data} `
+
+      } },
       { data: "id_empresa" },
       { data: "nombre" },
       { data: "codigo_cofide" },
