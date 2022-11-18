@@ -23,7 +23,7 @@ extract($_POST);
 $empresas = new BaseDatos();
 
 
-if (isset($txtRuc) and !empty($txtRuc) || isset($txtNombreCo) and !empty($txtNombreCo) || isset($txtRazonSocial) and !empty($txtRazonSocial) || isset($txtDireccion) and !empty($txtDireccion) || isset($txtIdGrupo) and !empty($txtIdGrupo) || isset($cboTipoPersona) and !empty($cboTipoPersona) || isset($cboIdu) and !empty($cboIdu) || isset($cboTipoSistema) and !empty($cboTipoSistema) || isset($cboIdTipoIntegracion) and !empty($cboIdTipoIntegracion)) {
+if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty($txtDireccion) || !empty($txtIdGrupo) || isset($cboTipoPersona) and !empty($cboTipoPersona) ) {
 
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo ?? "----");
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
@@ -58,7 +58,7 @@ if (isset($txtRuc) and !empty($txtRuc) || isset($txtNombreCo) and !empty($txtNom
         $jsonString = json_encode($json);
         echo $jsonString;
     } else {
-        $json[] = array('mensaje' => "no se inserto");
+        $json[] = array('mensaje' => "existe");
         $jsonString = json_encode($json);
         echo $jsonString;
     }

@@ -305,10 +305,16 @@ function mensajes(response, mensaje, error) {
     Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
     });
-  } else {
+  } else if(response == "existe") {
+    Swal.fire("Empresa Ya esta registrada", ``, "error").then(() => {
+      console.log("no hay datos");
+    });
+  }else{
+
     Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
       console.log("no hay datos");
     });
+
   }
 }
 
@@ -1014,7 +1020,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   let data = tableSucursal.row($(this).parents()).data();
   console.log(data);
   let id = data.id;
-
+  
   $("#txtIdSucursa").val(id);
 
   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {

@@ -71,11 +71,11 @@ $(document).ready(function () {
         
         if(data === "GESFARMA"){
 
-          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-warning text-light">${data}</span></p>`
+          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-secondary  text-light">${data}</span></p>`
 
         }else if(data === "APUGESCOM"){
 
-          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-pink text-light">${data}</span></p>`
+          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-dark text-light">${data}</span></p>`
         
         }else{
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
           if(data === "INGRESADO"){
              return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
           }else if(data === "POR_INSTALAR"){
-            return `<p class="text-center "> <span class="badge bg-warning text-light">${data}</span></p>`
+            return `<p class="text-center "> <span class="badge bg-info  text-light">${data}</span></p>`
           }else{
 
             return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
@@ -226,6 +226,7 @@ $(document).ready(function () {
       $("#cboTipoPersona").val(empresa.tipo_persona);
       $("#cboEstado").val(empresa.estado);
       $("#txtIdGrupo").val(empresa.id_grupo);
+      $("#proveedor").val(empresa.proveedor);
 
       let ubigeo_option = document.getElementById(`${empresa.id_ubigeo}`);
       //seleccionarla
@@ -333,6 +334,7 @@ $(document).ready(function () {
     tablaAccesos = $("#tabla_accesos").DataTable({
       destroy: true,
       "scrollCollapse": true,
+      "searching": false,
       "paging": false,
       "order": [[0, 'desc'], [1, 'desc']],
       ajax: "../processes/mostrar-accesos.php?id=" + id_sucursal,
