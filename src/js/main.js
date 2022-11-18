@@ -67,201 +67,205 @@ if (!rucs) {
 
 
 
- function cargarSucursal(ruc) {
-  try{
-   tableSucursal.destroy();
-  tableSucursal = $("#tabla_sucursals").DataTable({
-    destroy: true,
-    "scrollCollapse": true,
-    "paging": true,
-    "order": [[0, 'desc'], [1, 'desc']],
-    ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
-    columns: [
-      { data: "numeroSucursalEmpresa" },
-      { data: "id_empresa" },
-      { data: "nombre" },
-      { data: "codigo_cofide" },
-      { data: "direccion" },
-      { data: "ubigeo" },
-      {
-        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
+function cargarSucursal(ruc) {
+  try {
+    tableSucursal.destroy();
+    tableSucursal = $("#tabla_sucursals").DataTable({
+      destroy: true,
+      "scrollCollapse": true,
+      "paging": true,
+      "order": [[0, 'desc'], [1, 'desc']],
+      ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
+      columns: [
+        { data: "numeroSucursalEmpresa" },
+        { data: "id_empresa" },
+        { data: "nombre" },
+        { data: "codigo_cofide" },
+        { data: "direccion" },
+        { data: "ubigeo" },
+        {
+          defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
                           <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
         `,
-      }
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
+        }
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
       },
-    },
-  });
+    });
 
-}catch(e){
+  } catch (e) {
 
-  console.warn("Error"+e + "Solucionando");
+    console.warn("Error" + e + "Solucionando");
 
-   tableSucursal = $("#tabla_sucursals").DataTable({
-    destroy: true,
-    "scrollCollapse": true,
-    "paging": true,
-    "order": [[0, 'desc'], [1, 'desc']],
-    ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
-    columns: [
-      { data: "numeroSucursalEmpresa","render":function(data){
+    tableSucursal = $("#tabla_sucursals").DataTable({
+      destroy: true,
+      "scrollCollapse": true,
+      "paging": true,
+      "order": [[0, 'desc'], [1, 'desc']],
+      ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
+      columns: [
+        {
+          data: "numeroSucursalEmpresa", "render": function (data) {
 
-        return `<input type="hidden" value="${data}"> ${data} `
+            return `<input type="hidden" value="${data}"> ${data} `
 
-      } },
-      { data: "id_empresa" },
-      { data: "nombre" },
-      { data: "codigo_cofide" },
-      { data: "direccion" },
-      { data: "ubigeo" },
-      {
-        defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
+          }
+        },
+        { data: "id_empresa" },
+        { data: "nombre" },
+        { data: "codigo_cofide" },
+        { data: "direccion" },
+        { data: "ubigeo" },
+        {
+          defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
                           <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
         `,
-      }
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
+        }
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
       },
-    },
-  });
+    });
 
-  tableSucursal.destroy();
-}
+    tableSucursal.destroy();
+  }
 }
 
 function cargarContactos(ruc) {
-  try{
-  tablaContactos.destroy();
-  tablaContactos = $("#tabla_contactoss").DataTable({
-    destroy: true,
-    "scrollCollapse": true,
-    "paging": true,
-    "order": [[0, 'desc'], [1, 'desc']],
-    ajax: {
-      url: "../processes/mostrar-contactos.php?id=" + ruc,
-      dataSrc: "data"
-    },
-    columns: [
-      { data: "id" },
-      { data: "id_empresa" },
-      { data: "nombre" },
-      { data: "cargo" },
-      { data: "telefono" },
-      { data: "correo" },
-      {
-        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
+
+  try {
+
+    tablaContactos.destroy();
+    tablaContactos = $("#tabla_contactoss").DataTable({
+      destroy: true,
+      "scrollCollapse": true,
+      "paging": true,
+      "order": [[0, 'desc'], [1, 'desc']],
+      ajax: {
+        url: "../processes/mostrar-contactos.php?id=" + ruc,
+        dataSrc: "data"
+      },
+      columns: [
+        { data: "id" },
+        { data: "id_empresa" },
+        { data: "nombre" },
+        { data: "cargo" },
+        { data: "telefono" },
+        { data: "correo" },
+        {
+          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
         data-bs-target="#contactos"></i>
         <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
         `,
-      },
+        },
 
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
       },
-    },
-  });
-}catch(e){
+    });
+  } catch (e) {
 
-  tablaContactos = $("#tabla_contactoss").DataTable({
-    destroy: true,
-    "scrollCollapse": true,
-    "paging": true,
-    "order": [[0, 'desc'], [1, 'desc']],
-    ajax: {
-      url: "../processes/mostrar-contactos.php?id=" + ruc,
-      dataSrc: "data"
-    },
-    columns: [
-      { data: "id" },
-      { data: "id_empresa" },
-      { data: "nombre" },
-      { data: "cargo" },
-      { data: "telefono" },
-      { data: "correo" },
-      {
-        defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
+    tablaContactos = $("#tabla_contactoss").DataTable({
+      destroy: true,
+      "scrollCollapse": true,
+      "paging": true,
+      "order": [[0, 'desc'], [1, 'desc']],
+      ajax: {
+        url: "../processes/mostrar-contactos.php?id=" + ruc,
+        dataSrc: "data"
+      },
+      columns: [
+        { data: "id" },
+        { data: "id_empresa" },
+        { data: "nombre" },
+        { data: "cargo" },
+        { data: "telefono" },
+        { data: "correo" },
+        {
+          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
         data-bs-target="#contactos"></i>
         <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
         `,
-      },
+        },
 
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "No hay información",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "",
+        zeroRecords: "Sin resultados encontrados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
       },
-    },
-  });
-  tablaContactos.destroy();
+    });
+    tablaContactos.destroy();
 
-}
+  }
 }
 
 function cargarAccesos(id) {
@@ -305,16 +309,16 @@ function cargarAccesos(id) {
 // ALERTAS //
 
 function mensajes(response, mensaje, error) {
-  
+
   if (response == "ingresado") {
     Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
     });
-  } else if(response == "existe") {
+  } else if (response == "existe") {
     Swal.fire("Empresa Ya esta registrada", ``, "error").then(() => {
       console.log("no hay datos");
     });
-  }else{
+  } else {
 
     Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
       console.log("no hay datos");
@@ -326,6 +330,7 @@ function mensajes(response, mensaje, error) {
 // CRUD DEL LOGO  //
 
 function mostrarLogoss(id) {
+
   $.ajax({
     url: "../processes/mostrar-logo.php?id=" + id,
     type: "GET",
@@ -345,6 +350,7 @@ function mostrarLogoss(id) {
       $("#contenedor-img-banderas").html(template);
     },
   });
+
 }
 
 $(document).on("click", ".btn-delete-logo", function () {
@@ -439,7 +445,7 @@ function cargarCargos() {
 
       let template = "";
 
-      console.log(data);
+      //console.log(data);
       data.forEach((cargos) => {
 
         template += `
@@ -472,7 +478,7 @@ function cargarRubros() {
 
       let template = "";
 
-      console.log(data);
+      //console.log(data);
       data.forEach((rubros) => {
 
         template += `
@@ -523,7 +529,7 @@ function editarEmpresas(id, edit) {
   datosCompletosEmpresa(id);
   btnAgregarContacto.removeAttribute("disabled");
   btnes.removeAttribute("disabled");
-  
+
 }
 
 
@@ -603,17 +609,17 @@ function datosCompletosEmpresa(id) {
 
     preview_logo.setAttribute("src", `.${empresa.img}`);
     try {
-      
+
       let opcionTipoIntegra = document.getElementById(`${empresa.id_tipo_integracion}`);
 
-       opcionTipoIntegra.setAttribute("selected", "true");
+      opcionTipoIntegra.setAttribute("selected", "true");
 
     } catch (e) {
 
       console.warn("Error" + e)
-    
+
     }
-  
+
 
     cargarUbigeoEmpresa(empresa.id_ubigeo);
 
@@ -640,7 +646,7 @@ function validarRuc() {
     success: function (res) {
 
       let data = JSON.parse(res);
-      
+
 
       data.forEach((data) => {
 
@@ -687,21 +693,21 @@ function validarRuc() {
             let ubigeo_option = document.getElementById(`${ubigeo}`);
             //seleccionarla
             ubigeo_option.setAttribute("selected", "true");
-            
-            let numeros = documento.split('');
-            let primerosNumerosRuc = numeros[0]+numeros[1]
 
-            if(primerosNumerosRuc === "20"){
+            let numeros = documento.split('');
+            let primerosNumerosRuc = numeros[0] + numeros[1]
+
+            if (primerosNumerosRuc === "20") {
 
               let optionDefault = document.getElementById("defaultTipoPersona");
               optionDefault.removeAttribute("selected");
 
               let tipoPersonaNatu = document.getElementById("juri");
-              tipoPersonaNatu.setAttribute("selected","true");
-            }else{
-              
+              tipoPersonaNatu.setAttribute("selected", "true");
+            } else {
+
               let tipoPersonaNatu = document.getElementById("natu");
-              tipoPersonaNatu.setAttribute("selected","true");
+              tipoPersonaNatu.setAttribute("selected", "true");
               console.log("NATURAL");
             }
 
@@ -858,23 +864,23 @@ function previewImgenes(img, preview) {
 
     preview.src = objURL;
 
-    
-  const urlLogoEdit = document.getElementById("urlLogo").value || null;
-  
-  urlComparar = "./img/"+ primerArchivo.name;
 
-  if(urlComparar === urlLogoEdit ){
-      
-    const edi = document.getElementById("editarLogo");
-    edi.value = "no editar";
+    const urlLogoEdit = document.getElementById("urlLogo").value || null;
 
-  }else{
-    
+    urlComparar = "./img/" + primerArchivo.name;
 
-    const edi = document.getElementById("editarLogo");
-    edi.value = "editar";
- 
-  }
+    if (urlComparar === urlLogoEdit) {
+
+      const edi = document.getElementById("editarLogo");
+      edi.value = "no editar";
+
+    } else {
+
+
+      const edi = document.getElementById("editarLogo");
+      edi.value = "editar";
+
+    }
 
   });
 
@@ -1025,7 +1031,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   let data = tableSucursal.row($(this).parents()).data();
   console.log(data);
   let id = data.id;
-  
+
   $("#txtIdSucursa").val(id);
 
   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
@@ -1042,14 +1048,14 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     $("#codigoApu").val(sucursal.codigoApu);
     //ub = document.getElementById(`${sucursal.ubigeo}`).value;
     //console.log(ub);
-    
+
     editarSucursall = true;
     ides.value = sucursal.id;
     bandera = sucursal.banderaEmpresa
-    
+
     const imgSucursall = document.getElementById("imagenSucursal") || null;
-    imgSucursall.setAttribute("src",`${bandera}`);
-    
+    imgSucursall.setAttribute("src", `${bandera}`);
+
 
     cargarAccesos(id);
 
@@ -1140,7 +1146,7 @@ btnes.addEventListener("click", function () {
   const imgSucursall = document.getElementById("imagenSucursal") || null;
   editarSucursall = false;
   document.getElementById('frm-sucursal').reset();
-  imgSucursall.removeAttribute("src","");
+  imgSucursall.removeAttribute("src", "");
 
 }
 )
@@ -1179,7 +1185,7 @@ const validate = () => {
 
     let enviaContacto = document.getElementById("btnEnviarContacto");
     enviaContacto.removeAttribute("disabled");
-  
+
   } else {
 
     let enviaContacto = document.getElementById("btnEnviarContacto");
@@ -1230,13 +1236,13 @@ function imageChanged() {
   let selector = document.querySelector("#exampleFormControlSelect1");
   let divImage = document.querySelector("#imageSelected");
   let selectedOption = selector.options[selector.selectedIndex];
-  
-  try{
 
-  let image = selectedOption.getAttribute("meta-img");
+  try {
 
-  divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; margin-left:110px;'>"
-  }catch(e){
+    let image = selectedOption.getAttribute("meta-img");
+
+    divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; margin-left:110px;'>"
+  } catch (e) {
     console.warn("Error aun no se carga los datos");
   }
 }
