@@ -69,36 +69,39 @@ if (!rucs) {
 }
 cargarUbigeo();
 
-function cargarUbigeo(){
-$.ajax({
-  url: "../processes/mostrar-ubigeo.php",
-  type: "GET",
-  success: function (response) {
-    let ubigeo = JSON.parse(response);
-    let template = "<option value='0' > SELECCIONE </option>";
-    ubigeo.forEach((ubigeo) => {
-      template += `
+function cargarUbigeo() {
+  $.ajax({
+    url: "../processes/mostrar-ubigeo.php",
+    type: "GET",
+    success: function (response) {
+      let ubigeo = JSON.parse(response);
+      let template = "<option value='0' > SELECCIONE </option>";
+      ubigeo.forEach((ubigeo) => {
+        template += `
 
       <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.provincia} ${ubigeo.distrito} </option>
      
 
       `;
-    });
+      });
 
-    $("#cboIdu").html(template);
+      $("#cboIdu").html(template);
 
-    $("#cboIdub").html(template);
+      $("#cboIdub").html(template);
 
-   
-  
-  },
-});
+
+
+    },
+  });
 }
 
 function cargarSucursal(ruc) {
   try {
+
     tableSucursal.destroy();
+
     tableSucursal = $("#tabla_sucursals").DataTable({
+
       destroy: true,
       "scrollCollapse": true,
       "paging": true,
@@ -333,25 +336,38 @@ function cargarAccesos(id) {
 
 }
 
-// ALERTAS //
+// mensajes dependiendo el registro se mostraran dotos  //
 
 function mensajes(response, ruc, error) {
 
   if (response == "ingresado") {
+
     Swal.fire("REGISTRADA", ``, "success").then(() => {
+
       console.log("tabla actualizada");
+
     });
+
   } else if (response == "existe") {
+
     urlEscucharEmpresaRegistrar = true;
+
     Swal.fire("EMPRESA YA REGISTRADA", `EDITAR DATOS`, "error").then(() => {
+
       console.log("no hay datos");
+
       console.log(ruc);
+
       editarEmpresas(ruc, true);
+
     });
+
   } else {
 
     Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
+
       console.log("no hay datos");
+
     });
 
   }
@@ -362,23 +378,34 @@ function mensajes(response, ruc, error) {
 function mostrarLogoss(id) {
 
   $.ajax({
+
     url: "../processes/mostrar-logo.php?id=" + id,
+
     type: "GET",
+
     success: function (response) {
+
       let logo = JSON.parse(response);
+
       let template = "";
 
       logo.forEach((logo) => {
+
         template += `
 
         <div class="contenedor-img" id-logo="${logo.id}">
         <img src="${logo.ruta}" alt="${logo.nombre}">
         <button  class="btn-delete-logo btn btn-outline-danger">Borrar</button>
         </div>
+    
         `;
+
       });
+
       $("#contenedor-img-banderas").html(template);
+
     },
+
   });
 
 }
@@ -441,7 +468,7 @@ function registrarSucursal() {
       editarSucursall = false;
       tableSucursal.ajax.reload();
 
-      if(response === "ingresado"){
+      if (response === "ingresado") {
         modalFormularioSucursal.toggle();
       }
 
@@ -473,7 +500,7 @@ function registrarContactos() {
       editarContacto = false;
       tablaContactos.ajax.reload();
 
-      if(response === "ingresado"){
+      if (response === "ingresado") {
 
         modalFormularioContactos.toggle();
 
@@ -570,6 +597,8 @@ function cargaGrupoEnFrm() {
   });
 }
 
+//si la empresa pidio ser editada de la vista principal el id es capturado por la url si no la misma funciona es ejecutada pero por la funcion mensaje 
+
 
 function editarEmpresas(id, edit) {
 
@@ -617,11 +646,27 @@ function RegistrarEmpresa() {
 
 
         if (data.mensaje === "ingresado") {
+
           btnAgregarContacto.removeAttribute("disabled");
           btnes.removeAttribute("disabled");
 
           cargarSucursal(data.ruc);
           cargarContactos(data.ruc);
+
+          // let contenedorBotonEditarIndex = document.getElementById("contenedorBotonEditarIndex");
+
+          // contenedorBotonEditarIndex.classList.toggle("inactive");
+
+         
+
+          // let contenedorFormularioRegistroEmpresa = document.getElementById("contenedorFormularioRegistroEmpresa");
+
+          // contenedorFormularioRegistroEmpresa.classList.add("inactive");
+
+          // let contenedorBtnLimpiarDatos = document.getElementById("contenedorBtnLimpiarDatos");
+          // contenedorBtnLimpiarDatos.classList.add("inactive");
+
+
 
         } else {
 
@@ -641,6 +686,8 @@ function RegistrarEmpresa() {
 }
 
 function datosCompletosEmpresa(id) {
+
+  //si la empresa que se registro exist se muestra la empresa por ruc no por id 
 
   let url = urlEscucharEmpresaRegistrar === false ? "../processes/listener/escuchar-empresa.php" : "../processes/listener/escuchar-empresa-registro.php"
 
@@ -1006,10 +1053,10 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     $("#txtIdEmpresa").val(sucursal.id_empresa);
     $("#exampleFormControlSelect1").val(sucursal.banderaEmpresa);
     $("#codigoApu").val(sucursal.codigoApu);
-    
+
     $('.selectpicker').selectpicker("render");
 
-  
+
 
     editarSucursall = true;
 
@@ -1022,7 +1069,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
     cargarAccesos(id);
 
-   
+
 
   });
 
@@ -1075,7 +1122,7 @@ $(document).on("click", ".btn-edit-contacto", function () {
   tablaContactos.ajax.reload();
 
   let inpuTcolor = document.getElementById("correo-contacto");
-  inpuTcolor.setAttribute("style","");
+  inpuTcolor.setAttribute("style", "");
 
 });
 
@@ -1125,7 +1172,7 @@ btnAgregarContacto.addEventListener("click", function () {
   editarContacto = false;
   document.getElementById('frm-contactos').reset();
   let inpuTcolor = document.getElementById("correo-contacto");
-  inpuTcolor.setAttribute("style","");
+  inpuTcolor.setAttribute("style", "");
   ocultarFormularioCargo();
 
 })
@@ -1156,41 +1203,41 @@ let btnEnviarContacto = document.getElementById("btnEnviarContacto");
 
 let btnNuevoCargo = document.getElementById("btnNuevoCargo");
 
-btnNuevoCargo.addEventListener("click",function(){
+btnNuevoCargo.addEventListener("click", function () {
 
   console.log("click me , ah ⁉");
-  
-  let contenedorFormularios = document.getElementById("contenedorFormulariosContactos");
-  contenedorFormularios.setAttribute("class","row");
-  
-  let frmMularioContacto = document.getElementById("frmMularioContacto");
-  frmMularioContacto.setAttribute("class","col-lg-8");
- 
-  let frMularioCargos  = document.getElementById("frMularioCargos");
-  frMularioCargos.setAttribute("class","col-lg-4 ");
 
-  btnNuevoCargo.setAttribute("class","inactive");
-  
-  btnEnviarContacto.setAttribute("class","inactive");
-  
+  let contenedorFormularios = document.getElementById("contenedorFormulariosContactos");
+  contenedorFormularios.setAttribute("class", "row");
+
+  let frmMularioContacto = document.getElementById("frmMularioContacto");
+  frmMularioContacto.setAttribute("class", "col-lg-8");
+
+  let frMularioCargos = document.getElementById("frMularioCargos");
+  frMularioCargos.setAttribute("class", "col-lg-4 ");
+
+  btnNuevoCargo.setAttribute("class", "inactive");
+
+  btnEnviarContacto.setAttribute("class", "inactive");
+
 });
 
 
 let btnCancelarRegistroCargo = document.getElementById("cancelarRegistroCargo");
 
-btnCancelarRegistroCargo.addEventListener("click",function(){
+btnCancelarRegistroCargo.addEventListener("click", function () {
 
 
- ocultarFormularioCargo();
+  ocultarFormularioCargo();
 
 
 })
 
 let iniciarRegistroCargo = document.getElementById("iniciarRegistroCargo");
 
-iniciarRegistroCargo.addEventListener("click",function(){
+iniciarRegistroCargo.addEventListener("click", function () {
 
-  
+
   let frmData = new FormData(frmCargo);
   let url = '../processes/register/registrar-cargos.php';
   registrar(frmData, url);
@@ -1200,21 +1247,41 @@ iniciarRegistroCargo.addEventListener("click",function(){
 
 });
 
+let btnEditarEmpresaIndex = document.getElementById("btnEditarEmpresaIndex");
 
-function ocultarFormularioCargo(){
+btnEditarEmpresaIndex.addEventListener("click", function () {
+
+
+  let contenedorFormularioRegistroEmpresa = document.getElementById("contenedorFormularioRegistroEmpresa");
+
+  contenedorFormularioRegistroEmpresa.classList.remove("inactive");
+
+
+  let contenedorBtnLimpiarDatos = document.getElementById("contenedorBtnLimpiarDatos");
+  contenedorBtnLimpiarDatos.classList.remove("inactive");
+
+  let contenedorBotonEditarIndex = document.getElementById("contenedorBotonEditarIndex");
+  contenedorBotonEditarIndex.classList.toggle("inactive");
+
+  editar = true;
+
+})
+
+
+function ocultarFormularioCargo() {
 
   let contenedorFormularios = document.getElementById("contenedorFormulariosContactos");
-  contenedorFormularios.setAttribute("class","card-body");
-  
+  contenedorFormularios.setAttribute("class", "card-body");
+
   let frmMularioContacto = document.getElementById("frmMularioContacto");
-  frmMularioContacto.setAttribute("class","row");
- 
-  let frMularioCargos  = document.getElementById("frMularioCargos");
-  frMularioCargos.setAttribute("class","col-lg-4 inactive");
+  frmMularioContacto.setAttribute("class", "row");
 
-  btnNuevoCargo.setAttribute("class","badge btn-secondary");
+  let frMularioCargos = document.getElementById("frMularioCargos");
+  frMularioCargos.setAttribute("class", "col-lg-4 inactive");
 
-  btnEnviarContacto.setAttribute("class","btn text-light");
+  btnNuevoCargo.setAttribute("class", "badge btn-secondary");
+
+  btnEnviarContacto.setAttribute("class", "btn text-light");
 
   frmCargo.reset();
 
@@ -1231,8 +1298,8 @@ function registrar(data, urlAPI) {
       mensajes(response);
       cargarCargos();
     });
-  
-  
+
+
 }
 
 
@@ -1269,9 +1336,9 @@ const validate = () => {
 
     let enviaContacto = document.getElementById("btnEnviarContacto");
     enviaContacto.removeAttribute("disabled");
-    
+
     let inpuTcolor = document.getElementById("correo-contacto");
-    inpuTcolor.setAttribute("style","border:solid 1px green ;");
+    inpuTcolor.setAttribute("style", "border:solid 1px green ;");
 
   } else {
 
@@ -1279,7 +1346,7 @@ const validate = () => {
     enviaContacto.setAttribute("disabled", "");
 
     let inpuTcolor = document.getElementById("correo-contacto");
-    inpuTcolor.setAttribute("style","border:solid 1px red ;")
+    inpuTcolor.setAttribute("style", "border:solid 1px red ;")
 
   }
   return false;
@@ -1450,7 +1517,7 @@ $(document).ready(function () {
   $(function () {
     $('cboIdub').selectpicker();
   });
-  
+
 
 })
 

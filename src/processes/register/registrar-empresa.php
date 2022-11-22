@@ -46,7 +46,7 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
     $json = array();
     if ($response == TRUE) {
 
-        $registroSucursal = $empresas->registrarSucursal($txtNombreCo, $txtDireccion, "", $cboIdu, $txtEliminada, $txtRuc,"","");
+        $registroSucursal = $empresas->registrarSucursal($txtNombreCo, $txtDireccion, " ", $cboIdu, $txtEliminada, $txtRuc," "," ");
 
         $id_sucursal= $registroSucursal[1] + 1;
 

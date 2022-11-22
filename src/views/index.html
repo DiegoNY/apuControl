@@ -270,14 +270,27 @@
 
                             <!-- Traffic sources -->
                             <div class="card">
-                                <div class="card-header header-elements-inline">
-                                    <h6 id="btnNuevaEmpresaIndex" class="btn btn-primary">Limpiar datos <i
+                                <div class="card-header ">
+
+                                    <div class="" id="contenedorBtnLimpiarDatos">
+
+                                        <h6 id="btnNuevaEmpresaIndex" class="btn btn-primary">Limpiar datos <i
                                             class="bi bi-trash3"></i> </h6>
+
+                                    </div>
+
+                                    
+                                    <div id="contenedorBotonEditarIndex" class="inactive">
+
+                                        <h6 id="btnEditarEmpresaIndex" class="btn btn-primary ">Seguir Editando<i class="bi bi-trash3"></i> </h6>
+
+
+                                    </div>
 
 
                                 </div>
 
-                                <div class="card-body py-0">
+                                <div id="contenedorFormularioRegistroEmpresa" class="card-body py-0">
 
                                     <form action="../processes/register/registrar-logo.php" id="frm_empresa"
                                         enctype="multipart/form-data" method="post" class="frm-empresa row">
