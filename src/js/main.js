@@ -24,6 +24,7 @@ const previewBandera = document.getElementById("preview_logo_su");
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocaleDateString();
+var urlEscucharEmpresaRegistrar = false;
 
 //se llama al usuario logueado
 (async () => {
@@ -49,8 +50,6 @@ var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocal
 
 })()
 
-
-
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
@@ -64,8 +63,33 @@ if (!rucs) {
 } else {
   document.getElementById("ruc_id").value = rucs;
 }
+cargarUbigeo();
 
+function cargarUbigeo(){
+$.ajax({
+  url: "../processes/mostrar-ubigeo.php",
+  type: "GET",
+  success: function (response) {
+    let ubigeo = JSON.parse(response);
+    let template = "<option value='0' > SELECCIONE </option>";
+    ubigeo.forEach((ubigeo) => {
+      template += `
 
+      <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.provincia} - ${ubigeo.distrito} </option>
+     
+
+      `;
+    });
+
+    $("#cboIdu").html(template);
+
+    $("#cboIdub").html(template);
+
+   
+  
+  },
+});
+}
 
 function cargarSucursal(ruc) {
   try {
@@ -123,9 +147,9 @@ function cargarSucursal(ruc) {
       ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
       columns: [
         {
-          data: "numeroSucursalEmpresa", "render": function (data) {
+          data: "id", "render": function (data) {
 
-            return `<input type="hidden" value="${data}"> ${data} `
+            return `<input numSucursal="suCuN${data}" type="hidden" value="${data}"> ${data} `
 
           }
         },
@@ -162,7 +186,6 @@ function cargarSucursal(ruc) {
       },
     });
 
-    tableSucursal.destroy();
   }
 }
 
@@ -308,15 +331,18 @@ function cargarAccesos(id) {
 
 // ALERTAS //
 
-function mensajes(response, mensaje, error) {
+function mensajes(response, ruc, error) {
 
   if (response == "ingresado") {
     Swal.fire("REGISTRADA", ``, "success").then(() => {
       console.log("tabla actualizada");
     });
   } else if (response == "existe") {
-    Swal.fire("Empresa Ya esta registrada", ``, "error").then(() => {
+    urlEscucharEmpresaRegistrar = true;
+    Swal.fire("EMPRESA YA REGISTRADA", `EDITAR DATOS`, "error").then(() => {
       console.log("no hay datos");
+      console.log(ruc);
+      editarEmpresas(ruc, true);
     });
   } else {
 
@@ -476,9 +502,8 @@ function cargarRubros() {
 
       let data = JSON.parse(response);
 
-      let template = "";
+      let template = "<option value='0' > SELECCIONE </option>";
 
-      //console.log(data);
       data.forEach((rubros) => {
 
         template += `
@@ -507,7 +532,7 @@ function cargaGrupoEnFrm() {
     type: "GET",
     success: function (response) {
       let grupos = JSON.parse(response);
-      let template = "";
+      let template = "<option value='0' > SELECCIONE </option>";
       grupos.forEach((grupos) => {
         template += `
                 
@@ -526,10 +551,15 @@ function editarEmpresas(id, edit) {
   if (id == null)
     return;
   editar = true;
+
+
+
   datosCompletosEmpresa(id);
   btnAgregarContacto.removeAttribute("disabled");
   btnes.removeAttribute("disabled");
 
+  let btnValidar = document.getElementById("btn_ruc");
+  btnValidar.setAttribute("disabled", "");
 }
 
 
@@ -549,10 +579,13 @@ function RegistrarEmpresa() {
     contentType: false,
     success: (response) => {
       let data = JSON.parse(response);
+
+      console.log(data);
+
       data.forEach((data) => {
         mensajes(
           data.mensaje,
-          "EMPRESA INGRESADA",
+          data.ruc,
           "LA EMPRESA YA EXISTE"
         );
 
@@ -584,10 +617,11 @@ function RegistrarEmpresa() {
 
 function datosCompletosEmpresa(id) {
 
+  let url = urlEscucharEmpresaRegistrar === false ? "../processes/listener/escuchar-empresa.php" : "../processes/listener/escuchar-empresa-registro.php"
 
-  $.post("../processes/listener/escuchar-empresa.php", { id }, function (response) {
+  $.post(url, { id }, function (response) {
     let empresa = JSON.parse(response);
-
+    console.log(empresa);
 
 
     $("#txtNombreCo").val(empresa.nom_comercial);
@@ -605,6 +639,7 @@ function datosCompletosEmpresa(id) {
     $("#proveedor").val(empresa.proveedor);
     $("#id").val(empresa.id);
     $("#urlLogo").val(empresa.img);
+    $("#cboIdu").val(empresa.id_ubigeo);
     rucIdSU.value = empresa.ruc;
 
     preview_logo.setAttribute("src", `.${empresa.img}`);
@@ -621,16 +656,18 @@ function datosCompletosEmpresa(id) {
     }
 
 
-    cargarUbigeoEmpresa(empresa.id_ubigeo);
+    //cargarUbigeoEmpresa(empresa.id_ubigeo);
 
 
     editar = edit;
     tableSucursal.destroy;
     tablaContactos.destroy;
+
     cargarSucursal(empresa.ruc);
     cargarContactos(empresa.ruc);
     mostrarLogoss(empresa.ruc);
 
+    $('.selectpicker').selectpicker("render");
 
   });
 
@@ -658,6 +695,9 @@ function validarRuc() {
         let direccion = data.data.direccion || "";
         let error = data.data.error;
         let documento = data.data.numeroDocumento;
+
+        $("#cboIdu").val(ubigeo);
+
 
         direccion_input.value = direccion;
         razon_so.value = razon;
@@ -690,9 +730,11 @@ function validarRuc() {
 
             informacionEmpresaNueva(estado, condicion, razon);
             //capturar la opcion con id = ubigeo 
-            let ubigeo_option = document.getElementById(`${ubigeo}`);
+            let ubigeo_option = document.getElementById(`${ubigeo}`) || document.getElementById("natu");;
             //seleccionarla
             ubigeo_option.setAttribute("selected", "true");
+            $('.selectpicker').selectpicker("render");
+
 
             let numeros = documento.split('');
             let primerosNumerosRuc = numeros[0] + numeros[1]
@@ -705,6 +747,9 @@ function validarRuc() {
               let tipoPersonaNatu = document.getElementById("juri");
               tipoPersonaNatu.setAttribute("selected", "true");
             } else {
+
+              let optionDefault = document.getElementById("defaultTipoPersona");
+              optionDefault.removeAttribute("selected");
 
               let tipoPersonaNatu = document.getElementById("natu");
               tipoPersonaNatu.setAttribute("selected", "true");
@@ -780,7 +825,7 @@ function cargarTipointegracion() {
     success: function (response) {
 
       let tipoIntegra = JSON.parse(response);
-      let template = "";
+      let template = "<option value='0' > SELECCIONE </option>";
 
       tipoIntegra.forEach((tipoIntegra) => {
         template += `
@@ -803,7 +848,7 @@ function cargarTiposSistemas() {
     type: "GET",
     success: function (response) {
       let tipoSistema = JSON.parse(response);
-      let template = "";
+      let template = "<option value='0' > SELECCIONE </option>";
 
       tipoSistema.forEach((tipoSistema) => {
         template += `
@@ -898,129 +943,12 @@ cargarTipointegracion();
  * *para poder ejecutarce asi evitando error de JSON 🙈
  *
  */
-editarEmpresas(id, edit);
 
 
 
 
-$.ajax({
-  url: "../processes/mostrar-ubigeo.php",
-  type: "GET",
-  success: function (response) {
-    let ubigeo = JSON.parse(response);
-    let template = "";
-    ubigeo.forEach((ubigeo) => {
-      template += `
-
-        <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.distrito}</option>
-
-        `;
-    });
-    $("#cboIdu").html(template);
-    $("#cboIdub").html(template);
-  },
-});
 
 
-$(document).ready(function () {
-
-
-  tableSucursal = $("#tabla_sucursals").DataTable({
-    destroy: true,
-    "paging": true,
-
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-
-  tablaContactos = $("#tabla_contactoss").DataTable({
-    destroy: true,
-    "scrollCollapse": true,
-    "paging": true,
-
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-
-  tablaAccesos = $("#tabla_accesos").DataTable({
-    destroy: true,
-    ajax: {
-      url: "../processes/mostrar-accesos.php?id=1",
-      dataSrc: ""
-    },
-    columns: [
-      { data: "id" },
-      { data: "id_sucursal" },
-      { data: "nombreAcceso" },
-      { data: "idAcceso" },
-      { data: "contrasena" },
-      {
-        defaultContent: `<i class="bi bi-pencil-square btn-edit-acceso"></i>`,
-      },
-      {
-        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-acceso"></i>`,
-      },
-    ],
-    language: {
-      decimal: "",
-      emptyTable: "No hay información",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-      infoFiltered: "(Filtrado de _MAX_ total entradas)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "Mostrar _MENU_ Entradas",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "",
-      zeroRecords: "Sin resultados encontrados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-
-
-})
 
 
 //BOTONES ಠ_ಠ
@@ -1028,9 +956,16 @@ $(document).ready(function () {
 
 $(document).on("click", ".btn-edit-sucursal", function () {
 
+  // let numeroSucursal = (this).parentElement.parentElement.parentElement;
+
+  // console.log(numeroSucursal);
+
   let data = tableSucursal.row($(this).parents()).data();
-  console.log(data);
+
   let id = data.id;
+  console.log(id);
+
+
 
   $("#txtIdSucursa").val(id);
 
@@ -1046,10 +981,13 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     $("#txtIdEmpresa").val(sucursal.id_empresa);
     $("#exampleFormControlSelect1").val(sucursal.banderaEmpresa);
     $("#codigoApu").val(sucursal.codigoApu);
-    //ub = document.getElementById(`${sucursal.ubigeo}`).value;
-    //console.log(ub);
+    
+    $('.selectpicker').selectpicker("render");
+
+  
 
     editarSucursall = true;
+
     ides.value = sucursal.id;
     bandera = sucursal.banderaEmpresa
 
@@ -1058,6 +996,8 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
 
     cargarAccesos(id);
+
+   
 
   });
 
@@ -1165,7 +1105,20 @@ btnSalir.addEventListener("click", function () {
 
 })
 
+let btnNuevaEmpresaIndex = document.getElementById("btnNuevaEmpresaIndex");
 
+btnNuevaEmpresaIndex.addEventListener("click", function () {
+
+  let frmEmpresa = document.getElementById("frm_empresa");
+  editar = false;
+  frmEmpresa.reset();
+  cargarSucursal(0);
+  cargarContactos(0);
+  preview_logo.setAttribute("src", "");
+
+  btn_ruc.removeAttribute("disabled");
+
+})
 
 //validando email 
 const validateEmail = (email) => {
@@ -1185,11 +1138,17 @@ const validate = () => {
 
     let enviaContacto = document.getElementById("btnEnviarContacto");
     enviaContacto.removeAttribute("disabled");
+    
+    let inpuTcolor = document.getElementById("correo-contacto");
+    inpuTcolor.setAttribute("style","border:solid 1px green ;");
 
   } else {
 
     let enviaContacto = document.getElementById("btnEnviarContacto");
     enviaContacto.setAttribute("disabled", "");
+
+    let inpuTcolor = document.getElementById("correo-contacto");
+    inpuTcolor.setAttribute("style","border:solid 1px red ;")
 
   }
   return false;
@@ -1241,10 +1200,126 @@ function imageChanged() {
 
     let image = selectedOption.getAttribute("meta-img");
 
-    divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; margin-left:110px;'>"
+    divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; '>"
   } catch (e) {
     console.warn("Error aun no se carga los datos");
   }
 }
 
 imageChanged()
+
+
+$(document).ready(function () {
+
+
+  tableSucursal = $("#tabla_sucursals").DataTable({
+    destroy: true,
+    "paging": true,
+
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tablaContactos = $("#tabla_contactoss").DataTable({
+    destroy: true,
+    "scrollCollapse": true,
+    "paging": true,
+
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  tablaAccesos = $("#tabla_accesos").DataTable({
+    destroy: true,
+    ajax: {
+      url: "../processes/mostrar-accesos.php?id=1",
+      dataSrc: ""
+    },
+    columns: [
+      { data: "id" },
+      { data: "id_sucursal" },
+      { data: "nombreAcceso" },
+      { data: "idAcceso" },
+      { data: "contrasena" },
+      {
+        defaultContent: `<i class="bi bi-pencil-square btn-edit-acceso"></i>`,
+      },
+      {
+        defaultContent: `<i class="bi bi-x-circle-fill btn-delete-acceso"></i>`,
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+
+
+
+  editarEmpresas(id, edit);
+
+
+  $(function () {
+    $('cboIdu').selectpicker();
+  });
+
+  $(function () {
+    $('cboIdub').selectpicker();
+  });
+  
+
+})
+

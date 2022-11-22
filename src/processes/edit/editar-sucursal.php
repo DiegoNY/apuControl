@@ -4,7 +4,7 @@ extract($_POST);
 
 $sucursal = new BaseDatos();
 
-$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdu, $ruc_id,$banderaEmpresa);
+$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id,$banderaEmpresa);
 
 // TEAM_VIEWER = usuariosa , contraseñaa 
 try {

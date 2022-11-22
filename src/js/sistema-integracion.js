@@ -23,7 +23,7 @@ const preview_logo = document.getElementById("preview_logo");
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFecha").value = hoy.toLocaleDateString();
-var fechaRubro = document.getElementById("fecha").value = hoy.toLocaleDateString();
+var fechaRubro = document.getElementById("fechaRubro").value = hoy.toLocaleDateString();
 var fechaCargo = document.getElementById("fechaCargo").value = hoy.toLocaleDateString();
 var frmRubro = document.getElementById("frmRubro");
 var frmCargo = document.getElementById("frmCargo");
@@ -320,7 +320,6 @@ function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
   fetch(urlAPI)
     .then(response => response.json())
     .then(data => {
-
       let template = '';
       
         template = `
@@ -627,7 +626,8 @@ $(document).on("click", ".btn-editar-tipoIntegracion", function () {
 btnAgregarTipoIntegracion.addEventListener('click', function () {
 
   editarIntegracion = false;
-
+  let fechaIntegracion = document.getElementById("txtFechaIntegracion");
+  fechaIntegracion.value = hoy.toLocaleDateString();
   document.getElementById('frm_tipo_integracion').reset();
 
 
@@ -638,7 +638,7 @@ btnAgregarTipoSistem.addEventListener('click', function () {
   editarSistema = false;
 
   document.getElementById('frm_tipo_sistema').reset();
-
+  $("#txtFecha").val(hoy.toLocaleDateString());
 
 })
 
@@ -653,6 +653,8 @@ btnAgregarRubro.addEventListener("click", function () {
 
   editarRubro = false;
   document.getElementById('frmRubro').reset();
+  let fechaRubros = document.getElementById("fechaRubro");
+  fechaRubros.value = hoy.toLocaleDateString();
 
 })
 
@@ -660,6 +662,8 @@ btnAgregarCargo.addEventListener("click", function () {
 
   editarCargo = false;
   document.getElementById('frmCargo').reset();
+  let fechaCargo = document.getElementById("fechaCargo");
+  fechaCargo.value = hoy.toLocaleDateString();
 
 })
 
@@ -675,6 +679,9 @@ btnAgregarBandera1.addEventListener("click",function(){
   document.getElementById('frmBandera').reset();
   
   document.getElementById('preview_logo').setAttribute("src","");
+
+  let fechaBandera = document.getElementById("fechaBandera");
+  fechaBandera.value = hoy.toLocaleDateString();
 
 })
 

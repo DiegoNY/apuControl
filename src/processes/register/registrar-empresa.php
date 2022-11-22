@@ -58,9 +58,11 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
         $jsonString = json_encode($json);
         echo $jsonString;
     } else {
-        $json[] = array('mensaje' => "existe");
+
+        $json[] = array('mensaje' => "existe",'ruc' => $txtRuc);
         $jsonString = json_encode($json);
         echo $jsonString;
+    
     }
 } else {
 

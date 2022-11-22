@@ -12,6 +12,8 @@ while($row = mysqli_fetch_array($resultado)){
     $json[] = array(
         'id'=>$row['id'],
         'distrito'=>$row['distrito'],
+        'departamento'=>$row['departamento'],
+        'provincia'=>$row['provincia'],
         'ubigeo'=>$row['ubigeo'],
     );
 }

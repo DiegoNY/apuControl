@@ -120,7 +120,7 @@ $(document).ready(function () {
       "infoFiltered": "(Filtrado de _MAX_ total entradas)",
       "infoPostFix": "",
       "thousands": ",",
-      "lengthMenu": "",
+      "lengthMenu": "   <a href='index.html' class='btn btn-primary'> Agregar Empresa +</a>",
       "loadingRecords": "Cargando...",
       "processing": "Procesando...",
       "search": "",
