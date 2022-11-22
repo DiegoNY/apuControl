@@ -371,4 +371,37 @@ $(document).ready(function () {
     });
   }
 
+  function cargarRubros() {
+
+    $.ajax({
+  
+      url: "../processes/mostrar-rubros.php",
+      type: "GET",
+  
+      success: function (response) {
+  
+        let data = JSON.parse(response);
+  
+        let template = "<option value='0' > SELECCIONE </option>";
+  
+        data.forEach((rubros) => {
+  
+          template += `
+  
+          <option value="${rubros.nombre}">${rubros.nombre}</option>
+          
+          `
+  
+        })
+        $("#cboIdRubro").html(template);
+  
+      }
+  
+  
+    });
+  
+  }
+  
+  cargarRubros();
+
 });

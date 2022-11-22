@@ -1173,6 +1173,7 @@ iniciarRegistroCargo.addEventListener("click",function(){
   let url = '../processes/register/registrar-cargos.php';
   registrar(frmData, url);
 
+  ocultarFormularioCargo();
 
 
 });
@@ -1273,7 +1274,7 @@ function cargarBanderas() {
       .then(response => response.json())
       .then(data => {
 
-        let template = '';
+        let template = '<option value"0"> SELECCIONE UNA BANDERA</option>';
 
         template = `
           ${data.map(datas => ` 
