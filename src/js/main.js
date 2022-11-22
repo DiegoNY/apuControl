@@ -29,6 +29,7 @@ var fechaCargo = document.getElementById("fechaCargo").value = hoy.toLocaleDateS
 
 var urlEscucharEmpresaRegistrar = false;
 
+
 //se llama al usuario logueado
 (async () => {
 
@@ -414,6 +415,9 @@ function registrarAccesos() {
 
 //PARA LA SUCURSAL
 
+var modalFormularioSucursal = new bootstrap.Modal(document.getElementById('sucursal'), {
+  keyboard: false
+})
 
 function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
@@ -436,12 +440,23 @@ function registrarSucursal() {
 
       editarSucursall = false;
       tableSucursal.ajax.reload();
+
+      if(response === "ingresado"){
+        modalFormularioSucursal.toggle();
+      }
+
     },
   });
   $("#frm-sucursal").trigger("reset");
 }
 
 //Para los Contactos
+
+
+var modalFormularioContactos = new bootstrap.Modal(document.getElementById('contactos'), {
+  keyboard: false
+})
+
 
 function registrarContactos() {
   let url =
@@ -457,6 +472,13 @@ function registrarContactos() {
       mensajes(response, "Contacto Registrado", "Rellena todos los campos ❌");
       editarContacto = false;
       tablaContactos.ajax.reload();
+
+      if(response === "ingresado"){
+
+        modalFormularioContactos.toggle();
+
+      }
+
     },
   });
   $("#frm-contactos").trigger("reset");

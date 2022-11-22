@@ -53,7 +53,9 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
 
 
 
-
+var modalFormularioTipoIntegracion = new bootstrap.Modal(document.getElementById('tipo-integracion'), {
+  keyboard: false
+})
 function registrarTipoIntegracion() {
 
   let url = editarIntegracion === false ? "../processes/register/registrar-tipo-integracion.php" : "../processes/edit/editar-tipo-integracion.php";
@@ -65,6 +67,14 @@ function registrarTipoIntegracion() {
       mensajes(data, "Se registro el tipo integración", "Rellena todos los campos");
       cargarTipointegracion();
       mostrarTipoIntegracion();
+
+      if(data === "ingresado"){
+
+        modalFormularioTipoIntegracion.toggle();
+
+      }
+
+
     },
   });
 
@@ -131,6 +141,9 @@ function cargarTipointegracion() {
 
 }
 
+var modalFormularioTipoSistema = new bootstrap.Modal(document.getElementById('tipo-sistema'), {
+  keyboard: false
+})
 
 function registrarTipoSistema() {
 
@@ -143,6 +156,12 @@ function registrarTipoSistema() {
       mensajes(data, "Se registro el tipo sistema", "Rellena todos los campos");
       cargarTiposSistemas();
       mostrarTiposSistema();
+
+      if(data === "ingresado"){
+
+        modalFormularioTipoSistema.toggle();
+
+      }
     },
   });
 
@@ -242,6 +261,14 @@ btnRegistrarRubro.addEventListener("click", function () {
 
 })
 
+var modalFormularioRubro = new bootstrap.Modal(document.getElementById('cargo'), {
+  keyboard: false
+})
+
+var modalFormularioCargos = new bootstrap.Modal(document.getElementById('rubro'), {
+  keyboard: false
+})
+
 
 function registrar(data, urlAPI) {
 
@@ -252,6 +279,28 @@ function registrar(data, urlAPI) {
       mensajes(response);
       cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
       cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
+
+      if(response === "ingresado"){
+        
+        let modal = document.getElementById("cargo");
+
+
+        let isShowModal = modal.classList.contains("show");
+    
+    
+
+        if(!isShowModal){
+
+          modalFormularioCargos.toggle();
+        
+        }else{
+
+        modalFormularioRubro.toggle();
+
+        }
+
+      }
+
     });
   
   
@@ -721,6 +770,9 @@ logo.addEventListener("change", () => {
 
 });
 
+var modalFormularioBandera = new bootstrap.Modal(document.getElementById('bandera'), {
+  keyboard: false
+})
 
 function registrarBandera(){
   let url = editarBanddera === false ? "../processes/register/registrar-bandera.php":"../processes/edit/editar-bandera.php"
@@ -744,6 +796,12 @@ function registrarBandera(){
       cargarBandera();
       
      editarBanddera = false;
+
+     if(response === "ingresado"){
+
+      modalFormularioBandera.toggle();
+
+     }
     },
   });
   
