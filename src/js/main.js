@@ -24,6 +24,9 @@ const previewBandera = document.getElementById("preview_logo_su");
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocaleDateString();
+
+var fechaCargo = document.getElementById("fechaCargo").value = hoy.toLocaleDateString();
+
 var urlEscucharEmpresaRegistrar = false;
 
 //se llama al usuario logueado
@@ -75,7 +78,7 @@ $.ajax({
     ubigeo.forEach((ubigeo) => {
       template += `
 
-      <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.provincia} - ${ubigeo.distrito} </option>
+      <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.provincia} ${ubigeo.distrito} </option>
      
 
       `;
@@ -1048,6 +1051,10 @@ $(document).on("click", ".btn-edit-contacto", function () {
     editarContacto = true;
   });
   tablaContactos.ajax.reload();
+
+  let inpuTcolor = document.getElementById("correo-contacto");
+  inpuTcolor.setAttribute("style","");
+
 });
 
 $(document).on("click", ".btn-delete-acceso", async function () {
@@ -1095,6 +1102,9 @@ btnAgregarContacto.addEventListener("click", function () {
 
   editarContacto = false;
   document.getElementById('frm-contactos').reset();
+  let inpuTcolor = document.getElementById("correo-contacto");
+  inpuTcolor.setAttribute("style","");
+  ocultarFormularioCargo();
 
 })
 
@@ -1119,6 +1129,104 @@ btnNuevaEmpresaIndex.addEventListener("click", function () {
   btn_ruc.removeAttribute("disabled");
 
 })
+
+let btnEnviarContacto = document.getElementById("btnEnviarContacto");
+
+let btnNuevoCargo = document.getElementById("btnNuevoCargo");
+
+btnNuevoCargo.addEventListener("click",function(){
+
+  console.log("click me , ah ⁉");
+  
+  let contenedorFormularios = document.getElementById("contenedorFormulariosContactos");
+  contenedorFormularios.setAttribute("class","row");
+  
+  let frmMularioContacto = document.getElementById("frmMularioContacto");
+  frmMularioContacto.setAttribute("class","col-lg-8");
+ 
+  let frMularioCargos  = document.getElementById("frMularioCargos");
+  frMularioCargos.setAttribute("class","col-lg-4 ");
+
+  btnNuevoCargo.setAttribute("class","inactive");
+  
+  btnEnviarContacto.setAttribute("class","inactive");
+  
+});
+
+
+let btnCancelarRegistroCargo = document.getElementById("cancelarRegistroCargo");
+
+btnCancelarRegistroCargo.addEventListener("click",function(){
+
+
+ ocultarFormularioCargo();
+
+
+})
+
+let iniciarRegistroCargo = document.getElementById("iniciarRegistroCargo");
+
+iniciarRegistroCargo.addEventListener("click",function(){
+
+  
+  let frmData = new FormData(frmCargo);
+  let url = '../processes/register/registrar-cargos.php';
+  registrar(frmData, url);
+
+
+
+});
+
+
+function ocultarFormularioCargo(){
+
+  let contenedorFormularios = document.getElementById("contenedorFormulariosContactos");
+  contenedorFormularios.setAttribute("class","card-body");
+  
+  let frmMularioContacto = document.getElementById("frmMularioContacto");
+  frmMularioContacto.setAttribute("class","row");
+ 
+  let frMularioCargos  = document.getElementById("frMularioCargos");
+  frMularioCargos.setAttribute("class","col-lg-4 inactive");
+
+  btnNuevoCargo.setAttribute("class","badge btn-secondary");
+
+  btnEnviarContacto.setAttribute("class","btn text-light");
+
+  frmCargo.reset();
+
+
+}
+
+
+function registrar(data, urlAPI) {
+
+  postData(urlAPI, data)
+    .then(data => data.json())
+    .then(response => {
+
+      mensajes(response);
+      cargarCargos();
+    });
+  
+  
+}
+
+
+function postData(urlAPI, data) {
+
+  const response = fetch(urlAPI,
+    {
+      method: 'POST',
+      body: data,
+    }
+  );
+
+  return response;
+
+}
+
+
 
 //validando email 
 const validateEmail = (email) => {

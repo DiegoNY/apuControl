@@ -71,7 +71,7 @@ $(document).ready(function () {
         
         if(data === "GESFARMA"){
 
-          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-secondary  text-light">${data}</span></p>`
+          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-info  text-light">${data}</span></p>`
 
         }else if(data === "APUGESCOM"){
 
