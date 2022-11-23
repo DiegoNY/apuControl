@@ -93,7 +93,7 @@ $(document).ready(function () {
             return `<p class="text-center "> <span class="badge bg-info  text-light">${data}</span></p>`
           }else{
 
-            return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
+            return `<p class="text-center "> <span class="badge bg-warning text-light">${data}</span></p>`
 
           }
 

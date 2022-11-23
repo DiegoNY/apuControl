@@ -13,9 +13,9 @@ $txtNombreSucursal = $sucursal->sanitizar($txtNombreSucursal);
 $txtDireccionSucursal = $sucursal->sanitizar($txtDireccionSucursal);
 $txtEstado = $sucursal->sanitizar($txtEstado);
 $txtCodigoCofide = $sucursal->sanitizar($txtCodigoCofide);
-$cboIdu = $sucursal->sanitizar($cboIdu);
+$cboIdub = $sucursal->sanitizar($cboIdub);
 
-$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide ?? "",$cboIdu,$txtEstado,$ruc_id_su,$codigoApu ?? "",$banderaEmpresa ?? "");
+$resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide ?? "",$cboIdub,$txtEstado,$ruc_id_su,$codigoApu ?? "",$banderaEmpresa ?? "");
 
 //Se cuentan las sucursales, los accesos estan ligados al id de la sucursal :: 
 $cantidad_sucursales = $resultado[1];

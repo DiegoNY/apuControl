@@ -62,6 +62,10 @@ let edit = urlParams.get("edit");
 let rucs = urlParams.get("ruc");
 const btn_registrar_empresa = document.getElementById("btn_registrar");
 const ides = document.querySelector("#txtIdSucursal");
+const inputRuc = document.getElementById("txtRuc");
+
+
+
 
 if (!rucs) {
 } else {
@@ -344,6 +348,7 @@ function mensajes(response, ruc, error) {
 
     Swal.fire("REGISTRADA", ``, "success").then(() => {
 
+      //SE HACE ALGO 
       console.log("tabla actualizada");
 
     });
@@ -597,13 +602,17 @@ function cargaGrupoEnFrm() {
   });
 }
 
-//si la empresa pidio ser editada de la vista principal el id es capturado por la url si no la misma funciona es ejecutada pero por la funcion mensaje 
-
+/**
+ * @editarEmpresas 
+ * si la empresa pidio ser editada de la vista principal el id es capturado por la url si no la misma funciona es ejecutada pero *
+ * por la funcion mensaje pide dos atributos ignorar el edit por ahora ... 
+*/
 
 function editarEmpresas(id, edit) {
 
   if (id == null)
     return;
+
   editar = true;
 
 
@@ -653,19 +662,7 @@ function RegistrarEmpresa() {
           cargarSucursal(data.ruc);
           cargarContactos(data.ruc);
 
-          // let contenedorBotonEditarIndex = document.getElementById("contenedorBotonEditarIndex");
-
-          // contenedorBotonEditarIndex.classList.toggle("inactive");
-
-         
-
-          // let contenedorFormularioRegistroEmpresa = document.getElementById("contenedorFormularioRegistroEmpresa");
-
-          // contenedorFormularioRegistroEmpresa.classList.add("inactive");
-
-          // let contenedorBtnLimpiarDatos = document.getElementById("contenedorBtnLimpiarDatos");
-          // contenedorBtnLimpiarDatos.classList.add("inactive");
-
+          btn_registrar.value = "Editar";
 
 
         } else {
@@ -687,8 +684,12 @@ function RegistrarEmpresa() {
 
 function datosCompletosEmpresa(id) {
 
-  //si la empresa que se registro exist se muestra la empresa por ruc no por id 
-
+  /**
+   *  si la empresa que se registro existe se escuccha la empres apor ruc ya no por el id esta  @urlEscucharEmpresaRegistrar
+   * cambia cuando el mensaje es = existe revisar funcion  mensajes()
+   * 
+   * 
+  */
   let url = urlEscucharEmpresaRegistrar === false ? "../processes/listener/escuchar-empresa.php" : "../processes/listener/escuchar-empresa-registro.php"
 
   $.post(url, { id }, function (response) {
@@ -1247,26 +1248,32 @@ iniciarRegistroCargo.addEventListener("click", function () {
 
 });
 
+
+//BTN EDITAR EMPRESA 
+
 let btnEditarEmpresaIndex = document.getElementById("btnEditarEmpresaIndex");
 
 btnEditarEmpresaIndex.addEventListener("click", function () {
 
-
-  let contenedorFormularioRegistroEmpresa = document.getElementById("contenedorFormularioRegistroEmpresa");
-
-  contenedorFormularioRegistroEmpresa.classList.remove("inactive");
-
-
-  let contenedorBtnLimpiarDatos = document.getElementById("contenedorBtnLimpiarDatos");
-  contenedorBtnLimpiarDatos.classList.remove("inactive");
-
-  let contenedorBotonEditarIndex = document.getElementById("contenedorBotonEditarIndex");
-  contenedorBotonEditarIndex.classList.toggle("inactive");
+  
 
   editar = true;
 
-})
+  urlEscucharEmpresaRegistrar = true; 
 
+  let rucInputParaEditar =  document.getElementById("txtRuc");
+
+  datosCompletosEmpresa(rucInputParaEditar);
+
+  btnAgregarContacto.removeAttribute("disabled");
+  btnes.removeAttribute("disabled");
+
+  let btnValidar = document.getElementById("btn_ruc");
+  btnValidar.setAttribute("disabled", "");
+
+  
+})
+// BTN EDITAR EMPRESA 
 
 function ocultarFormularioCargo() {
 
@@ -1506,9 +1513,19 @@ $(document).ready(function () {
 
 
 
+  /**
+   * 
+   * Se edita la empresa cuando las tablas ya estan cargadas,  estas se destruiran 
+   * 
+   */
 
   editarEmpresas(id, edit);
 
+  /**
+   * 
+   *  Selecct con buscadores 
+   * 
+   */
 
   $(function () {
     $('cboIdu').selectpicker();

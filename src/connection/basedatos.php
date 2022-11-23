@@ -206,7 +206,7 @@ class BaseDatos
 
     public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial,$proveedor,$bandera)
     {
-        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',ruc = '$ruc',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',estado_comercial = '$estado_comercial',proveedor = '$proveedor',imglogo = '$bandera' where (e.id = '$id');";
+        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',estado_comercial = '$estado_comercial',proveedor = '$proveedor',imglogo = '$bandera' where (e.id = '$id');";
 
         $res = mysqli_query($this->con, $consulta);
 
