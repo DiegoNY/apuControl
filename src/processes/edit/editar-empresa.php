@@ -28,7 +28,7 @@ $empresa = new BaseDatos();
 
 if (isset($id) and !empty($id) ) {
 
-    
+
     if($editarLogo === "editar"){
 
         $rutaLogo = $ruta;
@@ -48,6 +48,30 @@ if (isset($id) and !empty($id) ) {
     $json[] = array('mensaje' => "ingresado", 'ruc' => $txtRuc ) ;
     $jsonString = json_encode($json);
     echo $jsonString;
+
+}else if(isset($txtRuc) and !empty($txtRuc)){
+
+    
+    if($editarLogo === "editar"){
+
+        $rutaLogo = $ruta;
+        
+    }else{
+    
+        $rutaLogo = $urlLogo;
+    
+    }
+
+    $res = $empresa->editarEmpresasAlIngresar($txtIdGrupo ?? "------", $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEstadoComercial,$proveedor,$rutaLogo);
+
+    if (!$res) {
+        die("Consulta fallida llama al admin 😢");
+    }
+
+    $json[] = array('mensaje' => "ingresoempresa", 'ruc' => $txtRuc ) ;
+    $jsonString = json_encode($json);
+    echo $jsonString;
+
 
 } else {
 

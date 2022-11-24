@@ -71,33 +71,44 @@ if (!rucs) {
 } else {
   document.getElementById("ruc_id").value = rucs;
 }
+
 cargarUbigeo();
 
-function cargarUbigeo() {
-  $.ajax({
+async function cargarUbigeo() {
+  await $.ajax({
     url: "../processes/mostrar-ubigeo.php",
     type: "GET",
     success: function (response) {
       let ubigeo = JSON.parse(response);
+      console.log(response);
       let template = "<option value='0' > SELECCIONE </option>";
       ubigeo.forEach((ubigeo) => {
         template += `
 
-      <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.provincia} ${ubigeo.distrito} </option>
+      <option id="${ubigeo.ubigeo}" value="${ubigeo.ubigeo}" >${ubigeo.departamento} ${ubigeo.provincia} ${ubigeo.distrito} </option>
      
 
       `;
+
+
       });
+
 
       $("#cboIdu").html(template);
 
       $("#cboIdub").html(template);
+
+      $('#cboIdu').selectpicker('refresh');
+      $('#cboIdub').selectpicker('refresh');
+
 
 
 
     },
   });
 }
+
+
 
 function cargarSucursal(ruc) {
   try {
@@ -367,6 +378,16 @@ function mensajes(response, ruc, error) {
 
     });
 
+  }else if(response == "ingresoempresa"){
+
+    Swal.fire("REGISTRADA", ``, "success").then(() => {
+
+      //SE HACE ALGO 
+      console.log("tabla actualizada");
+      editar = true;
+
+    });
+
   } else {
 
     Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
@@ -570,6 +591,7 @@ function cargarRubros() {
         `
 
       })
+
       $("#cboIdRubro").html(template);
 
     }
@@ -654,7 +676,7 @@ function RegistrarEmpresa() {
 
 
 
-        if (data.mensaje === "ingresado") {
+        if (data.mensaje === "ingresoempresa") {
 
           btnAgregarContacto.removeAttribute("disabled");
           btnes.removeAttribute("disabled");
@@ -1197,7 +1219,10 @@ btnNuevaEmpresaIndex.addEventListener("click", function () {
   preview_logo.setAttribute("src", "");
 
   btn_ruc.removeAttribute("disabled");
-
+  
+  let inputIdEmpresa = document.getElementById("id");
+  inputIdEmpresa.setAttribute("value","");
+  
 })
 
 let btnEnviarContacto = document.getElementById("btnEnviarContacto");
@@ -1255,13 +1280,13 @@ let btnEditarEmpresaIndex = document.getElementById("btnEditarEmpresaIndex");
 
 btnEditarEmpresaIndex.addEventListener("click", function () {
 
-  
+
 
   editar = true;
 
-  urlEscucharEmpresaRegistrar = true; 
+  urlEscucharEmpresaRegistrar = true;
 
-  let rucInputParaEditar =  document.getElementById("txtRuc");
+  let rucInputParaEditar = document.getElementById("txtRuc");
 
   datosCompletosEmpresa(rucInputParaEditar);
 
@@ -1271,7 +1296,7 @@ btnEditarEmpresaIndex.addEventListener("click", function () {
   let btnValidar = document.getElementById("btn_ruc");
   btnValidar.setAttribute("disabled", "");
 
-  
+
 })
 // BTN EDITAR EMPRESA 
 
@@ -1527,14 +1552,14 @@ $(document).ready(function () {
    * 
    */
 
-  $(function () {
-    $('cboIdu').selectpicker();
-  });
 
-  $(function () {
-    $('cboIdub').selectpicker();
-  });
 
+
+  $('#cboIdu').selectpicker('refresh');
+  $('#cboIdub').selectpicker('refresh');
 
 })
+
+
+
 
