@@ -147,6 +147,7 @@ function cargarSucursal(ruc) {
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: "",
+        searchPlaceholder: "Buscar por..",
         zeroRecords: "Sin resultados encontrados",
         paginate: {
           first: "Primero",
@@ -252,6 +253,7 @@ function cargarContactos(ruc) {
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: "",
+        searchPlaceholder: "Buscar por..",
         zeroRecords: "Sin resultados encontrados",
         paginate: {
           first: "Primero",
@@ -537,8 +539,8 @@ function registrarContactos() {
   $("#frm-contactos").trigger("reset");
 }
 
-function cargarCargos() {
-  $.ajax({
+async function cargarCargos() {
+  return respuesta = await $.ajax({
 
     url: "../processes/mostrar-cargos.php",
     type: "GET",
@@ -569,9 +571,9 @@ function cargarCargos() {
 
 cargarCargos();
 
-function cargarRubros() {
+async function cargarRubros() {
 
-  $.ajax({
+  await $.ajax({
 
     url: "../processes/mostrar-rubros.php",
     type: "GET",
@@ -1458,6 +1460,7 @@ $(document).ready(function () {
       loadingRecords: "Cargando...",
       processing: "Procesando...",
       search: "",
+      searchPlaceholder: "Buscar por..",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -1485,6 +1488,7 @@ $(document).ready(function () {
       loadingRecords: "Cargando...",
       processing: "Procesando...",
       search: "",
+      searchPlaceholder: "Buscar por..",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -1526,6 +1530,7 @@ $(document).ready(function () {
       loadingRecords: "Cargando...",
       processing: "Procesando...",
       search: "",
+      searchPlaceholder: "Buscar por..",
       zeroRecords: "Sin resultados encontrados",
       paginate: {
         first: "Primero",
@@ -1535,8 +1540,6 @@ $(document).ready(function () {
       },
     },
   });
-
-
 
   /**
    * 
@@ -1552,13 +1555,15 @@ $(document).ready(function () {
    * 
    */
 
-
-
-
   $('#cboIdu').selectpicker('refresh');
   $('#cboIdub').selectpicker('refresh');
 
+  
 })
+
+
+
+
 
 
 

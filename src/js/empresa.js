@@ -124,6 +124,7 @@ $(document).ready(function () {
       "loadingRecords": "Cargando...",
       "processing": "Procesando...",
       "search": "",
+      "searchPlaceholder": "Buscar por..",
       "zeroRecords": "Sin resultados encontrados",
       "paginate": {
         "first": "Primero",
