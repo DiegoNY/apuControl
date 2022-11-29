@@ -40,7 +40,7 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
     $txtEliminada = $empresas->sanitizar($txtEliminada);
     $cboEstado = $empresas->sanitizar($cboEstado);
     $txtEstadoComercial = $empresas->sanitizar($txtEstadoComercial);
-    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial,$proveedor,$ruta?? "");
+    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial,$proveedor,$ruta?? "",$usuarioClaveSol,$contraseñaClaveSol);
 
 
     $json = array();
@@ -57,6 +57,7 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
         $json[] = array('mensaje' => "ingresoempresa", 'ruc' => $txtRuc);
         $jsonString = json_encode($json);
         echo $jsonString;
+
     } else {
 
         $json[] = array('mensaje' => "existe",'ruc' => $txtRuc);

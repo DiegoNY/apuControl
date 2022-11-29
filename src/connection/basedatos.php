@@ -168,14 +168,14 @@ class BaseDatos
  
 
     //CRUD EMPRESAS
-    public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial,$proveedor,$img)
+    public function agregarEmpresa($id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $eliminada, $estado_comercial,$proveedor,$img,$claveSol,$usuarioClaveSol)
     {
         $validar = mysqli_query($this->con, "SELECT count(*) as total FROM empresa WHERE ruc = '$ruc'");
         $datos = mysqli_fetch_array($validar);
 
         if ($datos['total'] == 0) {
 
-            $consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial,proveedor,imglogo) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial','$proveedor','$img');";
+            $consulta = "insert into `empresa`(id_grupo,tipo_persona,ruc,razon_social,nom_comercial,direccion,id_ubigeo,id_rubro,id_tipo_sistema,id_tipo_integracion,tipo_envio,estado,fecha_registro,eliminada,estado_comercial,proveedor,imglogo,clavesol,usuarioclavesol) values ('$id_grupo','$tipo_persona','$ruc','$razon_social','$nom_comercial','$direccion','$id_ubigeo','$id_rubro','$id_tipo_sistema','$id_tipo_integracion','$tipo_envio','$estado','$fecha_registro','$eliminada','$estado_comercial','$proveedor','$img','$claveSol','$usuarioClaveSol');";
             $res = mysqli_query($this->con, $consulta);
             return TRUE;
         } else {
@@ -204,9 +204,9 @@ class BaseDatos
         return $res;
     }
 
-    public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial,$proveedor,$bandera)
+    public function  editarEmpresas($id, $id_grupo, $tipo_persona, $ruc, $razon_social, $nom_comercial, $direccion, $id_ubigeo, $id_rubro, $id_tipo_sistema, $id_tipo_integracion, $tipo_envio, $estado, $fecha_registro, $estado_comercial,$proveedor,$bandera,$claveSol,$usuarioClaveSol)
     {
-        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',estado_comercial = '$estado_comercial',proveedor = '$proveedor',imglogo = '$bandera' where (e.id = '$id');";
+        $consulta = "update empresa as e set id_grupo = '$id_grupo',tipo_persona = '$tipo_persona',razon_social = '$razon_social',nom_comercial = '$nom_comercial',direccion ='$direccion',id_ubigeo ='$id_ubigeo',id_rubro = '$id_rubro',id_tipo_sistema = '$id_tipo_sistema',id_tipo_integracion = '$id_tipo_integracion',tipo_envio = '$tipo_envio',estado='$estado',estado_comercial = '$estado_comercial',proveedor = '$proveedor',imglogo = '$bandera', clavesol = '$claveSol', usuarioclavesol = '$usuarioClaveSol' where (e.id = '$id');";
 
         $res = mysqli_query($this->con, $consulta);
 

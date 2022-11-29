@@ -36,6 +36,8 @@ if (!isset($id)) {
             'estado_comercial' => $row['estado_comercial'],
             'proveedor' => $row['proveedor'],
             'img' => $row['imglogo'],
+            'clavesol' => $row['clavesol'],
+            'usuarioclavesol' => $row['usuarioclavesol'],
         );
     }
 

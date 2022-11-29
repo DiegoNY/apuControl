@@ -80,7 +80,7 @@ async function cargarUbigeo() {
     type: "GET",
     success: function (response) {
       let ubigeo = JSON.parse(response);
-      console.log(response);
+      //console.table(response);
       let template = "<option value='0' > SELECCIONE </option>";
       ubigeo.forEach((ubigeo) => {
         template += `
@@ -468,7 +468,6 @@ function registrarAccesos() {
 
 }
 
-//PARA LA SUCURSAL
 
 var modalFormularioSucursal = new bootstrap.Modal(document.getElementById('sucursal'), {
   keyboard: false
@@ -647,6 +646,7 @@ function editarEmpresas(id, edit) {
 
   let btnValidar = document.getElementById("btn_ruc");
   btnValidar.setAttribute("disabled", "");
+  
 }
 
 
@@ -667,7 +667,6 @@ function RegistrarEmpresa() {
     success: (response) => {
       let data = JSON.parse(response);
 
-      console.log(data);
 
       data.forEach((data) => {
         mensajes(
@@ -737,6 +736,8 @@ function datosCompletosEmpresa(id) {
     $("#id").val(empresa.id);
     $("#urlLogo").val(empresa.img);
     $("#cboIdu").val(empresa.id_ubigeo);
+    $("#contraseñaClaveSol").val(empresa.clavesol);
+    $("#usuarioClaveSol").val(empresa.usuarioclavesol);
     rucIdSU.value = empresa.ruc;
 
     preview_logo.setAttribute("src", `.${empresa.img}`);
