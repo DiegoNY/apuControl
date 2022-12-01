@@ -275,13 +275,14 @@
                                     <div class="" id="contenedorBtnLimpiarDatos">
 
                                         <h6 id="btnNuevaEmpresaIndex" class="btn btn-primary">Limpiar datos <i
-                                            class="bi bi-trash3"></i> </h6>
+                                                class="bi bi-trash3"></i> </h6>
 
                                     </div>
 
                                     <div id="contenedorBotonEditarIndex" class="inactive">
 
-                                        <h6 id="btnEditarEmpresaIndex" class="btn btn-primary "> Editar <i class="bi bi-trash3"></i> </h6>
+                                        <h6 id="btnEditarEmpresaIndex" class="btn btn-primary "> Editar <i
+                                                class="bi bi-trash3"></i> </h6>
 
                                     </div>
 
@@ -311,8 +312,9 @@
                                                     <div>
 
                                                         <div class="row">
-                                                            <input type="text" ruc_ids value=""  maxlength="11" 
-                                                                name="txtRuc" id="txtRuc" class="form-control col-lg-8" required>
+                                                            <input type="text" ruc_ids value="" maxlength="11"
+                                                                name="txtRuc" id="txtRuc" class="form-control col-lg-8"
+                                                                required>
                                                             <input type="button" id="btn_ruc"
                                                                 class="form-control col-lg-4" value="Validar">
                                                         </div>
@@ -378,7 +380,7 @@
                                                     <label class="font-weight-semibold">Ubigeo</label>
                                                     <div>
                                                         <select data-live-search="true" name="cboIdu" id="cboIdu"
-                                                            class="selectpicker form-control" >
+                                                            class="selectpicker form-control">
                                                             <option value="123">123</option>
                                                             <option value="164">164</option>
                                                             <option value="" selected></option>
@@ -425,7 +427,7 @@
                                                 de
                                                 Sistema</legend>
                                             <!--- Esto se movio no quitar -->
-                                            <div class="form-group row inactive">
+                                            <!-- <div class="form-group row inactive">
                                                 <div class="col-lg-6 inactive">
                                                     <label class="font-weight-semibold">Tipo de Sistema</label>
 
@@ -441,7 +443,7 @@
                                                     <input type="text" class="form-control" name="proveedor"
                                                         id="proveedor">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!--- / Esto se movio no quitar -->
 
                                             <div class="form-group row">
@@ -475,7 +477,7 @@
                                                 </div>
 
                                                 <!--- Esto se movio no quitar -->
-                                                <div class="col-lg-6 inactive">
+                                                <!-- <div class="col-lg-6 inactive">
 
                                                     <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
                                                         Integracion</label>
@@ -488,40 +490,44 @@
                                                             <option value="JSON">JSON</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!--- / Esto se movio no quitar -->
 
                                             </div>
 
                                             <div class="form-group row ">
 
-                                               
+
                                                 <div class="col-lg-12">
-                                                
+
                                                     <table class="table">
 
                                                         <thead>
 
                                                             <th>
                                                                 Clave Sol
-                                                            </th>    
-                                                        
+                                                            </th>
+
 
                                                         </thead>
-                                                        
+
                                                         <tbody>
 
                                                             <tr>
 
-                                                                <td>Usuario <input type="text" class="form-control" name="usuarioClaveSol" id="usuarioClaveSol"> </td>
-                                                                <td>Contraseña <input type="text" class="form-control" name="contraseñaClaveSol" id="contraseñaClaveSol"> </td>
-                                                            
+                                                                <td>Usuario <input type="text" class="form-control"
+                                                                        name="usuarioClaveSol" id="usuarioClaveSol">
+                                                                </td>
+                                                                <td>Contraseña <input type="text" class="form-control"
+                                                                        name="contraseñaClaveSol"
+                                                                        id="contraseñaClaveSol"> </td>
+
                                                             </tr>
 
                                                         </tbody>
-                                                    
+
                                                     </table>
-                                                
+
                                                 </div>
 
 
@@ -919,7 +925,7 @@
 
                                             <div class="col-lg-12">
                                                 <div class="form-group">
-                                                    <label>Ingresa Nombre:</label>
+                                                    <label class="font-weight-semibold">Ingresa Nombre:</label>
                                                     <input type="text" class="form-control" name="txtNombreSucursal"
                                                         id="txtNombreSucursal">
                                                 </div>
@@ -934,25 +940,76 @@
                                         <div class="form-group">
 
                                             <div class="">
-                                                <label>Ingresa Direccion:</label>
+                                                <label class="font-weight-semibold">Ingresa Direccion:</label>
                                                 <input type="text" class="form-control" name="txtDireccionSucursal"
                                                     id="txtDireccionSucursal">
                                             </div>
-    
-                                         
+
+
 
                                         </div>
 
-                                        
-                                           
+
+
+                                        <div class="form-group ">
+
+                                            <div class="">
+
+                                                <label for="cboIdu" class="col-lg-12 font-weight-semibold">Ubigeo
+                                                    :</label>
+
+                                                <select data-live-search="true" name="cboIdub" id="cboIdub"
+                                                    class="selectpicker form-control">
+                                                    <option value=""></option>
+                                                </select>
+
+                                            </div>
+
+
+
+
+                                        </div>
+
                                         <div class="form-group row">
-                                            <label for="cboIdu" class="col-lg-12" >Ubigeo :</label>
 
-                                            <select data-live-search="true" name="cboIdub" id="cboIdub"
-                                                class="selectpicker form-control" >
-                                                <option value=""></option>
-                                            </select>
+                                            <input type="hidden" name="" id="editarAccesoSistema" value="">
 
+                                            <div class="col-lg-6 ">
+                                                <label class="font-weight-semibold">Tipo de Sistema</label>
+
+                                                <select name="cboTipoSistema" id="cboTipoSistema" class="form-control ">
+                                                    <option value="" selected></option>
+                                                    <option value="GESFARMA">GESFARMA</option>
+                                                    <option value="APUGESCOM">APUGESCOM</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="col-lg-6 ">
+
+                                                <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
+                                                    Integracion</label>
+                                                <div>
+                                                    <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
+                                                        class="form-control">
+                                                        <option value="" selected></option>
+                                                        <option value="DBF">DBF</option>
+                                                        <option value="TXT">TXT</option>
+                                                        <option value="JSON">JSON</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="form-group  ">
+
+                                            <div class="">
+                                                <label class=" font-weight-semibold">Proveedor</label>
+                                                <input type="text" class="form-control" name="proveedor" id="proveedor">
+                                            </div>
                                         </div>
 
 
@@ -964,17 +1021,30 @@
 
                                         </div>
 
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item" role="presentation">
+                                        <input type="hidden" name="accesosSucursalPorSistema"
+                                            id="accesosSucursalPorSistema" value="">
+
+                                        <ul class="nav nav-tabs d-flex bd-highlight " id="myTab" role="tablist">
+
+                                            <li class="nav-item  bd-highlight" role="presentation">
                                                 <button class="nav-link active" id="accesoTab-tab" data-bs-toggle="tab"
                                                     data-bs-target="#accesoTab" type="button" role="tab"
                                                     aria-controls="accesoTab" aria-selected="true">Accesos</button>
                                             </li>
-                                            <li class="nav-item" role="presentation">
+                                            <li class="nav-item bd-highlight" role="presentation">
                                                 <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
                                                     data-bs-target="#infoSucu" type="button" role="tab"
                                                     aria-controls="infoSucu" aria-selected="false">Estación</button>
                                             </li>
+
+                                            <div class="nav-item ml-auto p-2 bd-highlight">
+
+                                                <span class="badge btn-secondary" id="agregarSistemaSucursal">Agregar
+                                                    sistema +
+                                                </span>
+
+                                            </div>
+
 
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
@@ -985,12 +1055,16 @@
                                                 <fieldset>
 
                                                     <table class="table" id="tabla_accesoss">
+
                                                         <thead class="table-light">
                                                             <th>Plataforma</th>
                                                             <th>Usuario</th>
                                                             <th>Contraseña</th>
                                                         </thead>
-                                                        <tbody>
+
+                                                        <tbody id="contenedorAccesos">
+
+
                                                             <tr>
                                                                 <input type="hidden" id="id_TV" name="id_TV">
                                                                 <td> TEAMVIEWER </td>
@@ -1006,16 +1080,21 @@
                                                                 <td> <input type="text" class="form-control"
                                                                         id="usuario_ANY" name="usuario_ANY"> </td>
                                                                 <td><input type="text" class="form-control"
-                                                                        id="contraseña_ANY" name="contraseña_ANY"> </td>
+                                                                        id="contraseña_ANY" name="contraseña_ANY">
+                                                                </td>
                                                             </tr>
+
                                                             <tr>
                                                                 <input type="hidden" id="id_ER" name="id_ER">
                                                                 <td> ESCRITORIO_REMOTO </td>
                                                                 <td> <input type="text" class="form-control"
                                                                         id="usuario_ER" name="usuario_ER"> </td>
                                                                 <td><input type="text" class="form-control"
-                                                                        id="contraseña_ER" name="contraseña_ER"> </td>
+                                                                        id="contraseña_ER" name="contraseña_ER">
+                                                                </td>
                                                             </tr>
+
+
                                                         </tbody>
                                                     </table>
 
@@ -1051,6 +1130,43 @@
 
                                                     </div>
 
+                                                </div>
+
+
+
+                                                <div class=" row">
+
+                                                    <div class=" form-group col-lg-6">
+
+                                                        <label for="" class="">Logo</label>
+
+
+                                                    </div>
+
+
+                                                    <div class=" col-lg-12 form-group">
+
+
+                                                        <label class="custom-file">
+
+                                                            <input type="file" name="logo" id="logoSucursal"
+                                                                class="custom-file-input">
+                                                            <span class="custom-file-label">Ingresa Logo</span>
+                                                        </label>
+
+
+                                                    </div>
+
+
+                                                    <input type="hidden" name="editarLogodSucursal"
+                                                        id="editarLogoSucursal" value="">
+                                                    <input type="hidden" name="urlLogos" id="urlLogoSucursal" value="">
+                                                </div>
+
+                                                <div class="col-lg-4"
+                                                    style="height: 140px; width: auto; display: flex;  ">
+                                                    <img src="" alt="logo de la empresa"
+                                                        style="height: 100%; width: auto;" id="previewLogoSucursal">
                                                 </div>
 
                                                 <div class="form-group row">
@@ -1177,9 +1293,9 @@
                                         <input type="hidden" value="1" name="txtEstado">
 
                                         <div class="text-right">
-                                            <button  type="button" value="Registrar" onclick="registrarContactos();"
+                                            <button type="button" value="Registrar" onclick="registrarContactos();"
                                                 class="btn text-light" style="background-color:  #31334D;"
-                                                id="btnEnviarContacto" >Registrar<i
+                                                id="btnEnviarContacto">Registrar<i
                                                     class="icon-paperplane ml-2"></i></button>
                                         </div>
                                     </form>
@@ -1207,30 +1323,31 @@
                                                 <input type="text" name="nombreCargo" id="nombreCargo"
                                                     class="form-control">
                                             </div>
-                                            <label class="col-lg-12" > . </label>
+                                            <label class="col-lg-12"> . </label>
                                             <div class="col-lg-6">
 
-                                            <span class="btn bg-warning text-light" id="cancelarRegistroCargo">cancelar</span>
+                                                <span class="btn bg-warning text-light"
+                                                    id="cancelarRegistroCargo">cancelar</span>
 
 
                                             </div>
 
                                             <div class="col-lg-6">
 
-                                            <span class="btn btn-primary" id="iniciarRegistroCargo">Registrar</span>
+                                                <span class="btn btn-primary" id="iniciarRegistroCargo">Registrar</span>
 
 
                                             </div>
 
                                         </div>
 
-                                     
-                                    
+
+
 
 
                                     </fieldset>
 
-                                    
+
                                 </form>
 
 

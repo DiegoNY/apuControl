@@ -1,10 +1,37 @@
 <?php
 include '../../connection/basedatos.php';
+
+$nombre = $_POST['txtNombreSucursal'];
+$logo = $_FILES['logo']['name'];
+$temporal = $_FILES['logo']['tmp_name'];
+$rutaLogo = "";
+
+if (isset($nombre) && !empty($nombre)) {
+    $carpeta = './img';
+    $ruta = $carpeta . '/' . $logo;
+    move_uploaded_file($temporal, "../.$carpeta" . '/' . $logo);
+
+}
+
+
 extract($_POST);
+
+
+if($editarLogodSucursal === "editar"){
+
+    $rutaLogo = $ruta;
+    
+}else{
+
+    $rutaLogo = $urlLogos;
+
+}
+
+
 
 $sucursal = new BaseDatos();
 
-$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id,$banderaEmpresa);
+$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id,$banderaEmpresa,$rutaLogo);
 
 // TEAM_VIEWER = usuariosa , contraseñaa 
 try {

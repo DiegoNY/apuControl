@@ -25,6 +25,7 @@ while($row = mysqli_fetch_array($resultado)){
         'id_empresa'=>$row['id_empresa'],
         'banderaEmpresa'=>$row['bandera'],
         'codigoApu'=>$row['codigoApu'],
+        'logo'=>$row['banderasucursal'],
     );
 }
 $jsonString = json_encode($json[0]);

@@ -21,6 +21,7 @@ const preview_logo = document.getElementById("preview_logo");
 const banderaSucursal = document.getElementById("logoSu");
 const previewBandera = document.getElementById("preview_logo_su");
 
+
 const hoy = new Date();
 
 var fechaInput = document.getElementById("txtFechaRegistro").value = hoy.toLocaleDateString();
@@ -315,33 +316,157 @@ function cargarContactos(ruc) {
   }
 }
 
+/**
+ * se escucha al evento de carga para poder editar ese sistema el sistema se relaciona por nombre 
+ */
+var sistema = document.getElementById('cboTipoSistema');
+
+sistema.addEventListener('change', function () {
+
+
+
+  mostrarAccesos.forEach( (acceso) => {
+    
+
+    if (acceso.sistema === sistema.value) {
+      
+      let integracion = acceso.integracion;
+      
+      //seleccionando la integracion 
+      
+      let tipoIntegracion = document.querySelector(`#${integracion}`);
+      tipoIntegracion.removeAttribute('selected');
+      tipoIntegracion.setAttribute("selected" , "");
+      //Ingresando datos
+      let proveedor = document.getElementById("proveedor");
+      proveedor.value = acceso.proveedor;
+      //Ingresando datos de accesos
+      switch (true) {
+       
+        case acceso.nombre === "TEAMVIEWER" :
+          
+           
+          let idTv          = document.getElementById("id_TV");
+          let usuarioTv    = document.getElementById("usuariosa");  
+          let contraseñaTv = document.getElementById("contraseñaa");
+    
+          
+          idTv.value    = `${acceso.id}`  ;
+          usuarioTv.value = `${acceso.usuario}`    ;
+          contraseñaTv.value = `${acceso.contraseña}`;
+    
+          break;
+    
+        case acceso.nombre === "ANYDESK" :
+    
+    
+          let id          = document.getElementById("id_ANY");
+          let usuario     = document.getElementById("usuario_ANY");  
+          let contraseña  = document.getElementById("contraseña_ANY");
+          
+          id.setAttribute         ('value'  , `${acceso.id}`        );
+          usuario.setAttribute    ('value'  , `${acceso.usuario}`    );
+          contraseña.setAttribute ( 'value' , `${acceso.contraseña}`);
+          
+         
+  
+  
+          break;
+    
+        case acceso.nombre === "ESCRITORIO_REMOTO"  :
+    
+          let idEr          = document.getElementById("id_ER");
+          let usuarioEr     = document.getElementById("usuario_ER");  
+          let contraseñaEr  = document.getElementById("contraseña_ER");
+          
+          idEr.setAttribute         ('value'  , `${acceso.id}`        );
+          usuarioEr.setAttribute    ('value'  , `${acceso.usuario}`    );
+          contraseñaEr.setAttribute ( 'value' , `${acceso.contraseña}`);
+    
+    
+          
+          break;
+      
+        default:
+          break;
+      }
+
+    
+    } else {
+      console.log("buscando");
+    }
+
+
+    
+  
+
+  });
+
+
+   
+
+
+});
+
+let mostrarAccesos = [];
+
 function cargarAccesos(id) {
+
+
+  setInterval(function () {
+
+    let editarAccesoSistema = document.getElementById('editarAccesoSistema').value;
+    //console.log(editarAccesoSistema);
+
+    if (editarAccesoSistema === "editar") {
+
+      console.log("Hello" + editarSistema);
+    } else {
+
+      console.log("escchando");
+
+    }
+
+  }, 1000);
 
 
   $.post("../processes/mostrar-accesos.php", { id }, function (response) {
 
+    console.log(response);
+
     let accesos = JSON.parse(response);
 
+    /**
+     * Vaciando Accesos
+     */
+    let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
+    inpuAccesosInfo.setAttribute("value", "");
 
-    let teamViewer = accesos['data'][0];
-    console.log(teamViewer);
-    let anydes = accesos['data'][1];
-
-    let escritorioRemoto = accesos['data'][2];
+    /** 
+     * Vaciando Array
+     */
 
 
-    $("#id_TV").val(teamViewer['id']);
-    $("#usuariosa").val(teamViewer['idAcceso']);
-    $("#contraseñaa").val(teamViewer['contrasena']);
+    accesos['data'].forEach((acceso) => {
 
-    $("#id_ANY").val(anydes['id']);
-    $("#usuario_ANY").val(anydes['idAcceso']);
-    $("#contraseña_ANY").val(anydes['contrasena']);
+      mostrarAccesos.push(
 
-    $("#id_ER").val(escritorioRemoto['id']);
-    $("#usuario_ER").val(escritorioRemoto['idAcceso']);
-    $("#contraseña_ER").val(escritorioRemoto['contrasena']);
+        {
+          id              : acceso.id,
+          integracion     : acceso.tipoIntegracion,
+          sistema         : acceso.nombreSistema,
+          nombre          : acceso.nombreAcceso,
+          usuario         : acceso.idAcceso,
+          contraseña      : acceso.contrasena,
+          proveedor       : acceso.proveedor,
+        }
 
+      );
+
+
+    });
+
+    console.log(AccesosSucursal);
 
     editarAcceso = true;
 
@@ -380,7 +505,7 @@ function mensajes(response, ruc, error) {
 
     });
 
-  }else if(response == "ingresoempresa"){
+  } else if (response == "ingresoempresa") {
 
     Swal.fire("REGISTRADA", ``, "success").then(() => {
 
@@ -415,7 +540,7 @@ function mostrarLogoss(id) {
 
       let logo = JSON.parse(response);
 
-      let template = "";
+      let template = " ";
 
       logo.forEach((logo) => {
 
@@ -439,11 +564,17 @@ function mostrarLogoss(id) {
 }
 
 $(document).on("click", ".btn-delete-logo", function () {
+
   let element = $(this)[0].parentElement;
+
   let id = $(element).attr("id-logo");
+
   $.post("../processes/delete/eliminar-logo.php", { id }, function (response) {
+
     mostrarLogoss();
+
   });
+
 });
 
 
@@ -472,6 +603,12 @@ function registrarAccesos() {
 var modalFormularioSucursal = new bootstrap.Modal(document.getElementById('sucursal'), {
   keyboard: false
 })
+
+/**
+ * 
+ * @registrarSucursal sirve para registrar y editar 
+ * 
+ */
 
 function registrarSucursal() {
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
@@ -508,7 +645,9 @@ function registrarSucursal() {
 
 
 var modalFormularioContactos = new bootstrap.Modal(document.getElementById('contactos'), {
+
   keyboard: false
+
 })
 
 
@@ -581,7 +720,7 @@ async function cargarRubros() {
 
       let data = JSON.parse(response);
 
-      let template = "<option value='0' > SELECCIONE </option>";
+      let template = "<option value='0'> SELECCIONE </option>";
 
       data.forEach((rubros) => {
 
@@ -612,7 +751,7 @@ function cargaGrupoEnFrm() {
     type: "GET",
     success: function (response) {
       let grupos = JSON.parse(response);
-      let template = "<option value='0' > SELECCIONE </option>";
+      let template = "<option value='---' > SELECCIONE </option>";
       grupos.forEach((grupos) => {
         template += `
                 
@@ -646,7 +785,7 @@ function editarEmpresas(id, edit) {
 
   let btnValidar = document.getElementById("btn_ruc");
   btnValidar.setAttribute("disabled", "");
-  
+
 }
 
 
@@ -734,7 +873,7 @@ function datosCompletosEmpresa(id) {
     $("#cboEstado").val(empresa.estado);
     $("#proveedor").val(empresa.proveedor);
     $("#id").val(empresa.id);
-    $("#urlLogo").val(empresa.img);
+    $("#urlLogoSucursal").val(empresa.img);
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#contraseñaClaveSol").val(empresa.clavesol);
     $("#usuarioClaveSol").val(empresa.usuarioclavesol);
@@ -951,7 +1090,7 @@ function cargarTiposSistemas() {
       tipoSistema.forEach((tipoSistema) => {
         template += `
        
-        <option value="${tipoSistema.nombre}">${tipoSistema.nombre}</option>
+        <option id="${tipoSistema.nombre}" value="${tipoSistema.nombre}">${tipoSistema.nombre}</option>
         
         `;
       });
@@ -1069,6 +1208,8 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
 
+
+
     let sucursal = JSON.parse(response);
     console.log(sucursal);
     $("#id-sucursal").val(sucursal.id);
@@ -1079,7 +1220,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     $("#txtIdEmpresa").val(sucursal.id_empresa);
     $("#exampleFormControlSelect1").val(sucursal.banderaEmpresa);
     $("#codigoApu").val(sucursal.codigoApu);
-
+    $("#urlLogoSucursal").val(sucursal.logo);
     $('.selectpicker').selectpicker("render");
 
 
@@ -1092,8 +1233,14 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     const imgSucursall = document.getElementById("imagenSucursal") || null;
     imgSucursall.setAttribute("src", `${bandera}`);
 
+    const logoSucursal = document.getElementById("previewLogoSucursal") || null;
+    logoSucursal.setAttribute("src", `.${sucursal.logo}`);
+
+
 
     cargarAccesos(id);
+
+    $("#editarLogoSucursal").val("no editar")
 
 
 
@@ -1190,6 +1337,14 @@ btnes.addEventListener("click", function () {
   document.getElementById('frm-sucursal').reset();
   imgSucursall.removeAttribute("src", "");
 
+
+  const inputEditarLogoSucursal = document.getElementById("editarLogoSucursal");
+  inputEditarLogoSucursal.setAttribute("value", "");
+
+
+  const previewLogoSucursal = document.getElementById("previewLogoSucursal")
+  previewLogoSucursal.setAttribute("src", "");
+
 }
 )
 
@@ -1222,10 +1377,10 @@ btnNuevaEmpresaIndex.addEventListener("click", function () {
   preview_logo.setAttribute("src", "");
 
   btn_ruc.removeAttribute("disabled");
-  
+
   let inputIdEmpresa = document.getElementById("id");
-  inputIdEmpresa.setAttribute("value","");
-  
+  inputIdEmpresa.setAttribute("value", "");
+
 })
 
 let btnEnviarContacto = document.getElementById("btnEnviarContacto");
@@ -1434,12 +1589,14 @@ function imageChanged() {
     let image = selectedOption.getAttribute("meta-img");
 
     divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; '>"
+
   } catch (e) {
     console.warn("Error aun no se carga los datos");
   }
 }
 
 imageChanged()
+
 
 
 $(document).ready(function () {
@@ -1559,8 +1716,107 @@ $(document).ready(function () {
   $('#cboIdu').selectpicker('refresh');
   $('#cboIdub').selectpicker('refresh');
 
-  
+
 })
+
+/***
+ * 
+ * Inicio de la previsualizacion
+ * 
+ */
+
+const logoSucursal = document.getElementById("logoSucursal");
+
+logoSucursal.addEventListener('change', () => {
+
+
+  const archivos = logoSucursal.files;
+
+
+  if (!archivos || !archivos.length) {
+
+    previewLogoSucursal.src = "";
+
+    return;
+
+  }
+  // cargando previsualizacion logo 
+
+  const primerArchivo = archivos[0];
+  const objURL = URL.createObjectURL(primerArchivo);
+
+  previewLogoSucursal.src = objURL;
+
+  // esto ocurre cuando se esta editando la sucursal evita que el logo se edite si es que se a subido algun archivo 
+
+  const urlLogoActual = document.querySelector("#urlLogoSucursal")
+
+  urlComparar = "./img/" + primerArchivo.name;
+
+  if (urlComparar === urlLogoActual) {
+
+    const edi = document.getElementById("editarLogoSucursal");
+    edi.setAttribute("value", "no editar");
+
+  } else {
+
+
+    const edi = document.getElementById("editarLogoSucursal");
+    edi.setAttribute("value", "editar");
+
+  }
+
+
+});
+
+/**
+ * 
+ * Fin de previsualizacion 
+ * 
+ */
+
+const btnAgregarSistemaSucursal = document.querySelector("#agregarSistemaSucursal");
+let AccesosSucursal = [];
+
+btnAgregarSistemaSucursal.addEventListener('click', function () {
+
+  let tipoSistema = document.querySelector('#cboTipoSistema').value;
+  let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value;
+  let usuarioAnydesk = document.querySelector('#usuariosa').value;
+  let contraseñaAnydesk = document.querySelector('#contraseñaa').value;
+  let usuarioTViewer = document.querySelector('#usuario_ANY').value;
+  let contraseñaTViewer = document.querySelector('#contraseña_ANY').value;
+  let usuarioEscriRemoto = document.querySelector('#usuario_ER').value;
+  let contraseñaEscriRemoto = document.querySelector('#contraseña_ER').value;
+  let proveedor = document.querySelector('#proveedor').value;
+
+  AccesosSucursal.push(
+
+
+
+    tipoIntegracion,
+    tipoSistema,
+    usuarioAnydesk,
+    contraseñaAnydesk,
+    usuarioTViewer,
+    contraseñaTViewer,
+    usuarioEscriRemoto,
+    contraseñaEscriRemoto,
+    proveedor,
+    "|"
+
+  );
+
+  console.log(AccesosSucursal);
+
+  let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
+  inpuAccesosInfo.setAttribute("value", `${AccesosSucursal}`);
+
+
+
+
+});
+
 
 
 

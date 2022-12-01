@@ -296,13 +296,13 @@ class BaseDatos
     }
     //CRUD SUCURSAL
 
-    public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa,$codigoApu,$bandera)
+    public function registrarSucursal($nombre, $direccion, $cod_cofide, $id_ubigeo, $estado, $id_empresa,$codigoApu,$bandera,$logo)
     {
         $cantidadSucursales = mysqli_query($this->con, "SELECT count(*)as total from sucursal as s WHERE(s.id_empresa = '$id_empresa');");
         $data = mysqli_fetch_array($cantidadSucursales);
         $numeroSucursalEmpresa = $data['total']+1;
 
-        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu,numerosucursal_empresa,bandera) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu','$numeroSucursalEmpresa','$bandera')";
+        $consulta = "insert into `sucursal`(codigo_cofide,nombre,direccion,ubigeo,estado,id_empresa,codigoApu,numerosucursal_empresa,bandera,banderasucursal) values ('$cod_cofide','$nombre','$direccion','$id_ubigeo','$estado','$id_empresa','$codigoApu','$numeroSucursalEmpresa','$bandera','$logo')";
 
 
         $contar_sucursales = mysqli_query($this->con, "SELECT count(*) as total FROM sucursal");
@@ -340,10 +340,10 @@ class BaseDatos
         }
     }
 
-    public function editarSucursal($id, $nombre, $direccion, $cod_cofide, $id_ubigeo, $id_empresa,$bandera)
+    public function editarSucursal($id, $nombre, $direccion, $cod_cofide, $id_ubigeo, $id_empresa,$bandera,$logo)
     {
         $consulta = "update sucursal as s set 
-        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo', bandera = '$bandera' where  (s.id = $id)";
+        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo', bandera = '$bandera', banderasucursal = '$logo'  where  (s.id = $id)";
 
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {
@@ -351,13 +351,14 @@ class BaseDatos
         } else {
             return false;
         }
+
     }
 
     //CRUD Accesos
 
-    public function registrarAccesos($id_sucursal, $nombre, $id_acceso, $contraseña, $estado)
+    public function registrarAccesos($id_sucursal, $nombre, $id_acceso, $contraseña, $estado,$proveedor,$nombreSistema,$tipoIntegracion)
     {
-        $consulta = "INSERT INTO `accesos`(id_sucursal,nombreAcceso,idAcceso,contraseña,estado) values ('$id_sucursal','$nombre','$id_acceso','$contraseña','$estado');";
+        $consulta = "INSERT INTO `accesos`(id_sucursal,nombreAcceso,idAcceso,contraseña,estado,proveedor,nombresistema,tipointegracion) values ('$id_sucursal','$nombre','$id_acceso','$contraseña','$estado','$proveedor','$nombreSistema','$tipoIntegracion');";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }

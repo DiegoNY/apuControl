@@ -2,7 +2,7 @@
 
 include '../connection/basedatos.php';
 
-$id = $_GET['id'];
+//$id = $_GET['id'];
 
 extract($_POST);
 
@@ -26,8 +26,13 @@ while($row = mysqli_fetch_array($resultado)){
         'nombreAcceso'=>$row['nombreAcceso'],
         'idAcceso'=>$row['idAcceso'],
         'contrasena'=>$row['contraseña'],
+        'proveedor'=>$row['proveedor'],
+        'nombreSistema'=>$row['nombresistema'],
+        'tipoIntegracion'=>$row['tipointegracion'],
     );
+
 }
+
 $jsonString = json_encode($json);
 
 echo $jsonString;

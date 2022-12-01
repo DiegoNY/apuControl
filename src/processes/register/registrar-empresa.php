@@ -23,7 +23,7 @@ extract($_POST);
 $empresas = new BaseDatos();
 
 
-if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty($txtDireccion) || !empty($txtIdGrupo) || isset($cboTipoPersona) and !empty($cboTipoPersona) ) {
+if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty($txtDireccion) || !empty($txtIdGrupo) || isset($cboTipoPersona) and !empty($cboTipoPersona) || isset($cboIdRubro) and !empty($cboIdRubro)) {
 
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo ?? "----");
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
@@ -46,13 +46,13 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
     $json = array();
     if ($response == TRUE) {
 
-        $registroSucursal = $empresas->registrarSucursal($txtNombreCo, $txtDireccion, " ", $cboIdu, $txtEliminada, $txtRuc," "," ");
+        $registroSucursal = $empresas->registrarSucursal($txtNombreCo, $txtDireccion, " ", $cboIdu, $txtEliminada, $txtRuc," "," "," ");
 
         $id_sucursal= $registroSucursal[1] + 1;
 
-        $anydes = $empresas->registrarAccesos($id_sucursal, "TEAM_VIEWER", $usuariosa ?? "", $contraseñaa ?? "", $txtEstado);
-        $teamvieew = $empresas->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY ?? "", $contraseña_ANY ?? "", $txtEstado);
-        $escritortii = $empresas->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER ?? "", $contraseña_ER ?? "", $txtEstado);
+        $anydes = $empresas->registrarAccesos($id_sucursal, "TEAM_VIEWER", $usuariosa ?? "", $contraseñaa ?? "", $txtEstado,"","","");
+        $teamvieew = $empresas->registrarAccesos($id_sucursal, "ANY_DESK", $usuario_ANY ?? "", $contraseña_ANY ?? "", $txtEstado,"","","");
+        $escritortii = $empresas->registrarAccesos($id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER ?? "", $contraseña_ER ?? "", $txtEstado,"","","");
 
         $json[] = array('mensaje' => "ingresoempresa", 'ruc' => $txtRuc);
         $jsonString = json_encode($json);
