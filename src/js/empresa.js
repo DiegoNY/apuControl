@@ -67,24 +67,6 @@ $(document).ready(function () {
       { data: "id_grupo" },
       { data: "id_rubro" },
       { data: "tipo_envio" },
-      { data: 'id_tipo_sistema',"render":function(data){
-        
-        if(data === "GESFARMA"){
-
-          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-info  text-light">${data}</span></p>`
-
-        }else if(data === "APUGESCOM"){
-
-          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-dark text-light">${data}</span></p>`
-        
-        }else{
-
-          return `<p class="text-center mb-2 font-size-sm"><span class="badge bg-success text-light">${data}</span></p>`
-        
-        }
-        
-
-      }},
       { data: "estado_comercial","render":function(data){
 
           if(data === "INGRESADO"){

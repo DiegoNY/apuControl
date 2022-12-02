@@ -23,7 +23,7 @@ extract($_POST);
 $empresas = new BaseDatos();
 
 
-if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty($txtDireccion) || !empty($txtIdGrupo) || isset($cboTipoPersona) and !empty($cboTipoPersona) || isset($cboIdRubro) and !empty($cboIdRubro)) {
+if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty($txtDireccion) || isset($cboTipoPersona) and !empty($cboTipoPersona) || isset($cboIdRubro) and !empty($cboIdRubro)) {
 
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo ?? "----");
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
@@ -33,14 +33,14 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
     $txtDireccion = $empresas->sanitizar($txtDireccion);
     $cboIdu = $empresas->sanitizar($cboIdu);
     $cboIdRubro = $empresas->sanitizar($cboIdRubro);
-    $cboTipoSistema = $empresas->sanitizar($cboTipoSistema);
-    $cboIdTipoIntegracion = $empresas->sanitizar($cboIdTipoIntegracion);
+    //$cboTipoSistema = $empresas->sanitizar($cboTipoSistema);
+    //$cboIdTipoIntegracion = $empresas->sanitizar($cboIdTipoIntegracion);
     $cboTipoEnvio = $empresas->sanitizar($cboTipoEnvio);
     $txtFechaRegistro = $empresas->sanitizar($txtFechaRegistro);
     $txtEliminada = $empresas->sanitizar($txtEliminada);
     $cboEstado = $empresas->sanitizar($cboEstado);
     $txtEstadoComercial = $empresas->sanitizar($txtEstadoComercial);
-    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema, $cboIdTipoIntegracion, $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial,$proveedor,$ruta?? "",$usuarioClaveSol,$contraseñaClaveSol);
+    $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema ?? "", $cboIdTipoIntegracion ?? "", $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial,$proveedor ?? "",$ruta?? "",$usuarioClaveSol,$contraseñaClaveSol);
 
 
     $json = array();

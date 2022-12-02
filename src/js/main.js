@@ -316,157 +316,109 @@ function cargarContactos(ruc) {
   }
 }
 
-/**
- * se escucha al evento de carga para poder editar ese sistema el sistema se relaciona por nombre 
- */
-var sistema = document.getElementById('cboTipoSistema');
-
-sistema.addEventListener('change', function () {
-
-
-
-  mostrarAccesos.forEach( (acceso) => {
-    
-
-    if (acceso.sistema === sistema.value) {
-      
-      let integracion = acceso.integracion;
-      
-      //seleccionando la integracion 
-      
-      let tipoIntegracion = document.querySelector(`#${integracion}`);
-      tipoIntegracion.removeAttribute('selected');
-      tipoIntegracion.setAttribute("selected" , "");
-      //Ingresando datos
-      let proveedor = document.getElementById("proveedor");
-      proveedor.value = acceso.proveedor;
-      //Ingresando datos de accesos
-      switch (true) {
-       
-        case acceso.nombre === "TEAMVIEWER" :
-          
-           
-          let idTv          = document.getElementById("id_TV");
-          let usuarioTv    = document.getElementById("usuariosa");  
-          let contraseñaTv = document.getElementById("contraseñaa");
-    
-          
-          idTv.value    = `${acceso.id}`  ;
-          usuarioTv.value = `${acceso.usuario}`    ;
-          contraseñaTv.value = `${acceso.contraseña}`;
-    
-          break;
-    
-        case acceso.nombre === "ANYDESK" :
-    
-    
-          let id          = document.getElementById("id_ANY");
-          let usuario     = document.getElementById("usuario_ANY");  
-          let contraseña  = document.getElementById("contraseña_ANY");
-          
-          id.setAttribute         ('value'  , `${acceso.id}`        );
-          usuario.setAttribute    ('value'  , `${acceso.usuario}`    );
-          contraseña.setAttribute ( 'value' , `${acceso.contraseña}`);
-          
-         
-  
-  
-          break;
-    
-        case acceso.nombre === "ESCRITORIO_REMOTO"  :
-    
-          let idEr          = document.getElementById("id_ER");
-          let usuarioEr     = document.getElementById("usuario_ER");  
-          let contraseñaEr  = document.getElementById("contraseña_ER");
-          
-          idEr.setAttribute         ('value'  , `${acceso.id}`        );
-          usuarioEr.setAttribute    ('value'  , `${acceso.usuario}`    );
-          contraseñaEr.setAttribute ( 'value' , `${acceso.contraseña}`);
-    
-    
-          
-          break;
-      
-        default:
-          break;
-      }
-
-    
-    } else {
-      console.log("buscando");
-    }
-
-
-    
-  
-
-  });
-
-
-   
-
-
-});
-
-let mostrarAccesos = [];
+let todosLosAccesos = [];
+let todosLosSitemas = [];
+let Sistema = [];
 
 function cargarAccesos(id) {
 
 
-  setInterval(function () {
-
-    let editarAccesoSistema = document.getElementById('editarAccesoSistema').value;
-    //console.log(editarAccesoSistema);
-
-    if (editarAccesoSistema === "editar") {
-
-      console.log("Hello" + editarSistema);
-    } else {
-
-      console.log("escchando");
-
-    }
-
-  }, 1000);
-
-
   $.post("../processes/mostrar-accesos.php", { id }, function (response) {
 
-    console.log(response);
 
     let accesos = JSON.parse(response);
 
     /**
      * Vaciando Accesos
-     */
+    */
+
     let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
     inpuAccesosInfo.setAttribute("value", "");
 
     /** 
      * Vaciando Array
-     */
+    */
 
+    template = "";
 
     accesos['data'].forEach((acceso) => {
 
-      mostrarAccesos.push(
+      todosLosAccesos.push(
 
         {
-          id              : acceso.id,
-          integracion     : acceso.tipoIntegracion,
-          sistema         : acceso.nombreSistema,
-          nombre          : acceso.nombreAcceso,
-          usuario         : acceso.idAcceso,
-          contraseña      : acceso.contrasena,
-          proveedor       : acceso.proveedor,
+          id: acceso.id,
+          sucursal: acceso.id_sucursal,
+          sistema: acceso.nombreSistema,
+          nombre: acceso.nombreAcceso,
+          usuario: acceso.idAcceso,
+          contraseña: acceso.contrasena,
         }
 
       );
 
+      todosLosSitemas.push(
+
+        {
+          id: acceso.id_sucursal,
+          nombre: acceso.nombreSistema,
+          proveedor: acceso.proveedor,
+          integracion: acceso.tipoIntegracion
+
+        }
+
+      )
+
+
 
     });
 
-    console.log(AccesosSucursal);
+
+    /**
+     * 
+     * Obteniendo el sistema los sistemas estan relacionados con el acceso estan en la misma tabla.
+     * 
+     */
+
+    /**
+     * @sisMap crea un array de clave valor con el nombre ya que es el que se repite  
+     */
+
+    let SisMap = todosLosSitemas.map(item => {
+
+      return [item.nombre, item]
+
+    });
+
+    /**
+     * @sisMapArr Se eliminan los obj repetidos 
+     */
+    var sisMapArr = new Map(SisMap);
+
+
+
+    let sistemasss = [...sisMapArr.values()];
+
+    console.log(sistemasss);
+
+    template = "";
+
+    sistemasss.forEach(sistema => {
+
+      template += `
+
+    <tr idSucursalSistema = "${sistema.id}" sistema="${sistema.nombre}">
+      <td> ${sistema.nombre} </td>
+      <td> ${sistema.integracion} </td>
+      <td> ${sistema.proveedor} </td>
+      <td class="text-center"> <i class="bi bi-pencil-square" id="editarSistema"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
+    </tr>
+    
+    `;
+    });
+
+    let containerSistema = document.getElementById("containerSistemas");
+    containerSistema.innerHTML = template;
+
 
     editarAcceso = true;
 
@@ -873,7 +825,7 @@ function datosCompletosEmpresa(id) {
     $("#cboEstado").val(empresa.estado);
     $("#proveedor").val(empresa.proveedor);
     $("#id").val(empresa.id);
-    $("#urlLogoSucursal").val(empresa.img);
+    $("#urlLogo").val(empresa.img);
     $("#cboIdu").val(empresa.id_ubigeo);
     $("#contraseñaClaveSol").val(empresa.clavesol);
     $("#usuarioClaveSol").val(empresa.usuarioclavesol);
@@ -1202,8 +1154,6 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   let id = data.id;
   console.log(id);
 
-
-
   $("#txtIdSucursa").val(id);
 
   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
@@ -1237,7 +1187,9 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     logoSucursal.setAttribute("src", `.${sucursal.logo}`);
 
 
-
+    /**
+     * @cargarAccesos carga los acceso y tambien los sistemas 
+     */
     cargarAccesos(id);
 
     $("#editarLogoSucursal").val("no editar")
@@ -1344,6 +1296,11 @@ btnes.addEventListener("click", function () {
 
   const previewLogoSucursal = document.getElementById("previewLogoSucursal")
   previewLogoSucursal.setAttribute("src", "");
+
+  AccesosSucursal = [];
+
+  let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
+  inpuAccesosInfo.setAttribute("value", ``);
 
 }
 )
@@ -1776,7 +1733,10 @@ logoSucursal.addEventListener('change', () => {
  */
 
 const btnAgregarSistemaSucursal = document.querySelector("#agregarSistemaSucursal");
+
 let AccesosSucursal = [];
+let Sistemas = [];
+let Accesos = [];
 
 btnAgregarSistemaSucursal.addEventListener('click', function () {
 
@@ -1793,7 +1753,6 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   AccesosSucursal.push(
 
 
-
     tipoIntegracion,
     tipoSistema,
     usuarioAnydesk,
@@ -1807,7 +1766,58 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
   );
 
-  console.log(AccesosSucursal);
+  /**
+ *    previsualizacion de los sistemas agregados
+ **/
+  Sistemas.push(
+
+    {
+      nombre: tipoSistema,
+      integracion: tipoIntegracion,
+      proveedor: proveedor,
+
+    }
+
+  )
+
+  Accesos.push(
+
+    {
+      id: tipoSistema,
+      anydesk: {
+
+        usuario: usuarioTViewer,
+        contraseña: contraseñaTViewer
+
+      },
+
+      teamViewer: {
+
+        usuario: usuarioAnydesk,
+        contraseña: contraseñaAnydesk
+
+      }
+
+
+    }
+
+  )
+
+  Accesos.forEach((acceso) => {
+
+    console.table(acceso);
+
+  })
+
+  /**
+  *     fin previsualizacion de los sistemas agregados
+  **/
+
+  /**
+   * 
+   * Agregando accesos a input para ser enviados a la BD 
+   * 
+   */
 
   let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
   inpuAccesosInfo.setAttribute("value", `${AccesosSucursal}`);
@@ -1819,6 +1829,81 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
 
 
+$(document).on('click', "#editarSistema", function () {
+
+  
+  /**
+   * obteniendo el  sistema 
+  **/
+   
+  let sist = this.parentElement.parentElement;
+  let sistem = sist.getAttribute('sistema')
+  
+  /**
+   * creando objeto en el que se guardaran los accesos por Sistema
+  **/
+
+  let accesoSistema = []
+
+  /**
+   * se recorren todos los accesos
+  **/
+
+  todosLosAccesos.forEach(i => {
+
+    //Si los accesos no existen en nuevoObjeto entonces
+    //la creamos e inicializamos el arreglo de Accesos. 
+
+    if (!accesoSistema.hasOwnProperty(i.sistema)) {
+      accesoSistema[i.sistema] = {
+        accesosSistema: []
+      }
+    }
+
+    accesoSistema[i.sistema].accesosSistema.push({
+
+      nombre: i.nombre,
+      usuario: i.usuario,
+      contraseña: i.contraseña
+
+    })
+
+  })
+
+
+  /**
+   * Obteniendo accesos 
+  **/
+
+  
+  console.log(accesoSistema);
+
+  //accesoSistema.forEach
+
+});
+
+$(document).on('click', "#eliminarSistema", function () {
+
+  console.log("Delete ");
+
+
+  let sitemaEliminar = todosLosSitemas.map(item => {
+
+    return [item.nombre, item.acceso.id, item.sistema.id, item]
+
+  });
+
+
+  var sistemaEliminarMapArr = new Map(sitemaEliminar);
+
+
+
+  let sistemaEliminar = [...sistemaEliminarMapArr.values()];
+
+  console.log(sistemaEliminar);
+
+
+});
 
 
 

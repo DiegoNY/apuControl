@@ -248,6 +248,12 @@ class BaseDatos
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }
+    public function verTodosContactos ()
+    {
+        $consulta = "SELECT * FROM `contactos` as c where (c.estado = 1);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
 
     public function registrarContactos($nombre, $cargo, $id_empresa, $telefono, $correo, $estado,$detalle)
     {

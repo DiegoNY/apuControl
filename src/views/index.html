@@ -187,6 +187,11 @@
 
                         </li>
 
+                        <li class="nav-item"><a href="vista-contactos.html" class="nav-link "> <i
+                                    class="bi bi-person-rolodex"></i> <span> Detalle contactos </span></a></li>
+
+                        </li>
+
 
                         <!-- /main -->
 
@@ -972,7 +977,7 @@
 
                                         <div class="form-group row">
 
-                                            <input type="hidden" name="" id="editarAccesoSistema" value="">
+                                            <input type="hidden" name="editarAccesoSistema" id="editarAccesoSistema" value="">
 
                                             <div class="col-lg-6 ">
                                                 <label class="font-weight-semibold">Tipo de Sistema</label>
@@ -1039,9 +1044,10 @@
 
                                             <div class="nav-item ml-auto p-2 bd-highlight">
 
-                                                <span class="badge btn-secondary" id="agregarSistemaSucursal">Agregar
+                                                <span class="badge btn-secondary" id="agregarSistemaSucursal" >Agregar
                                                     sistema +
                                                 </span>
+                                                <i class="bi bi-eye" id="toggleTablaSistema"></i>
 
                                             </div>
 
@@ -1054,50 +1060,93 @@
 
                                                 <fieldset>
 
-                                                    <table class="table" id="tabla_accesoss">
 
-                                                        <thead class="table-light">
-                                                            <th>Plataforma</th>
-                                                            <th>Usuario</th>
-                                                            <th>Contraseña</th>
-                                                        </thead>
+                                                    <div class="card">
 
-                                                        <tbody id="contenedorAccesos">
+                                                       
 
+                                                        <div class="card-body">
 
-                                                            <tr>
-                                                                <input type="hidden" id="id_TV" name="id_TV">
-                                                                <td> TEAMVIEWER </td>
-                                                                <td> <input type="text" class="form-control"
-                                                                        id="usuariosa" name="usuariosa"> </td>
-                                                                <td><input type="text" class="form-control"
-                                                                        id="contraseñaa" name="contraseñaa"> </td>
-                                                            </tr>
+                                                            <table class="table" id="tablaSistema">
 
-                                                            <tr>
-                                                                <input type="hidden" id="id_ANY" name="id_ANY">
-                                                                <td> ANYDESK </td>
-                                                                <td> <input type="text" class="form-control"
-                                                                        id="usuario_ANY" name="usuario_ANY"> </td>
-                                                                <td><input type="text" class="form-control"
-                                                                        id="contraseña_ANY" name="contraseña_ANY">
-                                                                </td>
-                                                            </tr>
+                                                                <thead class="text-light" style="background-color: #252B36;">
+                                    
+                                                                    <th>Nombre</th>
+                                                                    <th>Integracion</th>
+                                                                    <th>Proveedor</th>
+                                                                    <th>Opciones</th>
+                                    
+                                                                </thead>
+                                                                <tbody id="containerSistemas">
+                                    
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                                
+                                                            </table>
 
-                                                            <tr>
-                                                                <input type="hidden" id="id_ER" name="id_ER">
-                                                                <td> ESCRITORIO_REMOTO </td>
-                                                                <td> <input type="text" class="form-control"
-                                                                        id="usuario_ER" name="usuario_ER"> </td>
-                                                                <td><input type="text" class="form-control"
-                                                                        id="contraseña_ER" name="contraseña_ER">
-                                                                </td>
-                                                            </tr>
+                                                        </div>
+
+                                                    </div>
 
 
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="card">
 
+                                                        <div class="card-body">
+
+                                                            <table class="table table-responsive" id="tabla_accesoss">
+
+                                                                <thead>
+                                                                    <th>Plataforma</th>
+                                                                    <th >Usuario</th>
+                                                                    <th>Contraseña</th>
+                                                                </thead>
+        
+                                                                <tbody id="contenedorAccesos">
+        
+                                                                    <tr>
+                                                                        <input type="hidden" id="id_TV" name="id_TV">
+                                                                        <td> TEAMVIEWER </td>
+                                                                        <td ><input  type="text" id="usuariosa" name="usuariosa" > </td>
+                                                                        <td ><input  type="text"  id="contraseñaa" name="contraseñaa"> </td>
+                                                                    </tr>
+        
+                                                                    <tr>
+                                                                        <input type="hidden" id="id_ANY" name="id_ANY">
+                                                                        <td> ANYDESK </td>
+                                                                        <td > <input   type="text" class=""
+                                                                                id="usuario_ANY" name="usuario_ANY"> </td>
+                                                                        <td ><input   type="text" class=""
+                                                                                id="contraseña_ANY" name="contraseña_ANY">
+                                                                        </td>
+                                                                    </tr>
+        
+                                                                    <tr>
+                                                                        <input type="hidden" id="id_ER" name="id_ER">
+                                                                        <td> ESCRITORIO_REMOTO </td>
+                                                                        <td > <input   type="text" class=""
+                                                                                id="usuario_ER" name="usuario_ER"> </td>
+                                                                        <td ><input   type="text" class=""
+                                                                                id="contraseña_ER" name="contraseña_ER">
+                                                                        </td>
+                                                                    </tr>
+        
+        
+                                                                </tbody>
+                                                            </table>
+    
+
+                                                        </div>
+                                                       
+                                                    </div>
+
+                                                  
+
+                                                  
+                                                    
                                                 </fieldset>
 
 

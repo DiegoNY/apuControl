@@ -29,6 +29,8 @@ $txtEstado = $sucursal->sanitizar($txtEstado);
 $txtCodigoCofide = $sucursal->sanitizar($txtCodigoCofide);
 $cboIdub = $sucursal->sanitizar($cboIdub);
 
+#retorna cantidad de sucursales y TRUE si se ingreso correctamente 
+
 $resultado = $sucursal->registrarSucursal($txtNombreSucursal,$txtDireccionSucursal,$txtCodigoCofide ?? "",$cboIdub,$txtEstado,$ruc_id_su,$codigoApu ?? "",$banderaEmpresa ?? "",$ruta);
 
 #Se cuentan las sucursales, los accesos estan ligados al id de la sucursal :: 
@@ -47,11 +49,19 @@ $teamvieew = $sucursal -> registrarAccesos ( $id_sucursal, "ANYDESK", $usuario_A
 $escritortii = $sucursal -> registrarAccesos ( $id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
 
 } else {
+    
+    #En caso no se de agregar al ultimo sistema se ingresa automaticamente :: {los accesos y sistemas estan misma tabla menos esfuerzo a la BD }
 
+    $anydes =  $sucursal -> registrarAccesos ( $id_sucursal, "TEAMVIEWER", $usuariosa, $contraseñaa, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
+
+    $teamvieew = $sucursal -> registrarAccesos ( $id_sucursal, "ANYDESK", $usuario_ANY, $contraseña_ANY, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
+
+    $escritortii = $sucursal -> registrarAccesos ( $id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
 
     //$accesosSucursalPorSistema = $_POST['accesosSucursalPorSistema'];
     
-    #tranformandolos en arrays
+    #Tranformandolos en arrays
+
     $accesosArray = explode("|",$accesosSucursalPorSistema,-1);
     
     $todosLosAccesos = [];
@@ -83,6 +93,7 @@ $escritortii = $sucursal -> registrarAccesos ( $id_sucursal, "ESCRITORIO_REMOTO"
         if($todosLosAccesos[0] === $todosLosAccesos[$i] ){
 
             # se repite por la cantidad de accesos que se tiene, La tabla Accesos registra accesos y sistema estos van entrelasadas
+            
             $tipoIntegracon =  $acceso[0];
             $tipoSistema = $acceso[1];
             $teamViewer = "TEAMVIEWER";

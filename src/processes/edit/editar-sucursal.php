@@ -36,6 +36,14 @@ $res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDirecci
 // TEAM_VIEWER = usuariosa , contraseñaa 
 try {
 
+    if($editarAccesoSistema == "editar"){
+
+
+
+    }else if( $editarAccesoSistema == "registrar") {
+
+    }
+
     $anyDesk = $sucursal->editarAcceso($txtIdSucursal, "ANYDESK", $usuario_ANY, $contraseña_ANY, $id_ANY);
 
     $teamViewer = $sucursal->editarAcceso($txtIdSucursal, "TEAM_VIEWER", $usuariosa, $contraseñaa, $id_TV);
