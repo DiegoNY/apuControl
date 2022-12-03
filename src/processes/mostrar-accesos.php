@@ -2,7 +2,7 @@
 
 include '../connection/basedatos.php';
 
-//$id = $_GET['id'];
+$id = $_GET['id'] ?? "";
 
 extract($_POST);
 

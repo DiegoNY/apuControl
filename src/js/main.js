@@ -1835,7 +1835,7 @@ $(document).on('click', "#editarSistema", function () {
    * Limpiadno los datos 
   **/
   let tipoSisteme = document.getElementById("cboTipoSistema");
-  console.log(tipoSisteme.childNodes);
+  
   /**
    * obteniendo el  sistema y T.Integracion
   **/
@@ -1854,10 +1854,12 @@ $(document).on('click', "#editarSistema", function () {
   **/
   
   let sistema = document.getElementById(`${sistem}`);
+  sistema.removeAttribute('selected');
   sistema.setAttribute('selected','');
   
   
   let integracion = document.getElementById(`${integracio}`)
+  integracion.removeAttribute('selected');
   integracion.setAttribute('selected','');
 
   let proveedor = document.getElementById('proveedor');
