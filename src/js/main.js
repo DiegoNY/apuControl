@@ -1851,8 +1851,9 @@ $(document).on('click', "#editarSistema", function () {
 
   todosLosAccesos.forEach(i => {
 
-    //Si los accesos no existen en @accesoSistema entonces
-    //la creamos e inicializamos el arreglo de Accesos. 
+    /*Si los accesos no existen en @accesoSistema entonces
+     *la creamos e inicializamos el arreglo de Accesos.
+    **/ 
 
     if (!accesoSistema.hasOwnProperty(i.sistema)) {
       accesoSistema[i.sistema] = {
