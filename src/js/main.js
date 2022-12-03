@@ -408,7 +408,7 @@ function cargarAccesos(id) {
 
     <tr idSucursalSistema = "${sistema.id}" sistema="${sistema.nombre}">
       <td> ${sistema.nombre} </td>
-      <td> ${sistema.integracion} </td>
+      <td integracion="${sistema.integracion}"> ${sistema.integracion} </td>
       <td> ${sistema.proveedor} </td>
       <td class="text-center"> <i class="bi bi-pencil-square" id="editarSistema"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
     </tr>
@@ -1831,14 +1831,38 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
 $(document).on('click', "#editarSistema", function () {
 
-  
   /**
-   * obteniendo el  sistema 
+   * Limpiadno los datos 
+  **/
+  let tipoSisteme = document.getElementById("cboTipoSistema");
+  console.log(tipoSisteme.childNodes);
+  /**
+   * obteniendo el  sistema y T.Integracion
   **/
    
-  let sist = this.parentElement.parentElement;
-  let sistem = sist.getAttribute('sistema')
+  let info = this.parentElement.parentElement;
+  let sistem = info.getAttribute('sistema');
   
+  let integraci = info.lastChild.parentNode.children[1];
+  let integracio =  integraci.getAttribute('integracion');
+
+  let proveed = info.lastChild.parentElement.children[2].firstChild.data;
+
+ 
+  /**
+   * Seleccionando Sistema y T.Integracion
+  **/
+  
+  let sistema = document.getElementById(`${sistem}`);
+  sistema.setAttribute('selected','');
+  
+  
+  let integracion = document.getElementById(`${integracio}`)
+  integracion.setAttribute('selected','');
+
+  let proveedor = document.getElementById('proveedor');
+  proveedor.value  = proveed;
+
   /**
    * creando objeto en el que se guardaran los accesos por Sistema
   **/
@@ -1882,11 +1906,28 @@ $(document).on('click', "#editarSistema", function () {
     accesos.forEach( acceso => {
 
       if(acceso.nombre === "ANYDESK"){
-        console.log(acceso);
+        
+        let contraseña = document.getElementById('contraseña_ANY');
+        contraseña.setAttribute('value',`${acceso.contraseña}`);
+
+        let usuario = document.getElementById('usuario_ANY');
+        usuario.setAttribute('value',`${acceso.usuario}`);
+
       }else if(acceso.nombre === "TEAMVIEWER"){
 
+        let contraseña = document.getElementById('contraseñaa');
+        contraseña.setAttribute('value',`${acceso.contraseña}`);
+
+        let usuario = document.getElementById('usuariosa');
+        usuario.setAttribute('value',`${acceso.usuario}`);
 
       }else if(acceso.nombre === "ESCRITORIO_REMOTO"){
+
+        let contraseña = document.getElementById('contraseña_ER');
+        contraseña.setAttribute('value',`${acceso.contraseña}`);
+
+        let usuario = document.getElementById('usuario_ER');
+        usuario.setAttribute('value',`${acceso.usuario}`);
 
       }
      
