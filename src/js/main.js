@@ -1851,7 +1851,7 @@ $(document).on('click', "#editarSistema", function () {
 
   todosLosAccesos.forEach(i => {
 
-    //Si los accesos no existen en nuevoObjeto entonces
+    //Si los accesos no existen en @accesoSistema entonces
     //la creamos e inicializamos el arreglo de Accesos. 
 
     if (!accesoSistema.hasOwnProperty(i.sistema)) {
@@ -1876,8 +1876,22 @@ $(document).on('click', "#editarSistema", function () {
   **/
 
   
-  console.log(accesoSistema);
+    let accesos = accesoSistema[`${sistem}`].accesosSistema;
+    
+    accesos.forEach( acceso => {
 
+      if(acceso.nombre === "ANYDESK"){
+        console.log(acceso);
+      }else if(acceso.nombre === "TEAMVIEWER"){
+
+
+      }else if(acceso.nombre === "ESCRITORIO_REMOTO"){
+
+      }
+     
+    })
+  
+   
   //accesoSistema.forEach
 
 });
