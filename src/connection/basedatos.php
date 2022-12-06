@@ -327,6 +327,15 @@ class BaseDatos
         return $res;
     }
 
+    
+    public function mostrarTodasSucursales()
+    {
+        $consulta = "SELECT * FROM `sucursal` as s where (s.estado = 1);";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
+    }
+
+
     public function mostrarSucursal($id)
     {
         $consulta = "SELECT * FROM `sucursal` as s where (s.estado = 1 and s.id = $id);";
@@ -369,9 +378,9 @@ class BaseDatos
         return $res;
     }
 
-    public function editarAcceso($id_sucursal, $nombre, $id_acceso, $contraseña, $id)
+    public function editarAcceso($id_sucursal, $nombre, $id_acceso, $contraseña, $proveedor,$nombreSistema,$tipoIntegracio)
     {
-        $consulta = "UPDATE accesos as a set nombreAcceso = '$nombre',idAcceso = '$id_acceso',contraseña='$contraseña' where(a.id = $id);";
+        $consulta = "UPDATE accesos as a set idAcceso = '$id_acceso', contraseña='$contraseña', proveedor =  '$proveedor' , tipointegracion = '$tipoIntegracio' where(a.nombreAcceso = '$nombre' and a.id_sucursal = '$id_sucursal' and a.nombresistema = '$nombreSistema');";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -385,6 +394,17 @@ class BaseDatos
     public function eliminarAcceso($id)
     {
         $consulta = "UPDATE accesos as a set estado = 0 where (id = $id);";
+        $res = mysqli_query($this->con, $consulta);
+        if ($res == TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function eliminarSistema ( $sistema , $sucursal)
+    {
+        $consulta = "UPDATE accesos as a set estado = 0 where (a.nombresistema = '$sistema' and a.id_sucursal = '$sucursal' );";
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {
             return true;

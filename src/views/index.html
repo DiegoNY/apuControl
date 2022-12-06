@@ -192,6 +192,11 @@
 
                         </li>
 
+                        
+                        <li class="nav-item"><a href="detalle-sucursales.html" class="nav-link  "> <i
+                            class="bi bi-person-rolodex"></i> <span> Detalle sucursales </span></a></li>
+
+                        </li>
 
                         <!-- /main -->
 
@@ -916,344 +921,353 @@
                 </div>
                 <div class="modal-body py-0">
 
+
+
+
                     <div class="card-body">
+                        <div class="row w-100">
+                            <div class="col-lg-12 ">
+                                <form id="frm-sucursal">
 
+                                    <input type="hidden" id="ruc_id_su" name="ruc_id_su" value="">
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-12 ">
-                                    <form id="frm-sucursal">
+                                    <div class="row">
 
-                                        <input type="hidden" id="ruc_id_su" name="ruc_id_su" value="">
-
-                                        <div class="row">
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="font-weight-semibold">Ingresa Nombre:</label>
-                                                    <input type="text" class="form-control" name="txtNombreSucursal"
-                                                        id="txtNombreSucursal">
-                                                </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold">Ingresa Nombre:</label>
+                                                <input type="text" class="form-control" name="txtNombreSucursal"
+                                                    id="txtNombreSucursal">
                                             </div>
-
                                         </div>
 
-
-                                        <input type="hidden" name="txtIdSucursal" id="txtIdSucursal">
-
-
-                                        <div class="form-group">
-
-                                            <div class="">
-                                                <label class="font-weight-semibold">Ingresa Direccion:</label>
-                                                <input type="text" class="form-control" name="txtDireccionSucursal"
-                                                    id="txtDireccionSucursal">
-                                            </div>
+                                    </div>
 
 
+                                    <input type="hidden" name="txtIdSucursal" id="txtIdSucursal">
 
+
+                                    <div class="form-group">
+
+                                        <div class="">
+                                            <label class="font-weight-semibold">Ingresa Direccion:</label>
+                                            <input type="text" class="form-control" name="txtDireccionSucursal"
+                                                id="txtDireccionSucursal">
                                         </div>
 
 
 
-                                        <div class="form-group ">
-
-                                            <div class="">
-
-                                                <label for="cboIdu" class="col-lg-12 font-weight-semibold">Ubigeo
-                                                    :</label>
-
-                                                <select data-live-search="true" name="cboIdub" id="cboIdub"
-                                                    class="selectpicker form-control">
-                                                    <option value=""></option>
-                                                </select>
-
-                                            </div>
+                                    </div>
 
 
 
+                                    <div class="form-group ">
+
+                                        <div class="">
+
+                                            <label for="cboIdu" class="col-lg-12 font-weight-semibold">Ubigeo
+                                                :</label>
+
+                                            <select data-live-search="true" name="cboIdub" id="cboIdub"
+                                                class="selectpicker form-control">
+                                                <option value=""></option>
+                                            </select>
 
                                         </div>
 
-                                        <div class="form-group row">
 
-                                            <input type="hidden" name="editarAccesoSistema" id="editarAccesoSistema" value="">
 
-                                            <div class="col-lg-6 ">
-                                                <label class="font-weight-semibold">Tipo de Sistema</label>
 
-                                                <select name="cboTipoSistema" id="cboTipoSistema" class="form-control ">
+                                    </div>
+
+                                    <div class="form-group row">
+
+                                        <input type="hidden" name="editarAccesoSistema" id="editarAccesoSistema"
+                                            value="">
+
+                                        <div class="col-lg-6 ">
+                                            <label class="font-weight-semibold">Tipo de Sistema</label>
+
+                                            <select name="cboTipoSistema" id="cboTipoSistema" class="form-control ">
+                                                <option value="" selected></option>
+                                                <option value="GESFARMA">GESFARMA</option>
+                                                <option value="APUGESCOM">APUGESCOM</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col-lg-6 ">
+
+                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
+                                                Integracion</label>
+                                            <div>
+                                                <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
+                                                    class="form-control">
                                                     <option value="" selected></option>
-                                                    <option value="GESFARMA">GESFARMA</option>
-                                                    <option value="APUGESCOM">APUGESCOM</option>
+                                                    <option value="DBF">DBF</option>
+                                                    <option value="TXT">TXT</option>
+                                                    <option value="JSON">JSON</option>
                                                 </select>
                                             </div>
-
-
-                                            <div class="col-lg-6 ">
-
-                                                <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
-                                                    Integracion</label>
-                                                <div>
-                                                    <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
-                                                        class="form-control">
-                                                        <option value="" selected></option>
-                                                        <option value="DBF">DBF</option>
-                                                        <option value="TXT">TXT</option>
-                                                        <option value="JSON">JSON</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-
-                                        <div class="form-group  ">
-
-                                            <div class="">
-                                                <label class=" font-weight-semibold">Proveedor</label>
-                                                <input type="text" class="form-control" name="proveedor" id="proveedor">
-                                            </div>
                                         </div>
 
 
 
-                                        <div class="inactive">
+                                    </div>
 
-                                            <label for="txtIdEmpresa">Id Empresa</label>
-                                            <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
+                                    <div class="form-group  ">
 
+                                        <div class="">
+                                            <label class=" font-weight-semibold">Proveedor</label>
+                                            <input type="text" class="form-control" name="proveedor" id="proveedor">
                                         </div>
-
-                                        <input type="hidden" name="accesosSucursalPorSistema"
-                                            id="accesosSucursalPorSistema" value="">
-
-                                        <ul class="nav nav-tabs d-flex bd-highlight " id="myTab" role="tablist">
-
-                                            <li class="nav-item  bd-highlight" role="presentation">
-                                                <button class="nav-link active" id="accesoTab-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#accesoTab" type="button" role="tab"
-                                                    aria-controls="accesoTab" aria-selected="true">Accesos</button>
-                                            </li>
-                                            <li class="nav-item bd-highlight" role="presentation">
-                                                <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#infoSucu" type="button" role="tab"
-                                                    aria-controls="infoSucu" aria-selected="false">Estación</button>
-                                            </li>
-
-                                            <div class="nav-item ml-auto p-2 bd-highlight">
-
-                                                <span class="badge btn-secondary" id="agregarSistemaSucursal" >Agregar
-                                                    sistema +
-                                                </span>
-                                                <i class="bi bi-eye" id="toggleTablaSistema"></i>
-
-                                            </div>
+                                    </div>
 
 
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="accesoTab" role="tabpanel"
-                                                aria-labelledby="accesoTab-tab">
 
+                                    <div class="inactive">
 
-                                                <fieldset>
+                                        <label for="txtIdEmpresa">Id Empresa</label>
+                                        <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
 
+                                    </div>
 
-                                                    <div class="card">
-
-                                                       
-
-                                                        <div class="card-body">
-
-                                                            <table class="table" id="tablaSistema">
-
-                                                                <thead class="text-light" style="background-color: #252B36;">
+                                    <input type="hidden" name="accesosSucursalPorSistema" id="accesosSucursalPorSistema"
+                                        value="">
                                     
+                                    <ul class="nav nav-tabs d-flex bd-highlight " id="myTab" role="tablist">
+
+                                        <li class="nav-item  bd-highlight" role="presentation">
+                                            <button class="nav-link active" id="accesoTab-tab" data-bs-toggle="tab"
+                                                data-bs-target="#accesoTab" type="button" role="tab"
+                                                aria-controls="accesoTab" aria-selected="true">Accesos</button>
+                                        </li>
+                                        <li class="nav-item bd-highlight" role="presentation">
+                                            <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
+                                                data-bs-target="#infoSucu" type="button" role="tab"
+                                                aria-controls="infoSucu" aria-selected="false">Estación</button>
+                                        </li>
+
+                                        <div class="nav-item ml-auto p-2 bd-highlight">
+
+                                            <span class="badge btn-secondary" id="agregarSistemaSucursal">Agregar
+                                                sistema +
+                                            </span>
+
+                                            
+                                            <i id="container-editar-sistema" class="inactive"> <span class="badge btn-secondary" id="editarSistema" >Editar + </span> </i>
+
+                                            <i class="bi bi-eye-slash inactive" id="ojoPrevisualizacion"></i>
+                                        </div>
+
+
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="accesoTab" role="tabpanel"
+                                            aria-labelledby="accesoTab-tab">
+
+
+                                            <fieldset>
+
+
+                                                <div class="card">
+
+
+
+                                                    <div class="card-body inactive" id="previsualizacion-sistemas">
+
+                                                        <table class="table table-responsive-sm" id="tablaSistema">
+
+                                                            <thead class="text-light"
+                                                                style="background-color: #252B36;">
+
+                                                                <tr>
+
                                                                     <th>Nombre</th>
                                                                     <th>Integracion</th>
                                                                     <th>Proveedor</th>
                                                                     <th>Opciones</th>
-                                    
-                                                                </thead>
-                                                                <tbody id="containerSistemas">
-                                    
-                                                                    <tr>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                    </tr>
-                                    
-                                                                </tbody>
-                                                                
-                                                            </table>
 
-                                                        </div>
+                                                                </tr>
+
+
+                                                            </thead>
+                                                            <tbody id="containerSistemas">
+
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+
+                                                            </tbody>
+
+                                                        </table>
 
                                                     </div>
 
+                                                </div>
 
-                                                    <div class="card">
 
-                                                        <div class="card-body">
+                                                <div class="card">
 
-                                                            <table class="table table-responsive" id="tabla_accesoss">
+                                                    <div class="card-body">
 
-                                                                <thead>
-                                                                    <th>Plataforma</th>
-                                                                    <th >Usuario</th>
-                                                                    <th>Contraseña</th>
-                                                                </thead>
-        
-                                                                <tbody id="contenedorAccesos">
-        
-                                                                    <tr>
-                                                                        <input type="hidden" id="id_TV" name="id_TV">
-                                                                        <td> TEAMVIEWER </td>
-                                                                        <td ><input  type="text" id="usuariosa" name="usuariosa" > </td>
-                                                                        <td ><input  type="text"  id="contraseñaa" name="contraseñaa"> </td>
-                                                                    </tr>
-        
-                                                                    <tr>
-                                                                        <input type="hidden" id="id_ANY" name="id_ANY">
-                                                                        <td> ANYDESK </td>
-                                                                        <td > <input   type="text" class=""
-                                                                                id="usuario_ANY" name="usuario_ANY"> </td>
-                                                                        <td ><input   type="text" class=""
-                                                                                id="contraseña_ANY" name="contraseña_ANY">
-                                                                        </td>
-                                                                    </tr>
-        
-                                                                    <tr>
-                                                                        <input type="hidden" id="id_ER" name="id_ER">
-                                                                        <td> ESCRITORIO_REMOTO </td>
-                                                                        <td > <input   type="text" class=""
-                                                                                id="usuario_ER" name="usuario_ER"> </td>
-                                                                        <td ><input   type="text" class=""
-                                                                                id="contraseña_ER" name="contraseña_ER">
-                                                                        </td>
-                                                                    </tr>
-        
-        
-                                                                </tbody>
-                                                            </table>
-    
+                                                        <table class="table table-responsive-xl" id="tabla_accesoss">
 
-                                                        </div>
-                                                       
+                                                            <thead>
+                                                                <th>Plataforma</th>
+                                                                <th>Usuario</th>
+                                                                <th>Contraseña</th>
+                                                            </thead>
+
+                                                            <tbody id="contenedorAccesos">
+
+                                                                <tr>
+                                                                    <input type="hidden" id="id_TV" name="id_TV">
+                                                                    <td> TEAMVIEWER </td>
+                                                                    <td><input class="form-control" type="text" id="usuariosa"
+                                                                            name="usuariosa"> </td>
+                                                                    <td><input class="form-control" type="text" id="contraseñaa"
+                                                                            name="contraseñaa"> </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <input type="hidden" id="id_ANY" name="id_ANY">
+                                                                    <td> ANYDESK </td>
+                                                                    <td> <input type="text" class="form-control" id="usuario_ANY"
+                                                                            name="usuario_ANY"> </td>
+                                                                    <td><input type="text" class="form-control" id="contraseña_ANY"
+                                                                            name="contraseña_ANY">
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <input type="hidden" id="id_ER" name="id_ER">
+                                                                    <td> E_REMOTO </td>
+                                                                    <td> <input type="text" class="form-control me-2" id="usuario_ER"
+                                                                            name="usuario_ER"> </td>
+                                                                    <td><input type="text" class="form-control me-2" id="contraseña_ER"
+                                                                            name="contraseña_ER">
+                                                                    </td>
+                                                                </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+
+
                                                     </div>
 
-                                                  
-
-                                                  
-                                                    
-                                                </fieldset>
+                                                </div>
 
 
+
+
+
+                                            </fieldset>
+
+
+
+                                        </div>
+                                        <!-- TAB de INFORMACION DE SUCURSAL-->
+                                        <div class="tab-pane fade" id="infoSucu" role="tabpanel"
+                                            aria-labelledby="infoSucu-tab">
+
+
+                                            <div class="row">
+
+                                                <div class="col-lg-6">
+
+                                                    <div class="form-group">
+                                                        <label>Ingresa codigo COFIDE: </label>
+                                                        <input type="text" class="form-control" name="txtCodigoCofide"
+                                                            id="txtCodigoCofide">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-lg-6">
+
+                                                    <div class="form-group">
+                                                        <label>Ingresa codigo APU: </label>
+                                                        <input type="text" class="form-control" name="codigoApu"
+                                                            id="codigoApu">
+                                                    </div>
+
+                                                </div>
 
                                             </div>
-                                            <!-- TAB de INFORMACION DE SUCURSAL-->
-                                            <div class="tab-pane fade" id="infoSucu" role="tabpanel"
-                                                aria-labelledby="infoSucu-tab">
 
 
-                                                <div class="row">
 
-                                                    <div class="col-lg-6">
+                                            <div class=" row">
 
-                                                        <div class="form-group">
-                                                            <label>Ingresa codigo COFIDE: </label>
-                                                            <input type="text" class="form-control"
-                                                                name="txtCodigoCofide" id="txtCodigoCofide">
-                                                        </div>
+                                                <div class=" form-group col-lg-6">
 
-                                                    </div>
+                                                    <label for="" class="">Logo</label>
 
-                                                    <div class="col-lg-6">
-
-                                                        <div class="form-group">
-                                                            <label>Ingresa codigo APU: </label>
-                                                            <input type="text" class="form-control" name="codigoApu"
-                                                                id="codigoApu">
-                                                        </div>
-
-                                                    </div>
 
                                                 </div>
 
 
-
-                                                <div class=" row">
-
-                                                    <div class=" form-group col-lg-6">
-
-                                                        <label for="" class="">Logo</label>
+                                                <div class=" col-lg-12 form-group">
 
 
-                                                    </div>
+                                                    <label class="custom-file">
 
+                                                        <input type="file" name="logo" id="logoSucursal"
+                                                            class="custom-file-input">
+                                                        <span class="custom-file-label">Ingresa Logo</span>
+                                                    </label>
 
-                                                    <div class=" col-lg-12 form-group">
-
-
-                                                        <label class="custom-file">
-
-                                                            <input type="file" name="logo" id="logoSucursal"
-                                                                class="custom-file-input">
-                                                            <span class="custom-file-label">Ingresa Logo</span>
-                                                        </label>
-
-
-                                                    </div>
-
-
-                                                    <input type="hidden" name="editarLogodSucursal"
-                                                        id="editarLogoSucursal" value="">
-                                                    <input type="hidden" name="urlLogos" id="urlLogoSucursal" value="">
-                                                </div>
-
-                                                <div class="col-lg-4"
-                                                    style="height: 140px; width: auto; display: flex;  ">
-                                                    <img src="" alt="logo de la empresa"
-                                                        style="height: 100%; width: auto;" id="previewLogoSucursal">
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-lg-2">Bandera</label>
-
-                                                    <select class="form-control col-lg-10"
-                                                        id="exampleFormControlSelect1" onChange="imageChanged()"
-                                                        name="banderaEmpresa">
-
-                                                    </select>
-
-                                                    <div id="imageSelected">
-
-                                                        <img id='imagenSucursal' src=""
-                                                            style='width:100%; height:150px;'>
-
-                                                    </div>
 
                                                 </div>
 
+
+                                                <input type="hidden" name="editarLogodSucursal" id="editarLogoSucursal"
+                                                    value="">
+                                                <input type="hidden" name="urlLogos" id="urlLogoSucursal" value="">
+                                            </div>
+
+                                            <div class="col-lg-4" style="height: 140px; width: auto; display: flex;  ">
+                                                <img src="" alt="logo de la empresa" style="height: 100%; width: auto;"
+                                                    id="previewLogoSucursal">
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-2">Bandera</label>
+
+                                                <select class="form-control col-lg-10" id="exampleFormControlSelect1"
+                                                    onChange="imageChanged()" name="banderaEmpresa">
+
+                                                </select>
+
+                                                <div id="imageSelected">
+
+                                                    <img id='imagenSucursal' src="" style='width:100%; height:150px;'>
+
+                                                </div>
 
                                             </div>
+
+
                                         </div>
+                                    </div>
 
 
-                                        <input type="hidden" value="1" name="txtEstado">
+                                    <input type="hidden" value="1" name="txtEstado">
 
-                                        <div class="text-right">
-                                            <button type="button" value="Registrar" onclick="registrarSucursal();"
-                                                class="btn text-light" id="btn_registrar_sucursal"
-                                                style="background-color:  #31334D;">Registrar<i
-                                                    class="icon-paperplane ml-2"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    <div class="text-right">
+                                        <button type="button" value="Registrar" onclick="registrarSucursal();"
+                                            class="btn text-light" id="btn_registrar_sucursal"
+                                            style="background-color:  #31334D;">Registrar<i
+                                                class="icon-paperplane ml-2"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -1415,7 +1429,6 @@
     </div>
 
     <!-- /Modal -->
-
 
     <!-- Scripts -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

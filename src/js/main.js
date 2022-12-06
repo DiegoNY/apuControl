@@ -323,6 +323,10 @@ let Sistema = [];
 function cargarAccesos(id) {
 
 
+  todosLosAccesos = [];
+  todosLosSitemas = [];
+  Sistema = [];
+
   $.post("../processes/mostrar-accesos.php", { id }, function (response) {
 
 
@@ -926,6 +930,7 @@ function validarRuc() {
 
 
             let numeros = documento.split('');
+
             let primerosNumerosRuc = numeros[0] + numeros[1]
 
             if (primerosNumerosRuc === "20") {
@@ -1148,6 +1153,8 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   // let numeroSucursal = (this).parentElement.parentElement.parentElement;
 
   // console.log(numeroSucursal);
+  AccesosSucursal = [];
+  Sistemas = [];
 
   let data = tableSucursal.row($(this).parents()).data();
 
@@ -1194,9 +1201,18 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
     $("#editarLogoSucursal").val("no editar")
 
-
+    let previsualizacion = document.getElementById("previsualizacion-sistemas");
+    previsualizacion.classList.remove('inactive');
 
   });
+
+  let nombreBtnRegistro = document.querySelector("#btn_registrar_sucursal");
+  nombreBtnRegistro.innerText = "Guardar Cambios";
+
+  let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
+  inpuAccesosInfo.setAttribute("value", ``);
+
+
 
 });
 
@@ -1284,6 +1300,9 @@ $(document).on("click", "#btn_ruc", function () {
 
 btnes.addEventListener("click", function () {
 
+  let nombreBtnRegistro = document.querySelector("#btn_registrar_sucursal");
+  nombreBtnRegistro.innerText = `Registrar`;
+
   const imgSucursall = document.getElementById("imagenSucursal") || null;
   editarSucursall = false;
   document.getElementById('frm-sucursal').reset();
@@ -1301,6 +1320,41 @@ btnes.addEventListener("click", function () {
 
   let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
   inpuAccesosInfo.setAttribute("value", ``);
+
+  let sistema = document.getElementById("cboTipoSistema");
+  sistema.options.selectedIndex = 0;
+
+  let integracion = document.getElementById("cboIdTipoIntegracion");
+  integracion.options.selectedIndex = 0;
+
+  let previsualizacion = document.getElementById("previsualizacion-sistemas");
+  previsualizacion.classList.add('inactive');
+
+  /**
+   *  Limpiando campos
+  **/
+
+  let an = document.getElementById('contraseña_ANY');
+  an.setAttribute('value', ``);
+
+  let anc = document.getElementById('usuario_ANY');
+  anc.setAttribute('value', ``);
+
+  let tv = document.getElementById('contraseñaa');
+  tv.setAttribute('value', ``);
+
+  let tvc = document.getElementById('usuariosa');
+  tvc.setAttribute('value', ``);
+
+  let er = document.getElementById('contraseña_ER');
+  er.setAttribute('value', ``);
+
+  let erc = document.getElementById('usuario_ER');
+  erc.setAttribute('value', ``);
+
+  let containerBtnEditar = document.querySelector('#container-editar-sistema');
+  containerBtnEditar.classList.add('inactive');
+
 
 }
 )
@@ -1740,6 +1794,11 @@ let Accesos = [];
 
 btnAgregarSistemaSucursal.addEventListener('click', function () {
 
+
+  let editar = document.querySelector('#editarAccesoSistema');
+  editar.removeAttribute('value');
+  editar.setAttribute('value', 'registrar');
+
   let tipoSistema = document.querySelector('#cboTipoSistema').value;
   let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value;
   let usuarioAnydesk = document.querySelector('#usuariosa').value;
@@ -1767,8 +1826,9 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   );
 
   /**
- *    previsualizacion de los sistemas agregados
- **/
+   * Previsualizacion de los sistemas agregados
+  **/
+
   Sistemas.push(
 
     {
@@ -1803,11 +1863,31 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
   )
 
-  Accesos.forEach((acceso) => {
 
-    console.table(acceso);
+  template = "";
 
-  })
+  Sistemas.forEach(sistema => {
+
+    template += `
+
+  <tr idSucursalSistema = "${sistema.id}" sistema="${sistema.nombre}">
+    <td> ${sistema.nombre} </td>
+    <td integracion="${sistema.integracion}"> ${sistema.integracion} </td>
+    <td> ${sistema.proveedor} </td>
+    <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
+  </tr>
+  
+  `;
+  });
+
+  let containerSistema = document.getElementById("containerSistemas");
+  containerSistema.innerHTML = template;
+
+  let previsualizacion = document.getElementById("previsualizacion-sistemas");
+  previsualizacion.classList.remove('inactive');
+
+  let toogleVisualizacion = document.getElementById("ojoPrevisualizacion");
+  toogleVisualizacion.classList.remove('inactive');
 
   /**
   *     fin previsualizacion de los sistemas agregados
@@ -1822,48 +1902,84 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
   inpuAccesosInfo.setAttribute("value", `${AccesosSucursal}`);
 
+  /**
+   * Alerta ( 7 i 7 ) 
+  **/
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
+  Toast.fire({
+    icon: 'success',
+    title: 'Agregada correctamente'
+  })
 
 });
 
+let toogleVisualizacion = document.getElementById("ojoPrevisualizacion");
+toogleVisualizacion.addEventListener('click', toogleOjovisualiazacion);
 
+
+function toogleOjovisualiazacion() {
+
+
+  let tablaSistema = document.querySelector('#previsualizacion-sistemas');
+
+  tablaSistema.classList.toggle('inactive');
+
+}
+
+var mostrarAlerta = 'true';
 
 $(document).on('click', "#editarSistema", function () {
 
   /**
-   * Limpiadno los datos 
+   * Limpiando los datos 
   **/
+
   let tipoSisteme = document.getElementById("cboTipoSistema");
-  
+
   /**
-   * obteniendo el  sistema y T.Integracion
+   * obteniendo el  sistema , T.Integracion idSucursal
   **/
-   
+
   let info = this.parentElement.parentElement;
   let sistem = info.getAttribute('sistema');
-  
+
   let integraci = info.lastChild.parentNode.children[1];
-  let integracio =  integraci.getAttribute('integracion');
+  let integracio = integraci.getAttribute('integracion');
 
   let proveed = info.lastChild.parentElement.children[2].firstChild.data;
 
- 
+
+
+
   /**
-   * Seleccionando Sistema y T.Integracion
+   * Mostrando data necesaria Seleccionando Sistema y T.Integracion
   **/
-  
+
   let sistema = document.getElementById(`${sistem}`);
   sistema.removeAttribute('selected');
-  sistema.setAttribute('selected','');
-  
-  
+  sistema.setAttribute('selected', '');
+
+
   let integracion = document.getElementById(`${integracio}`)
   integracion.removeAttribute('selected');
-  integracion.setAttribute('selected','');
+  integracion.setAttribute('selected', '');
 
   let proveedor = document.getElementById('proveedor');
-  proveedor.value  = proveed;
+  proveedor.value = proveed;
+
+  console.log(proveedor);
 
   /**
    * creando objeto en el que se guardaran los accesos por Sistema
@@ -1879,7 +1995,7 @@ $(document).on('click', "#editarSistema", function () {
 
     /*Si los accesos no existen en @accesoSistema entonces
      *la creamos e inicializamos el arreglo de Accesos.
-    **/ 
+    **/
 
     if (!accesoSistema.hasOwnProperty(i.sistema)) {
       accesoSistema[i.sistema] = {
@@ -1902,66 +2018,185 @@ $(document).on('click', "#editarSistema", function () {
    * Obteniendo accesos 
   **/
 
-  
-    let accesos = accesoSistema[`${sistem}`].accesosSistema;
-    
-    accesos.forEach( acceso => {
 
-      if(acceso.nombre === "ANYDESK"){
-        
-        let contraseña = document.getElementById('contraseña_ANY');
-        contraseña.setAttribute('value',`${acceso.contraseña}`);
+  let accesos = accesoSistema[`${sistem}`].accesosSistema;
 
-        let usuario = document.getElementById('usuario_ANY');
-        usuario.setAttribute('value',`${acceso.usuario}`);
+  accesos.forEach(acceso => {
 
-      }else if(acceso.nombre === "TEAMVIEWER"){
+    if (acceso.nombre === "ANYDESK") {
 
-        let contraseña = document.getElementById('contraseñaa');
-        contraseña.setAttribute('value',`${acceso.contraseña}`);
+      let contraseña = document.getElementById('contraseña_ANY');
+      contraseña.setAttribute('value', `${acceso.contraseña}`);
 
-        let usuario = document.getElementById('usuariosa');
-        usuario.setAttribute('value',`${acceso.usuario}`);
+      let usuario = document.getElementById('usuario_ANY');
+      usuario.setAttribute('value', `${acceso.usuario}`);
 
-      }else if(acceso.nombre === "ESCRITORIO_REMOTO"){
+    } else if (acceso.nombre === "TEAMVIEWER") {
 
-        let contraseña = document.getElementById('contraseña_ER');
-        contraseña.setAttribute('value',`${acceso.contraseña}`);
+      let contraseña = document.getElementById('contraseñaa');
+      contraseña.setAttribute('value', `${acceso.contraseña}`);
 
-        let usuario = document.getElementById('usuario_ER');
-        usuario.setAttribute('value',`${acceso.usuario}`);
+      let usuario = document.getElementById('usuariosa');
+      usuario.setAttribute('value', `${acceso.usuario}`);
 
-      }
-     
-    })
-  
-   
+    } else if (acceso.nombre === "ESCRITORIO_REMOTO") {
+
+      let contraseña = document.getElementById('contraseña_ER');
+      contraseña.setAttribute('value', `${acceso.contraseña}`);
+
+      let usuario = document.getElementById('usuario_ER');
+      usuario.setAttribute('value', `${acceso.usuario}`);
+
+    }
+
+  })
+
+  /**
+   * Mostrando btn editar
+  **/
+
+  let containerBtnEditar = document.querySelector('#container-editar-sistema');
+  containerBtnEditar.classList.remove('inactive');
+
   //accesoSistema.forEach
 
+  if (mostrarAlerta === 'true') {
+
+    Swal.fire({
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/1665/1665697.png',
+      imageWidth: 100,
+      imageHeight: 100,
+      title: '',
+      text: 'Editaras un sistema realiza los cambio y da click en editar',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+        'ok',
+      confirmButtonAriaLabel: 'Thumbs up, great!',
+      cancelButtonText:
+        '<li id="ocultarAlerta">No volver a mostrar</li>',
+      cancelButtonAriaLabel: 'Thumbs down'
+
+    })
+
+  } else {
+
+  }
+
+
+  let ocultar = document.getElementById('ocultarAlerta');
+  ocultar.addEventListener('click', () => {
+    mostrarAlerta = 'false';
+    console.log(mostrarAlerta)
+  });
+
 });
+
+
+
+let btnEditarSistema = document.querySelector('#editarSistema');
+
+btnEditarSistema.addEventListener('click', editarSistemaSucursal);
+
+
+function editarSistemaSucursal() {
+
+  let editar = document.querySelector('#editarAccesoSistema');
+  editar.removeAttribute('value');
+  editar.setAttribute('value', 'editar');
+
+  let tipoSistema = document.querySelector('#cboTipoSistema').value;
+  let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value;
+  let usuarioAnydesk = document.querySelector('#usuariosa').value;
+  let contraseñaAnydesk = document.querySelector('#contraseñaa').value;
+  let usuarioTViewer = document.querySelector('#usuario_ANY').value;
+  let contraseñaTViewer = document.querySelector('#contraseña_ANY').value;
+  let usuarioEscriRemoto = document.querySelector('#usuario_ER').value;
+  let contraseñaEscriRemoto = document.querySelector('#contraseña_ER').value;
+  let proveedor = document.querySelector('#proveedor').value;
+
+  AccesosSucursal.push(
+
+    tipoIntegracion,
+    tipoSistema,
+    usuarioAnydesk,
+    contraseñaAnydesk,
+    usuarioTViewer,
+    contraseñaTViewer,
+    usuarioEscriRemoto,
+    contraseñaEscriRemoto,
+    proveedor,
+    id,
+    "|"
+
+  );
+
+
+  let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
+  inpuAccesosInfo.setAttribute("value", `${AccesosSucursal}`);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  Toast.fire({
+    icon: 'success',
+    title: 'Se editara recuerda guardar los cambios '
+  })
+
+
+}
+
+
+
 
 $(document).on('click', "#eliminarSistema", function () {
 
-  console.log("Delete ");
+
+  Swal.fire({
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/604/604573.png',
+    imageWidth: 100,
+    imageHeight: 100,
+    title: 'Estas seguro ?',
+    text: "Si se elimina no podra ser recuperado",
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, eliminar!'
+
+  }).then((result) => {
+
+    if (result.isConfirmed) {
+
+      let data = this.parentElement.parentElement;
+      let sistema = data.getAttribute('sistema');
+      let sucursal = data.getAttribute('idsucursalsistema');
+
+      const RUTA = `../processes/delete/eliminar-sistema.php?sistema=${sistema}&sucursal=${sucursal}`;
 
 
-  let sitemaEliminar = todosLosSitemas.map(item => {
-
-    return [item.nombre, item.acceso.id, item.sistema.id, item]
-
-  });
+      fetch(RUTA)
+        .then(response => JSON.parse(response))
+        .then(data => console.log(data));
 
 
-  var sistemaEliminarMapArr = new Map(sitemaEliminar);
+      data.remove();
+    }
 
-
-
-  let sistemaEliminar = [...sistemaEliminarMapArr.values()];
-
-  console.log(sistemaEliminar);
+  })
 
 
 });
+
 
 
 

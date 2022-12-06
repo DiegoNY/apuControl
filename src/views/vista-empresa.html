@@ -187,26 +187,35 @@
                             <a href="vista-empresa.html" class="nav-link active">
                                 <i class="icon-home4"></i>
                                 <span>
-                                    Listar 
-                                Empresas
+                                    Listar
+                                    Empresas
                                 </span>
                             </a>
-                            
-                            <li class="nav-item"><a href="index.html" class="nav-link "> <i class="bi bi-bookmark-plus"></i> <span> Registrar Empresas</span></a></li>
-    
-                        <li class="nav-item"><a href="vista-grupos.html" class="nav-link "> <i class="bi bi-bag-fill"></i> Grupos
+
+                        <li class="nav-item"><a href="index.html" class="nav-link "> <i class="bi bi-bookmark-plus"></i>
+                                <span> Registrar Empresas</span></a></li>
+
+                        <li class="nav-item"><a href="vista-grupos.html" class="nav-link "> <i
+                                    class="bi bi-bag-fill"></i> Grupos
                                 empresariales</a></li>
-    
-    
-                        <li class="nav-item"><a href="vista-registro-sistemas.html"
-                                class="nav-link "> <i class="bi bi-archive"></i> <span> Informacion del Sistema </span></a></li>
-    
+
+
+                        <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link "> <i
+                                    class="bi bi-archive"></i> <span> Informacion del Sistema </span></a></li>
+
                         </li>
 
                         <li class="nav-item"><a href="vista-contactos.html" class="nav-link "> <i
-                            class="bi bi-person-rolodex"></i> <span> Detalle contactos </span></a></li>
+                                    class="bi bi-person-rolodex"></i> <span> Detalle contactos </span></a></li>
 
-                     </li>
+
+
+                        <li class="nav-item"><a href="detalle-sucursales.html" class="nav-link  "> <i
+                                    class="bi bi-person-rolodex"></i> <span> Detalle sucursales </span></a></li>
+
+                        </li>
+
+                        </li>
 
 
                         <!-- /main -->
@@ -292,7 +301,7 @@
                             <!-- Vista Empresa -->
 
                             <div class="card">
-                            
+
                                 <div class="card-body ">
 
                                     <table class="table datatable-basic " id="tabla_empresasas" style=" width:100%;"
@@ -385,7 +394,7 @@
                                                                     </thead>
                                                                     <tbody class="gridjs-tbody">
 
-                                                                        
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -398,7 +407,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                         
+
                                         </div>
                                     </div>
                                 </div>
@@ -479,7 +488,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                         
+
                                         </div>
                                     </div>
                                 </div>
@@ -503,6 +512,7 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>ID Sucursal</th>
+                                                            <th>Sistema</th>
                                                             <th>Nombre acceso</th>
                                                             <th>Usuario</th>
                                                             <th>Contraseña</th>
@@ -518,7 +528,7 @@
                                             </div>
 
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -537,44 +547,48 @@
 
                                                 <fieldset class="mb-3 col-xl-6">
 
-                                                    <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
+                                                    <legend class="text-uppercase font-size-sm font-weight-semibold">
+                                                        Informacion
                                                         basica de empresa</legend>
 
                                                     <div class="form-group row">
 
 
                                                         <div class="col-lg-6">
-        
+
                                                             <label class="font-weight-semibold">Ruc</label>
-        
+
                                                             <div>
-        
+
                                                                 <div class="row">
                                                                     <input type="text" ruc_ids value="" maxlength="11"
-                                                                        name="txtRuc" id="txtRuc" class="form-control " disabled>
+                                                                        name="txtRuc" id="txtRuc" class="form-control "
+                                                                        disabled>
                                                                 </div>
-        
+
                                                             </div>
-        
-        
-        
+
+
+
                                                         </div>
-        
-        
+
+
                                                         <div class="col-lg-6">
-        
-                                                            <label for="cboIdGrupo" class="font-weight-semibold">Grupo</label>
-                                                            <input type="text" id="txtIdGrupo" class="form-control" disabled>
-        
+
+                                                            <label for="cboIdGrupo"
+                                                                class="font-weight-semibold">Grupo</label>
+                                                            <input type="text" id="txtIdGrupo" class="form-control"
+                                                                disabled>
+
                                                         </div>
-        
+
                                                     </div>
-        
-        
-        
+
+
+
                                                     <div class="form-group row">
-        
-        
+
+
                                                         <div class="col-lg-6">
                                                             <label class=" font-weight-semibold">Razon social</label>
                                                             <div class="">
@@ -582,45 +596,45 @@
                                                                     id="txtRazonSocial" class="form-control" disabled>
                                                             </div>
                                                         </div>
-        
+
                                                         <div class="col-lg-6">
                                                             <label class="font-weight-semibold">Nombre Comercial</label>
                                                             <div class="">
-                                                                <input type="text" value="" name="txtNombreCo" id="txtNombreCo"
-                                                                    class="form-control" disabled>
+                                                                <input type="text" value="" name="txtNombreCo"
+                                                                    id="txtNombreCo" class="form-control" disabled>
                                                             </div>
                                                         </div>
-        
+
                                                     </div>
-                                                                
+
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-form-label col-lg-2 font-weight-semibold">Direccion</label>
                                                         <div class="col-lg-10">
-                                                            <input type="text" class="form-control" value="" name="txtDireccion"
-                                                                id="txtDireccion" disabled>
+                                                            <input type="text" class="form-control" value=""
+                                                                name="txtDireccion" id="txtDireccion" disabled>
                                                         </div>
                                                     </div>
-        
+
                                                     <div class="form-group row">
-        
+
                                                         <div class="col-lg-6">
-                                                            <label
-                                                                class="font-weight-semibold">Distrito</label>
-                                                            <div >
-                                                                <select name="cboIdu" id="cboIdu" class="form-control" disabled>
+                                                            <label class="font-weight-semibold">Distrito</label>
+                                                            <div>
+                                                                <select name="cboIdu" id="cboIdu" class="form-control"
+                                                                    disabled>
                                                                     <option value="123">123</option>
                                                                     <option value="164">164</option>
                                                                     <option value="" selected></option>
                                                                 </select>
                                                             </div>
                                                         </div>
-            
+
                                                         <div class="col-lg-6">
-                                                            <label
-                                                                class="font-weight-semibold">Rubro</label>
-                                                            <div >
-                                                                <select name="cboIdRubro" id="cboIdRubro" class="form-control" disabled>
+                                                            <label class="font-weight-semibold">Rubro</label>
+                                                            <div>
+                                                                <select name="cboIdRubro" id="cboIdRubro"
+                                                                    class="form-control" disabled>
                                                                     <option value="" selected></option>
                                                                     <option value="EDS">EDS</option>
                                                                     <option value="BOTICAS">BOTICAS</option>
@@ -628,42 +642,42 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        
-        
+
+
                                                     </div>
-        
-        
+
+
                                                     <div class="form-group row">
 
                                                         <div class="col-lg-6">
-                                                            <label
-                                                                class=" font-weight-semibold">T.Persona</label>
-                                                            <div >
+                                                            <label class=" font-weight-semibold">T.Persona</label>
+                                                            <div>
                                                                 <select name="cboTipoPersona" id="cboTipoPersona"
                                                                     class="form-control" disabled>
-            
-                                                                    <option value="" selected id="defaultTipoPersona"></option>
+
+                                                                    <option value="" selected id="defaultTipoPersona">
+                                                                    </option>
                                                                     <option value="NATURAL" id="natu">Natural</option>
                                                                     <option value="JURIDICA" id="juri">Juridica</option>
                                                                 </select>
                                                             </div>
                                                         </div>
-            
+
                                                         <div class="col-lg-6">
-    
+
                                                             <label class="">Fecha de registro</label>
-    
-                                                            <div >
+
+                                                            <div>
                                                                 <input type="text" name="txtFechaRegistro"
                                                                     id="txtFechaRegistro" value="" class="form-control"
                                                                     disabled>
                                                             </div>
-    
+
                                                         </div>
 
                                                     </div>
-        
-                                                  
+
+
 
                                                 </fieldset>
 
@@ -672,78 +686,112 @@
                                                         Informacion
                                                         de
                                                         Sistema</legend>
-                                                    
-                                                    <div class="form-group row">
 
-                                                        <div class="col-lg-6">
-                                                            <label >Tipo de Sistema</label>
-                                                            <div class="">
-                                                                <input type="text" id="cboTipoSistema" class="form-control"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
-    
-                                                        
-                                                        <div class="col-lg-6">
-                                                            <label class=" font-weight-semibold">Proveedor</label>
-                                                            <input type="text" class="form-control" name="proveedor"
-                                                                id="proveedor" disabled>
-                                                        </div>
-                                                      
-    
+                                            
+                                                   
 
-                                                    </div>
-
-                                                    <div class="form-group row">
-
-                                                        <div class="col-lg-6">
-    
-                                                            <label for="cboIdGrupo" >Tipo de 
-                                                                Envio</label>
-                                                            <div class="">
-                                                                <input type="text" id="cboTipoEnvio" class="form-control"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-6">
-
-                                                            <label for="cboIdGrupo" >Tipo de 
-                                                                Integracion</label>
-                                                            <div >
-                                                                <input type="text" class="form-control"
-                                                                    id="cboIdTipoIntegracion" disabled>
-                                                            </div>
-                                                        </div>
-    
-    
-                                                      
-    
-
-                                                    </div>
                                                 
                                                     <div class="form-group row">
 
                                                         <div class="col-lg-6">
-                                                            <label >Estado Comercial</label>
+        
+                                                            <label for="cboIdGrupo" class=" font-weight-semibold" >Tipo de
+                                                                Envio</label>
                                                             <div>
-                                                                <input type="text" id="txtEstadoComercial"
+                                                                <select name="cboTipoEnvio" id="cboTipoEnvio"
                                                                     class="form-control" disabled>
+                                                                    <option value="" selected></option>
+                                                                    <option value="OSE">OSE</option>
+                                                                    <option value="SUNAT">SUNAT</option>
+                                                                </select>
                                                             </div>
                                                         </div>
-
+        
                                                         <div class="col-lg-6">
-                                                            <label class="">Estado</label>
-                                                            <div class="">
-                                                                <input type="text" class="form-control" id="cboEstado"
-                                                                    disabled>
+                                                            <label class=" font-weight-semibold">Estado Comercial</label>
+                                                            <div>
+                                                                <select name="txtEstadoComercial" id="txtEstadoComercial"
+                                                                    class="form-control" disabled>
+                                                                    <option value="" selected></option>
+                                                                    <option value="INGRESADO">INGRESADO</option>
+                                                                    <option value="POR_INSTALAR">POR INSTALAR</option>
+                                                                    <option value="PRODUCCION">PRODUCCION</option>
+                                                                    <option value="POSIBLE_CLIENTE">POSIBLE CLIENTE</option>
+                                                                </select>
                                                             </div>
                                                         </div>
-    
-
+        
+                                                        <!--- Esto se movio no quitar -->
+                                                        <!-- <div class="col-lg-6 inactive">
+        
+                                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
+                                                                Integracion</label>
+                                                            <div>
+                                                                <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
+                                                                    class="form-control">
+                                                                    <option value="" selected></option>
+                                                                    <option value="DBF">DBF</option>
+                                                                    <option value="TXT">TXT</option>
+                                                                    <option value="JSON">JSON</option>
+                                                                </select>
+                                                            </div>
+                                                        </div> -->
+                                                        <!--- / Esto se movio no quitar -->
+        
+                                                    </div>
+        
+                                                    <div class="form-group row ">
+        
+        
+                                                        <div class="col-lg-12">
+        
+                                                            <table class="table">
+        
+                                                                <thead>
+        
+                                                                    <th>
+                                                                        Clave Sol
+                                                                    </th>
+        
+        
+                                                                </thead>
+        
+                                                                <tbody>
+        
+                                                                    <tr>
+        
+                                                                        <td>Usuario <input type="text" class="form-control"
+                                                                                name="usuarioClaveSol" id="usuarioClaveSol" disabled>
+                                                                        </td>
+                                                                        <td>Contraseña <input type="text" class="form-control"
+                                                                                name="contraseñaClaveSol"
+                                                                                id="contraseñaClaveSol" disabled> </td>
+        
+                                                                    </tr>
+        
+                                                                </tbody>
+        
+                                                            </table>
+        
+                                                        </div>
+        
+        
+        
+                                                        <div class="col-lg-6 inactive">
+                                                            <label class=" font-weight-semibold">Estado</label>
+                                                            <div>
+                                                                <select name="cboEstado" id="cboEstado" class="form-control">
+                                                                    <option value="" selected></option>
+                                                                    <option value="">Posible Cliente</option>
+                                                                    <option value="">Cliente</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+        
+        
+        
                                                     </div>
 
-                                                   
 
                                                     <div class="row">
 

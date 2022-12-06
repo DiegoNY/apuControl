@@ -50,16 +50,6 @@ $escritortii = $sucursal -> registrarAccesos ( $id_sucursal, "ESCRITORIO_REMOTO"
 
 } else {
     
-    #En caso no se de agregar al ultimo sistema se ingresa automaticamente :: {los accesos y sistemas estan misma tabla menos esfuerzo a la BD }
-
-    $anydes =  $sucursal -> registrarAccesos ( $id_sucursal, "TEAMVIEWER", $usuariosa, $contraseñaa, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
-
-    $teamvieew = $sucursal -> registrarAccesos ( $id_sucursal, "ANYDESK", $usuario_ANY, $contraseña_ANY, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
-
-    $escritortii = $sucursal -> registrarAccesos ( $id_sucursal, "ESCRITORIO_REMOTO", $usuario_ER, $contraseña_ER, $txtEstado,$proveedor,$cboTipoSistema,$cboIdTipoIntegracion );
-
-    //$accesosSucursalPorSistema = $_POST['accesosSucursalPorSistema'];
-    
     #Tranformandolos en arrays
 
     $accesosArray = explode("|",$accesosSucursalPorSistema,-1);

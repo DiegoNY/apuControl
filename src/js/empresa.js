@@ -210,6 +210,8 @@ $(document).ready(function () {
       $("#cboEstado").val(empresa.estado);
       $("#txtIdGrupo").val(empresa.id_grupo);
       $("#proveedor").val(empresa.proveedor);
+      $("#usuarioClaveSol").val(empresa.usuarioclavesol);
+      $("#contraseñaClaveSol").val(empresa.clavesol);
 
       let ubigeo_option = document.getElementById(`${empresa.id_ubigeo}`);
       //seleccionarla
@@ -324,13 +326,14 @@ $(document).ready(function () {
       columns: [
         { data: "id" },
         { data: "id_sucursal" },
+        { data: "nombreSistema" },
         { data: "nombreAcceso" },
         { data: "idAcceso" },
         { data: "contrasena" },
         {
           defaultContent: ``,
         },
-      ],
+      ], 
       language: {
         decimal: "",
         emptyTable: "No hay información",

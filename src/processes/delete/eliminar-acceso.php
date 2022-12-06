@@ -1,6 +1,7 @@
 <?php 
 
 include '../../connection/basedatos.php';
+
 //data
 $id = $_POST['id'];
 //validacion

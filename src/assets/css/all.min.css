@@ -15368,7 +15368,8 @@ pre {
 }
 
 .table {
-    margin-bottom: 0
+    margin-bottom: 0;
+    /* width: 288px; */
 }
 
 .table td,
