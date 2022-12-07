@@ -980,6 +980,53 @@
 
                                     </div>
 
+
+
+
+                                    <div class="inactive">
+
+                                        <label for="txtIdEmpresa">Id Empresa</label>
+                                        <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
+
+                                    </div>
+
+                                    <input type="hidden" name="accesosSucursalPorSistema" id="accesosSucursalPorSistema"
+                                        value="">
+                                    
+                                    <ul class="nav nav-tabs d-flex bd-highlight " id="myTab" role="tablist">
+
+                                        <li class="nav-item  bd-highlight" role="presentation">
+                                            <button class="nav-link active" id="accesoTab-tab" data-bs-toggle="tab"
+                                                data-bs-target="#accesoTab" type="button" role="tab"
+                                                aria-controls="accesoTab" aria-selected="true">Sistemas</button>
+                                        </li>
+                                        <li class="nav-item bd-highlight" role="presentation">
+                                            <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
+                                                data-bs-target="#infoSucu" type="button" role="tab"
+                                                aria-controls="infoSucu" aria-selected="false">Estación</button>
+                                        </li>
+
+                                        <div class="nav-item ml-auto p-2 bd-highlight">
+
+                                            <span class="badge btn-secondary" id="agregarSistemaSucursal">Agregar
+                                                sistema +
+                                            </span>
+
+                                            
+                                            <i id="container-editar-sistema" class="inactive"> <span class="badge btn-secondary" id="editarSistema" >Editar + </span> </i>
+
+                                            <i class="bi bi-eye-slash inactive" id="ojoPrevisualizacion"></i>
+                                        </div>
+
+
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="accesoTab" role="tabpanel"
+                                            aria-labelledby="accesoTab-tab">
+
+                                            <fieldset>
+
+                                                
                                     <div class="form-group row">
 
                                         <input type="hidden" name="editarAccesoSistema" id="editarAccesoSistema"
@@ -1023,49 +1070,7 @@
                                         </div>
                                     </div>
 
-
-
-                                    <div class="inactive">
-
-                                        <label for="txtIdEmpresa">Id Empresa</label>
-                                        <input type="text" name="txtIdEmpresa" id="txtIdEmpresa">
-
-                                    </div>
-
-                                    <input type="hidden" name="accesosSucursalPorSistema" id="accesosSucursalPorSistema"
-                                        value="">
-                                    
-                                    <ul class="nav nav-tabs d-flex bd-highlight " id="myTab" role="tablist">
-
-                                        <li class="nav-item  bd-highlight" role="presentation">
-                                            <button class="nav-link active" id="accesoTab-tab" data-bs-toggle="tab"
-                                                data-bs-target="#accesoTab" type="button" role="tab"
-                                                aria-controls="accesoTab" aria-selected="true">Accesos</button>
-                                        </li>
-                                        <li class="nav-item bd-highlight" role="presentation">
-                                            <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
-                                                data-bs-target="#infoSucu" type="button" role="tab"
-                                                aria-controls="infoSucu" aria-selected="false">Estación</button>
-                                        </li>
-
-                                        <div class="nav-item ml-auto p-2 bd-highlight">
-
-                                            <span class="badge btn-secondary" id="agregarSistemaSucursal">Agregar
-                                                sistema +
-                                            </span>
-
-                                            
-                                            <i id="container-editar-sistema" class="inactive"> <span class="badge btn-secondary" id="editarSistema" >Editar + </span> </i>
-
-                                            <i class="bi bi-eye-slash inactive" id="ojoPrevisualizacion"></i>
-                                        </div>
-
-
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="accesoTab" role="tabpanel"
-                                            aria-labelledby="accesoTab-tab">
-
+                                            </fieldset>
 
                                             <fieldset>
 
