@@ -13,7 +13,7 @@ $resultado = $accesos->mostrarAccesos($id);
 
 
 if(!$resultado){
-    die("Query failed");
+    die("Query failed"); 
 }
 
 $json = array();

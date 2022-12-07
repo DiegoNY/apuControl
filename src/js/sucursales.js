@@ -86,7 +86,7 @@ function cargarAccesos(id_sucursal) {
             { data  : "nombreSistema"  },
             { data  : "nombreAcceso"   },
             { data  : "idAcceso"       },
-            { data  : "contrasena"     }
+            { data  : "contrasena"     },
         
         ],
 

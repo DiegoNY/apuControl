@@ -226,8 +226,6 @@ $(document).ready(function () {
 
   }
 
-
-
   function cargarSucursal(ruc) {
 
     tableSucursal = $("#tabla_sucursals").DataTable({

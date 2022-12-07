@@ -1150,9 +1150,28 @@ cargarTipointegracion();
 
 $(document).on("click", ".btn-edit-sucursal", function () {
 
-  // let numeroSucursal = (this).parentElement.parentElement.parentElement;
+  /**
+  * Limpiando los datos 
+ **/
 
-  // console.log(numeroSucursal);
+  
+  let tipoSistema = document.querySelector('#cboTipoSistema').value = 0;
+  let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value = 0;
+  let usuarioAnydesk = document.querySelector('#usuariosa');
+  usuarioAnydesk.setAttribute('value','');
+  let contraseñaAnydesk = document.querySelector('#contraseñaa');
+  contraseñaAnydesk.setAttribute('value', '');
+  let usuarioTViewer = document.querySelector('#usuario_ANY');
+  usuarioTViewer.setAttribute('value','');
+  let contraseñaTViewer = document.querySelector('#contraseña_ANY');
+  contraseñaTViewer.setAttribute('value','');
+  let usuarioEscriRemoto = document.querySelector('#usuario_ER');
+  usuarioEscriRemoto.setAttribute('value','');
+  let contraseñaEscriRemoto = document.querySelector('#contraseña_ER');
+  contraseñaEscriRemoto.setAttribute('value','');
+  let proveedor = document.querySelector('#proveedor').value = '';
+ 
+
   AccesosSucursal = [];
   Sistemas = [];
 
@@ -1942,11 +1961,7 @@ var mostrarAlerta = 'true';
 
 $(document).on('click', "#editarSistema", function () {
 
-  /**
-   * Limpiando los datos 
-  **/
 
-  let tipoSisteme = document.getElementById("cboTipoSistema");
 
   /**
    * obteniendo el  sistema , T.Integracion idSucursal
@@ -2084,12 +2099,19 @@ $(document).on('click', "#editarSistema", function () {
 
   }
 
-
-  let ocultar = document.getElementById('ocultarAlerta');
+  
+  try{
+    
+  let ocultar = document.getElementById('ocultarAlerta') ;
   ocultar.addEventListener('click', () => {
     mostrarAlerta = 'false';
     console.log(mostrarAlerta)
   });
+
+  }catch(e){
+    console.warn(`Esperando al mensaje ${e}`);
+  }
+
 
 });
 
@@ -2156,7 +2178,7 @@ function editarSistemaSucursal() {
 
 }
 
-
+  
 
 
 $(document).on('click', "#eliminarSistema", function () {
