@@ -192,9 +192,9 @@
 
                         </li>
 
-                        
+
                         <li class="nav-item"><a href="detalle-sucursales.html" class="nav-link  "> <i
-                            class="bi bi-person-rolodex"></i> <span> Detalle sucursales </span></a></li>
+                                    class="bi bi-person-rolodex"></i> <span> Detalle sucursales </span></a></li>
 
                         </li>
 
@@ -992,7 +992,7 @@
 
                                     <input type="hidden" name="accesosSucursalPorSistema" id="accesosSucursalPorSistema"
                                         value="">
-                                    
+
                                     <ul class="nav nav-tabs d-flex bd-highlight " id="myTab" role="tablist">
 
                                         <li class="nav-item  bd-highlight" role="presentation">
@@ -1012,8 +1012,9 @@
                                                 sistema +
                                             </span>
 
-                                            
-                                            <i id="container-editar-sistema" class="inactive"> <span class="badge btn-secondary" id="editarSistema" >Editar + </span> </i>
+
+                                            <i id="container-editar-sistema" class="inactive"> <span
+                                                    class="badge btn-secondary" id="editarSistema">Editar + </span> </i>
 
                                             <i class="bi bi-eye-slash inactive" id="ojoPrevisualizacion"></i>
                                         </div>
@@ -1024,54 +1025,7 @@
                                         <div class="tab-pane fade show active" id="accesoTab" role="tabpanel"
                                             aria-labelledby="accesoTab-tab">
 
-                                            <fieldset>
-
-                                                
-                                    <div class="form-group row">
-
-                                        <input type="hidden" name="editarAccesoSistema" id="editarAccesoSistema"
-                                            value="">
-
-                                        <div class="col-lg-6 ">
-                                            <label class="font-weight-semibold">Tipo de Sistema</label>
-
-                                            <select name="cboTipoSistema" id="cboTipoSistema" class="form-control ">
-                                                <option value="" selected></option>
-                                                <option value="GESFARMA">GESFARMA</option>
-                                                <option value="APUGESCOM">APUGESCOM</option>
-                                            </select>
-                                        </div>
-
-
-                                        <div class="col-lg-6 ">
-
-                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
-                                                Integracion</label>
-                                            <div>
-                                                <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
-                                                    class="form-control">
-                                                    <option value="" selected></option>
-                                                    <option value="DBF">DBF</option>
-                                                    <option value="TXT">TXT</option>
-                                                    <option value="JSON">JSON</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="form-group  ">
-
-                                        <div class="">
-                                            <label class=" font-weight-semibold">Proveedor</label>
-                                            <input type="text" class="form-control" name="proveedor" id="proveedor">
-                                        </div>
-                                    </div>
-
-                                            </fieldset>
-
+                                          
                                             <fieldset>
 
 
@@ -1112,6 +1066,57 @@
 
                                                 </div>
 
+                                                <fieldset>
+
+
+                                                    <div class="form-group row">
+    
+                                                        <input type="hidden" name="editarAccesoSistema"
+                                                            id="editarAccesoSistema" value="">
+    
+                                                        <div class="col-lg-6 ">
+                                                            <label class="font-weight-semibold">Tipo de Sistema</label>
+    
+                                                            <select name="cboTipoSistema" id="cboTipoSistema"
+                                                                class="form-control ">
+                                                                <option value="" selected></option>
+                                                                <option value="GESFARMA">GESFARMA</option>
+                                                                <option value="APUGESCOM">APUGESCOM</option>
+                                                            </select>
+                                                        </div>
+    
+    
+                                                        <div class="col-lg-6 ">
+    
+                                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
+                                                                Integracion</label>
+                                                            <div>
+                                                                <select name="cboIdTipoIntegracion"
+                                                                    id="cboIdTipoIntegracion" class="form-control">
+                                                                    <option value="" selected></option>
+                                                                    <option value="DBF">DBF</option>
+                                                                    <option value="TXT">TXT</option>
+                                                                    <option value="JSON">JSON</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+    
+    
+    
+                                                    </div>
+    
+                                                    <div class="form-group  ">
+    
+                                                        <div class="">
+                                                            <label class=" font-weight-semibold">Proveedor</label>
+                                                            <input type="text" class="form-control" name="proveedor"
+                                                                id="proveedor">
+                                                        </div>
+                                                    </div>
+    
+                                                </fieldset>
+    
+
 
                                                 <div class="card">
 
@@ -1130,29 +1135,29 @@
                                                                 <tr>
                                                                     <input type="hidden" id="id_TV" name="id_TV">
                                                                     <td> TEAMVIEWER </td>
-                                                                    <td><input class="form-control" type="text" id="usuariosa"
-                                                                            name="usuariosa"> </td>
-                                                                    <td><input class="form-control" type="text" id="contraseñaa"
-                                                                            name="contraseñaa"> </td>
+                                                                    <td><input class="form-control" type="text"
+                                                                            id="usuariosa" name="usuariosa"> </td>
+                                                                    <td><input class="form-control" type="text"
+                                                                            id="contraseñaa" name="contraseñaa"> </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                     <input type="hidden" id="id_ANY" name="id_ANY">
                                                                     <td> ANYDESK </td>
-                                                                    <td> <input type="text" class="form-control" id="usuario_ANY"
-                                                                            name="usuario_ANY"> </td>
-                                                                    <td><input type="text" class="form-control" id="contraseña_ANY"
-                                                                            name="contraseña_ANY">
+                                                                    <td> <input type="text" class="form-control"
+                                                                            id="usuario_ANY" name="usuario_ANY"> </td>
+                                                                    <td><input type="text" class="form-control"
+                                                                            id="contraseña_ANY" name="contraseña_ANY">
                                                                     </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                     <input type="hidden" id="id_ER" name="id_ER">
                                                                     <td> E_REMOTO </td>
-                                                                    <td> <input type="text" class="form-control me-2" id="usuario_ER"
-                                                                            name="usuario_ER"> </td>
-                                                                    <td><input type="text" class="form-control me-2" id="contraseña_ER"
-                                                                            name="contraseña_ER">
+                                                                    <td> <input type="text" class="form-control me-2"
+                                                                            id="usuario_ER" name="usuario_ER"> </td>
+                                                                    <td><input type="text" class="form-control me-2"
+                                                                            id="contraseña_ER" name="contraseña_ER">
                                                                     </td>
                                                                 </tr>
 

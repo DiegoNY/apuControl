@@ -1316,6 +1316,9 @@ $(document).on("click", "#btn_ruc", function () {
 
 })
 
+/**
+ * btn para sucursal
+**/
 
 btnes.addEventListener("click", function () {
 
@@ -1807,6 +1810,8 @@ logoSucursal.addEventListener('change', () => {
 
 const btnAgregarSistemaSucursal = document.querySelector("#agregarSistemaSucursal");
 
+
+
 let AccesosSucursal = [];
 let Sistemas = [];
 let Accesos = [];
@@ -1937,10 +1942,38 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
     }
   })
 
+  /**
+   * Limpiando data despues de registro en Array
+  **/
+
+  let sistema = document.getElementById("cboTipoSistema");
+  sistema.options.selectedIndex = 0;
+
+  let integracion = document.getElementById("cboIdTipoIntegracion");
+  integracion.options.selectedIndex = 0;
+
+  let prove = document.querySelector("#proveedor").value = "";
+  
+  
+  let an = document.getElementById('contraseña_ANY').value = "";
+
+  let anc = document.getElementById('usuario_ANY').value = "";
+
+  let tv = document.getElementById('contraseñaa').value="";
+
+  let tvc = document.getElementById('usuariosa').value = "";
+
+  let er = document.getElementById('contraseña_ER').value = "";
+
+  let erc = document.getElementById('usuario_ER').value= "";
+
+  
   Toast.fire({
     icon: 'success',
     title: 'Agregada correctamente'
   })
+
+
 
 });
 

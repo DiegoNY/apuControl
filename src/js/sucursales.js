@@ -1,6 +1,7 @@
 const API = '../processes/mostrar-todas-sucursales.php'
 
 
+
 $(document).ready(
 
     //empresa cargando data
@@ -68,7 +69,6 @@ $(document).on('click','#accesos', function () {
 
 
 
-
 function cargarAccesos(id_sucursal) {
 
     tablaAccesos = $("#tabla_accesos").DataTable({
@@ -117,3 +117,26 @@ function cargarAccesos(id_sucursal) {
 }
 
 
+(async () => {
+
+    await fetch('../processes/pruebaSession.php')
+      .then(response => response.json())
+      .then(nombre => {
+  
+  
+        let usuario = nombre.usuario[0];
+  
+        if (usuario === null) {
+  
+          window.location.replace('login.html');
+  
+        } else {
+  
+          let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+          let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+  
+        }
+      });
+  
+  
+  })()
