@@ -138,9 +138,26 @@ $(document).ready(function () {
             </ul>
           </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
           }else if( data === "contabilidad"){
-            return `</div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
+            return `
+            <div class="opciones-tabla-empresa"><div class="dropdown  ">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-calendar3 text-info"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li  data-bs-toggle="modal" data-bs-target="#sucursales" id="btn-sucursales"><a class="dropdown-item"  >Sucursales</a></li>
+              <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
+            </ul>
+            </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
           }else{
-            return `${data}`
+            return `<div class="opciones-tabla-empresa"><div class="dropdown  ">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-calendar3 text-info"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          
+              <li  data-bs-toggle="modal" data-bs-target="#sucursales" id="btn-sucursales"><a class="dropdown-item"  >Sucursales</a></li>
+              <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
+            </ul>`
           }
         }
       },
