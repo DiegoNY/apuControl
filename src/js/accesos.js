@@ -8,6 +8,7 @@ const nombreEmpresa = urlParams.get("empresa");
 const text = document.getElementById("texto-cambiante").innerText = `Mostrando Accesos de la Sucursal ${nombre}`;
 
 
+
 cargarAccesos(id);
 
 function cargarAccesos(id_sucursal) {

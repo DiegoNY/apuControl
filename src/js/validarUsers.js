@@ -17,18 +17,18 @@ btn.addEventListener("click", function (e) {
         .then(datas => {
             
             if(datas == "no existe"){
+            
                 alert("usuario ingresado no es valido");
+            
             }else{
                 
                 window.location =`../views/vista-empresa.html?usuario=${datas.usuario}`;
+            
             }
             
         })
 
 })
-
-
-
 
 
 function postData(urlAPI, data) {
