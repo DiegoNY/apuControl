@@ -19,6 +19,47 @@ const urlParams = new URLSearchParams(valores);
 
       } else {
 
+        var user = nombre.usuario[1]
+
+        var registro = document.getElementById('registrarEmpresa');
+        var gruposSis = document.getElementById('registrarGrupo');
+        var infoSis = document.getElementById('registrarInformacionSistema');
+        var btnR = document.getElementById("tabla_empresasas_length");
+
+        switch (user) {
+          case user = "administrador":
+            console.log("admin");
+            break;
+
+          case user = "tecnico":
+
+
+
+
+            btnR.setAttribute('style', 'display:none;')
+            registro.classList.add('inactive');
+            gruposSis.classList.add('inactive');
+            infoSis.classList.add('inactive');
+
+          
+
+            break;
+
+          case user = "contabilidad":
+
+
+            btnR.setAttribute('style', 'display:none;')
+            registro.classList.add('inactive');
+            gruposSis.classList.add('inactive');
+            infoSis.classList.add('inactive');
+
+            break;
+
+          default:
+            window.location.replace('login.html');
+            break;
+        }
+
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
         let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
 
@@ -67,31 +108,44 @@ $(document).ready(function () {
       { data: "id_grupo" },
       { data: "id_rubro" },
       { data: "tipo_envio" },
-      { data: "estado_comercial","render":function(data){
+      {
+        data: "estado_comercial", "render": function (data) {
 
-          if(data === "INGRESADO"){
-             return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
-          }else if(data === "POR_INSTALAR"){
+          if (data === "INGRESADO") {
+            return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
+          } else if (data === "POR_INSTALAR") {
             return `<p class="text-center "> <span class="badge bg-info  text-light">${data}</span></p>`
-          }else{
+          } else {
 
             return `<p class="text-center "> <span class="badge bg-warning text-light">${data}</span></p>`
 
           }
 
-      } },
+        }
+      },
       {
-        defaultContent: `<div class="opciones-tabla-empresa"><div class="dropdown  ">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-calendar3 text-info"></i>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li id="btn-editar-empresa"><a class="dropdown-item">Editar</a></li>
-        <li  data-bs-toggle="modal" data-bs-target="#sucursales" id="btn-sucursales"><a class="dropdown-item"  >Sucursales</a></li>
-        <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
-        <li class="btn-delet"><a class="dropdown-item">Eliminar</a></li>
-      </ul>
-    </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`,
+        data: "cargo", "render":function(data){
+          if(data === "administrador"){
+            return `<div class="opciones-tabla-empresa"><div class="dropdown  ">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-calendar3 text-info"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li id="btn-editar-empresa" class="s "><a class="dropdown-item">Editar</a></li>
+              <li  data-bs-toggle="modal" data-bs-target="#sucursales" id="btn-sucursales"><a class="dropdown-item"  >Sucursales</a></li>
+              <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
+              <li class="btn-delet" id="eli"><a class="dropdown-item">Eliminar</a></li>
+            </ul>
+          </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
+          }else if( data === "contabilidad"){
+            return `</div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
+          }else{
+            return `${data}`
+          }
+        }
+      },
+      {
+        defaultContent: ""
       },
     ],
     language: {
@@ -179,11 +233,11 @@ $(document).ready(function () {
 
   })
 
-  btnSalir.addEventListener("click",async function(){
+  btnSalir.addEventListener("click", async function () {
 
-  
+
     fetch('../processes/validator/terminar-sesion.php');
-    
+
   })
 
   function datosCompletosEmpresa(id) {
@@ -218,7 +272,7 @@ $(document).ready(function () {
       ubigeo_option.setAttribute("selected", "true");
 
       const img = document.querySelector("#preview_logo");
-      img.setAttribute("src",`.${empresa.img}`)
+      img.setAttribute("src", `.${empresa.img}`)
 
 
     });
@@ -235,7 +289,7 @@ $(document).ready(function () {
       "order": [[0, 'desc'], [1, 'desc']],
       ajax: "../processes/mostrar-sucursal.php?id=" + ruc,
       columns: [
-        { data: "numeroSucursalEmpresa"},
+        { data: "numeroSucursalEmpresa" },
         { data: "id_empresa" },
         { data: "nombre" },
         { data: "codigo_cofide" },
@@ -331,7 +385,7 @@ $(document).ready(function () {
         {
           defaultContent: ``,
         },
-      ], 
+      ],
       language: {
         decimal: "",
         emptyTable: "No hay información",
@@ -358,34 +412,34 @@ $(document).ready(function () {
   function cargarRubros() {
 
     $.ajax({
-  
+
       url: "../processes/mostrar-rubros.php",
       type: "GET",
-  
+
       success: function (response) {
-  
+
         let data = JSON.parse(response);
-  
+
         let template = "<option value='0' > SELECCIONE </option>";
-  
+
         data.forEach((rubros) => {
-  
+
           template += `
   
           <option value="${rubros.nombre}">${rubros.nombre}</option>
           
           `
-  
+
         })
         $("#cboIdRubro").html(template);
-  
+
       }
-  
-  
+
+
     });
-  
+
   }
-  
+
   cargarRubros();
 
 });

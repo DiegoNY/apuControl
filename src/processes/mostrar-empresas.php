@@ -1,6 +1,7 @@
 <?php 
 
 include '../connection/basedatos.php';
+session_start();
 
 $empresas = new BaseDatos();
 
@@ -9,7 +10,8 @@ $resultado = $empresas->verEmpresas();
 if(!$resultado){
     die("Query failed");
 }
- 
+
+
 $json = array();
 
 while($row = mysqli_fetch_array($resultado)){
@@ -31,6 +33,7 @@ while($row = mysqli_fetch_array($resultado)){
         'fecha_registro'=>$row['fecha_registro'],
         'estado_comercial'=>$row['estado_comercial'],
         'logo'=>$row['imglogo'],
+        'cargo'=> $_SESSION['cargo']
     );
 }
 

@@ -542,7 +542,7 @@ class BaseDatos
     public function validarUsuarios($usuario, $contraseña)
     {
 
-        $consulta = "SELECT * FROM usuarios where usuario = '$usuario' and contraseña = '$contraseña'";
+        $consulta = "SELECT * FROM usuarios where usuario = '$usuario' and contraseña = '$contraseña'"; 
         $res = mysqli_query($this->con, $consulta);
 
         if($users = mysqli_fetch_assoc($res)){

@@ -1,7 +1,7 @@
 
-(async () => {
+( () => {
 
-  await fetch('../processes/pruebaSession.php')
+   fetch('../processes/pruebaSession.php')
     .then(response => response.json())
     .then(nombre => {
 
@@ -11,8 +11,17 @@
       if (usuario === null) {
 
         window.location.replace('login.html');
+        return;
 
       } else {
+
+        let use = nombre.usuario[1];
+        
+
+        if(use != "administrador"){
+          window.location.replace('vista-empresa.html');
+          return;
+        }
 
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
         let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
