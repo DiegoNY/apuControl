@@ -355,10 +355,10 @@ class BaseDatos
         }
     }
 
-    public function editarSucursal($id, $nombre, $direccion, $cod_cofide, $id_ubigeo, $id_empresa,$bandera,$logo)
+    public function editarSucursal($id, $nombre, $direccion, $cod_cofide, $id_ubigeo, $id_empresa,$bandera,$logo,$codigoApu)
     {
         $consulta = "update sucursal as s set 
-        nombre = '$nombre', codigo_cofide = '$cod_cofide', direccion = '$direccion', ubigeo = '$id_ubigeo', bandera = '$bandera', banderasucursal = '$logo'  where  (s.id = $id)";
+        nombre = '$nombre', codigo_cofide = '$cod_cofide', codigoApu = '$codigoApu', direccion = '$direccion', ubigeo = '$id_ubigeo', bandera = '$bandera', banderasucursal = '$logo'  where  (s.id = $id)";
 
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {

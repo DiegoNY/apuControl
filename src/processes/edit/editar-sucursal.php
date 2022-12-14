@@ -28,7 +28,7 @@ if ($editarLogodSucursal === "editar") {
 
 $sucursal = new BaseDatos();
 
-$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id ?? "", $banderaEmpresa ?? "", $rutaLogo);
+$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id ?? "", $banderaEmpresa ?? "", $rutaLogo,$codigoApu);
 
 // TEAM_VIEWER = usuariosa , contraseñaa 
 try {
