@@ -56,6 +56,8 @@ const urlParams = new URLSearchParams(valores);
             registro.classList.add('inactive');
             gruposSis.classList.add('inactive');
             infoSis.classList.add('inactive');
+            btnDc.classList.add('inactive');
+            btnDs.classList.add('inactive');
 
             break;
 

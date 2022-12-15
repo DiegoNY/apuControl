@@ -373,7 +373,7 @@ class BaseDatos
 
     public function registrarAccesos($id_sucursal, $nombre, $id_acceso, $contraseña, $estado,$proveedor,$nombreSistema,$tipoIntegracion)
     {
-        $consulta = "INSERT INTO `accesos`(id_sucursal,nombreAcceso,idAcceso,contraseña,estado,proveedor,nombresistema,tipointegracion) values ('$id_sucursal','$nombre','$id_acceso','$contraseña','$estado','$proveedor','$nombreSistema','$tipoIntegracion');";
+        $consulta = "INSERT INTO `accesos`(id_sucursal,nombreAcceso,idAcceso,contraseña,estado,nombresistema) values ('$id_sucursal','$nombre','$id_acceso','$contraseña','$estado','$nombreSistema');";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }
@@ -400,6 +400,13 @@ class BaseDatos
         } else {
             return false;
         }
+    }
+
+    public function registrarSistema($id_sucursal, $nombre,$proveedor,$tipoIntegracion,$estado)
+    {
+        $consulta = "INSERT INTO `sistema_sucursal`(nombre,id_sucursal,integracion,proveedor,estado) values ('$nombre','$id_sucursal','$tipoIntegracion','$proveedor','$estado');";
+        $res = mysqli_query($this->con, $consulta);
+        return $res;
     }
 
     public function eliminarSistema ( $sistema , $sucursal)

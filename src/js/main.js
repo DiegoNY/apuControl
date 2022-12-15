@@ -48,8 +48,8 @@ var urlEscucharEmpresaRegistrar = false;
       } else {
 
         let use = nombre.usuario[1];
-        
-        if(use != "administrador"){
+
+        if (use != "administrador") {
           window.location.replace('vista-empresa.html');
           return;
         }
@@ -1036,6 +1036,7 @@ function cargarTipointegracion() {
         `;
       });
       $("#cboIdTipoIntegracion").html(template);
+      $(".cboIdTipoIntegracion").html(template);
     }
   })
 
@@ -1059,6 +1060,7 @@ function cargarTiposSistemas() {
         `;
       });
       $("#cboTipoSistema").html(template);
+      $(".cboTipoSistema").html(template);
     }
   })
 }
@@ -1161,23 +1163,23 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   * Limpiando los datos 
  **/
 
-  
-  let tipoSistema = document.querySelector('#cboTipoSistema').value = 0;
-  let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value = 0;
-  let usuarioAnydesk = document.querySelector('#usuariosa');
-  usuarioAnydesk.setAttribute('value','');
-  let contraseñaAnydesk = document.querySelector('#contraseñaa');
-  contraseñaAnydesk.setAttribute('value', '');
-  let usuarioTViewer = document.querySelector('#usuario_ANY');
-  usuarioTViewer.setAttribute('value','');
-  let contraseñaTViewer = document.querySelector('#contraseña_ANY');
-  contraseñaTViewer.setAttribute('value','');
-  let usuarioEscriRemoto = document.querySelector('#usuario_ER');
-  usuarioEscriRemoto.setAttribute('value','');
-  let contraseñaEscriRemoto = document.querySelector('#contraseña_ER');
-  contraseñaEscriRemoto.setAttribute('value','');
-  let proveedor = document.querySelector('#proveedor').value = '';
- 
+
+  // let tipoSistema = document.querySelector('#cboTipoSistema').value = 0;
+  // let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value = 0;
+  // let usuarioAnydesk = document.querySelector('#usuariosa');
+  // usuarioAnydesk.setAttribute('value', '');
+  // let contraseñaAnydesk = document.querySelector('#contraseñaa');
+  // contraseñaAnydesk.setAttribute('value', '');
+  // let usuarioTViewer = document.querySelector('#usuario_ANY');
+  // usuarioTViewer.setAttribute('value', '');
+  // let contraseñaTViewer = document.querySelector('#contraseña_ANY');
+  // contraseñaTViewer.setAttribute('value', '');
+  // let usuarioEscriRemoto = document.querySelector('#usuario_ER');
+  // usuarioEscriRemoto.setAttribute('value', '');
+  // let contraseñaEscriRemoto = document.querySelector('#contraseña_ER');
+  // contraseñaEscriRemoto.setAttribute('value', '');
+  // let proveedor = document.querySelector('#proveedor').value = '';
+
 
   AccesosSucursal = [];
   Sistemas = [];
@@ -1815,13 +1817,17 @@ logoSucursal.addEventListener('change', () => {
  * 
  */
 
+
 const btnAgregarSistemaSucursal = document.querySelector("#agregarSistemaSucursal");
 
+const btnagregarAcceso = document.querySelector('#agregarAcceso');
 
 
 let AccesosSucursal = [];
 let Sistemas = [];
 let Accesos = [];
+
+var tempSiste ="";
 
 btnAgregarSistemaSucursal.addEventListener('click', function () {
 
@@ -1832,12 +1838,7 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
   let tipoSistema = document.querySelector('#cboTipoSistema').value;
   let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value;
-  let usuarioAnydesk = document.querySelector('#usuariosa').value;
-  let contraseñaAnydesk = document.querySelector('#contraseñaa').value;
-  let usuarioTViewer = document.querySelector('#usuario_ANY').value;
-  let contraseñaTViewer = document.querySelector('#contraseña_ANY').value;
-  let usuarioEscriRemoto = document.querySelector('#usuario_ER').value;
-  let contraseñaEscriRemoto = document.querySelector('#contraseña_ER').value;
+
   let proveedor = document.querySelector('#proveedor').value;
 
   AccesosSucursal.push(
@@ -1845,12 +1846,6 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
     tipoIntegracion,
     tipoSistema,
-    usuarioAnydesk,
-    contraseñaAnydesk,
-    usuarioTViewer,
-    contraseñaTViewer,
-    usuarioEscriRemoto,
-    contraseñaEscriRemoto,
     proveedor,
     "|"
 
@@ -1875,44 +1870,41 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
     {
       id: tipoSistema,
-      anydesk: {
-
-        usuario: usuarioTViewer,
-        contraseña: contraseñaTViewer
-
-      },
-
-      teamViewer: {
-
-        usuario: usuarioAnydesk,
-        contraseña: contraseñaAnydesk
-
-      }
-
+      
 
     }
 
   )
 
 
-  template = "";
+  
 
-  Sistemas.forEach(sistema => {
-
-    template += `
-
-  <tr idSucursalSistema = "${sistema.id}" sistema="${sistema.nombre}">
-    <td> ${sistema.nombre} </td>
-    <td integracion="${sistema.integracion}"> ${sistema.integracion} </td>
-    <td> ${sistema.proveedor} </td>
+  tempSiste += `
+  <tr sistema="">
+    <td>  <select name="cboTipoSistema[]" id="cboTipoSistema"
+    class="form-control cboTipoSistema ">
+    <option value="" selected></option>
+    <option value="GESFARMA">GESFARMA</option>
+    <option value="APUGESCOM">APUGESCOM</option>
+</select></td>
+    <td ><select name="cboIdTipoIntegracion[]"
+    id="cboIdTipoIntegracion" class="form-control cboIdTipoIntegracion">
+    <option value="" selected></option>
+    <option value="DBF">DBF</option>
+    <option value="TXT">TXT</option>
+    <option value="JSON">JSON</option>
+</select> </td>
+    <td>  <input type="text" class="form-control" name="proveedor[]"
+    id="proveedor"> </td>
     <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
   </tr>
-  
   `;
-  });
+
+  cargarTipointegracion();
+  cargarTiposSistemas();
 
   let containerSistema = document.getElementById("containerSistemas");
-  containerSistema.innerHTML = template;
+  containerSistema.innerHTML = tempSiste;
 
   let previsualizacion = document.getElementById("previsualizacion-sistemas");
   previsualizacion.classList.remove('inactive');
@@ -1960,27 +1952,51 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   integracion.options.selectedIndex = 0;
 
   let prove = document.querySelector("#proveedor").value = "";
-  
-  
+
+
   let an = document.getElementById('contraseña_ANY').value = "";
 
   let anc = document.getElementById('usuario_ANY').value = "";
 
-  let tv = document.getElementById('contraseñaa').value="";
+  let tv = document.getElementById('contraseñaa').value = "";
 
   let tvc = document.getElementById('usuariosa').value = "";
 
   let er = document.getElementById('contraseña_ER').value = "";
 
-  let erc = document.getElementById('usuario_ER').value= "";
+  let erc = document.getElementById('usuario_ER').value = "";
 
-  
+
   Toast.fire({
     icon: 'success',
     title: 'Agregada correctamente'
   })
 
 
+
+});
+
+var tem ="";
+
+btnagregarAcceso.addEventListener('click', () => {
+  tem +=`
+
+    <tr>
+      <td>
+        <select class="form-control" name="acceso[]">
+          <option>Anydesk</option>
+          <option>TeamViewer</option>
+          <option>Escritorio Remoto</option>
+        </select>
+      </td>
+      <td> <input name="usuario[]" class="usuario form-control"/></td>
+      <td><input name="contaseña[]" class="contraseña form-control"/></td>
+    </tr>
+
+    `
+
+  const containerAcceso = document.querySelector('#contenedorAccesos');
+  containerAcceso.innerHTML = tem;
 
 });
 
@@ -2139,16 +2155,16 @@ $(document).on('click', "#editarSistema", function () {
 
   }
 
-  
-  try{
-    
-  let ocultar = document.getElementById('ocultarAlerta') ;
-  ocultar.addEventListener('click', () => {
-    mostrarAlerta = 'false';
-    console.log(mostrarAlerta)
-  });
 
-  }catch(e){
+  try {
+
+    let ocultar = document.getElementById('ocultarAlerta');
+    ocultar.addEventListener('click', () => {
+      mostrarAlerta = 'false';
+      console.log(mostrarAlerta)
+    });
+
+  } catch (e) {
     console.warn(`Esperando al mensaje ${e}`);
   }
 
@@ -2218,7 +2234,7 @@ function editarSistemaSucursal() {
 
 }
 
-  
+
 
 
 $(document).on('click', "#eliminarSistema", function () {

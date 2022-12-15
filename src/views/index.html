@@ -914,7 +914,7 @@
     <!-- Modal Sucursal -->
 
     <div class="modal fade" id="sucursal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 720px;">
             <div class="modal-content">
                 <div class="modal-header py-2 text-light" style="background-color: #252B36;">
                     <h5 class="modal-title" id="exampleModalLabel">Sucursal</h5>
@@ -922,7 +922,7 @@
                 <div class="modal-body py-0">
 
 
-
+                    
 
                     <div class="card-body">
                         <div class="row w-100">
@@ -1005,19 +1005,13 @@
                                                 data-bs-target="#infoSucu" type="button" role="tab"
                                                 aria-controls="infoSucu" aria-selected="false">Estación</button>
                                         </li>
+                                        <li class="nav-item bd-highlight" role="presentation">
+                                            <button class="nav-link" id="accesoSucursal-tab" data-bs-toggle="tab"
+                                                data-bs-target="#accesoSucursal" type="button" role="tab"
+                                                aria-controls="accesoSucursal" aria-selected="false">Accesos</button>
+                                        </li>
 
-                                        <div class="nav-item ml-auto p-2 bd-highlight">
 
-                                            <span class="badge btn-secondary" id="agregarSistemaSucursal">Agregar
-                                                sistema +
-                                            </span>
-
-
-                                            <i id="container-editar-sistema" class="inactive"> <span
-                                                    class="badge btn-secondary" id="editarSistema">Editar + </span> </i>
-
-                                            <i class="bi bi-eye-slash inactive" id="ojoPrevisualizacion"></i>
-                                        </div>
 
 
                                     </ul>
@@ -1025,13 +1019,27 @@
                                         <div class="tab-pane fade show active" id="accesoTab" role="tabpanel"
                                             aria-labelledby="accesoTab-tab">
 
-                                          
+
                                             <fieldset>
 
 
                                                 <div class="card">
 
+                                                    <div class="nav-item ml-auto p-2 bd-highlight">
 
+                                                        <span class="badge btn-secondary"
+                                                            id="agregarSistemaSucursal">Agregar
+                                                            sistema +
+                                                        </span>
+
+
+                                                        <i id="container-editar-sistema" class="inactive"> <span
+                                                                class="badge btn-secondary" id="editarSistema">Editar +
+                                                            </span> </i>
+
+                                                        <i class="bi bi-eye-slash inactive"
+                                                            id="ojoPrevisualizacion"></i>
+                                                    </div>
 
                                                     <div class="card-body inactive" id="previsualizacion-sistemas">
 
@@ -1053,10 +1061,7 @@
                                                             </thead>
                                                             <tbody id="containerSistemas">
 
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
+                                                               
 
                                                             </tbody>
 
@@ -1065,33 +1070,34 @@
                                                     </div>
 
                                                 </div>
-
-                                                <fieldset>
+                                                <!--- Inactivo -->
+                                                <fieldset class="inactive">
 
 
                                                     <div class="form-group row">
-    
+
                                                         <input type="hidden" name="editarAccesoSistema"
                                                             id="editarAccesoSistema" value="">
-    
+
                                                         <div class="col-lg-6 ">
                                                             <label class="font-weight-semibold">Tipo de Sistema</label>
-    
-                                                            <select name="cboTipoSistema" id="cboTipoSistema"
+
+                                                            <select name="" id="cboTipoSistema"
                                                                 class="form-control ">
                                                                 <option value="" selected></option>
                                                                 <option value="GESFARMA">GESFARMA</option>
                                                                 <option value="APUGESCOM">APUGESCOM</option>
                                                             </select>
                                                         </div>
-    
-    
+
+
                                                         <div class="col-lg-6 ">
-    
-                                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
+
+                                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo
+                                                                de
                                                                 Integracion</label>
                                                             <div>
-                                                                <select name="cboIdTipoIntegracion"
+                                                                <select name=""
                                                                     id="cboIdTipoIntegracion" class="form-control">
                                                                     <option value="" selected></option>
                                                                     <option value="DBF">DBF</option>
@@ -1100,77 +1106,21 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-    
-    
-    
+
+
+
                                                     </div>
-    
+
                                                     <div class="form-group  ">
-    
+
                                                         <div class="">
                                                             <label class=" font-weight-semibold">Proveedor</label>
-                                                            <input type="text" class="form-control" name="proveedor"
+                                                            <input type="text" class="form-control" name=""
                                                                 id="proveedor">
                                                         </div>
                                                     </div>
-    
+
                                                 </fieldset>
-    
-
-
-                                                <div class="card">
-
-                                                    <div class="card-body">
-
-                                                        <table class="table table-responsive-xl" id="tabla_accesoss">
-
-                                                            <thead>
-                                                                <th>Plataforma</th>
-                                                                <th>Usuario</th>
-                                                                <th>Contraseña</th>
-                                                            </thead>
-
-                                                            <tbody id="contenedorAccesos">
-
-                                                                <tr>
-                                                                    <input type="hidden" id="id_TV" name="id_TV">
-                                                                    <td> TEAMVIEWER </td>
-                                                                    <td><input class="form-control" type="text"
-                                                                            id="usuariosa" name="usuariosa"> </td>
-                                                                    <td><input class="form-control" type="text"
-                                                                            id="contraseñaa" name="contraseñaa"> </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <input type="hidden" id="id_ANY" name="id_ANY">
-                                                                    <td> ANYDESK </td>
-                                                                    <td> <input type="text" class="form-control"
-                                                                            id="usuario_ANY" name="usuario_ANY"> </td>
-                                                                    <td><input type="text" class="form-control"
-                                                                            id="contraseña_ANY" name="contraseña_ANY">
-                                                                    </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <input type="hidden" id="id_ER" name="id_ER">
-                                                                    <td> E_REMOTO </td>
-                                                                    <td> <input type="text" class="form-control me-2"
-                                                                            id="usuario_ER" name="usuario_ER"> </td>
-                                                                    <td><input type="text" class="form-control me-2"
-                                                                            id="contraseña_ER" name="contraseña_ER">
-                                                                    </td>
-                                                                </tr>
-
-
-                                                            </tbody>
-                                                        </table>
-
-
-                                                    </div>
-
-                                                </div>
-
-
 
 
 
@@ -1255,6 +1205,46 @@
                                                 <div id="imageSelected">
 
                                                     <img id='imagenSucursal' src="" style='width:100%; height:150px;'>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="tab-pane fade" id="accesoSucursal" role="tabpanel"
+                                            aria-labelledby="infoSucu-tab">
+
+
+
+                                            <div class="card">
+
+                                                <div class="nav-item ml-auto p-2 bd-highlight">
+
+                                                    <span class="badge btn-secondary" id="agregarAcceso">Agregar
+                                                        acceso +
+                                                    </span>
+
+                                                    <i class="bi bi-eye-slash inactive" id="ojoPrevisualizacion"></i>
+                                                </div>
+
+                                                <div class="card-body">
+
+                                                    <table class="table table-responsive-xl" id="tabla_accesoss">
+
+                                                        <thead style="background-color: #252B36; color:white;" >
+                                                            <th>Plataforma</th>
+                                                            <th>Usuario</th>
+                                                            <th>Contraseña</th>
+                                                        </thead>
+
+                                                        <tbody id="contenedorAccesos">
+
+                                                           
+
+                                                        </tbody>
+                                                    </table>
+
 
                                                 </div>
 
