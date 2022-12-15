@@ -25,6 +25,8 @@ const urlParams = new URLSearchParams(valores);
         var gruposSis = document.getElementById('registrarGrupo');
         var infoSis = document.getElementById('registrarInformacionSistema');
         var btnR = document.getElementById("tabla_empresasas_length");
+        var btnDc = document.getElementById("detalleContacto");
+        var btnDs= document.getElementById("detalleSucursal");
 
         switch (user) {
           case user = "administrador":
@@ -40,6 +42,8 @@ const urlParams = new URLSearchParams(valores);
             registro.classList.add('inactive');
             gruposSis.classList.add('inactive');
             infoSis.classList.add('inactive');
+            btnDc.classList.add('inactive');
+            btnDs.classList.add('inactive');
 
           
 
