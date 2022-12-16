@@ -22,7 +22,6 @@ const urlParams = new URLSearchParams(valores);
         var user = nombre.usuario[1]
 
         var registro = document.getElementById('registrarEmpresa');
-        var gruposSis = document.getElementById('registrarGrupo');
         var infoSis = document.getElementById('registrarInformacionSistema');
         var btnR = document.getElementById("tabla_empresasas_length");
         var btnDc = document.getElementById("detalleContacto");
@@ -40,10 +39,8 @@ const urlParams = new URLSearchParams(valores);
 
             btnR.setAttribute('style', 'display:none;')
             registro.classList.add('inactive');
-            gruposSis.classList.add('inactive');
             infoSis.classList.add('inactive');
             btnDc.classList.add('inactive');
-            btnDs.classList.add('inactive');
 
           
 
@@ -54,10 +51,8 @@ const urlParams = new URLSearchParams(valores);
 
             btnR.setAttribute('style', 'display:none;')
             registro.classList.add('inactive');
-            gruposSis.classList.add('inactive');
             infoSis.classList.add('inactive');
             btnDc.classList.add('inactive');
-            btnDs.classList.add('inactive');
 
             break;
 
