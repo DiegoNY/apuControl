@@ -177,9 +177,7 @@
                         <li class="nav-item"><a href="index.html" class="nav-link active"> <i
                                     class="bi bi-bookmark-plus"></i> <span> Registrar Empresas</span></a></li>
 
-                        <li class="nav-item"><a href="vista-grupos.html" class="nav-link "> <i
-                                    class="bi bi-bag-fill"></i> Grupos
-                                empresariales</a></li>
+
 
 
                         <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link "> <i
@@ -193,46 +191,6 @@
                         </li>
 
 
-                        <li class="nav-item"><a href="detalle-sucursales.html" class="nav-link  "> <i
-                                    class="bi bi-person-rolodex"></i> <span> Detalle sucursales </span></a></li>
-
-                        </li>
-
-                        <!-- /main -->
-
-                        <!-- Forms -->
-                        <!-- <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">OTRAS OPCIONES</div> <i
-                                class="icon-menu" title="Forms"></i>
-                        </li> -->
-                        <!-- <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="bi bi-columns-gap"></i> <span>Mostrar</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Form components">
-                                <li class="nav-item"><a href="vista-empresa.html" class="nav-link">Todas las
-                                        Empresas</a></li>
-
-                                <li class="nav-item"><a href="vista-grupos.html" class="nav-link">Grupos
-                                        empresariales</a></li>
-
-
-                                <li class="nav-item"><a href="vista-registro-sistemas.html"
-                                        class="nav-link ">Informacion del Sistema</a></li>
-
-                            </ul>
-                        </li> -->
-
-                        <!-- <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-spell-check"></i> <span>another
-                                    actions</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Text editors">
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                            </ul>
-                        </li> -->
-
-                        <!-- /forms -->
 
 
                     </ul>
@@ -436,25 +394,7 @@
                                             <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
                                                 de
                                                 Sistema</legend>
-                                            <!--- Esto se movio no quitar -->
-                                            <!-- <div class="form-group row inactive">
-                                                <div class="col-lg-6 inactive">
-                                                    <label class="font-weight-semibold">Tipo de Sistema</label>
 
-                                                    <select name="cboTipoSistema" id="cboTipoSistema"
-                                                        class="form-control ">
-                                                        <option value="" selected></option>
-                                                        <option value="GESFARMA">GESFARMA</option>
-                                                        <option value="APUGESCOM">APUGESCOM</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-6 inactive">
-                                                    <label class=" font-weight-semibold">Proveedor</label>
-                                                    <input type="text" class="form-control" name="proveedor"
-                                                        id="proveedor">
-                                                </div>
-                                            </div> -->
-                                            <!--- / Esto se movio no quitar -->
 
                                             <div class="form-group row">
 
@@ -486,22 +426,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!--- Esto se movio no quitar -->
-                                                <!-- <div class="col-lg-6 inactive">
 
-                                                    <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
-                                                        Integracion</label>
-                                                    <div>
-                                                        <select name="cboIdTipoIntegracion" id="cboIdTipoIntegracion"
-                                                            class="form-control">
-                                                            <option value="" selected></option>
-                                                            <option value="DBF">DBF</option>
-                                                            <option value="TXT">TXT</option>
-                                                            <option value="JSON">JSON</option>
-                                                        </select>
-                                                    </div>
-                                                </div> -->
-                                                <!--- / Esto se movio no quitar -->
 
                                             </div>
 
@@ -922,7 +847,7 @@
                 <div class="modal-body py-0">
 
 
-                    
+
 
                     <div class="card-body">
                         <div class="row w-100">
@@ -1041,7 +966,7 @@
                                                             id="ojoPrevisualizacion"></i>
                                                     </div>
 
-                                                    <div class="card-body inactive" id="previsualizacion-sistemas">
+                                                    <div class="card-body" id="previsualizacion-sistemas">
 
                                                         <table class="table table-responsive-sm" id="tablaSistema">
 
@@ -1061,7 +986,27 @@
                                                             </thead>
                                                             <tbody id="containerSistemas">
 
-                                                               
+                                                                <tr sistema="">
+                                                                    <td> <select name="cboTipoSistema[]"
+                                                                            id="cboTipoSistema"
+                                                                            class="form-control cboTipoSistema ">
+                                                                            <option value="" selected></option>
+                                                                            <option value="GESFARMA">GESFARMA</option>
+                                                                            <option value="APUGESCOM">APUGESCOM</option>
+                                                                        </select></td>
+                                                                    <td><select name="cboIdTipoIntegracion[]"
+                                                                            id="cboIdTipoIntegracion"
+                                                                            class="form-control cboIdTipoIntegracion">
+                                                                            <option value="" selected></option>
+                                                                            <option value="DBF">DBF</option>
+                                                                            <option value="TXT">TXT</option>
+                                                                            <option value="JSON">JSON</option>
+                                                                        </select> </td>
+                                                                    <td> <input type="text" class="form-control"
+                                                                            name="proveedor[]" id="proveedor"> </td>
+                                                                    <td class="text-center"></i> <i class="bi bi-trash3"
+                                                                            id="eliminarSistema"></i></td>
+                                                                </tr>
 
                                                             </tbody>
 
@@ -1082,8 +1027,7 @@
                                                         <div class="col-lg-6 ">
                                                             <label class="font-weight-semibold">Tipo de Sistema</label>
 
-                                                            <select name="" id="cboTipoSistema"
-                                                                class="form-control ">
+                                                            <select name="" id="cboTipoSistema" class="form-control ">
                                                                 <option value="" selected></option>
                                                                 <option value="GESFARMA">GESFARMA</option>
                                                                 <option value="APUGESCOM">APUGESCOM</option>
@@ -1097,8 +1041,7 @@
                                                                 de
                                                                 Integracion</label>
                                                             <div>
-                                                                <select name=""
-                                                                    id="cboIdTipoIntegracion" class="form-control">
+                                                                <select name="" id="" class="form-control">
                                                                     <option value="" selected></option>
                                                                     <option value="DBF">DBF</option>
                                                                     <option value="TXT">TXT</option>
@@ -1232,15 +1175,16 @@
 
                                                     <table class="table table-responsive-xl" id="tabla_accesoss">
 
-                                                        <thead style="background-color: #252B36; color:white;" >
+                                                        <thead style="background-color: #252B36; color:white;">
                                                             <th>Plataforma</th>
                                                             <th>Usuario</th>
                                                             <th>Contraseña</th>
+                                                            <th>Sistema</th>
                                                         </thead>
 
                                                         <tbody id="contenedorAccesos">
 
-                                                           
+
 
                                                         </tbody>
                                                     </table>

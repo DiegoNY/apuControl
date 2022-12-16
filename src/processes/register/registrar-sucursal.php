@@ -40,14 +40,14 @@ $id_sucursal           = $cantidad_sucursales + 1;
 
 #accesos
 
-var_dump( $_POST);
-
+if( !empty($acceso)) 
 for ($i=0; $i < count( $acceso ) ; $i++) {
 
-    $sucursal->registrarAccesos($id_sucursal,$acceso[$i],$usuario[$i],$contraseña[$i] ?? " ",1,"",$cboTipoSistema[$i]??"","");
+    $sucursal->registrarAccesos($id_sucursal,$acceso[$i],$usuario[$i],$contaseña[$i] ?? "",1,$nombreSistema[$i]?? "");
     
 }
 
+#sistema
 
 for ($i=0; $i < count($cboIdTipoIntegracion) ; $i++) { 
     $sucursal->registrarSistema($id_sucursal,$cboTipoSistema[$i],$proveedor[$i],$cboIdTipoIntegracion[$i],1);
@@ -56,9 +56,8 @@ for ($i=0; $i < count($cboIdTipoIntegracion) ; $i++) {
 
 
 if($resultado == TRUE){
-    echo "ingresado "; 
+    echo json_encode( array("mensaje" => "ingresado") ); 
     
-
 }else{
     echo "error";
 }

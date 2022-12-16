@@ -18,9 +18,14 @@ const eliminarCargo = document.getElementsByClassName("btnEliminarCargo");
 const logo = document.getElementById("logo");
 const preview_logo = document.getElementById("preview_logo");
 
+let editar = false;
+
+const btnAgregarGrupo = document.getElementById("btn_agregar_grupo");
 
 
 const hoy = new Date();
+
+var fechaInput = document.getElementById("txtFechCre").value = hoy.toLocaleDateString();
 
 var fechaInput = document.getElementById("txtFecha").value = hoy.toLocaleDateString();
 var fechaRubro = document.getElementById("fechaRubro").value = hoy.toLocaleDateString();
@@ -46,8 +51,8 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
       } else {
 
         let use = nombre.usuario[1];
-        
-        if(use != "administrador"){
+
+        if (use != "administrador") {
           window.location.replace('vista-empresa.html');
           return;
         }
@@ -76,7 +81,7 @@ function registrarTipoIntegracion() {
       cargarTipointegracion();
       mostrarTipoIntegracion();
 
-      if(data === "ingresado"){
+      if (data === "ingresado") {
 
         modalFormularioTipoIntegracion.toggle();
 
@@ -165,7 +170,7 @@ function registrarTipoSistema() {
       cargarTiposSistemas();
       mostrarTiposSistema();
 
-      if(data === "ingresado"){
+      if (data === "ingresado") {
 
         modalFormularioTipoSistema.toggle();
 
@@ -254,9 +259,9 @@ function mensajes(response, mensaje, error) {
 btnRegistrarCargo.addEventListener("click", function () {
 
   let frmData = new FormData(frmCargo);
-  let url =  editarCargo === false ? '../processes/register/registrar-cargos.php':'../processes/edit/editar-cargo.php';
+  let url = editarCargo === false ? '../processes/register/registrar-cargos.php' : '../processes/edit/editar-cargo.php';
   registrar(frmData, url);
-  
+
 
 })
 
@@ -264,7 +269,7 @@ btnRegistrarCargo.addEventListener("click", function () {
 btnRegistrarRubro.addEventListener("click", function () {
 
   let frmData = new FormData(frmRubro);
-  let url = editarRubro === false ? '../processes/register/registrar-rubro.php':'../processes/edit/editar-rubro.php';
+  let url = editarRubro === false ? '../processes/register/registrar-rubro.php' : '../processes/edit/editar-rubro.php';
   registrar(frmData, url);
 
 })
@@ -285,33 +290,33 @@ function registrar(data, urlAPI) {
     .then(response => {
 
       mensajes(response);
-      cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
-      cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
+      cargarInfo("../processes/mostrar-rubros.php", "idRubro", "listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+      cargarInfo("../processes/mostrar-cargos.php", "idCargo", "listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
 
-      if(response === "ingresado"){
-        
+      if (response === "ingresado") {
+
         let modal = document.getElementById("cargo");
 
 
         let isShowModal = modal.classList.contains("show");
-    
-    
 
-        if(!isShowModal){
+
+
+        if (!isShowModal) {
 
           modalFormularioCargos.toggle();
-        
-        }else{
 
-        modalFormularioRubro.toggle();
+        } else {
+
+          modalFormularioRubro.toggle();
 
         }
 
       }
 
     });
-  
-  
+
+
 }
 
 
@@ -328,20 +333,20 @@ function postData(urlAPI, data) {
 
 }
 
-cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+cargarInfo("../processes/mostrar-rubros.php", "idRubro", "listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
 
-cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
+cargarInfo("../processes/mostrar-cargos.php", "idCargo", "listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
 
 cargarBandera();
 
 function cargarBandera() {
- try{
-  fetch("../processes/mostrar-banderas.php")
-    .then(response => response.json())
-    .then(data => {
+  try {
+    fetch("../processes/mostrar-banderas.php")
+      .then(response => response.json())
+      .then(data => {
 
-      let template = '';
-      
+        let template = '';
+
         template = `
         ${data.map(datas => ` 
         
@@ -360,25 +365,25 @@ function cargarBandera() {
 
       </tr>`).slice().join('')}
        `;
-      
-       document.getElementById("listadoBanderas").innerHTML = template;
+
+        document.getElementById("listadoBanderas").innerHTML = template;
 
 
-    })
+      })
 
-  }catch(e){
+  } catch (e) {
     console.warn("Error" + e);
   }
 
 }
 
-function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
- try{
-  fetch(urlAPI)
-    .then(response => response.json())
-    .then(data => {
-      let template = '';
-      
+function cargarInfo(urlAPI, id, listado, deletes, edits, modal) {
+  try {
+    fetch(urlAPI)
+      .then(response => response.json())
+      .then(data => {
+        let template = '';
+
         template = `
         ${data.map(datas => ` 
         
@@ -397,58 +402,58 @@ function cargarInfo(urlAPI,id, listado, deletes, edits, modal) {
 
       </tr>`).slice().join('')}
        `;
-      
-       document.getElementById(listado).innerHTML = template;
+
+        document.getElementById(listado).innerHTML = template;
 
 
-    })
+      })
 
-  }catch(e){
+  } catch (e) {
     console.warn("Error" + e);
   }
 
 }
 
 
-$(document).on("click", ".btnEliminarCargo",function(){
+$(document).on("click", ".btnEliminarCargo", function () {
 
-    let element = (this).parentElement.parentElement;
-    
-    let id = element.getAttribute("idcargo");
+  let element = (this).parentElement.parentElement;
 
-    Swal.fire({
-      title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
-      icon: '',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Eliminar Sistema'
-    }).then((result) => {
-      if (result.isConfirmed) {
-  
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-  
-        $.post("../processes/delete/eliminar-cargo.php", { id }, function (response) {
-          console.log(response);
-          cargarInfo("../processes/mostrar-cargos.php", "idCargo","listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
-  
-        });
-  
-      }
-    })
-  
+  let id = element.getAttribute("idcargo");
+
+  Swal.fire({
+    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    icon: '',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar Sistema'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+
+      $.post("../processes/delete/eliminar-cargo.php", { id }, function (response) {
+        console.log(response);
+        cargarInfo("../processes/mostrar-cargos.php", "idCargo", "listadoCargo", "btnEliminarCargo", "btnEditarCargo", "cargo");
+
+      });
+
+    }
+  })
+
 
 })
 
-$(document).on("click","#btnEditarCargo",function(){
+$(document).on("click", "#btnEditarCargo", function () {
 
-  
+
   let element = (this).parentElement.parentElement;
-    
+
   let id = element.getAttribute("idcargo");
   console.log(id);
   $.post("../processes/listener/escuchar-cargos.php", { id }, function (response) {
@@ -462,10 +467,10 @@ $(document).on("click","#btnEditarCargo",function(){
 
 
 })
-$(document).on("click","#btnEditarRubro",function(){
+$(document).on("click", "#btnEditarRubro", function () {
 
   let element = (this).parentElement.parentElement;
-    
+
   let id = element.getAttribute("idrubro");
   console.log(id);
   $.post("../processes/listener/escuchar-rubros.php", { id }, function (response) {
@@ -479,10 +484,10 @@ $(document).on("click","#btnEditarRubro",function(){
 
 
 })
-$(document).on("click", ".btnEliminarRubro",function(){
+$(document).on("click", ".btnEliminarRubro", function () {
 
   let element = (this).parentElement.parentElement;
-    
+
   let id = element.getAttribute("idrubro");
 
   Swal.fire({
@@ -503,7 +508,7 @@ $(document).on("click", ".btnEliminarRubro",function(){
 
       $.post("../processes/delete/eliminar-rubro.php", { id }, function (response) {
         console.log(response);
-        cargarInfo("../processes/mostrar-rubros.php","idRubro","listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
+        cargarInfo("../processes/mostrar-rubros.php", "idRubro", "listadoRubro", "btnEliminarRubro", "btnEditarRubro", "rubro");
 
       });
 
@@ -512,10 +517,10 @@ $(document).on("click", ".btnEliminarRubro",function(){
 
 
 })
-$(document).on("click","#btnEditarBanderas",function(){
+$(document).on("click", "#btnEditarBanderas", function () {
 
   let element = (this).parentElement.parentElement;
-    
+
   let id = element.getAttribute("idbandera");
   console.log(id);
   $.post("../processes/listener/escuchar-bandera.php", { id }, function (response) {
@@ -525,8 +530,8 @@ $(document).on("click","#btnEditarBanderas",function(){
     $("#idBandera").val(bandera.id);
 
     let img = document.querySelector("#preview_logo");
-    img.setAttribute("src",`.${bandera.bandera}`);
-    
+    img.setAttribute("src", `.${bandera.bandera}`);
+
     const urlLogo = document.getElementById("urlLogo");
     urlLogo.value = bandera.bandera;
 
@@ -537,10 +542,10 @@ $(document).on("click","#btnEditarBanderas",function(){
 
 
 })
-$(document).on("click", ".btnEliminarBanderas",function(){
+$(document).on("click", ".btnEliminarBanderas", function () {
 
   let element = (this).parentElement.parentElement;
-    
+
   let id = element.getAttribute("idbandera");
 
   Swal.fire({
@@ -724,18 +729,18 @@ btnAgregarCargo.addEventListener("click", function () {
 
 })
 
-btnAgregarBandera.addEventListener("click", function(){
+btnAgregarBandera.addEventListener("click", function () {
 
   registrarBandera();
 
 })
 
-btnAgregarBandera1.addEventListener("click",function(){
+btnAgregarBandera1.addEventListener("click", function () {
 
   editarBanddera = false;
   document.getElementById('frmBandera').reset();
-  
-  document.getElementById('preview_logo').setAttribute("src","");
+
+  document.getElementById('preview_logo').setAttribute("src", "");
 
   let fechaBandera = document.getElementById("fechaBandera");
   fechaBandera.value = hoy.toLocaleDateString();
@@ -746,7 +751,7 @@ logo.addEventListener("change", () => {
 
 
   const archivos = logo.files;
-  
+
   if (!archivos || !archivos.length) {
 
     preview.src = "";
@@ -760,20 +765,20 @@ logo.addEventListener("change", () => {
   preview_logo.src = objURL;
 
   const urlLogoEdit = document.getElementById("urlLogo").value || null;
-  
-  urlComparar = "./img/"+ primerArchivo.name;
 
-  if(urlComparar === urlLogoEdit ){
-      
+  urlComparar = "./img/" + primerArchivo.name;
+
+  if (urlComparar === urlLogoEdit) {
+
     const edi = document.getElementById("editarLogo");
     edi.value = "no editar";
 
-  }else{ 
-    
+  } else {
+
 
     const edi = document.getElementById("editarLogo");
     edi.value = "editar";
- 
+
   }
 
 });
@@ -782,11 +787,11 @@ var modalFormularioBandera = new bootstrap.Modal(document.getElementById('bander
   keyboard: false
 })
 
-function registrarBandera(){
-  let url = editarBanddera === false ? "../processes/register/registrar-bandera.php":"../processes/edit/editar-bandera.php"
+function registrarBandera() {
+  let url = editarBanddera === false ? "../processes/register/registrar-bandera.php" : "../processes/edit/editar-bandera.php"
   let frm = document.querySelector("#frmBandera");
   let dataFrm = new FormData(frm);
- 
+
   $.ajax({
     url: url,
     data: dataFrm,
@@ -802,16 +807,171 @@ function registrarBandera(){
         "Te falta llenar algunos datos importantes ☹"
       );
       cargarBandera();
-      
-     editarBanddera = false;
 
-     if(response === "ingresado"){
+      editarBanddera = false;
 
-      modalFormularioBandera.toggle();
+      if (response === "ingresado") {
 
-     }
+        modalFormularioBandera.toggle();
+
+      }
     },
   });
-  
 
+
+}
+
+
+
+$(document).ready(function () {
+
+
+
+  $(document).on("click", ".btn-delete-grupo", function () {
+
+
+    let element = (this).parentElement.parentElement;
+    let id = element.getAttribute("id_grupo");
+    console.log(id);
+
+
+    Swal.fire({
+      title: `Seguro de eliminar grupo ?`,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar ahora'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+
+        $.post("../processes/delete/eliminarGrupo.php", { id }, function (response) {
+          console.log(response);
+          mostrarGrupos();
+
+        });
+
+      }
+    })
+
+  })
+
+  $(document).on("click", ".btn-editar-grupo", function () {
+
+
+    let element = (this).parentElement.parentElement;
+    let id = element.getAttribute("id_grupo");
+
+
+    $.post("../processes/listener/escuchar-grupo.php", { id }, function (response) {
+
+      let grupo = JSON.parse(response);
+
+      $("#id_grupo").val(grupo.id);
+      $("#txtNombreGru").val(grupo.nombre);
+      $("#txtDescripcion").val(grupo.descripcion);
+      $("#txtUsuCre").val(grupo.usuarioCreacion);
+
+
+      editar = true;
+      mostrarGrupos();
+
+    });
+
+  })
+
+  btnAgregarGrupo.addEventListener("click", function () {
+
+
+    editar = false;
+    document.getElementById('frm_grupo').reset();
+
+
+  })
+
+  btnSalir.addEventListener("click", async function () {
+
+
+    fetch('../processes/validator/terminar-sesion.php');
+
+  })
+
+})
+
+
+function RegistrarGrupo() {
+  let url = editar === false ? "../processes/register/procesarGrupo.php" : "../processes/edit/editar-grupo.php";
+  $.ajax({
+    type: "GET",
+    data: $("#frm_grupo").serialize(),
+    url: url,
+    success: function (data) {
+      mensajes(data, "Se registro el grupo 🐱‍👤", "Rellena todos los campos");
+      mostrarGrupos();
+    },
+  });
+  $("#frm_grupo").trigger("reset");
+
+}
+
+mostrarGrupos();
+
+function mostrarGrupos() {
+  $.ajax({
+    url: "../processes/mostrarGrupos.php",
+    type: "GET",
+    success: function (response) {
+      let grupo = JSON.parse(response);
+      let template = "";
+
+      grupo.forEach((grupo) => {
+        template += `
+          
+          <tr class="gridjs-tr" id_grupo="${grupo.id}">
+          <td data-column-id="title"
+              class="gridjs-td">${grupo.id}
+          </td>
+          <td data-column-id="director"
+              class="gridjs-td">${grupo.nombre}</td>
+          <td data-column-id="producer"
+              class="gridjs-td">${grupo.descripcion}</td>
+          <td data-column-id="producer"
+              class="gridjs-td">${grupo.fechaCreacion}</td>
+          <td>
+          <i class="bi bi-pencil btn-editar-grupo  text-center text-primary " data-bs-toggle="modal"
+          data-bs-target="#grupo"></i>
+          <i class="bi bi-x-circle-fill text-danger btn-delete-grupo" ></i>
+          </td>
+      </tr>
+     
+          
+          `;
+      });
+      $("#listado_grupos").html(template);
+    }
+  })
+}
+
+
+function mensajes(response, mensaje, error) {
+
+  if (response == "ingresado") {
+
+    Swal.fire("REGISTRADA", ``, "success").then(() => {
+      console.log("tabla actualizada");
+    });
+
+  } else {
+
+    Swal.fire("COMPLETA TODOS LOS CAMPOS", ``, "error").then(() => {
+      console.log("no hay datos");
+    });
+
+  }
 }

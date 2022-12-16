@@ -28,165 +28,47 @@ if ($editarLogodSucursal === "editar") {
 
 $sucursal = new BaseDatos();
 
-$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id ?? "", $banderaEmpresa ?? "", $rutaLogo,$codigoApu);
+$res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDireccionSucursal, $txtCodigoCofide, $cboIdub, $ruc_id ?? "", $banderaEmpresa ?? "", $rutaLogo, $codigoApu);
 
-// TEAM_VIEWER = usuariosa , contraseñaa 
-try {
 
-    if ($editarAccesoSistema == "editar") {
+if ($editarAccesoSistema === "registrar") {
 
-        #Tranformandolos en arrays
 
-        $accesosArray = explode("|", $accesosSucursalPorSistema, -1);
 
-        $todosLosAccesos = [];
+    #sistema
+    if (!empty($cboIdTipoIntegracion))
+        for ($i = 0; $i < count($cboIdTipoIntegracion); $i++) {
 
-        $laRespuesta = [];
-
-        #se recorren los accesos para obtenerlos por sistema 
-
-        foreach ($accesosArray as  $accesoSistema) {
-
-            array_push($todosLosAccesos, $accesoSistema);
+            if (empty($idSistema[$i]))
+                $sucursal->registrarSistema($txtIdSucursal, $cboTipoSistema[$i], $proveedor[$i], $cboIdTipoIntegracion[$i], 1);
         }
 
-        # en este punto @todosLosAccesos[0] = al primer Acceso en String 
-
-        for ($i = 0; $i < count($todosLosAccesos); $i++) {
-
-
-
-            # transformando el sistema en un arreglo 
-
-            $acceso =  explode(",", $todosLosAccesos[$i], -1);
-
-
-
-            ## el primer sistema  no tiene { , } pero los N siguientes si, si se coloca $acceso[0] a los N retornara null 
-
-            if ($todosLosAccesos[0] === $todosLosAccesos[$i]) {
-
-                # se repite por la cantidad de accesos que se tiene, La tabla Accesos registra accesos y sistema estos van entrelasadas
-
-                $tipoIntegracon =  $acceso[0];
-                $tipoSistema = $acceso[1];
-                $teamViewer = "TEAMVIEWER";
-                $usuarioTviewer = $acceso[2];
-                $contraseñaTviewer = $acceso[3];
-                $anydesk = "ANYDESK";
-                $usaurioAnyDesk = $acceso[4];
-                $contraseñaAnyDesk = $acceso[5];
-                $escritorioRemoto = "ESCRITORIO_REMOTO";
-                $usuarioEscritorioRemoto = $acceso[6];
-                $contraseñaEscritorioRemoto = $acceso[7];
-                $proveedor = $acceso[8];
-
-
-
-                $sucursal->editarAcceso($txtIdSucursal, $anydesk, $usaurioAnyDesk, $contraseñaAnyDesk, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->editarAcceso($txtIdSucursal, $teamViewer, $usuarioTviewer, $contraseñaTviewer, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->editarAcceso($txtIdSucursal, $escritorioRemoto, $usuarioEscritorioRemoto, $contraseñaEscritorioRemoto, $proveedor, $tipoSistema, $tipoIntegracon);
-            } else {
-
-                $tipoIntegracon =  $acceso[1];
-                $tipoSistema = $acceso[2];
-                $teamViewer = "TEAMVIEWER";
-                $usuarioTviewer = $acceso[3];
-                $contraseñaTviewer = $acceso[4];
-                $anydesk = "ANYDESK";
-                $usaurioAnyDesk = $acceso[5];
-                $contraseñaAnyDesk = $acceso[6];
-                $escritorioRemoto = "ESCRITORIO_REMOTO";
-                $usuarioEscritorioRemoto = $acceso[7];
-                $contraseñaEscritorioRemoto = $acceso[8];
-                $proveedor = $acceso[9];
-
-
-                #se repite por la cantidad de accesos que se tiene, La tabla Accesos registra accesos y sistema estos van entrelasados
-
-
-                $sucursal->editarAcceso($txtIdSucursal, $anydesk, $usaurioAnyDesk, $contraseñaAnyDesk, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->editarAcceso($txtIdSucursal, $teamViewer, $usuarioTviewer, $contraseñaTviewer, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->editarAcceso($txtIdSucursal, $escritorioRemoto, $usuarioEscritorioRemoto, $contraseñaEscritorioRemoto, $proveedor, $tipoSistema, $tipoIntegracon);
-            }
+    if (!empty($acceso))
+        for ($i = 0; $i < count($acceso); $i++) {
+            if (empty($idAcceso[$i]))
+                $sucursal->registrarAccesos($txtIdSucursal, $acceso[$i], $usuario[$i], $contraseña[$i] ?? "", 1, $nombreSistema[$i] ?? "");
         }
-    } else if ($editarAccesoSistema == "registrar") {
+} else {
 
-        #Tranformandolos en arrays
 
-        $accesosArray = explode("|", $accesosSucursalPorSistema, -1);
+    if (!empty($acceso))
+        for ($i = 0; $i < count($acceso); $i++) {
 
-        $todosLosAccesos = [];
-
-        $laRespuesta = [];
-
-        #se recorren los accesos para obtenerlos por sistema 
-
-        foreach ($accesosArray as  $accesoSistema) {
-
-            array_push($todosLosAccesos, $accesoSistema);
+            $sucursal->editarAcceso($idAcceso[$i], $txtIdSucursal, $acceso[$i], $usuario[$i], $contaseña[$i], $nombreSistema[$i]);
         }
 
-        # en este punto @todosLosAccesos[0] = al primer Acceso en String 
+    if (!empty($cboIdTipoIntegracion))
+        for ($i = 0; $i < count($cboIdTipoIntegracion); $i++) {
 
-        for ($i = 0; $i < count($todosLosAccesos); $i++) {
-
-
-            # transformando el sistema en un arreglo 
-
-            $acceso =  explode(",", $todosLosAccesos[$i], -1);
-
-            ## el primer sistema  no tiene { , } pero los N siguientes si, si se coloca $acceso[0] a los N retornara null 
-
-            if ($todosLosAccesos[0] === $todosLosAccesos[$i]) {
-
-                # se repite por la cantidad de accesos que se tiene, La tabla Accesos registra accesos y sistema estos van entrelasadas
-
-                $tipoIntegracon =  $acceso[0];
-                $tipoSistema = $acceso[1];
-                $teamViewer = "TEAMVIEWER";
-                $usuarioTviewer = $acceso[2];
-                $contraseñaTviewer = $acceso[3];
-                $anydesk = "ANYDESK";
-                $usaurioAnyDesk = $acceso[4];
-                $contraseñaAnyDesk = $acceso[5];
-                $escritorioRemoto = "ESCRITORIO_REMOTO";
-                $usuarioEscritorioRemoto = $acceso[6];
-                $contraseñaEscritorioRemoto = $acceso[7];
-                $proveedor = $acceso[8];
-
-
-
-                $sucursal->registrarAccesos($txtIdSucursal, $anydesk, $usaurioAnyDesk, $contraseñaAnyDesk, 1, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->registrarAccesos($txtIdSucursal, $teamViewer, $usuarioTviewer, $contraseñaTviewer, 1, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->registrarAccesos($txtIdSucursal, $escritorioRemoto, $usuarioEscritorioRemoto, $contraseñaEscritorioRemoto, 1, $proveedor, $tipoSistema, $tipoIntegracon);
-            } else {
-
-                $tipoIntegracon =  $acceso[1];
-                $tipoSistema = $acceso[2];
-                $teamViewer = "TEAMVIEWER";
-                $usuarioTviewer = $acceso[3];
-                $contraseñaTviewer = $acceso[4];
-                $anydesk = "ANYDESK";
-                $usaurioAnyDesk = $acceso[5];
-                $contraseñaAnyDesk = $acceso[6];
-                $escritorioRemoto = "ESCRITORIO_REMOTO";
-                $usuarioEscritorioRemoto = $acceso[7];
-                $contraseñaEscritorioRemoto = $acceso[8];
-                $proveedor = $acceso[9];
-
-
-                #se repite por la cantidad de accesos que se tiene, La tabla Accesos registra accesos y sistema estos van entrelasadas
-
-                $sucursal->registrarAccesos($txtIdSucursal, $anydesk, $usaurioAnyDesk, $contraseñaAnyDesk, 1, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->registrarAccesos($txtIdSucursal, $teamViewer, $usuarioTviewer, $contraseñaTviewer, 1, $proveedor, $tipoSistema, $tipoIntegracon);
-                $sucursal->registrarAccesos($txtIdSucursal, $escritorioRemoto, $usuarioEscritorioRemoto, $contraseñaEscritorioRemoto, 1, $proveedor, $tipoSistema, $tipoIntegracon);
-            }
+            $sucursal->EditarSistema($idSistema[$i], $txtIdSucursal, $cboTipoSistema[$i], $proveedor[$i], $cboIdTipoIntegracion[$i]);
         }
-    }
-} catch (Exception $e) {
-    echo $e;
 }
+
+
+
+
+
+
 
 if (!$res) {
     die("Consulta fallida llama al admin 😢");

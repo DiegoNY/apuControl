@@ -371,16 +371,16 @@ class BaseDatos
 
     //CRUD Accesos
 
-    public function registrarAccesos($id_sucursal, $nombre, $id_acceso, $contraseña, $estado,$proveedor,$nombreSistema,$tipoIntegracion)
+    public function registrarAccesos($id_sucursal, $nombre, $id_acceso, $contraseña, $estado,$nombreSistema)
     {
         $consulta = "INSERT INTO `accesos`(id_sucursal,nombreAcceso,idAcceso,contraseña,estado,nombresistema) values ('$id_sucursal','$nombre','$id_acceso','$contraseña','$estado','$nombreSistema');";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }
 
-    public function editarAcceso($id_sucursal, $nombre, $id_acceso, $contraseña, $proveedor,$nombreSistema,$tipoIntegracio)
+    public function editarAcceso($id,$id_sucursal, $nombre, $usuario, $contraseña,$sistema)
     {
-        $consulta = "UPDATE accesos as a set idAcceso = '$id_acceso', contraseña='$contraseña', proveedor =  '$proveedor' , tipointegracion = '$tipoIntegracio' where(a.nombreAcceso = '$nombre' and a.id_sucursal = '$id_sucursal' and a.nombresistema = '$nombreSistema');";
+        $consulta = "UPDATE accesos as a set nombreAcceso = '$nombre', idAcceso = '$usuario', contraseña='$contraseña' , nombreSistema = '$sistema'  where (a.id = $id and a.id_sucursal = $id_sucursal);";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -391,15 +391,27 @@ class BaseDatos
         }
     }
 
-    public function eliminarAcceso($id)
+    public function eliminarAcceso($id,$id_sucursal)
     {
-        $consulta = "UPDATE accesos as a set estado = 0 where (id = $id);";
+        $consulta = "UPDATE accesos as a set estado = 0 where (a.id = $id and a.id_sucursal = $id_sucursal);";
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public function MostrarSistema($id_sucursal)
+    {
+        $consulta = "SELECT * FROM `sistema_sucursal`AS SS WHERE( SS.id_sucursal = $id_sucursal);";
+        $response = mysqli_query($this->con,$consulta);
+
+        if($response)
+            return $response;
+        else
+            return false;
+        
     }
 
     public function registrarSistema($id_sucursal, $nombre,$proveedor,$tipoIntegracion,$estado)
@@ -409,9 +421,21 @@ class BaseDatos
         return $res;
     }
 
-    public function eliminarSistema ( $sistema , $sucursal)
+    public function EditarSistema($id,$id_sucursal, $nombre,$proveedor,$integracion)
     {
-        $consulta = "UPDATE accesos as a set estado = 0 where (a.nombresistema = '$sistema' and a.id_sucursal = '$sucursal' );";
+        $consulta = "UPDATE sistema_sucursal AS SS SET nombre = '$nombre' , proveedor = '$proveedor', integracion = '$integracion' WHERE ( SS.id = $id AND SS.id_sucursal = $id_sucursal) ";
+
+        $response = mysqli_query($this->con , $consulta);
+        
+        if($response)
+            return true;
+        else 
+            return false;
+    }
+
+    public function eliminarSistema ( $id , $sucursal)
+    {
+        $consulta = "UPDATE sistema_sucursal as SS set estado = 0 where ( SS.id = '$id' and SS.id_sucursal = '$sucursal' );";
         $res = mysqli_query($this->con, $consulta);
         if ($res == TRUE) {
             return true;

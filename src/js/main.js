@@ -152,7 +152,7 @@ function cargarSucursal(ruc) {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: "",
         searchPlaceholder: "Buscar por..",
@@ -204,7 +204,7 @@ function cargarSucursal(ruc) {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: "",
         zeroRecords: "Sin resultados encontrados",
@@ -258,7 +258,7 @@ function cargarContactos(ruc) {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: "",
         searchPlaceholder: "Buscar por..",
@@ -306,7 +306,7 @@ function cargarContactos(ruc) {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: "",
         zeroRecords: "Sin resultados encontrados",
@@ -1018,7 +1018,7 @@ function informacionEmpresaNueva(estado, condicion, nombre) {
 }
 
 
-function cargarTipointegracion() {
+function cargarTipointegracion(nombre = false) {
 
   $.ajax({
     url: "../processes/mostrar-tipo-integracion.php",
@@ -1032,10 +1032,9 @@ function cargarTipointegracion() {
         template += `
         
         <option id="${tipoIntegra.nombre}" value="${tipoIntegra.nombre}">${tipoIntegra.nombre}</option>
-        
+       
         `;
       });
-      $("#cboIdTipoIntegracion").html(template);
       $(".cboIdTipoIntegracion").html(template);
     }
   })
@@ -1059,7 +1058,6 @@ function cargarTiposSistemas() {
         
         `;
       });
-      $("#cboTipoSistema").html(template);
       $(".cboTipoSistema").html(template);
     }
   })
@@ -1164,23 +1162,6 @@ $(document).on("click", ".btn-edit-sucursal", function () {
  **/
 
 
-  // let tipoSistema = document.querySelector('#cboTipoSistema').value = 0;
-  // let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value = 0;
-  // let usuarioAnydesk = document.querySelector('#usuariosa');
-  // usuarioAnydesk.setAttribute('value', '');
-  // let contraseñaAnydesk = document.querySelector('#contraseñaa');
-  // contraseñaAnydesk.setAttribute('value', '');
-  // let usuarioTViewer = document.querySelector('#usuario_ANY');
-  // usuarioTViewer.setAttribute('value', '');
-  // let contraseñaTViewer = document.querySelector('#contraseña_ANY');
-  // contraseñaTViewer.setAttribute('value', '');
-  // let usuarioEscriRemoto = document.querySelector('#usuario_ER');
-  // usuarioEscriRemoto.setAttribute('value', '');
-  // let contraseñaEscriRemoto = document.querySelector('#contraseña_ER');
-  // contraseñaEscriRemoto.setAttribute('value', '');
-  // let proveedor = document.querySelector('#proveedor').value = '';
-
-
   AccesosSucursal = [];
   Sistemas = [];
 
@@ -1222,15 +1203,120 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     logoSucursal.setAttribute("src", `.${sucursal.logo}`);
 
 
-    /**
-     * @cargarAccesos carga los acceso y tambien los sistemas 
-     */
-    cargarAccesos(id);
+
+
+    temp = ""
+    sucursal.sistemas.forEach(sistem => {
+
+      tpsisTemplate = "";
+
+      sucursal.tiposSistemas.forEach(tpSistemas => {
+        tpsisTemplate += `
+        ${tpSistemas.nombre == sistem.nombre && `<option selected value="${sistem.nombre}">${sistem.nombre}</option>` || `<option>${tpSistemas.nombre}</option>`}
+       
+       `;
+      });
+
+      tempTipoInte = "<option value='0'>Seleccione</option>";
+
+      sucursal.tiposIntegracion.forEach(tpIntegracion => {
+
+        tempTipoInte += `
+        
+        ${tpIntegracion.nombre == sistem.integracion && `<option selected value="${tpIntegracion.nombre}">${tpIntegracion.nombre}</option>` || `<option value="${tpIntegracion.nombre}">${tpIntegracion.nombre}</option>`}
+
+        `
+
+      })
+
+      temp += ` 
+      <tr sistemaid="${sistem.id}">
+    <td>  <select name="cboTipoSistema[]" id="cboTipoSistema"
+    class="form-control cboTipoSistema">
+      ${tpsisTemplate}
+</select></td>
+    <td ><select name="cboIdTipoIntegracion[]"
+    id="cboIdTipoIntegracion" class="form-control cboIdTipoIntegracion">
+    ${tempTipoInte}
+</select> </td>
+    <td> <input type="hidden" name="idSistema[]" value="${sistem.id}"/>  <input type="text" class="form-control" name="proveedor[]"
+    id="proveedor" value="${sistem.proveedor}"> </td>
+    <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
+  </tr>
+        
+      `;
+
+
+    });
+
+    let tabla = document.querySelector("#containerSistemas");
+    tabla.innerHTML = temp;
+
+    let tempAcc = ""
+
+    sucursal.accesos.forEach(acceso => {
+
+      tempAcSis = ""
+
+      sucursal.tiposSistemas.forEach(sistemas => {
+
+        tempAcSis += `
+        ${sistemas.nombre == acceso.nombreSistema && `<option selected value="${sistemas.nombre}">${sistemas.nombre}</option>` || `<option value="${sistemas.nombre}">${sistemas.nombre}</option>`}
+        `;
+
+
+      })
+
+      let Accesos = [
+          "ANYDESK",
+          "TEAM VIEWER",
+          "ESCRITORIO REMOTO",
+      ]
+
+      acc = "";
+
+      Accesos.forEach(a => {
+        
+        acc+=`
+          ${a == acceso.accesos && `<option selected value="${a}">${a}</option>` || `<option value="${a}">${a}</option>` }        
+        `
+      })
+
+      tempAcc += `
+      <tr >
+      <td>
+        <select class="form-control" name="acceso[]">
+          ${acc}
+        </select>
+      </td>
+      <td><input type="hidden" name="idAcceso[]" value="${acceso.id}"/> <input name="usuario[]" class="usuario form-control" value="${acceso.usuario}"></td>
+      <td><input name="contaseña[]" class="contraseña form-control"  value="${acceso.contraseña}"></td>
+      <td>
+        <select name="nombreSistema[]" id="cboTipoSistema" class="form-control cboTipoSistema">
+        
+        ${tempAcSis}
+        
+        </select>
+      </td>
+    </tr>
+      `;
+    });
+
+
+
+
+    let tablaAcceso = document.querySelector('#contenedorAccesos');
+    tablaAcceso.innerHTML = tempAcc;
+
+
+
+    // Obtener el elemento option  para seleccionar
+
+
 
     $("#editarLogoSucursal").val("no editar")
 
-    let previsualizacion = document.getElementById("previsualizacion-sistemas");
-    previsualizacion.classList.remove('inactive');
+
 
   });
 
@@ -1358,30 +1444,11 @@ btnes.addEventListener("click", function () {
   let integracion = document.getElementById("cboIdTipoIntegracion");
   integracion.options.selectedIndex = 0;
 
-  let previsualizacion = document.getElementById("previsualizacion-sistemas");
-  previsualizacion.classList.add('inactive');
 
   /**
    *  Limpiando campos
   **/
 
-  let an = document.getElementById('contraseña_ANY');
-  an.setAttribute('value', ``);
-
-  let anc = document.getElementById('usuario_ANY');
-  anc.setAttribute('value', ``);
-
-  let tv = document.getElementById('contraseñaa');
-  tv.setAttribute('value', ``);
-
-  let tvc = document.getElementById('usuariosa');
-  tvc.setAttribute('value', ``);
-
-  let er = document.getElementById('contraseña_ER');
-  er.setAttribute('value', ``);
-
-  let erc = document.getElementById('usuario_ER');
-  erc.setAttribute('value', ``);
 
   let containerBtnEditar = document.querySelector('#container-editar-sistema');
   containerBtnEditar.classList.add('inactive');
@@ -1657,7 +1724,7 @@ $(document).ready(function () {
       infoPostFix: "",
       thousands: ",",
       lengthMenu: "",
-      loadingRecords: "Cargando...",
+      loadingRecords: "",
       processing: "Procesando...",
       search: "",
       searchPlaceholder: "Buscar por..",
@@ -1685,7 +1752,7 @@ $(document).ready(function () {
       infoPostFix: "",
       thousands: ",",
       lengthMenu: "",
-      loadingRecords: "Cargando...",
+      loadingRecords: "",
       processing: "Procesando...",
       search: "",
       searchPlaceholder: "Buscar por..",
@@ -1727,7 +1794,7 @@ $(document).ready(function () {
       infoPostFix: "",
       thousands: ",",
       lengthMenu: "Mostrar _MENU_ Entradas",
-      loadingRecords: "Cargando...",
+      loadingRecords: "",
       processing: "Procesando...",
       search: "",
       searchPlaceholder: "Buscar por..",
@@ -1827,7 +1894,7 @@ let AccesosSucursal = [];
 let Sistemas = [];
 let Accesos = [];
 
-var tempSiste ="";
+var tempSiste = "";
 
 btnAgregarSistemaSucursal.addEventListener('click', function () {
 
@@ -1836,48 +1903,13 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   editar.removeAttribute('value');
   editar.setAttribute('value', 'registrar');
 
-  let tipoSistema = document.querySelector('#cboTipoSistema').value;
-  let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value;
+
 
   let proveedor = document.querySelector('#proveedor').value;
 
-  AccesosSucursal.push(
 
 
-    tipoIntegracion,
-    tipoSistema,
-    proveedor,
-    "|"
 
-  );
-
-  /**
-   * Previsualizacion de los sistemas agregados
-  **/
-
-  Sistemas.push(
-
-    {
-      nombre: tipoSistema,
-      integracion: tipoIntegracion,
-      proveedor: proveedor,
-
-    }
-
-  )
-
-  Accesos.push(
-
-    {
-      id: tipoSistema,
-      
-
-    }
-
-  )
-
-
-  
 
   tempSiste += `
   <tr sistema="">
@@ -1906,8 +1938,7 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   let containerSistema = document.getElementById("containerSistemas");
   containerSistema.innerHTML = tempSiste;
 
-  let previsualizacion = document.getElementById("previsualizacion-sistemas");
-  previsualizacion.classList.remove('inactive');
+
 
   let toogleVisualizacion = document.getElementById("ojoPrevisualizacion");
   toogleVisualizacion.classList.remove('inactive');
@@ -1941,31 +1972,6 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
     }
   })
 
-  /**
-   * Limpiando data despues de registro en Array
-  **/
-
-  let sistema = document.getElementById("cboTipoSistema");
-  sistema.options.selectedIndex = 0;
-
-  let integracion = document.getElementById("cboIdTipoIntegracion");
-  integracion.options.selectedIndex = 0;
-
-  let prove = document.querySelector("#proveedor").value = "";
-
-
-  let an = document.getElementById('contraseña_ANY').value = "";
-
-  let anc = document.getElementById('usuario_ANY').value = "";
-
-  let tv = document.getElementById('contraseñaa').value = "";
-
-  let tvc = document.getElementById('usuariosa').value = "";
-
-  let er = document.getElementById('contraseña_ER').value = "";
-
-  let erc = document.getElementById('usuario_ER').value = "";
-
 
   Toast.fire({
     icon: 'success',
@@ -1976,42 +1982,37 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
 });
 
-var tem ="";
+var tem = "";
 
 btnagregarAcceso.addEventListener('click', () => {
-  tem +=`
+  tem += `
 
     <tr>
       <td>
         <select class="form-control" name="acceso[]">
-          <option>Anydesk</option>
-          <option>TeamViewer</option>
-          <option>Escritorio Remoto</option>
+          <option>ANYDESK</option>
+          <option>TEAM VIEWER</option>
+          <option>ESCRITORIO REMOTO</option>
         </select>
       </td>
       <td> <input name="usuario[]" class="usuario form-control"/></td>
       <td><input name="contaseña[]" class="contraseña form-control"/></td>
+      <td>
+      <select name="nombreSistema[]" id="cboTipoSistema" class="form-control cboTipoSistema">
+        
+      </select>
+      </td>
     </tr>
+
 
     `
 
   const containerAcceso = document.querySelector('#contenedorAccesos');
   containerAcceso.innerHTML = tem;
 
+  cargarTiposSistemas();
+
 });
-
-let toogleVisualizacion = document.getElementById("ojoPrevisualizacion");
-toogleVisualizacion.addEventListener('click', toogleOjovisualiazacion);
-
-
-function toogleOjovisualiazacion() {
-
-
-  let tablaSistema = document.querySelector('#previsualizacion-sistemas');
-
-  tablaSistema.classList.toggle('inactive');
-
-}
 
 var mostrarAlerta = 'true';
 
@@ -2274,6 +2275,8 @@ $(document).on('click', "#eliminarSistema", function () {
 
 
 });
+
+
 
 
 

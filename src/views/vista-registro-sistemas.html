@@ -172,9 +172,7 @@
                         <li class="nav-item"><a href="index.html" class="nav-link "> <i class="bi bi-bookmark-plus"></i>
                                 <span> Registrar Empresas</span></a></li>
 
-                        <li class="nav-item"><a href="vista-grupos.html" class="nav-link "> <i
-                                    class="bi bi-bag-fill"></i> Grupos
-                                empresariales</a></li>
+                    
 
 
                         <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link active"> <i
@@ -188,10 +186,7 @@
                         </li>
 
 
-                        <li class="nav-item"><a href="detalle-sucursales.html" class="nav-link  "> <i
-                                    class="bi bi-person-rolodex"></i> <span> Detalle sucursales </span></a></li>
-
-                        </li>
+                       
 
                         <!-- /main -->
 
@@ -312,6 +307,12 @@
                                                 aria-selected="true" aria-expanded="true"><a href="#tabs-hover-5"
                                                     role="presentation" tabindex="-1" class="ui-tabs-anchor"
                                                     id="ui-id-101">Banderas Empresas</a></li>
+                                            <li role="tab" tabindex="1"
+                                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab "
+                                                aria-controls="tabs-hover-2" aria-labelledby="ui-id-101"
+                                                aria-selected="true" aria-expanded="true"><a href="#tabs-hover-6"
+                                                    role="presentation" tabindex="-1" class="ui-tabs-anchor"
+                                                    id="ui-id-101">Grupos Empresariales </a></li>
 
                                         </ul>
                                         <div id="tabs-hover-1" aria-labelledby="ui-id-100" role="tabpanel"
@@ -683,6 +684,83 @@
                                             </div>
 
                                         </div>
+                                        <div id="tabs-hover-6" aria-labelledby="ui-id-101" role="tabpanel"
+                                            class="ui-tabs-panel ui-corner-bottom ui-widget-content"
+                                            aria-hidden="false">
+
+                                            <div class="card-body row">
+
+                                                <div class="col-lg-5 mb-3">
+                                                    <button id="btn_agregar_grupo" class=" btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#grupo">
+                                                        Nuevo Grupo +
+                                                    </button>
+                                                </div>
+
+                                                <div class="table-responsive col-lg-12">
+
+
+                                                    <div class="gridjs-example-server-search border-top">
+                                                        <div role="complementary" class="gridjs gridjs-container"
+                                                            style="width: 100%;">
+
+                                                            <div class="gridjs-wrapper" style="height: auto;">
+                                                                <table role="grid" class="gridjs-table table"
+                                                                    style="height: auto" id="tabla_grupo">
+                                                                    <thead class="gridjs-thead"
+                                                                        style="background-color: #252B36; color: white;">
+                                                                        <tr class="gridjs-tr">
+
+                                                                            <th data-column-id="title"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">#
+                                                                                </div>
+                                                                            </th>
+                                                                            <th data-column-id="producer"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">
+                                                                                    Nombre
+                                                                                </div>
+                                                                            </th>
+                                                                            <th data-column-id="producer"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">
+                                                                                    Descripción
+                                                                                </div>
+                                                                            </th>
+                                                                            <th data-column-id="producer"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">
+                                                                                    Fecha_Creación
+                                                                                </div>
+                                                                            </th>
+                                                                            <th data-column-id="producer"
+                                                                                class="gridjs-th">
+                                                                                <div class="gridjs-th-content">
+                                                                                    Opciones
+                                                                                </div>
+                                                                            </th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="listado_grupos">
+
+
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div id="gridjs-temp" class="gridjs-temp"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
 
                                     </div>
                                 </div>
@@ -980,6 +1058,57 @@
         </div>
     </div>
 
+    <div class="modal fade" id="grupo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2 text-light" style="background-color: #252B36;">
+                    <h5 class="modal-title" id="exampleModalLabel">Grupos Empresariales</h5>
+                </div>
+                <div class="modal-body py-0">
+
+                    <div class="card-body">
+
+
+                        <form id="frm_grupo" name="frm_grupo" class=" frm-grupo">
+                            <input type="hidden" name="txtIdGrupo" id="id_grupo">
+
+                            <div class="row">
+
+
+                                <div class="col-lg-4">
+                                    <label for="txtNombre">Nombre Grupo</label>
+                                    <input type="text" name="txtNombre" id="txtNombreGru" class="form-control">
+                                </div>
+
+                                <div class="col-lg-8">
+                                    <label for="txtDescripcion">Descripcion </label>
+                                    <input type="text" name="txtDescripcion" id="txtDescripcion" class="form-control">
+                                </div>
+
+                                <div class="col-lg-4 inactive">
+                                    <label for="txtUsuCre">Usuario Creacion </label>
+                                    <input type="hidden" name="txtUsuCre" id="txtUsuCre" class="form-control" value="">
+                                </div>
+
+                            </div>
+
+
+                            <div class="inactive">
+                                <input type="hidden" value="1" name="txtEstado" id="txtEstado">
+                            </div>
+
+                            <div class="inactive">
+                                <input type="hidden" name="txtFechCre" id="txtFechCre" value="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="RegistrarGrupo()" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- /Modal -->
 
