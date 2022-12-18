@@ -10,7 +10,7 @@
     $sistemas = new BaseDatos();
 
 
-    $res = $sistemas->eliminarSistema( $sistema, $sucursal);
+    $res = $sistemas->eliminarSistema($sistema,$sucursal);
 
     if (!isset($res)) {
 
@@ -18,5 +18,5 @@
 
     } else {
 
-        echo "eliminado";
+        echo json_encode(array("response" => "eliminado"));
     }

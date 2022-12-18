@@ -404,7 +404,7 @@ class BaseDatos
 
     public function MostrarSistema($id_sucursal)
     {
-        $consulta = "SELECT * FROM `sistema_sucursal`AS SS WHERE( SS.id_sucursal = $id_sucursal);";
+        $consulta = "SELECT * FROM `sistema_sucursal`AS SS WHERE( SS.id_sucursal = $id_sucursal and SS.estado = 1);";
         $response = mysqli_query($this->con,$consulta);
 
         if($response)

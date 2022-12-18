@@ -56,7 +56,7 @@ for ($i=0; $i < count($cboIdTipoIntegracion) ; $i++) {
 
 
 if($resultado == TRUE){
-    echo json_encode( array("mensaje" => "ingresado") ); 
+    echo  "ingresado"; 
     
 }else{
     echo "error";

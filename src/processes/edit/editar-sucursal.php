@@ -46,7 +46,7 @@ if ($editarAccesoSistema === "registrar") {
     if (!empty($acceso))
         for ($i = 0; $i < count($acceso); $i++) {
             if (empty($idAcceso[$i]))
-                $sucursal->registrarAccesos($txtIdSucursal, $acceso[$i], $usuario[$i], $contraseña[$i] ?? "", 1, $nombreSistema[$i] ?? "");
+                $sucursal->registrarAccesos($txtIdSucursal, $acceso[$i], $usuario[$i], $contaseña[$i] ?? "", 1, $nombreSistema[$i] ?? "");
         }
 } else {
 

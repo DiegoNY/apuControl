@@ -1268,22 +1268,22 @@ $(document).on("click", ".btn-edit-sucursal", function () {
       })
 
       let Accesos = [
-          "ANYDESK",
-          "TEAM VIEWER",
-          "ESCRITORIO REMOTO",
+        "ANYDESK",
+        "TEAM VIEWER",
+        "ESCRITORIO REMOTO",
       ]
 
       acc = "";
 
       Accesos.forEach(a => {
-        
-        acc+=`
-          ${a == acceso.accesos && `<option selected value="${a}">${a}</option>` || `<option value="${a}">${a}</option>` }        
+
+        acc += `
+          ${a == acceso.accesos && `<option selected value="${a}">${a}</option>` || `<option value="${a}">${a}</option>`}        
         `
       })
 
       tempAcc += `
-      <tr >
+      <tr idAcceso="${acceso.id}" >
       <td>
         <select class="form-control" name="acceso[]">
           ${acc}
@@ -1298,6 +1298,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
         
         </select>
       </td>
+      <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarAcceso"></i></td>
     </tr>
       `;
     });
@@ -1444,6 +1445,8 @@ btnes.addEventListener("click", function () {
   let integracion = document.getElementById("cboIdTipoIntegracion");
   integracion.options.selectedIndex = 0;
 
+  document.querySelector('#contenedorAccesos').innerHTML = "";
+  document.querySelector('#containerSistemas').innerHTML = "";
 
   /**
    *  Limpiando campos
@@ -1999,7 +2002,7 @@ btnagregarAcceso.addEventListener('click', () => {
       <td><input name="contaseña[]" class="contraseña form-control"/></td>
       <td>
       <select name="nombreSistema[]" id="cboTipoSistema" class="form-control cboTipoSistema">
-        
+      <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarAcceso"></i></td>
       </select>
       </td>
     </tr>
@@ -2018,7 +2021,9 @@ var mostrarAlerta = 'true';
 
 $(document).on('click', "#editarSistema", function () {
 
-
+  let editar = document.querySelector('#editarAccesoSistema');
+  editar.removeAttribute('value');
+  editar.setAttribute('value', '');
 
   /**
    * obteniendo el  sistema , T.Integracion idSucursal
@@ -2257,10 +2262,49 @@ $(document).on('click', "#eliminarSistema", function () {
     if (result.isConfirmed) {
 
       let data = this.parentElement.parentElement;
-      let sistema = data.getAttribute('sistema');
-      let sucursal = data.getAttribute('idsucursalsistema');
+      let sistema = data.getAttribute('sistemaid');
+      let sucursal = document.querySelector('#txtIdSucursal').value;
+      console.log(sucursal);
 
       const RUTA = `../processes/delete/eliminar-sistema.php?sistema=${sistema}&sucursal=${sucursal}`;
+
+
+      fetch(RUTA)
+        .then(response => JSON.parse(response))
+        .then(data => console.log(data));
+
+
+      data.remove();
+    }
+
+  })
+
+
+});
+
+$(document).on('click', "#eliminarAcceso", function () {
+
+
+  Swal.fire({
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/604/604573.png',
+    imageWidth: 100,
+    imageHeight: 100,
+    title: 'Estas seguro ?',
+    text: "Si se elimina no podra ser recuperado",
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, eliminar!'
+
+  }).then((result) => {
+
+    if (result.isConfirmed) {
+
+      let data = this.parentElement.parentElement;
+      let sucursal = document.querySelector('#txtIdSucursal').value;
+      let acceso = data.getAttribute('idAcceso');
+
+      const RUTA = `../processes/delete/eliminar-acceso.php?acceso=${acceso}&&sucursal=${sucursal}`;
 
 
       fetch(RUTA)

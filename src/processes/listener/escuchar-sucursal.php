@@ -73,8 +73,8 @@ while ($row = mysqli_fetch_array($resultado)) {
         'banderaEmpresa' => $row['bandera'],
         'codigoApu' => $row['codigoApu'],
         'logo' => $row['banderasucursal'],
-        'sistemas' => $sist,
-        'accesos' => $accesosSucursal,
+        'sistemas' => $sist ?? [array("proveedor"=>"")],
+        'accesos' => $accesosSucursal ?? [array("contraseña"=>"","usuario"=>"")],
         'tiposSistemas' => $tpsistemas,
         'tiposIntegracion' => $tipoIntegracion,
         
