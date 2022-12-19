@@ -840,11 +840,18 @@ function RegistrarEmpresa() {
           let nombreContainer = document.querySelector('.container-nombre');
           let nombre = document.querySelector('#txtNombreCo').value;
 
-          let direccionContainer = document.querySelector('container-direccion');
-          let direccionValue = document.querySelector('#txtRuc').value;
+          // let direccionContainer = document.querySelector('#direccionEmpresa');
+          // let direccionValue = document.querySelector('#txtDireccion').value;
 
+          let containerRazonSocial = document.querySelector('#container-razonSocial');
+          let valueRazonSocial = document.querySelector("#txtRazonSocial").value;
 
-          if (direccionValue == "") console.log(direccionValue);
+          let contenedorTipoEnvio = document.querySelector('#tipoEnvio');
+          let valueTipoEnvio = document.querySelector('#cboTipoEnvio').value;
+
+          if (valueTipoEnvio == "") contenedorTipoEnvio.classList.add('campo-faltante');
+
+          if (valueRazonSocial == "") containerRazonSocial.classList.add('campo-faltante');
 
           if (rubroValue == 0) rubroContainer.classList.add('campo-faltante');
 
@@ -854,8 +861,10 @@ function RegistrarEmpresa() {
           setTimeout(() => {
             nombreContainer.classList.remove('campo-faltante');
             rubroContainer.classList.remove('campo-faltante');
+            containerRazonSocial.classList.remove('campo-faltante')
+            contenedorTipoEnvio.classList.remove('campo-faltante')
 
-          }, 7000);
+          }, 10000);
 
 
 
@@ -1092,9 +1101,11 @@ function cargarTipointegracion(nombre = false) {
 
       let tipoIntegra = JSON.parse(response);
 
+      let defaults = document.createElement('option');
+      defaults.innerText = "SELECCIONE";
 
       let optiones = [];
-
+      optiones.push(defaults);
 
       tipoIntegra.forEach((tipoIntegra) => {
 
@@ -1108,6 +1119,7 @@ function cargarTipointegracion(nombre = false) {
 
       });
 
+      console.log(optiones);
       let containerIntegraciones = document.querySelectorAll('.cboIdTipoIntegracion');
 
       containerIntegraciones.forEach((contenedor) => {
@@ -1130,9 +1142,11 @@ function cargarTiposSistemas() {
     success: function (response) {
       let tipoSistema = JSON.parse(response);
 
+      let defaults = document.createElement('option');
+      defaults.innerText = "SELECCIONE";
 
       let optiones = [];
-
+      optiones.push(defaults);
 
       tipoSistema.forEach((tipoSistema) => {
 
@@ -1149,7 +1163,7 @@ function cargarTiposSistemas() {
 
       let containerTipoSis = document.querySelectorAll('.cboTipoSistema');
       containerTipoSis.forEach((container) => {
-        if (container.children.length == 0 ){
+        if (container.children.length == 0) {
           optiones.forEach((option) => {
             container.append(option);
           })
@@ -2450,6 +2464,7 @@ $(document).on('click', "#eliminarSistema", function () {
 
 
       data.remove();
+      sistemasss = [];
       sistemasss.pop();
 
 
@@ -2463,6 +2478,7 @@ $(document).on('click', "#eliminarSistema", function () {
 
 $(document).on('click', "#eliminarAcceso", function () {
 
+  console.log(accesoss);
 
   Swal.fire({
     imageUrl: 'https://cdn-icons-png.flaticon.com/512/604/604573.png',
@@ -2492,6 +2508,7 @@ $(document).on('click', "#eliminarAcceso", function () {
 
 
       data.remove();
+      accesoss = []
       accesoss.pop();
     }
 

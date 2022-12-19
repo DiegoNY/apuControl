@@ -4,28 +4,48 @@ include '../connection/basedatos.php';
 
 
 
-    $contactos = new BaseDatos();
+$contactos = new BaseDatos();
 
-    $resultado = $contactos->verTodosContactos();
+$resultado = $contactos->verTodosContactos();
 
-    if (!$resultado) {
-        die("Query failed");
+if (!$resultado) {
+    die("Query failed");
+}
+
+$json = array();
+
+// while ($rowss = mysqli_fetch_array($resultado)) {
+//     $idEmpresa = $rowss['id_empresa'];
+// }
+
+// 
+
+// while($info = mysqli_fetch_array($empresainfo)){
+//     $razon = $info['razon_social'];
+// }
+
+// 
+
+while ($row = mysqli_fetch_array($resultado)) {
+
+    $empresainfo = $contactos->verEmpresa($row['id_empresa']);
+
+    while ($info = mysqli_fetch_array($empresainfo)) {
+        $razon = $info['razon_social'];
     }
 
-    $json = array();
+    $informacionEmpresa = $row['id_empresa']." - ".$razon;
 
-    while ($row = mysqli_fetch_array($resultado)) {
+    $json['data'][] = array(
 
-        $json['data'][] = array(
-
-            'id' => $row['id'],
-            'id_empresa' => $row['id_empresa'],
-            'nombre' => $row['nombre_contacto'],
-            'cargo' => $row['cargo'],
-            'telefono' => $row['telefono'],
-            'correo' => $row['correo'],
-        );
-    }
+        'id' => $row['id'],
+        'id_empresa' => $informacionEmpresa,
+        'nombre' => $row['nombre_contacto'],
+        'cargo' => $row['cargo'],
+        'telefono' => $row['telefono'],
+        'correo' => $row['correo'],
+    );
+}
 
 $jsonString = json_encode($json);
 

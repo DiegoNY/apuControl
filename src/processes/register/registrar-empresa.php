@@ -23,7 +23,7 @@ extract($_POST);
 $empresas = new BaseDatos();
 
 
-if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty($txtDireccion) || isset($cboTipoPersona) and !empty($cboTipoPersona) || isset($cboIdRubro) and !empty($cboIdRubro)) {
+if (!empty($txtRuc) and isset($txtRuc) and is_numeric($txtRuc) and !empty($txtNombreCo) and !empty($txtRazonSocial) and isset($txtRazonSocial) and !empty($txtDireccion) and isset($txtDireccion) and isset($cboTipoPersona) and !empty($cboTipoPersona) and isset($cboIdRubro) and !empty($cboIdRubro) and !empty($cboTipoEnvio) and isset($cboTipoEnvio)) {
 
     $txtIdGrupo = $empresas->sanitizar($txtIdGrupo ?? "----");
     $cboTipoPersona = $empresas->sanitizar($cboTipoPersona);
@@ -40,6 +40,7 @@ if (!empty($txtRuc) || !empty($txtNombreCo) || !empty($txtRazonSocial) || !empty
     $txtEliminada = $empresas->sanitizar($txtEliminada);
     $cboEstado = $empresas->sanitizar($cboEstado);
     $txtEstadoComercial = $empresas->sanitizar($txtEstadoComercial);
+    
     $response = $empresas->agregarEmpresa($txtIdGrupo, $cboTipoPersona, $txtRuc, $txtRazonSocial, $txtNombreCo, $txtDireccion, $cboIdu, $cboIdRubro, $cboTipoSistema ?? "", $cboIdTipoIntegracion ?? "", $cboTipoEnvio, $cboEstado, $txtFechaRegistro, $txtEliminada, $txtEstadoComercial,$proveedor ?? "",$ruta?? "",$usuarioClaveSol,$contraseñaClaveSol);
 
 

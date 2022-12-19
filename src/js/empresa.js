@@ -25,7 +25,7 @@ const urlParams = new URLSearchParams(valores);
         var infoSis = document.getElementById('registrarInformacionSistema');
         var btnR = document.getElementById("tabla_empresasas_length");
         var btnDc = document.getElementById("detalleContacto");
-        var btnDs= document.getElementById("detalleSucursal");
+        var btnDs = document.getElementById("detalleSucursal");
 
         switch (user) {
           case user = "administrador":
@@ -34,13 +34,10 @@ const urlParams = new URLSearchParams(valores);
 
           case user = "tecnico":
 
-
-
-
             btnR.setAttribute('style', 'display:none;')
-            registro.classList.add('inactive');
-            infoSis.classList.add('inactive');
-            btnDc.classList.add('inactive');
+            registro.innerHTML = '';
+            infoSis.innerHTML = '';
+            btnDc.innerHTML='';
 
             break;
 
@@ -48,8 +45,8 @@ const urlParams = new URLSearchParams(valores);
 
 
             btnR.setAttribute('style', 'display:none;')
-            registro.classList.add('inactive');
-            infoSis.classList.add('inactive');
+            registro.innerHTML = '';
+            infoSis.innerHTML = '';
             btnDc.classList.add('inactive');
 
             break;
@@ -123,8 +120,8 @@ $(document).ready(function () {
         }
       },
       {
-        data: "cargo", "render":function(data){
-          if(data === "administrador"){
+        data: "cargo", "render": function (data) {
+          if (data === "administrador") {
             return `<div class="opciones-tabla-empresa"><div class="dropdown  ">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-calendar3 text-info"></i>
@@ -136,7 +133,7 @@ $(document).ready(function () {
               <li class="btn-delet" id="eli"><a class="dropdown-item">Eliminar</a></li>
             </ul>
           </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
-          }else if( data === "contabilidad"){
+          } else if (data === "contabilidad") {
             return `
             <div class="opciones-tabla-empresa"><div class="dropdown  ">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -147,7 +144,7 @@ $(document).ready(function () {
               <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
             </ul>
             </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
-          }else{
+          } else {
             return `<div class="opciones-tabla-empresa"><div class="dropdown  ">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-calendar3 text-info"></i>

@@ -280,7 +280,7 @@
                                                     <div>
 
                                                         <div class="row">
-                                                            <input type="text" ruc_ids value="" maxlength="11"
+                                                            <input type="number" ruc_ids value="" maxlength="11"
                                                                 name="txtRuc" id="txtRuc" class="form-control col-lg-8"
                                                                 required>
                                                             <input type="button" id="btn_ruc"
@@ -314,7 +314,7 @@
 
                                                 <div class="col-lg-6">
                                                     <label class=" font-weight-semibold">Razon social</label>
-                                                    <div class="container-razonSocial">
+                                                    <div class="container-razonSocial" id="container-razonSocial">
                                                         <input type="text" value="" name="txtRazonSocial"
                                                             id="txtRazonSocial" class="form-control">
                                                     </div>
@@ -402,7 +402,7 @@
 
                                                     <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
                                                         Envio</label>
-                                                    <div>
+                                                    <div class="" id="tipoEnvio">
                                                         <select name="cboTipoEnvio" id="cboTipoEnvio"
                                                             class="form-control">
                                                             <option value="" selected></option>
@@ -933,15 +933,17 @@
                                                 data-bs-target="#accesoTab" type="button" role="tab"
                                                 aria-controls="accesoTab" aria-selected="true">Sistemas</button>
                                         </li>
-                                        <li class="nav-item bd-highlight" role="presentation">
-                                            <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
-                                                data-bs-target="#infoSucu" type="button" role="tab"
-                                                aria-controls="infoSucu" aria-selected="false">Estación</button>
-                                        </li>
+
                                         <li class="nav-item bd-highlight" role="presentation">
                                             <button class="nav-link" id="accesoSucursal-tab" data-bs-toggle="tab"
                                                 data-bs-target="#accesoSucursal" type="button" role="tab"
                                                 aria-controls="accesoSucursal" aria-selected="false">Accesos</button>
+                                        </li>
+
+                                        <li class="nav-item bd-highlight" role="presentation">
+                                            <button class="nav-link" id="infoSucu-tab" data-bs-toggle="tab"
+                                                data-bs-target="#infoSucu" type="button" role="tab"
+                                                aria-controls="infoSucu" aria-selected="false">Estación</button>
                                         </li>
 
 
