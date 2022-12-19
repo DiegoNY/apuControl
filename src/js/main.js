@@ -73,8 +73,6 @@ const ides = document.querySelector("#txtIdSucursal");
 const inputRuc = document.getElementById("txtRuc");
 
 
-
-
 if (!rucs) {
 } else {
   document.getElementById("ruc_id").value = rucs;
