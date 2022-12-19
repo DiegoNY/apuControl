@@ -430,7 +430,6 @@ function cargarAccesos(id) {
     let containerSistema = document.getElementById("containerSistemas");
     containerSistema.innerHTML = template;
 
-
     editarAcceso = true;
 
 
@@ -597,11 +596,51 @@ function registrarSucursal() {
 
       if (response === "ingresado") {
         modalFormularioSucursal.toggle();
+      } else {
+
+        let containerNombre = document.querySelector('.container-nombre-sucursal');
+        let nombre = document.querySelector('#txtNombreSucursal').value;
+
+        let containerDireccion = document.querySelector('.container-direccion')
+        let direccion = document.querySelector('#txtDireccionSucursal').value;
+
+        if (nombre == "") containerNombre.classList.add('campo-faltante');
+
+        if (direccion == "") containerDireccion.classList.add('campo-faltante');
+
+
+
+
+
+        let sistemas = document.querySelector('#containerSistemas').children;
+        let containerTablaSistemas = document.querySelector('#previsualizacion-sistemas');
+        let containerTablaAccesos = document.querySelector('.container-accesos');
+        let btnAcceso = document.querySelector('#accesoSucursal-tab');
+        let accesos = document.querySelector('#contenedorAccesos').children;
+
+
+
+        if (sistemas.length == 0) containerTablaSistemas.classList.add('campo-faltante');
+        if (accesos.length == 0) containerTablaAccesos.classList.add('campo-faltante');
+        if (accesos.length == 0) btnAcceso.classList.add('campo-faltante');
+
+
+        setTimeout(() => {
+
+          containerNombre.classList.remove('campo-faltante');
+          containerDireccion.classList.remove('campo-faltante');
+          containerTablaSistemas.classList.remove('campo-faltante');
+          containerTablaAccesos.classList.remove('campo-faltante');
+          btnAcceso.classList.remove('campo-faltante');
+
+        }, 7000)
+
+
       }
 
     },
   });
-  $("#frm-sucursal").trigger("reset");
+
 }
 
 //Para los Contactos
@@ -771,6 +810,7 @@ function RegistrarEmpresa() {
 
 
       data.forEach((data) => {
+
         mensajes(
           data.mensaje,
           data.ruc,
@@ -792,7 +832,32 @@ function RegistrarEmpresa() {
 
         } else {
 
-          console.log("entre aca")
+          /**campo-faltante */
+
+          let rubroValue = document.querySelector('#cboIdRubro').value;
+          let rubroContainer = document.querySelector('.container-rubro');
+
+          let nombreContainer = document.querySelector('.container-nombre');
+          let nombre = document.querySelector('#txtNombreCo').value;
+
+          let direccionContainer = document.querySelector('container-direccion');
+          let direccionValue = document.querySelector('#txtRuc').value;
+
+
+          if (direccionValue == "") console.log(direccionValue);
+
+          if (rubroValue == 0) rubroContainer.classList.add('campo-faltante');
+
+          if (nombre == "") nombreContainer.classList.add('campo-faltante');
+
+
+          setTimeout(() => {
+            nombreContainer.classList.remove('campo-faltante');
+            rubroContainer.classList.remove('campo-faltante');
+
+          }, 7000);
+
+
 
         }
 
@@ -1026,16 +1091,31 @@ function cargarTipointegracion(nombre = false) {
     success: function (response) {
 
       let tipoIntegra = JSON.parse(response);
-      let template = "<option value='0' > SELECCIONE </option>";
+
+
+      let optiones = [];
+
 
       tipoIntegra.forEach((tipoIntegra) => {
-        template += `
-        
-        <option id="${tipoIntegra.nombre}" value="${tipoIntegra.nombre}">${tipoIntegra.nombre}</option>
-       
-        `;
+
+        let templates = document.createElement('option');
+
+        templates.setAttribute('id', `${tipoIntegra.nombre}`)
+        templates.setAttribute('value', `${tipoIntegra.nombre}`)
+        templates.innerText = tipoIntegra.nombre;
+
+        optiones.push(templates);
+
       });
-      $(".cboIdTipoIntegracion").html(template);
+
+      let containerIntegraciones = document.querySelectorAll('.cboIdTipoIntegracion');
+
+      containerIntegraciones.forEach((contenedor) => {
+        optiones.forEach((option) => {
+          contenedor.appendChild(option);
+        })
+      })
+
     }
   })
 
@@ -1049,16 +1129,38 @@ function cargarTiposSistemas() {
     type: "GET",
     success: function (response) {
       let tipoSistema = JSON.parse(response);
-      let template = "<option value='0' > SELECCIONE </option>";
+
+
+      let optiones = [];
+
 
       tipoSistema.forEach((tipoSistema) => {
-        template += `
-       
-        <option id="${tipoSistema.nombre}" value="${tipoSistema.nombre}">${tipoSistema.nombre}</option>
-        
-        `;
+
+
+        let templates = document.createElement('option');
+
+        templates.setAttribute('id', `${tipoSistema.nombre}`)
+        templates.setAttribute('value', `${tipoSistema.nombre}`)
+        templates.innerText = tipoSistema.nombre;
+
+        optiones.push(templates);
+
       });
-      $(".cboTipoSistema").html(template);
+
+      let containerTipoSis = document.querySelectorAll('.cboTipoSistema');
+      containerTipoSis.forEach((container) => {
+        if (container.children.length == 0 ){
+          optiones.forEach((option) => {
+            container.append(option);
+          })
+        }
+
+      })
+
+
+
+
+      // $(".cboTipoSistema").html(template);
     }
   })
 }
@@ -1161,9 +1263,17 @@ $(document).on("click", ".btn-edit-sucursal", function () {
   * Limpiando los datos 
  **/
 
-
+  let containerSis = document.querySelector('#containerSistemas');
+  let containerAcc = document.querySelector('#contenedorAccesos');
+  containerSis.innerHTML = '';
+  containerAcc.innerHTML = '';
   AccesosSucursal = [];
   Sistemas = [];
+  sistemasss = [];
+  accesoss = [];
+
+  let editarAccesoSistema = document.querySelector('#editarAccesoSistema');
+  editarAccesoSistema.setAttribute('value', "");
 
   let data = tableSucursal.row($(this).parents()).data();
 
@@ -1203,7 +1313,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
     logoSucursal.setAttribute("src", `.${sucursal.logo}`);
 
 
-
+    console.log(sucursal);
 
     temp = ""
     sucursal.sistemas.forEach(sistem => {
@@ -1249,8 +1359,11 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
     });
 
-    let tabla = document.querySelector("#containerSistemas");
-    tabla.innerHTML = temp;
+    if (sucursal.sistemas[0].nombre) {
+      let tabla = document.querySelector("#containerSistemas");
+      tabla.innerHTML = temp;
+    }
+
 
     let tempAcc = ""
 
@@ -1305,15 +1418,14 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
 
 
-
-    let tablaAcceso = document.querySelector('#contenedorAccesos');
-    tablaAcceso.innerHTML = tempAcc;
-
-
+    if (sucursal.accesos[0].accesos) {
+      let tablaAcceso = document.querySelector('#contenedorAccesos');
+      tablaAcceso.innerHTML = tempAcc;
+    } else {
+      console.log(" no se registraron accesos ");
+    }
 
     // Obtener el elemento option  para seleccionar
-
-
 
     $("#editarLogoSucursal").val("no editar")
 
@@ -1439,15 +1551,18 @@ btnes.addEventListener("click", function () {
   let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
   inpuAccesosInfo.setAttribute("value", ``);
 
-  let sistema = document.getElementById("cboTipoSistema");
-  sistema.options.selectedIndex = 0;
+  // let sistema = document.getElementById("cboTipoSistema");
+  // sistema.options.selectedIndex = 0;
 
-  let integracion = document.getElementById("cboIdTipoIntegracion");
-  integracion.options.selectedIndex = 0;
+  // let integracion = document.getElementById("cboIdTipoIntegracion");
+  // integracion.options.selectedIndex = 0;
 
   document.querySelector('#contenedorAccesos').innerHTML = "";
   document.querySelector('#containerSistemas').innerHTML = "";
 
+  sistemasss = [];
+  tempSiste = "";
+  console.log(sistemasss);
   /**
    *  Limpiando campos
   **/
@@ -1501,7 +1616,6 @@ let btnNuevoCargo = document.getElementById("btnNuevoCargo");
 
 btnNuevoCargo.addEventListener("click", function () {
 
-  console.log("click me , ah ⁉");
 
   let contenedorFormularios = document.getElementById("contenedorFormulariosContactos");
   contenedorFormularios.setAttribute("class", "row");
@@ -1899,62 +2013,74 @@ let Accesos = [];
 
 var tempSiste = "";
 
-btnAgregarSistemaSucursal.addEventListener('click', function () {
+var sistemasss = [];
 
+btnAgregarSistemaSucursal.addEventListener('click', function () {
 
   let editar = document.querySelector('#editarAccesoSistema');
   editar.removeAttribute('value');
   editar.setAttribute('value', 'registrar');
 
 
+  let sistema = document.createElement('tr');
+  let nombre = document.createElement('td');
 
-  let proveedor = document.querySelector('#proveedor').value;
+  let selectSistemas = document.createElement('select');
+  selectSistemas.setAttribute('name', 'cboTipoSistema[]')
+  selectSistemas.setAttribute('id', 'cboTipoSistema')
+  selectSistemas.setAttribute('class', 'form-control cboTipoSistema');
+
+  nombre.appendChild(selectSistemas);
+
+  let integracion = document.createElement('td');
+  let selectIntegracion = document.createElement('select');
+  selectIntegracion.setAttribute('name', 'cboIdTipoIntegracion[]')
+  selectIntegracion.setAttribute('id', 'cboIdTipoIntegracion')
+  selectIntegracion.setAttribute('class', 'form-control cboIdTipoIntegracion')
+  integracion.appendChild(selectIntegracion);
+
+  let proveedors = document.createElement('td');
+  let input = document.createElement('input');
+
+  input.setAttribute('type', 'text');
+  input.setAttribute('class', 'form-control');
+  input.setAttribute('id', 'proveedor');
+  input.setAttribute('name', 'proveedor[]');
+  proveedors.appendChild(input);
+
+
+  let opcion = document.createElement('td');
+  let i = document.createElement('i');
+  i.setAttribute('class', 'bi bi-trash3');
+  i.setAttribute('id', 'eliminarSistema');
+  opcion.appendChild(i);
+
+  sistema.appendChild(nombre);
+  sistema.appendChild(integracion);
+  sistema.appendChild(proveedors);
+  sistema.appendChild(opcion);
+
+  console.log(sistema);
 
 
 
+  sistemasss.push(sistema);
+  console.log(sistemasss);
 
+  let containerSistema = document.getElementById("containerSistemas");
 
-  tempSiste += `
-  <tr sistema="">
-    <td>  <select name="cboTipoSistema[]" id="cboTipoSistema"
-    class="form-control cboTipoSistema ">
-    <option value="" selected></option>
-    <option value="GESFARMA">GESFARMA</option>
-    <option value="APUGESCOM">APUGESCOM</option>
-</select></td>
-    <td ><select name="cboIdTipoIntegracion[]"
-    id="cboIdTipoIntegracion" class="form-control cboIdTipoIntegracion">
-    <option value="" selected></option>
-    <option value="DBF">DBF</option>
-    <option value="TXT">TXT</option>
-    <option value="JSON">JSON</option>
-</select> </td>
-    <td>  <input type="text" class="form-control" name="proveedor[]"
-    id="proveedor"> </td>
-    <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
-  </tr>
-  `;
+  sistemasss.forEach((sistema) => {
+    containerSistema.append(sistema);
+
+  });
 
   cargarTipointegracion();
   cargarTiposSistemas();
-
-  let containerSistema = document.getElementById("containerSistemas");
-  containerSistema.innerHTML = tempSiste;
-
 
 
   let toogleVisualizacion = document.getElementById("ojoPrevisualizacion");
   toogleVisualizacion.classList.remove('inactive');
 
-  /**
-  *     fin previsualizacion de los sistemas agregados
-  **/
-
-  /**
-   * 
-   * Agregando accesos a input para ser enviados a la BD 
-   * 
-   */
 
   let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
   inpuAccesosInfo.setAttribute("value", `${AccesosSucursal}`);
@@ -1985,33 +2111,82 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
 });
 
+var accesoss = [];
 var tem = "";
 
 btnagregarAcceso.addEventListener('click', () => {
-  tem += `
 
-    <tr>
-      <td>
-        <select class="form-control" name="acceso[]">
-          <option>ANYDESK</option>
-          <option>TEAM VIEWER</option>
-          <option>ESCRITORIO REMOTO</option>
-        </select>
-      </td>
-      <td> <input name="usuario[]" class="usuario form-control"/></td>
-      <td><input name="contaseña[]" class="contraseña form-control"/></td>
-      <td>
-      <select name="nombreSistema[]" id="cboTipoSistema" class="form-control cboTipoSistema">
-      <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarAcceso"></i></td>
-      </select>
-      </td>
-    </tr>
+  let editar = document.querySelector('#editarAccesoSistema');
+  editar.removeAttribute('value');
+  editar.setAttribute('value', 'registrar');
+
+  let acces = document.createElement('tr');
+
+  let tiposTd = document.createElement('td');
+  let tipos = document.createElement('select');
+  let option1 = document.createElement('option')
+  option1.setAttribute('value', 'ANYDESK');
+  option1.innerText = 'ANYDESK'
+  let option2 = document.createElement('option')
+  option2.setAttribute('value', 'ESCRITORIO REMOTO')
+  option2.innerText = 'ESCRITORIO REMOTO'
+
+  let option3 = document.createElement('option')
+  option3.setAttribute('value', 'TEAM VIEWER')
+  option3.innerText = 'TEAM VIEWER'
 
 
-    `
+  tipos.appendChild(option1)
+  tipos.appendChild(option2)
+  tipos.appendChild(option3)
+  tipos.setAttribute('class', 'form-control');
+  tipos.setAttribute('name', 'acceso[]');
+  tiposTd.appendChild(tipos);
+
+  let usuario = document.createElement('td');
+  let input = document.createElement('input');
+  input.setAttribute('name', 'usuario[]')
+  input.setAttribute('class', 'usuario form-control')
+  usuario.appendChild(input)
+
+  let contrasena = document.createElement('td');
+  let inputContrase = document.createElement('input');
+  inputContrase.setAttribute('name', 'contaseña[]')
+  inputContrase.setAttribute('class', 'contraseña form-control')
+  contrasena.appendChild(inputContrase);
+
+  let sis = document.createElement('td');
+  let selectSistemas = document.createElement('select');
+  selectSistemas.setAttribute('name', 'cboTipoSistema[]')
+  selectSistemas.setAttribute('id', 'cboTipoSistema')
+  selectSistemas.setAttribute('class', 'form-control cboTipoSistema');
+  sis.appendChild(selectSistemas);
+
+  let opti = document.createElement('td');
+  let i = document.createElement('i');
+  i.setAttribute('class', 'bi bi-trash3');
+  i.setAttribute('id', 'eliminarAcceso');
+  opti.appendChild(i);
+
+
+  acces.appendChild(tiposTd);
+  acces.appendChild(usuario);
+  acces.appendChild(contrasena);
+  acces.appendChild(sis);
+  acces.appendChild(opti);
+
+
+  console.log(acces);
+  accesoss.push(acces);
+
 
   const containerAcceso = document.querySelector('#contenedorAccesos');
-  containerAcceso.innerHTML = tem;
+
+  accesoss.forEach((acceso) => {
+    console.log(acceso);
+    containerAcceso.appendChild(acceso);
+
+  })
 
   cargarTiposSistemas();
 
@@ -2270,11 +2445,15 @@ $(document).on('click', "#eliminarSistema", function () {
 
 
       fetch(RUTA)
-        .then(response => JSON.parse(response))
+        .then(response => response.text())
         .then(data => console.log(data));
 
 
       data.remove();
+      sistemasss.pop();
+
+
+
     }
 
   })
@@ -2308,11 +2487,12 @@ $(document).on('click', "#eliminarAcceso", function () {
 
 
       fetch(RUTA)
-        .then(response => JSON.parse(response))
+        .then(response => response.text())
         .then(data => console.log(data));
 
 
       data.remove();
+      accesoss.pop();
     }
 
   })

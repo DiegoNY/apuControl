@@ -1,26 +1,52 @@
-.inactive{
+.inactive {
     display: none;
 }
 
-.opciones-tabla-empresa{
+.opciones-tabla-empresa {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    
+
 }
 
-.opciones-tabla-empresa i{
+.opciones-tabla-empresa i {
     cursor: pointer;
 }
 
-#btn_ruc{
-background-color: #64728c;
-color: whitesmoke;
-font-weight: bold;
+#btn_ruc {
+
+    background-color: #64728c;
+
+    color: whitesmoke;
+
+    font-weight: bold;
 }
-#imgVistaPrincipalEmpresa{
+
+#imgVistaPrincipalEmpresa {
 
     border-radius: 15px;
-    
+
 
 }
+
+.campo-faltante {
+
+    border: 1px solid rgb(251, 89, 89);
+    border-radius: 6px;
+    animation: border-pulse 3s infinite;
+    
+}
+
+
+
+@keyframes border-pulse {
+    0% {
+      border-color: rgb(255, 96, 96);
+    }
+    50% {
+      border-color: transparent;
+    }
+    100% {
+      border-color: rgb(255, 96, 96);
+    }
+  }

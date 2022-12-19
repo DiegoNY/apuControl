@@ -42,8 +42,6 @@ const urlParams = new URLSearchParams(valores);
             infoSis.classList.add('inactive');
             btnDc.classList.add('inactive');
 
-          
-
             break;
 
           case user = "contabilidad":

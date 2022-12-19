@@ -33,8 +33,6 @@ $res = $sucursal->editarSucursal($txtIdSucursal, $txtNombreSucursal, $txtDirecci
 
 if ($editarAccesoSistema === "registrar") {
 
-
-
     #sistema
     if (!empty($cboIdTipoIntegracion))
         for ($i = 0; $i < count($cboIdTipoIntegracion); $i++) {
@@ -54,18 +52,17 @@ if ($editarAccesoSistema === "registrar") {
     if (!empty($acceso))
         for ($i = 0; $i < count($acceso); $i++) {
 
-            $sucursal->editarAcceso($idAcceso[$i], $txtIdSucursal, $acceso[$i], $usuario[$i], $contaseña[$i], $nombreSistema[$i]);
+            if (($idAcceso[$i]) != "undefined")
+                $sucursal->editarAcceso($idAcceso[$i], $txtIdSucursal, $acceso[$i], $usuario[$i], $contaseña[$i], $nombreSistema[$i]);
         }
 
     if (!empty($cboIdTipoIntegracion))
         for ($i = 0; $i < count($cboIdTipoIntegracion); $i++) {
 
-            $sucursal->EditarSistema($idSistema[$i], $txtIdSucursal, $cboTipoSistema[$i], $proveedor[$i], $cboIdTipoIntegracion[$i]);
+            if ($idSistema[$i] != "undefined")
+                $sucursal->EditarSistema($idSistema[$i], $txtIdSucursal, $cboTipoSistema[$i], $proveedor[$i], $cboIdTipoIntegracion[$i]);
         }
 }
-
-
-
 
 
 
