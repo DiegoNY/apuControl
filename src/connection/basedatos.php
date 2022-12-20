@@ -250,7 +250,7 @@ class BaseDatos
     }
     public function verTodosContactos ()
     {
-        $consulta = "SELECT * FROM `contactos` as c where (c.estado = 1);";
+        $consulta = "SELECT c.id, c.id_empresa, e.razon_social, c.nombre_contacto, c.cargo, c.telefono, c.correo FROM `contactos` as c JOIN `empresa` e ON c.id_empresa = e.ruc where (c.estado = 1);";
         $res = mysqli_query($this->con, $consulta);
         return $res;
     }

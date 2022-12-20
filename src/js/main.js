@@ -624,9 +624,6 @@ function registrarSucursal() {
 
 
         setTimeout(() => {
-
-          containerNombre.classList.remove('campo-faltante');
-          containerDireccion.classList.remove('campo-faltante');
           containerTablaSistemas.classList.remove('campo-faltante');
           containerTablaAccesos.classList.remove('campo-faltante');
           btnAcceso.classList.remove('campo-faltante');
@@ -640,6 +637,26 @@ function registrarSucursal() {
   });
 
 }
+
+let nombreSucursal = document.querySelector('#txtNombreSucursal');
+
+nombreSucursal.addEventListener('click', () => {
+  let containerNombre = document.querySelector('.container-nombre-sucursal');
+
+  containerNombre.classList.remove('campo-faltante');
+
+
+})
+
+let direccion = document.querySelector('#txtDireccionSucursal');
+
+direccion.addEventListener('click', () => {
+
+  let containerDireccion = document.querySelector('.container-direccion');
+  containerDireccion.classList.remove('campo-faltante');
+
+})
+
 
 //Para los Contactos
 
@@ -670,12 +687,56 @@ function registrarContactos() {
 
         modalFormularioContactos.toggle();
 
+      } else {
+        console.log("faltan datos");
+
+        let nombre = document.querySelector('#nombre-contacto');
+        let nombreContainer = document.querySelector('#container-nombre');
+
+        let telefono = document.querySelector('#telefono-contacto').value;
+        let telefonoContainer = document.querySelector('#container-telefono');
+
+        let detalle = document.querySelector('#detalleContacto').value;
+        let containerDetalle = document.querySelector('#container-detalle');
+
+        if (nombre.value == "") nombreContainer.classList.add('campo-faltante');
+        if (telefono == "") telefonoContainer.classList.add('campo-faltante');
+        if (detalle == "") containerDetalle.classList.add('campo-faltante');
+
+
       }
 
     },
   });
   $("#frm-contactos").trigger("reset");
 }
+
+let nombre = document.querySelector('#nombre-contacto');
+nombre.addEventListener('click', () => {
+  let nombreContainer = document.querySelector('#container-nombre');
+  nombreContainer.classList.remove('campo-faltante');
+
+})
+
+let telefono = document.querySelector('#telefono-contacto');
+
+telefono.addEventListener('click', () => {
+
+  let telefonoContainer = document.querySelector('#container-telefono');
+  telefonoContainer.classList.remove('campo-faltante');
+
+})
+
+let detalle = document.querySelector('#detalleContacto');
+
+detalle.addEventListener('click', () => {
+  let containerDetalle = document.querySelector('#container-detalle');
+  containerDetalle.classList.remove('campo-faltante');
+
+
+
+})
+
 
 async function cargarCargos() {
   return respuesta = await $.ajax({
@@ -856,13 +917,7 @@ function RegistrarEmpresa() {
           if (nombre == "") nombreContainer.classList.add('campo-faltante');
 
 
-          setTimeout(() => {
-            nombreContainer.classList.remove('campo-faltante');
-            rubroContainer.classList.remove('campo-faltante');
-            containerRazonSocial.classList.remove('campo-faltante')
-            contenedorTipoEnvio.classList.remove('campo-faltante')
 
-          }, 10000);
 
 
 
@@ -874,10 +929,46 @@ function RegistrarEmpresa() {
     },
   });
 
-
-
-
 }
+
+let rubroValue = document.querySelector('#cboIdRubro');
+rubroValue.addEventListener('click', () => {
+
+  let rubroContainer = document.querySelector('.container-rubro');
+  rubroContainer.classList.remove('campo-faltante');
+
+})
+
+let nombreEmpresa = document.querySelector('#txtNombreCo');
+
+nombreEmpresa.addEventListener('click', () => {
+
+  let nombreContainer = document.querySelector('.container-nombre');
+
+  nombreContainer.classList.remove('campo-faltante');
+
+
+})
+
+
+let valueTipoEnvio = document.querySelector('#cboTipoEnvio');
+
+valueTipoEnvio.addEventListener('click', () => {
+  let contenedorTipoEnvio = document.querySelector('#tipoEnvio');
+  contenedorTipoEnvio.classList.remove('campo-faltante');
+
+
+})
+
+let valueRazonSocial = document.querySelector("#txtRazonSocial");
+
+valueRazonSocial.addEventListener('click', () => {
+  
+  let containerRazonSocial = document.querySelector('#container-razonSocial');
+  containerRazonSocial.classList.remove('campo-faltante');
+
+});
+
 
 function datosCompletosEmpresa(id) {
 
@@ -1416,14 +1507,14 @@ $(document).on("click", ".btn-edit-sucursal", function () {
       </td>
       <td><input type="hidden" name="idAcceso[]" value="${acceso.id}"/> <input name="usuario[]" class="usuario form-control" value="${acceso.usuario}"></td>
       <td><input name="contaseña[]" class="contraseña form-control"  value="${acceso.contraseña}"></td>
-      <td>
+      <td style="padding:0;">
         <select name="nombreSistema[]" id="cboTipoSistema" class="form-control cboTipoSistema">
         
         ${tempAcSis}
         
         </select>
       </td>
-      <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarAcceso"></i></td>
+      <td class="text-center"> <i class="bi bi-trash3" id="eliminarAcceso"></i></td>
     </tr>
       `;
     });
@@ -2168,8 +2259,9 @@ btnagregarAcceso.addEventListener('click', () => {
   contrasena.appendChild(inputContrase);
 
   let sis = document.createElement('td');
+  sis.setAttribute('style', 'padding:0;');
   let selectSistemas = document.createElement('select');
-  selectSistemas.setAttribute('name', 'cboTipoSistema[]')
+  selectSistemas.setAttribute('name', 'nombreSistema[]')
   selectSistemas.setAttribute('id', 'cboTipoSistema')
   selectSistemas.setAttribute('class', 'form-control cboTipoSistema');
   sis.appendChild(selectSistemas);

@@ -336,7 +336,7 @@
                                             <div class="form-group row">
                                                 <label
                                                     class="col-form-label col-lg-2 font-weight-semibold">Direccion</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-10" id="direccionEmpresa">
                                                     <input type="text" class="form-control" value="" name="txtDireccion"
                                                         id="txtDireccion">
                                                 </div>
@@ -1243,8 +1243,11 @@
                                             <div class="col-lg-6">
 
                                                 <label>Nombre</label>
-                                                <input type="text" class="form-control" name="txtNombre"
-                                                    id="nombre-contacto">
+                                                <div id="container-nombre">
+                                                    <input type="text" class="form-control" name="txtNombre"
+                                                        id="nombre-contacto">
+                                                </div>
+
 
                                             </div>
 
@@ -1273,8 +1276,12 @@
 
                                             <div class="col-lg-6">
                                                 <label>Telefono</label>
-                                                <input type="text" class="form-control" name="txtTelefono"
-                                                    id="telefono-contacto">
+
+                                                <div id="container-telefono">
+                                                    <input type="text" class="form-control" name="txtTelefono"
+                                                        id="telefono-contacto">
+                                                </div>
+
                                             </div>
 
 
@@ -1283,8 +1290,14 @@
 
                                         <div class="form-group">
                                             <label>Detalle</label>
-                                            <input type="email" class="form-control" name="detalleContacto"
-                                                id="detalleContacto">
+
+                                            <div id="container-detalle">
+
+                                                <input type="email" class="form-control" name="detalleContacto"
+                                                    id="detalleContacto">
+
+                                            </div>
+
                                         </div>
 
 

@@ -14,27 +14,11 @@ if (!$resultado) {
 
 $json = array();
 
-// while ($rowss = mysqli_fetch_array($resultado)) {
-//     $idEmpresa = $rowss['id_empresa'];
-// }
-
-// 
-
-// while($info = mysqli_fetch_array($empresainfo)){
-//     $razon = $info['razon_social'];
-// }
-
-// 
 
 while ($row = mysqli_fetch_array($resultado)) {
-
-    $empresainfo = $contactos->verEmpresa($row['id_empresa']);
-
-    while ($info = mysqli_fetch_array($empresainfo)) {
-        $razon = $info['razon_social'];
-    }
-
-    $informacionEmpresa = $row['id_empresa']." - ".$razon;
+   
+    
+    $informacionEmpresa = $row['id_empresa'] . " - " . $row['razon_social'];
 
     $json['data'][] = array(
 
