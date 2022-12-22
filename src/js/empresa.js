@@ -4,13 +4,16 @@ const btnSalir = document.getElementById("btnSalir");
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
 
+const MODULO = 4;
+
+
 (async () => {
 
   await fetch('../processes/pruebaSession.php')
     .then(response => response.json())
     .then(nombre => {
 
-
+      console.log(nombre);
       let usuario = nombre.usuario[0];
 
       if (usuario === null) {
@@ -24,40 +27,163 @@ const urlParams = new URLSearchParams(valores);
         var registro = document.getElementById('registrarEmpresa');
         var infoSis = document.getElementById('registrarInformacionSistema');
         var btnR = document.getElementById("tabla_empresasas_length");
+        btnR.setAttribute('style', 'display:none;')
+
         var btnDc = document.getElementById("detalleContacto");
         var btnDs = document.getElementById("detalleSucursal");
 
-        switch (user) {
-          case user = "administrador":
-            console.log("admin");
-            break;
 
-          case user = "tecnico":
-
-            btnR.setAttribute('style', 'display:none;')
-            registro.innerHTML = '';
-            infoSis.innerHTML = '';
-            btnDc.innerHTML='';
-
-            break;
-
-          case user = "contabilidad":
-
-
-            btnR.setAttribute('style', 'display:none;')
-            registro.innerHTML = '';
-            infoSis.innerHTML = '';
-            btnDc.classList.add('inactive');
-
-            break;
-
-          default:
-            window.location.replace('login.html');
-            break;
-        }
 
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
         let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+
+        var permiso = false;
+        var modulosAcceder = []
+        nombre.usuario.permisos.forEach(permisos => {
+
+          if (permisos.modulo == MODULO) permiso = true;
+
+          modulosAcceder.push(permisos.modulo);
+
+        })
+
+        if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
+
+        let menu = document.querySelector('#navigationMenu');
+        modulosAcceder.forEach(modulos => {
+
+          switch (true) {
+            case modulos == 4:
+
+              let navigation4 = document.createElement('li');
+              navigation4.setAttribute('class', 'nav-item');
+              navigation4.setAttribute('id', 'detalleContacto');
+              let link4 = document.createElement('a');
+              link4.setAttribute('href', 'vista-empresa.html');
+              link4.setAttribute('class', 'nav-link active');
+              let img4 = document.createElement('i');
+              img4.setAttribute('class', 'icon-home4');
+              let span4 = document.createElement('span');
+              span4.innerText = '   Listar Empresa  ';
+
+              link4.appendChild(img4);
+              link4.appendChild(span4);
+
+              navigation4.appendChild(link4);
+
+              menu.appendChild(navigation4);
+
+
+              console.log('Acceso' + modulos)
+
+              console.log('Acceso' + modulos)
+
+              break;
+            case modulos == 1:
+
+              btnR.setAttribute('style', '')
+
+              let navigation1 = document.createElement('li');
+              navigation1.setAttribute('class', 'nav-item');
+              navigation1.setAttribute('id', 'registrarEmpresa');
+              let link1 = document.createElement('a');
+              link1.setAttribute('href', 'index.html');
+              link1.setAttribute('class', 'nav-link');
+              let img1 = document.createElement('i');
+              img1.setAttribute('class', 'bi bi-bookmark-plus');
+              let span1 = document.createElement('span');
+              span1.innerText = ' Registrar Empresas';
+
+              link1.appendChild(img1);
+              link1.appendChild(span1);
+
+              navigation1.appendChild(link1);
+              menu.appendChild(navigation1);
+
+              break;
+
+            case modulos == 2:
+
+              let navigation3 = document.createElement('li');
+              navigation3.setAttribute('class', 'nav-item');
+              navigation3.setAttribute('id', 'detalleContacto');
+              let link3 = document.createElement('a');
+              link3.setAttribute('href', 'vista-contactos.html');
+              link3.setAttribute('class', 'nav-link');
+              let img3 = document.createElement('i');
+              img3.setAttribute('class', 'bi bi-person-rolodex');
+              let span3 = document.createElement('span');
+              span3.innerText = '   Detalle contactos  ';
+
+              link3.appendChild(img3);
+              link3.appendChild(span3);
+
+              navigation3.appendChild(link3);
+
+              menu.appendChild(navigation3);
+
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+            case modulos == 3:
+
+
+
+              let navigation2 = document.createElement('li');
+              navigation2.setAttribute('class', 'nav-item');
+              navigation2.setAttribute('id', 'registrarInformacionSistema');
+              let link2 = document.createElement('a');
+              link2.setAttribute('href', 'vista-registro-sistemas.html');
+              link2.setAttribute('class', 'nav-link');
+              let img2 = document.createElement('i');
+              img2.setAttribute('class', 'bi bi-archive');
+              let span2 = document.createElement('span');
+              span2.innerText = '  Informacion del Sistema ';
+
+              link2.appendChild(img2);
+              link2.appendChild(span2);
+
+              navigation2.appendChild(link2);
+
+              menu.appendChild(navigation2);
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+            case modulos == 5:
+
+              let navigation5 = document.createElement('li');
+              navigation5.setAttribute('class', 'nav-item');
+              navigation5.setAttribute('id', 'registroUsuario');
+              let link5 = document.createElement('a');
+              link5.setAttribute('href', 'registro-usuarios.html');
+              link5.setAttribute('class', 'nav-link');
+              let img5 = document.createElement('i');
+              img5.setAttribute('class', 'bi bi-person-plus');
+              let span5 = document.createElement('span');
+              span5.innerText = ' Registrar usuario';
+
+              link5.appendChild(img5);
+              link5.appendChild(span5);
+              navigation5.appendChild(link5);
+
+              console.log(navigation5);
+              menu.appendChild(navigation5);
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+            default:
+
+              console.log("default");
+              break;
+
+          }
+        })
 
       }
     });
@@ -65,8 +191,8 @@ const urlParams = new URLSearchParams(valores);
 
 })()
 
-
 $(document).ready(function () {
+
 
 
   $.ajax({
@@ -107,16 +233,25 @@ $(document).ready(function () {
       {
         data: "estado_comercial", "render": function (data) {
 
-          if (data === "INGRESADO") {
-            return `<p class="text-center "> <span class="badge bg-success text-light">${data}</span></p>`
-          } else if (data === "POR_INSTALAR") {
-            return `<p class="text-center "> <span class="badge bg-info  text-light">${data}</span></p>`
+          if (data.cargo != "tecnico") {
+
+            if (data.estado === "INGRESADO") {
+
+              return `<p class="text-center "> <span class="badge bg-success text-light">${data.estado}</span></p>`
+
+            } else if (data.estado === "POR_INSTALAR") {
+
+              return `<p class="text-center "> <span class="badge bg-info  text-light">${data.estado}</span></p>`
+
+            } else {
+
+              return `<p class="text-center "> <span class="badge bg-warning text-light">${data.estado}</span></p>`
+
+            }
+
           } else {
-
-            return `<p class="text-center "> <span class="badge bg-warning text-light">${data}</span></p>`
-
+            return `<span class="badge bg-success text-light"> Activo </span>`
           }
-
         }
       },
       {
@@ -323,7 +458,7 @@ $(document).ready(function () {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: "",
         zeroRecords: "Sin resultados encontrados",
@@ -365,7 +500,7 @@ $(document).ready(function () {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: " ",
         zeroRecords: "Sin resultados encontrados",
@@ -408,7 +543,7 @@ $(document).ready(function () {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "Cargando...",
+        loadingRecords: "",
         processing: "Procesando...",
         search: " ",
         zeroRecords: "Sin resultados encontrados",

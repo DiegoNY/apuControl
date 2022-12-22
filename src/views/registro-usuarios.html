@@ -183,6 +183,7 @@
                             <div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu"
                                 title="Main"></i>
                         </li>
+                       
 
                     </ul>
                 </div>
@@ -209,7 +210,7 @@
                         <div class="d-flex">
                             <div class="breadcrumb">
                                 <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                                <span class="breadcrumb-item active">VISTA EMPRESAS</span>
+                                <span class="breadcrumb-item active">Usuarios </span>
                             </div>
 
                             <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
@@ -223,47 +224,99 @@
                 <!-- Content area -->
                 <div class="content">
 
-                    <!-- Main charts -->
-                    <div class="row">
-                        <div class="col">
 
-                            <!-- Vista Empresa -->
+                    <div class="d-flex justify-content-center col-sm-12">
 
-                            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
-                            
-                                <div class="card-body ">
+                        <div class="card col-lg-10">
 
-                                    <table class="table shadow-sm mt-2  rounded table-responsive-xl" id="tabla_contactos" style=" width:100%;"
-                                        cellspacing="0">
-                                        <thead class="display" style="background-color: #252B36;   color: white;">
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Ruc</th>
-                                                <th>Nombre</th>
-                                                <th>Cargo</th>
-                                                <th>Nmro Contacto</th>
-                                                <th>Correo </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="listado_contactos">
+                            <div class="card-body ">
+
+                                <form id="form-users">
 
 
-                                        </tbody>
-                                    </table>
+                                    <div class="card">
+
+                                        <div class="card-header border-roundered"  style="background-color: #252B36; color: white;">
+                                            <h3 class="mr-2"> <strong>Usuarios</strong> </h3>
+                                        </div>
+
+                                        <div class=" row card-body">
+
+                                            <div class="col-sm-5 mt-3 ml-4 shadow-sm p-3 mb-5  rounded">
+                                                <div class="mb-3 ">
+                                                    <label for="nombre" class="form-label form-label-sm">Usuario</label>
+                                                    <input type="text" name="usuario"
+                                                        class="form-control usuario form-control-sm">
+                                                </div>
+                                                <div class="mb-3  ">
+                                                    <label for="nombre"
+                                                        class="form-label form-label-sm">Contraseña</label>
+                                                    <input type="text" name="Contraseña"
+                                                        class="form-control contraseña form-control-sm">
+                                                </div>
+                                                <div class="mb-3 ">
+                                                    <label for="nombre" class="form-label  form-label-sm">Cargo</label>
+                                                    <input type="text" name="cargo"
+                                                        class="form-control cargo form-control-sm">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-5 mr-4 mt-3 ml-5 shadow-sm p-3 mb-5  rounded">
+                                                <div class="mb-3 col-sm-12">
+                                                    <label for="nombre" class="form-label form-label-sm">Modulos</label>
+
+
+                                                    <div class="multiselect-container modulos ">
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="d-flex justify-content-end card-footer">
+
+                                            <button type="button" onclick="RegistrarUsuario()" class="btn btn-primary ">
+                                                REGISTRAR
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </form>
+
+
+                                <div class="card">
+
+                                    <div class=" card-body">
+
+
+
+                                    </div>
+
 
                                 </div>
 
+
+
                             </div>
 
-                   
-
-
-                         
-
                         </div>
-                        <!-- /traffic sources -->
+
 
                     </div>
+
+
+
+
                 </div>
                 <!-- /main charts -->
 
@@ -303,7 +356,7 @@
 
     <!-- Scripts -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/contactos.js"></script>
+    <script src="../js/nuevosUsuarios.js"></script>
     <!--- Scripts-->
 </body>
 

@@ -158,40 +158,13 @@
 
                 <!-- Main navigation -->
                 <div class="sidebar-section">
-                    <ul class="nav nav-sidebar" data-nav-type="accordion">
+                    <ul class="nav nav-sidebar" data-nav-type="accordion" id="navigationMenu">
 
                         <!-- Main -->
                         <li class="nav-item-header">
                             <div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu"
                                 title="Main"></i>
                         </li>
-                        <li class="nav-item">
-                            <a href="vista-empresa.html" class="nav-link ">
-                                <i class="icon-home4"></i>
-                                <span>
-                                    Listar
-                                    Empresas
-                                </span>
-                            </a>
-
-                        <li class="nav-item"><a href="index.html" class="nav-link active"> <i
-                                    class="bi bi-bookmark-plus"></i> <span> Registrar Empresas</span></a></li>
-
-
-
-
-                        <li class="nav-item"><a href="vista-registro-sistemas.html" class="nav-link "> <i
-                                    class="bi bi-archive"></i> <span> Informacion del Sistema </span></a></li>
-
-                        </li>
-
-                        <li class="nav-item"><a href="vista-contactos.html" class="nav-link "> <i
-                                    class="bi bi-person-rolodex"></i> <span> Detalle contactos </span></a></li>
-
-                        </li>
-
-
-
 
                     </ul>
                 </div>
@@ -237,7 +210,7 @@
                         <div class="col">
 
                             <!-- Traffic sources -->
-                            <div class="card">
+                            <div class="card shadow-lg p-3 mb-5 ">
                                 <div class=" row card-header ">
 
                                     <div class="" id="contenedorBtnLimpiarDatos">
@@ -281,10 +254,12 @@
 
                                                         <div class="row">
                                                             <input type="number" ruc_ids value="" maxlength="11"
-                                                                name="txtRuc" id="txtRuc" class="form-control col-lg-8"
+                                                                name="txtRuc" id="txtRuc"
+                                                                class="form-control form-control-sm shadow-sm   rounded col-lg-8"
                                                                 required>
                                                             <input type="button" id="btn_ruc"
-                                                                class="form-control col-lg-4" value="Validar">
+                                                                class="form-control form-control-sm shadow-sm   rounded col-lg-4"
+                                                                value="Validar">
                                                         </div>
 
                                                     </div>
@@ -298,7 +273,8 @@
 
                                                     <label for="cboIdGrupo" class="font-weight-semibold">Grupo</label>
                                                     <div>
-                                                        <select id="cbogrupo" name="txtIdGrupo" class="form-control">
+                                                        <select id="cbogrupo" name="txtIdGrupo"
+                                                            class="form-control form-control-sm shadow-sm   rounded">
                                                             <option value="value">value</option>
                                                         </select>
                                                     </div>
@@ -316,7 +292,8 @@
                                                     <label class=" font-weight-semibold">Razon social</label>
                                                     <div class="container-razonSocial" id="container-razonSocial">
                                                         <input type="text" value="" name="txtRazonSocial"
-                                                            id="txtRazonSocial" class="form-control">
+                                                            id="txtRazonSocial"
+                                                            class="form-control form-control-sm shadow-sm   rounded">
                                                     </div>
                                                 </div>
 
@@ -324,7 +301,7 @@
                                                     <label class="font-weight-semibold">Nombre Comercial</label>
                                                     <div class="container-nombre">
                                                         <input type="text" value="" name="txtNombreCo" id="txtNombreCo"
-                                                            class="form-control">
+                                                            class="form-control form-control-sm shadow-sm   rounded">
                                                     </div>
                                                 </div>
 
@@ -337,8 +314,9 @@
                                                 <label
                                                     class="col-form-label col-lg-2 font-weight-semibold">Direccion</label>
                                                 <div class="col-lg-10" id="direccionEmpresa">
-                                                    <input type="text" class="form-control" value="" name="txtDireccion"
-                                                        id="txtDireccion">
+                                                    <input type="text"
+                                                        class="form-control form-control-sm shadow-sm   rounded"
+                                                        value="" name="txtDireccion" id="txtDireccion">
                                                 </div>
                                             </div>
 
@@ -348,7 +326,7 @@
                                                     <label class="font-weight-semibold">Ubigeo</label>
                                                     <div>
                                                         <select data-live-search="true" name="cboIdu" id="cboIdu"
-                                                            class="selectpicker form-control">
+                                                            class="selectpicker form-control form-control-sm shadow-sm   rounded">
                                                             <option value="123">123</option>
                                                             <option value="164">164</option>
                                                             <option value="" selected></option>
@@ -359,7 +337,8 @@
                                                 <div class="col-lg-6">
                                                     <label class="font-weight-semibold">Rubro</label>
                                                     <div class="container-rubro">
-                                                        <select name="cboIdRubro" id="cboIdRubro" class="form-control">
+                                                        <select name="cboIdRubro" id="cboIdRubro"
+                                                            class="form-control form-control-sm shadow-sm   rounded">
                                                             <option value="" selected></option>
                                                             <option value="EDS">EDS</option>
                                                             <option value="BOTICAS">BOTICAS</option>
@@ -379,7 +358,7 @@
                                                     class="col-form-label col-lg-2 font-weight-semibold">T.Persona</label>
                                                 <div class="col-lg-10">
                                                     <select name="cboTipoPersona" id="cboTipoPersona"
-                                                        class="form-control">
+                                                        class="form-control form-control-sm shadow-sm   rounded">
 
                                                         <option value="" selected id="defaultTipoPersona"></option>
                                                         <option value="NATURAL" id="natu">Natural</option>
@@ -404,8 +383,8 @@
                                                         Envio</label>
                                                     <div class="" id="tipoEnvio">
                                                         <select name="cboTipoEnvio" id="cboTipoEnvio"
-                                                            class="form-control">
-                                                            <option value="" selected></option>
+                                                            class="form-control form-control-sm shadow-sm   rounded">
+                                                            <option value="0" selected></option>
                                                             <option value="OSE">OSE</option>
                                                             <option value="SUNAT">SUNAT</option>
                                                         </select>
@@ -416,7 +395,7 @@
                                                     <label class=" font-weight-semibold">Estado Comercial</label>
                                                     <div>
                                                         <select name="txtEstadoComercial" id="txtEstadoComercial"
-                                                            class="form-control">
+                                                            class="form-control form-control-sm shadow-sm   rounded">
                                                             <option value="" selected></option>
                                                             <option value="INGRESADO">INGRESADO</option>
                                                             <option value="POR_INSTALAR">POR INSTALAR</option>
@@ -450,10 +429,12 @@
 
                                                             <tr>
 
-                                                                <td>Usuario <input type="text" class="form-control"
+                                                                <td>Usuario <input type="text"
+                                                                        class="form-control form-control-sm shadow-sm   rounded"
                                                                         name="usuarioClaveSol" id="usuarioClaveSol">
                                                                 </td>
-                                                                <td>Contraseña <input type="text" class="form-control"
+                                                                <td>Contraseña <input type="text"
+                                                                        class="form-control form-control-sm shadow-sm   rounded"
                                                                         name="contraseñaClaveSol"
                                                                         id="contraseñaClaveSol"> </td>
 
@@ -470,7 +451,8 @@
                                                 <div class="col-lg-6 inactive">
                                                     <label class=" font-weight-semibold">Estado</label>
                                                     <div>
-                                                        <select name="cboEstado" id="cboEstado" class="form-control">
+                                                        <select name="cboEstado" id="cboEstado"
+                                                            class="form-control form-control-sm shadow-sm   rounded">
                                                             <option value="" selected></option>
                                                             <option value="">Posible Cliente</option>
                                                             <option value="">Cliente</option>
@@ -505,8 +487,7 @@
 
                                             </div>
                                             <div class="col-lg-4" style="height: 140px; width: auto; display: flex;  ">
-                                                <img src="" alt="logo de la empresa" style="height: 100%; width: auto;"
-                                                    id="preview_logo">
+                                                <img src="" id="preview_logo">
                                             </div>
 
                                         </div>
@@ -549,7 +530,7 @@
                         <div class="col">
 
                             <!-- Marketing campaigns -->
-                            <div class="card">
+                            <div class="card shadow-lg p-3 mb-5 ">
                                 <div class="card-body ">
                                     <input type="hidden" id="ruc_id" name="ruc_id" value="">
                                     <div class="jui-tabs-hover ui-tabs ui-corner-all ui-widget ui-widget-content"
@@ -584,7 +565,7 @@
                                                     </button>
                                                 </div>
 
-                                                <div class="table-responsive col-lg-12">
+                                                <div class="table-responsive shadow-sm mt-2  rounded col-lg-12">
 
 
                                                     <div class="gridjs-example-server-search border-top">
@@ -662,7 +643,7 @@
                                                     </button>
                                                 </div>
 
-                                                <div class="table-responsive col-lg-12">
+                                                <div class="table-responsive shadow-sm mt-2  rounded col-lg-12">
 
 
                                                     <div class="gridjs-example-server-search border-top">
@@ -796,7 +777,8 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-lg-2">Plataforma</label>
                                     <div class="col-lg-10">
-                                        <select class="form-control" name="txtNombreAcceso" id="txtNombreAcceso">
+                                        <select class="form-control form-control-sm shadow-sm   rounded"
+                                            name="txtNombreAcceso" id="txtNombreAcceso">
                                             <option value="ANYDESK">ANYDESK</option>
                                             <option value="TEAM_VIEWER" selected>TEAM VIEWER</option>
                                             <option value="AC">another access</option>
@@ -808,14 +790,16 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-lg-2">Usuario</label>
                                     <div class="col-lg-10">
-                                        <input type="text" name="txtIdAcceso" id="txtIdAcceso" class="form-control">
+                                        <input type="text" name="txtIdAcceso" id="txtIdAcceso"
+                                            class="form-control form-control-sm shadow-sm   rounded">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-form-label col-lg-2">Contraseña</label>
                                     <div class="col-lg-10">
-                                        <input type="text" name="txtContraseña" id="txtContraseña" class="form-control">
+                                        <input type="text" name="txtContraseña" id="txtContraseña"
+                                            class="form-control form-control-sm shadow-sm   rounded">
                                     </div>
                                 </div>
 
@@ -863,8 +847,9 @@
                                                 <label class="font-weight-semibold">Ingresa Nombre:</label>
 
                                                 <div class="container-nombre-sucursal">
-                                                    <input type="text" class="form-control" name="txtNombreSucursal"
-                                                        id="txtNombreSucursal">
+                                                    <input type="text"
+                                                        class="form-control form-control-sm shadow-sm   rounded"
+                                                        name="txtNombreSucursal" id="txtNombreSucursal">
                                                 </div>
 
                                             </div>
@@ -882,8 +867,9 @@
                                             <label class="font-weight-semibold">Ingresa Direccion:</label>
 
                                             <div class="container-direccion">
-                                                <input type="text" class="form-control" name="txtDireccionSucursal"
-                                                    id="txtDireccionSucursal">
+                                                <input type="text"
+                                                    class="form-control form-control-sm shadow-sm   rounded"
+                                                    name="txtDireccionSucursal" id="txtDireccionSucursal">
                                             </div>
 
                                         </div>
@@ -902,7 +888,7 @@
                                                 :</label>
 
                                             <select data-live-search="true" name="cboIdub" id="cboIdub"
-                                                class="selectpicker form-control">
+                                                class="selectpicker form-control form-control-sm shadow-sm   rounded">
                                                 <option value=""></option>
                                             </select>
 
@@ -973,30 +959,22 @@
                                                             </span>
 
 
-                                                            <i id="container-editar-sistema" class="inactive"> <span
-                                                                    class="badge btn-secondary"
-                                                                    id="editarSistema">Editar +
-                                                                </span> </i>
-
-                                                            <i class="bi bi-eye-slash inactive"
-                                                                id="ojoPrevisualizacion"></i>
                                                         </div>
 
                                                         <div class="card-body" id="previsualizacion-sistemas">
 
-                                                            <table class="table table-responsive-sm" id="tablaSistema">
+                                                            <table
+                                                                class="table table-responsive shadow-sm mt-2  rounded-sm"
+                                                                id="tablaSistema">
 
                                                                 <thead class="text-light"
                                                                     style="background-color: #252B36;">
 
-                                                                    <tr>
-
-                                                                        <th>Nombre</th>
-                                                                        <th>Integracion</th>
-                                                                        <th>Proveedor</th>
-                                                                        <th>Opciones</th>
-
-                                                                    </tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>Integracion</th>
+                                                                    <th>Proveedor</th>
+                                                                    <th>Opciones</th>
+                                                                    <th></th>
 
 
                                                                 </thead>
@@ -1025,7 +1003,8 @@
                                                         <div class="col-lg-6 ">
                                                             <label class="font-weight-semibold">Tipo de Sistema</label>
 
-                                                            <select name="" id="cboTipoSistema" class="form-control ">
+                                                            <select name="" id="cboTipoSistema"
+                                                                class="form-control form-control-sm shadow-sm   rounded ">
                                                                 <option value="" selected></option>
                                                                 <option value="GESFARMA">GESFARMA</option>
                                                                 <option value="APUGESCOM">APUGESCOM</option>
@@ -1039,7 +1018,8 @@
                                                                 de
                                                                 Integracion</label>
                                                             <div>
-                                                                <select name="" id="" class="form-control">
+                                                                <select name="" id=""
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
                                                                     <option value="" selected></option>
                                                                     <option value="DBF">DBF</option>
                                                                     <option value="TXT">TXT</option>
@@ -1056,8 +1036,9 @@
 
                                                         <div class="">
                                                             <label class=" font-weight-semibold">Proveedor</label>
-                                                            <input type="text" class="form-control" name=""
-                                                                id="proveedor">
+                                                            <input type="text"
+                                                                class="form-control form-control-sm shadow-sm   rounded"
+                                                                name="" id="proveedor">
                                                         </div>
                                                     </div>
 
@@ -1081,8 +1062,9 @@
 
                                                     <div class="form-group">
                                                         <label>Ingresa codigo COFIDE: </label>
-                                                        <input type="text" class="form-control" name="txtCodigoCofide"
-                                                            id="txtCodigoCofide">
+                                                        <input type="text"
+                                                            class="form-control form-control-sm shadow-sm   rounded"
+                                                            name="txtCodigoCofide" id="txtCodigoCofide">
                                                     </div>
 
                                                 </div>
@@ -1091,8 +1073,9 @@
 
                                                     <div class="form-group">
                                                         <label>Ingresa codigo APU: </label>
-                                                        <input type="text" class="form-control" name="codigoApu"
-                                                            id="codigoApu">
+                                                        <input type="text"
+                                                            class="form-control form-control-sm shadow-sm   rounded"
+                                                            name="codigoApu" id="codigoApu">
                                                     </div>
 
                                                 </div>
@@ -1101,55 +1084,91 @@
 
 
 
-                                            <div class=" row">
 
-                                                <div class=" form-group col-lg-6">
 
-                                                    <label for="" class="">Logo</label>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="form-group row ">
 
+                                                        <div class="col-form-label col-lg-2">
+
+                                                            <label for="" class="">Logo</label>
+
+
+                                                        </div>
+
+
+                                                        <div class=" col-lg-10">
+
+
+                                                            <label class="custom-file">
+
+                                                                <input type="file" name="logo" id="logoSucursal"
+                                                                    class="custom-file-input">
+                                                                <span class="custom-file-label">Ingresa Logo</span>
+                                                            </label>
+
+
+                                                        </div>
+
+
+                                                        <input type="hidden" name="editarLogodSucursal"
+                                                            id="editarLogoSucursal" value="">
+                                                        <input type="hidden" name="urlLogos" id="urlLogoSucursal"
+                                                            value="">
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center">
+
+                                                        <div class="col-sm-3">
+
+
+                                                            <img src="" id="previewLogoSucursal">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="card">
+
+                                                <div class="card-body">
+
+                                                    <div class="form-group row row">
+                                                        <label class="col-form-label col-lg-2">Bandera</label>
+
+                                                        <select
+                                                            class="form-control form-control-sm shadow-sm   rounded col-lg-10"
+                                                            id="exampleFormControlSelect1" onChange="imageChanged()"
+                                                            name="banderaEmpresa">
+
+                                                        </select>
+
+
+
+
+
+                                                    </div>
+
+                                                    <div id="imageSelected" class="mb-3 d-flex justify-content-center">
+
+
+
+                                                        <img id='imagenSucursal' src="">
+
+
+
+                                                    </div>
 
                                                 </div>
 
 
-                                                <div class=" col-lg-12 form-group">
-
-
-                                                    <label class="custom-file">
-
-                                                        <input type="file" name="logo" id="logoSucursal"
-                                                            class="custom-file-input">
-                                                        <span class="custom-file-label">Ingresa Logo</span>
-                                                    </label>
-
-
-                                                </div>
-
-
-                                                <input type="hidden" name="editarLogodSucursal" id="editarLogoSucursal"
-                                                    value="">
-                                                <input type="hidden" name="urlLogos" id="urlLogoSucursal" value="">
-                                            </div>
-
-                                            <div class="col-lg-4" style="height: 140px; width: auto; display: flex;  ">
-                                                <img src="" alt="logo de la empresa" style="height: 100%; width: auto;"
-                                                    id="previewLogoSucursal">
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Bandera</label>
-
-                                                <select class="form-control col-lg-10" id="exampleFormControlSelect1"
-                                                    onChange="imageChanged()" name="banderaEmpresa">
-
-                                                </select>
-
-                                                <div id="imageSelected">
-
-                                                    <img id='imagenSucursal' src="" style='width:100%; height:150px;'>
-
-                                                </div>
 
                                             </div>
+
+
 
 
                                         </div>
@@ -1171,7 +1190,8 @@
 
                                                 <div class="card-body container-accesos">
 
-                                                    <table class="table table-responsive-xl" id="tabla_accesoss">
+                                                    <table class="table table-responsive shadow-sm mt-2  rounded-xl"
+                                                        id="tabla_accesoss">
 
                                                         <thead style="background-color: #252B36; color:white;">
                                                             <th>Plataforma</th>
@@ -1244,8 +1264,9 @@
 
                                                 <label>Nombre</label>
                                                 <div id="container-nombre">
-                                                    <input type="text" class="form-control" name="txtNombre"
-                                                        id="nombre-contacto">
+                                                    <input type="text"
+                                                        class="form-control form-control-sm shadow-sm   rounded"
+                                                        name="txtNombre" id="nombre-contacto">
                                                 </div>
 
 
@@ -1255,7 +1276,8 @@
                                                 <label style="display: flex; gap: 45%;">Cargo <span
                                                         class="badge btn-secondary" id="btnNuevoCargo">Agregar + </span>
                                                 </label>
-                                                <select name="txtCargo" id="cargo-contacto" class="form-control">
+                                                <select name="txtCargo" id="cargo-contacto"
+                                                    class="form-control form-control-sm shadow-sm   rounded">
 
                                                 </select>
                                             </div>
@@ -1268,8 +1290,9 @@
 
                                             <div class="col-lg-6">
                                                 <label>Correo</label>
-                                                <input type="email" class="form-control" name="txtCorreo"
-                                                    id="correo-contacto">
+                                                <input type="email"
+                                                    class="form-control form-control-sm shadow-sm   rounded"
+                                                    name="txtCorreo" id="correo-contacto">
                                             </div>
 
 
@@ -1278,8 +1301,9 @@
                                                 <label>Telefono</label>
 
                                                 <div id="container-telefono">
-                                                    <input type="text" class="form-control" name="txtTelefono"
-                                                        id="telefono-contacto">
+                                                    <input type="text"
+                                                        class="form-control form-control-sm shadow-sm   rounded"
+                                                        name="txtTelefono" id="telefono-contacto">
                                                 </div>
 
                                             </div>
@@ -1293,8 +1317,9 @@
 
                                             <div id="container-detalle">
 
-                                                <input type="email" class="form-control" name="detalleContacto"
-                                                    id="detalleContacto">
+                                                <input type="email"
+                                                    class="form-control form-control-sm shadow-sm   rounded detalleContactoC"
+                                                    name="detalleContacto" id="detalleContacto">
 
                                             </div>
 
@@ -1340,7 +1365,7 @@
                                             <label class="col-lg-12">Nombre Cargo</label>
                                             <div class="col-lg-12">
                                                 <input type="text" name="nombreCargo" id="nombreCargo"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm shadow-sm   rounded">
                                             </div>
                                             <label class="col-lg-12"> . </label>
                                             <div class="col-lg-6">

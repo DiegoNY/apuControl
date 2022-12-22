@@ -3,7 +3,7 @@
 class BaseDatos
 {
 
-    private $con;
+    public $con;
     private $dbhost = "localhost";
     private $dbuser = "root";
     private $dbpass = "";
@@ -732,7 +732,17 @@ class BaseDatos
         }
     }
     
- 
+
+    
+    public function PermisosUsuario($id)
+    {
+        $consulta = "SELECT * FROM `permisos` AS P WHERE ( '$id' = P.id_usuario)";
+        $respuesta = mysqli_query($this->con, $consulta);
+
+        return $respuesta;
+    }
+
+
     //conectar la BD
     public function conectardb()
     {

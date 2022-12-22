@@ -5,7 +5,9 @@ session_start();
 
 include_once '../../connection/basedatos.php';
 
+
 $bd = new BaseDatos();
+
 
 if(empty($_POST['txtUsuario'])||empty($_POST['txtContraseña'])){
     echo json_encode("vacios");

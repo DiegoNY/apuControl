@@ -176,72 +176,13 @@
                 <!-- /user menu -->
 
                 <div class="sidebar-section">
-                    <ul class="nav nav-sidebar" data-nav-type="accordion">
+                    <ul class="nav nav-sidebar" data-nav-type="accordion" id="navigationMenu">
 
                         <!-- Main -->
                         <li class="nav-item-header">
                             <div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu"
                                 title="Main"></i>
                         </li>
-                        <li class="nav-item">
-                            <a href="vista-empresa.html" class="nav-link active">
-                                <i class="icon-home4"></i>
-                                <span>
-                                    Listar
-                                    Empresas
-                                </span>
-                            </a>
-
-                        <li class="nav-item" id="registrarEmpresa"><a href="index.html" class="nav-link "> <i class="bi bi-bookmark-plus"></i>
-                                <span> Registrar Empresas</span></a></li>
-
-
-                        <li class="nav-item" id="registrarInformacionSistema"><a href="vista-registro-sistemas.html" class="nav-link "> <i
-                                    class="bi bi-archive"></i> <span> Informacion del Sistema </span></a></li>
-
-                        </li>
-
-                        <li class="nav-item" id="detalleContacto"><a href="vista-contactos.html" class="nav-link "> <i
-                                    class="bi bi-person-rolodex"></i> <span> Detalle contactos </span></a></li>
-
-                        </li>
-
-
-                        <!-- /main -->
-
-                        <!-- Forms -->
-                        <!-- <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">OTRAS OPCIONES</div> <i
-                                class="icon-menu" title="Forms"></i>
-                        </li> -->
-                        <!-- <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="bi bi-columns-gap"></i> <span>Mostrar</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Form components">
-                                <li class="nav-item"><a href="vista-empresa.html" class="nav-link">Todas las
-                                        Empresas</a></li>
-
-                                <li class="nav-item"><a href="vista-grupos.html" class="nav-link">Grupos
-                                        empresariales</a></li>
-
-
-                                <li class="nav-item"><a href="vista-registro-sistemas.html"
-                                        class="nav-link ">Informacion del Sistema</a></li>
-
-                            </ul>
-                        </li> -->
-
-                        <!-- <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-spell-check"></i> <span>another
-                                    actions</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Text editors">
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Another view</a></li>
-                            </ul>
-                        </li> -->
-
-                        <!-- /forms -->
 
 
                     </ul>
@@ -289,11 +230,11 @@
 
                             <!-- Vista Empresa -->
 
-                            <div class="card">
+                            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
 
                                 <div class="card-body ">
 
-                                    <table class="table datatable-basic " id="tabla_empresasas" style=" width:100%;"
+                                    <table class="table datatable-basic shadow-sm mt-2  rounded" id="tabla_empresasas" style=" width:100%;"
                                         cellspacing="0">
                                         <thead class="display" style="background-color: #252B36;   color: white;">
                                             <tr>
@@ -305,8 +246,8 @@
                                                 <th>Rubro</th>
                                                 <th>T.Envio</th>
                                                 <th>Estado</th>
-                                                <th >Opciones</th>
-                                                <th ></th>
+                                                <th>Opciones</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody id="listado-empresas">
@@ -497,7 +438,8 @@
                                             <div class="card-body">
 
 
-                                                <table class="table table-responsive-xl " style="width: 100%;" id="tabla_accesos">
+                                                <table class="table table-responsive-xl " style="width: 100%;"
+                                                    id="tabla_accesos">
                                                     <thead style="background-color: #252B36; color: white;">
                                                         <tr>
                                                             <th>#</th>
@@ -678,15 +620,16 @@
                                                         de
                                                         Sistema</legend>
 
-                                            
-                                                   
 
-                                                
+
+
+
                                                     <div class="form-group row">
 
                                                         <div class="col-lg-6">
-        
-                                                            <label for="cboIdGrupo" class=" font-weight-semibold" >Tipo de
+
+                                                            <label for="cboIdGrupo" class=" font-weight-semibold">Tipo
+                                                                de
                                                                 Envio</label>
                                                             <div>
                                                                 <select name="cboTipoEnvio" id="cboTipoEnvio"
@@ -697,21 +640,24 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-        
+
                                                         <div class="col-lg-6">
-                                                            <label class=" font-weight-semibold">Estado Comercial</label>
+                                                            <label class=" font-weight-semibold">Estado
+                                                                Comercial</label>
                                                             <div>
-                                                                <select name="txtEstadoComercial" id="txtEstadoComercial"
-                                                                    class="form-control" disabled>
+                                                                <select name="txtEstadoComercial"
+                                                                    id="txtEstadoComercial" class="form-control"
+                                                                    disabled>
                                                                     <option value="" selected></option>
                                                                     <option value="INGRESADO">INGRESADO</option>
                                                                     <option value="POR_INSTALAR">POR INSTALAR</option>
                                                                     <option value="PRODUCCION">PRODUCCION</option>
-                                                                    <option value="POSIBLE_CLIENTE">POSIBLE CLIENTE</option>
+                                                                    <option value="POSIBLE_CLIENTE">POSIBLE CLIENTE
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                         </div>
-        
+
                                                         <!--- Esto se movio no quitar -->
                                                         <!-- <div class="col-lg-6 inactive">
         
@@ -728,59 +674,63 @@
                                                             </div>
                                                         </div> -->
                                                         <!--- / Esto se movio no quitar -->
-        
+
                                                     </div>
-        
+
                                                     <div class="form-group row ">
-        
-        
+
+
                                                         <div class="col-lg-12">
-        
+
                                                             <table class="table">
-        
+
                                                                 <thead>
-        
+
                                                                     <th>
                                                                         Clave Sol
                                                                     </th>
-        
-        
+
+
                                                                 </thead>
-        
+
                                                                 <tbody>
-        
+
                                                                     <tr>
-        
-                                                                        <td>Usuario <input type="text" class="form-control"
-                                                                                name="usuarioClaveSol" id="usuarioClaveSol" disabled>
+
+                                                                        <td>Usuario <input type="text"
+                                                                                class="form-control"
+                                                                                name="usuarioClaveSol"
+                                                                                id="usuarioClaveSol" disabled>
                                                                         </td>
-                                                                        <td>Contraseña <input type="text" class="form-control"
+                                                                        <td>Contraseña <input type="text"
+                                                                                class="form-control"
                                                                                 name="contraseñaClaveSol"
                                                                                 id="contraseñaClaveSol" disabled> </td>
-        
+
                                                                     </tr>
-        
+
                                                                 </tbody>
-        
+
                                                             </table>
-        
+
                                                         </div>
-        
-        
-        
+
+
+
                                                         <div class="col-lg-6 inactive">
                                                             <label class=" font-weight-semibold">Estado</label>
                                                             <div>
-                                                                <select name="cboEstado" id="cboEstado" class="form-control">
+                                                                <select name="cboEstado" id="cboEstado"
+                                                                    class="form-control">
                                                                     <option value="" selected></option>
                                                                     <option value="">Posible Cliente</option>
                                                                     <option value="">Cliente</option>
                                                                 </select>
                                                             </div>
                                                         </div>
-        
-        
-        
+
+
+
                                                     </div>
 
 

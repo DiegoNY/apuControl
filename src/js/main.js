@@ -21,6 +21,7 @@ const preview_logo = document.getElementById("preview_logo");
 const banderaSucursal = document.getElementById("logoSu");
 const previewBandera = document.getElementById("preview_logo_su");
 
+const MODULO = 1;
 
 const hoy = new Date();
 
@@ -49,10 +50,129 @@ var urlEscucharEmpresaRegistrar = false;
 
         let use = nombre.usuario[1];
 
-        if (use != "administrador") {
-          window.location.replace('vista-empresa.html');
-          return;
-        }
+        var permiso = false;
+        var modulosAcceder = []
+        nombre.usuario.permisos.forEach(permisos => {
+
+          if (permisos.modulo == MODULO) permiso = true;
+
+          modulosAcceder.push(permisos.modulo);
+
+        })
+
+        if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
+
+        let menu = document.querySelector('#navigationMenu');
+        modulosAcceder.forEach(modulos => {
+
+          switch (true) {
+            case modulos == 1:
+
+
+              let navigation1 = document.createElement('li');
+              navigation1.setAttribute('class', 'nav-item');
+              navigation1.setAttribute('id', 'registrarEmpresa');
+              let link1 = document.createElement('a');
+              link1.setAttribute('href', 'index.html');
+              link1.setAttribute('class', 'nav-link active');
+              let img1 = document.createElement('i');
+              img1.setAttribute('class', 'bi bi-bookmark-plus');
+              let span1 = document.createElement('span');
+              span1.innerText = ' Registrar Empresas';
+
+              link1.appendChild(img1);
+              link1.appendChild(span1);
+
+              navigation1.appendChild(link1);
+
+              menu.appendChild(navigation1);
+
+              break;
+            case modulos == 2:
+
+              let navigation3 = document.createElement('li');
+              navigation3.setAttribute('class', 'nav-item');
+              navigation3.setAttribute('id', 'detalleContacto');
+              let link3 = document.createElement('a');
+              link3.setAttribute('href', 'vista-contactos.html');
+              link3.setAttribute('class', 'nav-link');
+              let img3 = document.createElement('i');
+              img3.setAttribute('class', 'bi bi-person-rolodex');
+              let span3 = document.createElement('span');
+              span3.innerText = '   Detalle contactos  ';
+
+              link3.appendChild(img3);
+              link3.appendChild(span3);
+
+              navigation3.appendChild(link3);
+
+              menu.appendChild(navigation3);
+
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+            case modulos == 3:
+
+
+
+              let navigation2 = document.createElement('li');
+              navigation2.setAttribute('class', 'nav-item');
+              navigation2.setAttribute('id', 'registrarInformacionSistema');
+              let link2 = document.createElement('a');
+              link2.setAttribute('href', 'vista-registro-sistemas.html');
+              link2.setAttribute('class', 'nav-link');
+              let img2 = document.createElement('i');
+              img2.setAttribute('class', 'bi bi-archive');
+              let span2 = document.createElement('span');
+              span2.innerText = '  Informacion del Sistema ';
+
+              link2.appendChild(img2);
+              link2.appendChild(span2);
+
+              navigation2.appendChild(link2);
+
+              menu.appendChild(navigation2);
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+            case modulos == 4:
+
+              let navigation4 = document.createElement('li');
+              navigation4.setAttribute('class', 'nav-item');
+              navigation4.setAttribute('id', 'detalleContacto');
+              let link4 = document.createElement('a');
+              link4.setAttribute('href', 'vista-empresa.html');
+              link4.setAttribute('class', 'nav-link');
+              let img4 = document.createElement('i');
+              img4.setAttribute('class', 'icon-home4');
+              let span4 = document.createElement('span');
+              span4.innerText = '   Listar Empresa  ';
+
+              link4.appendChild(img4);
+              link4.appendChild(span4);
+
+              navigation4.appendChild(link4);
+
+              menu.appendChild(navigation4);
+
+
+              console.log('Acceso' + modulos)
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+            default:
+              console.log("default");
+              break;
+
+          }
+        })
+
 
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
         let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
@@ -596,19 +716,9 @@ function registrarSucursal() {
         modalFormularioSucursal.toggle();
       } else {
 
-        let containerNombre = document.querySelector('.container-nombre-sucursal');
-        let nombre = document.querySelector('#txtNombreSucursal').value;
-
-        let containerDireccion = document.querySelector('.container-direccion')
-        let direccion = document.querySelector('#txtDireccionSucursal').value;
-
-        if (nombre == "") containerNombre.classList.add('campo-faltante');
-
-        if (direccion == "") containerDireccion.classList.add('campo-faltante');
-
-
-
-
+        TieneValores('#txtNombreSucursal');
+        TieneValores('#txtDireccionSucursal');
+        
 
         let sistemas = document.querySelector('#containerSistemas').children;
         let containerTablaSistemas = document.querySelector('#previsualizacion-sistemas');
@@ -637,26 +747,6 @@ function registrarSucursal() {
   });
 
 }
-
-let nombreSucursal = document.querySelector('#txtNombreSucursal');
-
-nombreSucursal.addEventListener('click', () => {
-  let containerNombre = document.querySelector('.container-nombre-sucursal');
-
-  containerNombre.classList.remove('campo-faltante');
-
-
-})
-
-let direccion = document.querySelector('#txtDireccionSucursal');
-
-direccion.addEventListener('click', () => {
-
-  let containerDireccion = document.querySelector('.container-direccion');
-  containerDireccion.classList.remove('campo-faltante');
-
-})
-
 
 //Para los Contactos
 
@@ -893,32 +983,11 @@ function RegistrarEmpresa() {
 
           /**campo-faltante */
 
-          let rubroValue = document.querySelector('#cboIdRubro').value;
-          let rubroContainer = document.querySelector('.container-rubro');
-
-          let nombreContainer = document.querySelector('.container-nombre');
-          let nombre = document.querySelector('#txtNombreCo').value;
-
-          // let direccionContainer = document.querySelector('#direccionEmpresa');
-          // let direccionValue = document.querySelector('#txtDireccion').value;
-
-          let containerRazonSocial = document.querySelector('#container-razonSocial');
-          let valueRazonSocial = document.querySelector("#txtRazonSocial").value;
-
-          let contenedorTipoEnvio = document.querySelector('#tipoEnvio');
-          let valueTipoEnvio = document.querySelector('#cboTipoEnvio').value;
-
-          if (valueTipoEnvio == "") contenedorTipoEnvio.classList.add('campo-faltante');
-
-          if (valueRazonSocial == "") containerRazonSocial.classList.add('campo-faltante');
-
-          if (rubroValue == 0) rubroContainer.classList.add('campo-faltante');
-
-          if (nombre == "") nombreContainer.classList.add('campo-faltante');
-
-
-
-
+          TieneValores('#cboIdRubro', '.container-rubro');
+          TieneValores('#txtNombreCo');
+          TieneValores('#txtRazonSocial');
+          TieneValores('#cboTipoEnvio', '#tipoEnvio');
+          TieneValores('#txtDireccion');
 
 
         }
@@ -930,44 +999,6 @@ function RegistrarEmpresa() {
   });
 
 }
-
-let rubroValue = document.querySelector('#cboIdRubro');
-rubroValue.addEventListener('click', () => {
-
-  let rubroContainer = document.querySelector('.container-rubro');
-  rubroContainer.classList.remove('campo-faltante');
-
-})
-
-let nombreEmpresa = document.querySelector('#txtNombreCo');
-
-nombreEmpresa.addEventListener('click', () => {
-
-  let nombreContainer = document.querySelector('.container-nombre');
-
-  nombreContainer.classList.remove('campo-faltante');
-
-
-})
-
-
-let valueTipoEnvio = document.querySelector('#cboTipoEnvio');
-
-valueTipoEnvio.addEventListener('click', () => {
-  let contenedorTipoEnvio = document.querySelector('#tipoEnvio');
-  contenedorTipoEnvio.classList.remove('campo-faltante');
-
-
-})
-
-let valueRazonSocial = document.querySelector("#txtRazonSocial");
-
-valueRazonSocial.addEventListener('click', () => {
-  
-  let containerRazonSocial = document.querySelector('#container-razonSocial');
-  containerRazonSocial.classList.remove('campo-faltante');
-
-});
 
 
 function datosCompletosEmpresa(id) {
@@ -1047,9 +1078,15 @@ function validarRuc() {
 
       let data = JSON.parse(res);
 
+      console.log(data);
 
       data.forEach((data) => {
 
+        if (data.data == null) return Swal.fire(
+          ` Error ( ${data.mensaje}  )`,
+          `Verifica que el RUC sea valido en <a href="https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/FrameCriterioBusquedaWeb.jsp" > Validacion RUC Sunat </a>`,
+          ''
+        );
 
         let razon = data.data.nombre || "";
         let condicion = data.data.condicion;
@@ -1414,6 +1451,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 
     const logoSucursal = document.getElementById("previewLogoSucursal") || null;
     logoSucursal.setAttribute("src", `.${sucursal.logo}`);
+    logoSucursal.setAttribute("style", "height: 100%; width: 100%;");
 
 
     console.log(sucursal);
@@ -1445,14 +1483,14 @@ $(document).on("click", ".btn-edit-sucursal", function () {
       temp += ` 
       <tr sistemaid="${sistem.id}">
     <td>  <select name="cboTipoSistema[]" id="cboTipoSistema"
-    class="form-control cboTipoSistema">
+    class="form-control form-control-sm cboTipoSistema">
       ${tpsisTemplate}
 </select></td>
     <td ><select name="cboIdTipoIntegracion[]"
-    id="cboIdTipoIntegracion" class="form-control cboIdTipoIntegracion">
+    id="cboIdTipoIntegracion" class="form-control form-control-sm cboIdTipoIntegracion">
     ${tempTipoInte}
 </select> </td>
-    <td> <input type="hidden" name="idSistema[]" value="${sistem.id}"/>  <input type="text" class="form-control" name="proveedor[]"
+    <td> <input type="hidden" name="idSistema[]" value="${sistem.id}"/>  <input type="text" class="form-control form-control-sm" name="proveedor[]"
     id="proveedor" value="${sistem.proveedor}"> </td>
     <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
   </tr>
@@ -1501,14 +1539,14 @@ $(document).on("click", ".btn-edit-sucursal", function () {
       tempAcc += `
       <tr idAcceso="${acceso.id}" >
       <td>
-        <select class="form-control" name="acceso[]">
+        <select class="form-control form-control-sm" name="acceso[]">
           ${acc}
         </select>
       </td>
-      <td><input type="hidden" name="idAcceso[]" value="${acceso.id}"/> <input name="usuario[]" class="usuario form-control" value="${acceso.usuario}"></td>
-      <td><input name="contaseña[]" class="contraseña form-control"  value="${acceso.contraseña}"></td>
+      <td><input type="hidden" name="idAcceso[]" value="${acceso.id}"/> <input name="usuario[]" class="usuario form-control form-control-sm" value="${acceso.usuario}"></td>
+      <td><input name="contaseña[]" class="contraseña form-control form-control-sm"  value="${acceso.contraseña}"></td>
       <td style="padding:0;">
-        <select name="nombreSistema[]" id="cboTipoSistema" class="form-control cboTipoSistema">
+        <select name="nombreSistema[]" id="cboTipoSistema" class="form-control form-control-sm cboTipoSistema">
         
         ${tempAcSis}
         
@@ -1581,13 +1619,15 @@ $(document).on("click", ".btn-edit-contacto", function () {
 
   $.post("../processes/listener/escuchar-contacto.php", { id }, function (response) {
     let contacto = JSON.parse(response);
+    console.log(contacto);
     $("#id-contacto").val(contacto.id);
     $("#nombre-contacto").val(contacto.nombre_contacto);
     $("#cargo-contacto").val(contacto.cargo);
     $("#correo-contacto").val(contacto.correo);
     $("#id-empresa-contacto").val(contacto.id_empresa);
     $("#telefono-contacto").val(contacto.telefono);
-    $("#detalleContacto").val(contacto.detalle);
+    $(".detalleContactoC").val(contacto.detalle);
+
     editarContacto = true;
   });
   tablaContactos.ajax.reload();
@@ -1648,6 +1688,7 @@ btnes.addEventListener("click", function () {
 
   const previewLogoSucursal = document.getElementById("previewLogoSucursal")
   previewLogoSucursal.setAttribute("src", "");
+  previewLogoSucursal.setAttribute("style", "");
 
   AccesosSucursal = [];
 
@@ -1917,7 +1958,7 @@ function imageChanged() {
 
     let image = selectedOption.getAttribute("meta-img");
 
-    divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "' style='width:100%; height:150px; '>"
+    divImage.innerHTML = "<img id='imagenSucursal' src='" + image + "'  '>"
 
   } catch (e) {
     console.warn("Error aun no se carga los datos");
@@ -2131,7 +2172,7 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   let selectSistemas = document.createElement('select');
   selectSistemas.setAttribute('name', 'cboTipoSistema[]')
   selectSistemas.setAttribute('id', 'cboTipoSistema')
-  selectSistemas.setAttribute('class', 'form-control cboTipoSistema');
+  selectSistemas.setAttribute('class', 'form-control form-control-sm cboTipoSistema');
 
   nombre.appendChild(selectSistemas);
 
@@ -2139,20 +2180,21 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   let selectIntegracion = document.createElement('select');
   selectIntegracion.setAttribute('name', 'cboIdTipoIntegracion[]')
   selectIntegracion.setAttribute('id', 'cboIdTipoIntegracion')
-  selectIntegracion.setAttribute('class', 'form-control cboIdTipoIntegracion')
+  selectIntegracion.setAttribute('class', 'form-control form-control-sm cboIdTipoIntegracion')
   integracion.appendChild(selectIntegracion);
 
   let proveedors = document.createElement('td');
   let input = document.createElement('input');
 
   input.setAttribute('type', 'text');
-  input.setAttribute('class', 'form-control');
+  input.setAttribute('class', 'form-control form-control-sm');
   input.setAttribute('id', 'proveedor');
   input.setAttribute('name', 'proveedor[]');
   proveedors.appendChild(input);
 
 
   let opcion = document.createElement('td');
+  opcion.setAttribute('class','text-center');
   let i = document.createElement('i');
   i.setAttribute('class', 'bi bi-trash3');
   i.setAttribute('id', 'eliminarSistema');
@@ -2242,20 +2284,20 @@ btnagregarAcceso.addEventListener('click', () => {
   tipos.appendChild(option1)
   tipos.appendChild(option2)
   tipos.appendChild(option3)
-  tipos.setAttribute('class', 'form-control');
+  tipos.setAttribute('class', 'form-control form-control-sm');
   tipos.setAttribute('name', 'acceso[]');
   tiposTd.appendChild(tipos);
 
   let usuario = document.createElement('td');
   let input = document.createElement('input');
   input.setAttribute('name', 'usuario[]')
-  input.setAttribute('class', 'usuario form-control')
+  input.setAttribute('class', 'usuario form-control form-control-sm')
   usuario.appendChild(input)
 
   let contrasena = document.createElement('td');
   let inputContrase = document.createElement('input');
   inputContrase.setAttribute('name', 'contaseña[]')
-  inputContrase.setAttribute('class', 'contraseña form-control')
+  inputContrase.setAttribute('class', 'contraseña form-control form-control-sm')
   contrasena.appendChild(inputContrase);
 
   let sis = document.createElement('td');
@@ -2263,10 +2305,12 @@ btnagregarAcceso.addEventListener('click', () => {
   let selectSistemas = document.createElement('select');
   selectSistemas.setAttribute('name', 'nombreSistema[]')
   selectSistemas.setAttribute('id', 'cboTipoSistema')
-  selectSistemas.setAttribute('class', 'form-control cboTipoSistema');
+  selectSistemas.setAttribute('class', 'form-control form-control-sm cboTipoSistema');
   sis.appendChild(selectSistemas);
 
   let opti = document.createElement('td');
+  opti.setAttribute('class','text-center');
+
   let i = document.createElement('i');
   i.setAttribute('class', 'bi bi-trash3');
   i.setAttribute('id', 'eliminarAcceso');
@@ -2458,66 +2502,7 @@ $(document).on('click', "#editarSistema", function () {
 
 
 
-let btnEditarSistema = document.querySelector('#editarSistema');
 
-btnEditarSistema.addEventListener('click', editarSistemaSucursal);
-
-
-function editarSistemaSucursal() {
-
-  let editar = document.querySelector('#editarAccesoSistema');
-  editar.removeAttribute('value');
-  editar.setAttribute('value', 'editar');
-
-  let tipoSistema = document.querySelector('#cboTipoSistema').value;
-  let tipoIntegracion = document.querySelector('#cboIdTipoIntegracion').value;
-  let usuarioAnydesk = document.querySelector('#usuariosa').value;
-  let contraseñaAnydesk = document.querySelector('#contraseñaa').value;
-  let usuarioTViewer = document.querySelector('#usuario_ANY').value;
-  let contraseñaTViewer = document.querySelector('#contraseña_ANY').value;
-  let usuarioEscriRemoto = document.querySelector('#usuario_ER').value;
-  let contraseñaEscriRemoto = document.querySelector('#contraseña_ER').value;
-  let proveedor = document.querySelector('#proveedor').value;
-
-  AccesosSucursal.push(
-
-    tipoIntegracion,
-    tipoSistema,
-    usuarioAnydesk,
-    contraseñaAnydesk,
-    usuarioTViewer,
-    contraseñaTViewer,
-    usuarioEscriRemoto,
-    contraseñaEscriRemoto,
-    proveedor,
-    id,
-    "|"
-
-  );
-
-
-  let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
-  inpuAccesosInfo.setAttribute("value", `${AccesosSucursal}`);
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-
-  Toast.fire({
-    icon: 'success',
-    title: 'Se editara recuerda guardar los cambios '
-  })
-
-
-}
 
 
 
@@ -2607,11 +2592,44 @@ $(document).on('click', "#eliminarAcceso", function () {
 
 });
 
+const TieneValores = (input, inputContenedor = false) => {
+
+  let valores = document.querySelector(input).value;
+
+  if (!valores) document.querySelector(input).classList.add('is-invalid');
+
+  if (inputContenedor && valores == 0) document.querySelector(inputContenedor).classList.add('campo-faltante');
 
 
+}
+
+const RellenandoCamposFaltantes = (input = false, inputContenedor = false) => {
+
+  if (inputContenedor) document.querySelector(inputContenedor).addEventListener('click', () => {
 
 
+    document.querySelector(inputContenedor).classList.remove('campo-faltante');
+    return;
+
+  })
 
 
+  if (input) document.querySelector(input).addEventListener('click', () => {
+
+    document.querySelector(input).classList.remove('is-invalid');
+
+  })
 
 
+}
+
+
+RellenandoCamposFaltantes('#txtNombreCo');
+RellenandoCamposFaltantes(false, '.container-rubro');
+RellenandoCamposFaltantes(false, '.container-rubro');
+RellenandoCamposFaltantes('#txtNombreCo');
+RellenandoCamposFaltantes('#txtRazonSocial');
+RellenandoCamposFaltantes('#txtDireccion');
+RellenandoCamposFaltantes(false, '#tipoEnvio');
+RellenandoCamposFaltantes('#txtNombreSucursal');
+RellenandoCamposFaltantes('#txtDireccionSucursal');
