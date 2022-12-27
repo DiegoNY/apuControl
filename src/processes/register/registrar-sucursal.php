@@ -18,7 +18,7 @@ if (isset($nombre) && !empty($nombre)) {
 
 extract($_POST);
 
-if (isset($txtNombreSucursal) && !empty($txtNombreSucursal) and isset($txtDireccionSucursal) && !empty($txtDireccionSucursal) and !empty($acceso) && !empty($cboIdTipoIntegracion)) {
+if (isset($txtNombreSucursal) && !empty($txtNombreSucursal) and isset($txtDireccionSucursal) && !empty($txtDireccionSucursal)  && !empty($cboIdTipoIntegracion)) {
 
     $sucursal = new  BaseDatos();
 

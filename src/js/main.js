@@ -33,9 +33,9 @@ var urlEscucharEmpresaRegistrar = false;
 
 
 //se llama al usuario logueado
-(() => {
+(async () => {
 
-  fetch('../processes/pruebaSession.php')
+  await fetch('../processes/pruebaSession.php')
     .then(response => response.json())
     .then(nombre => {
 
@@ -62,66 +62,131 @@ var urlEscucharEmpresaRegistrar = false;
 
         if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-        let menu = document.querySelector('#navigationMenu');
+        let MantenimientoEmpresa = false ;
+        let listadoContactos  = false
+        let sistema  = false
+        let ListadoEmpresa  = false
+        let registro  = false
+
         modulosAcceder.forEach(modulos => {
 
           switch (true) {
 
             case modulos == 1:
 
-                CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Registrar Empresas',true);
+              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa', true);
 
-
-                break;
+              break;
 
             case modulos == 2:
 
-                CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Detalle contactos');
+              listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
 
 
-                console.log('Acceso' + modulos)
-
-                break;
+              break;
 
             case modulos == 3:
 
-                CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Informacion del Sistema ')
+              sistema = CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Mantenimiento de Sistema ')
 
-                break;
+
+              break;
 
             case modulos == 4:
 
-                CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listar Empresa');
-
-                break;
+              ListadoEmpresa = CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listado de Empresa');
+              break;
 
             case modulos == 5:
 
-                CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
-
-                break;
+              registro = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
+              break;
 
 
             default:
-                console.log("default");
-                break;
+              console.log("default");
+              break;
 
-        }
+          }
         })
+
 
 
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
         let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
 
+        let menu = document.querySelector('#navigationMenu');
+        let subMenus = CrearSubMenu('Sistema', 'icon-copy');
+
+        menu.appendChild(ListadoEmpresa);
+        menu.appendChild(listadoContactos);
+        menu.appendChild(subMenus);
+
+
+        /**
+         * nav-item-open / display block cuando se de click 
+         */
+
+        let subMenu = document.querySelector('#subMenu');
+        
+        if(MantenimientoEmpresa)
+        subMenu.appendChild(MantenimientoEmpresa);
+        if(sistema)
+        subMenu.appendChild(sistema);
+        if(registro)
+        subMenu.appendChild(registro);
+
+
       }
+
+      ValidadorModulo(MODULO);
+
+      document.querySelector('#subMenuss').addEventListener('click', () => {
+        let subMenu = document.querySelector('#subMenuss');
+        let subMenuSubMenu = document.querySelector('#subMenu');
+
+        let estaAbierto = document.querySelector('#subMenuss').classList.contains('nav-item-open');
+        console.log(subMenu);
+
+        if (!estaAbierto) {
+          subMenu.classList.add('nav-item-open');
+          subMenuSubMenu.setAttribute('style', 'display:block;');
+
+        } else {
+          subMenu.classList.remove('nav-item-open');
+          subMenuSubMenu.setAttribute('style', 'display:none;');
+
+        }
+
+      })
+
     });
+
+
+
 
 })()
 
 
+function ValidadorModulo(nmrModulo) {
+  let arrModulos = [1, 3, 5]
+  let estaDentroUnSubmenu = arrModulos.find(element => element == nmrModulo);
+  let subMenuSubMenu = document.querySelector('#subMenu');
+  let subMenu = document.querySelector('#subMenuss');
+
+
+
+  if (estaDentroUnSubmenu) {
+
+    subMenu.classList.add('nav-item-open');
+    subMenuSubMenu.setAttribute('style', 'display:block;');
+
+  }
+
+}
+
 function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
 
-  let menu = document.querySelector('#navigationMenu');
 
 
   let navigation = document.createElement('li');
@@ -131,9 +196,9 @@ function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
   link.setAttribute('href', links);
 
   if (activo)
-      link.setAttribute('class', 'nav-link active');
+    link.setAttribute('class', 'nav-link active');
   if (!activo)
-      link.setAttribute('class', 'nav-link');
+    link.setAttribute('class', 'nav-link');
 
   let img = document.createElement('i');
   img.setAttribute('class', icono);
@@ -145,10 +210,40 @@ function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
 
   navigation.appendChild(link);
 
-
-  menu.appendChild(navigation);
+  return navigation;
 
 }
+
+function CrearSubMenu(nombreSubMenu, iconoSubMenu) {
+
+
+  let contenedor = document.createElement('li');
+  contenedor.setAttribute('class', 'nav-item nav-item-submenu')
+  contenedor.setAttribute('id', 'subMenuss');
+
+  let nombre = document.createElement('a');
+  nombre.setAttribute('class', 'nav-link');
+  let icono = document.createElement('i');
+  icono.setAttribute('class', iconoSubMenu);
+  let span = document.createElement('span');
+  span.innerText = nombreSubMenu
+  nombre.appendChild(icono);
+  nombre.appendChild(span);
+
+  let ul = document.createElement('ul');
+  ul.setAttribute('class', 'nav nav-group-sub')
+  ul.setAttribute('style', 'display:none;')
+  ul.setAttribute('data-submenu-title', 'Layouts')
+  ul.setAttribute('id', 'subMenu');
+
+  contenedor.appendChild(nombre);
+  contenedor.appendChild(ul);
+
+  return contenedor;
+
+
+}
+
 
 
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
@@ -225,8 +320,8 @@ function cargarSucursal(ruc) {
         { data: "direccion" },
         { data: "ubigeo" },
         {
-          defaultContent: `<div class="contenedor-iconos"><i class="bi bi-pencil-square text-warning btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
-                          <i class="bi bi-x-circle-fill text-danger btn-delete-sucursal" ></i>
+          defaultContent: `<div class="contenedor-iconos"><i role="button" class=" fi fi-rr-edit text-primary mr-2 ml-2 btn-edit-sucursal" data-bs-toggle="modal" data-bs-target="#sucursal"></i>
+                          <i role="button" class="fi fi-rr-trash text-danger  btn-delete-sucursal" ></i>
         `,
         }
       ],
@@ -329,9 +424,9 @@ function cargarContactos(ruc) {
         { data: "telefono" },
         { data: "correo" },
         {
-          defaultContent: `<i class="bi bi-pencil-square text-warning btn-edit-contacto" data-bs-toggle="modal"
+          defaultContent: `<i role="button" class="fi fi-rr-edit-alt text-primary mr-2 ml-2 btn-edit-contacto" data-bs-toggle="modal"
         data-bs-target="#contactos"></i>
-        <i class="bi bi-x-circle-fill text-danger btn-delete-contacto"></i>
+        <i role="button" class="fi fi-rr-trash text-danger btn-delete-contacto"></i>
         `,
         },
 
@@ -414,118 +509,118 @@ let todosLosAccesos = [];
 let todosLosSitemas = [];
 let Sistema = [];
 
-function cargarAccesos(id) {
+// function cargarAccesos(id) {
 
 
-  todosLosAccesos = [];
-  todosLosSitemas = [];
-  Sistema = [];
+//   todosLosAccesos = [];
+//   todosLosSitemas = [];
+//   Sistema = [];
 
-  $.post("../processes/mostrar-accesos.php", { id }, function (response) {
-
-
-    let accesos = JSON.parse(response);
-
-    /**
-     * Vaciando Accesos
-    */
-
-    let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
-    inpuAccesosInfo.setAttribute("value", "");
-
-    /** 
-     * Vaciando Array
-    */
-
-    template = "";
-
-    accesos['data'].forEach((acceso) => {
-
-      todosLosAccesos.push(
-
-        {
-          id: acceso.id,
-          sucursal: acceso.id_sucursal,
-          sistema: acceso.nombreSistema,
-          nombre: acceso.nombreAcceso,
-          usuario: acceso.idAcceso,
-          contraseña: acceso.contrasena,
-        }
-
-      );
-
-      todosLosSitemas.push(
-
-        {
-          id: acceso.id_sucursal,
-          nombre: acceso.nombreSistema,
-          proveedor: acceso.proveedor,
-          integracion: acceso.tipoIntegracion
-
-        }
-
-      )
+//   $.post("../processes/mostrar-accesos.php", { id }, function (response) {
 
 
+//     let accesos = JSON.parse(response);
 
-    });
+//     /**
+//      * Vaciando Accesos
+//     */
 
+//     let inpuAccesosInfo = document.querySelector("#accesosSucursalPorSistema");
+//     inpuAccesosInfo.setAttribute("value", "");
 
-    /**
-     * 
-     * Obteniendo el sistema los sistemas estan relacionados con el acceso estan en la misma tabla.
-     * 
-     */
+//     /** 
+//      * Vaciando Array
+//     */
 
-    /**
-     * @sisMap crea un array de clave valor con el nombre ya que es el que se repite  
-     */
+//     template = "";
 
-    let SisMap = todosLosSitemas.map(item => {
+//     accesos['data'].forEach((acceso) => {
 
-      return [item.nombre, item]
+//       todosLosAccesos.push(
 
-    });
+//         {
+//           id: acceso.id,
+//           sucursal: acceso.id_sucursal,
+//           sistema: acceso.nombreSistema,
+//           nombre: acceso.nombreAcceso,
+//           usuario: acceso.idAcceso,
+//           contraseña: acceso.contrasena,
+//         }
 
-    /**
-     * @sisMapArr Se eliminan los obj repetidos 
-     */
-    var sisMapArr = new Map(SisMap);
+//       );
+
+//       todosLosSitemas.push(
+
+//         {
+//           id: acceso.id_sucursal,
+//           nombre: acceso.nombreSistema,
+//           proveedor: acceso.proveedor,
+//           integracion: acceso.tipoIntegracion
+
+//         }
+
+//       )
 
 
 
-    let sistemasss = [...sisMapArr.values()];
+//     });
 
-    console.log(sistemasss);
 
-    template = "";
+//     /**
+//      * 
+//      * Obteniendo el sistema los sistemas estan relacionados con el acceso estan en la misma tabla.
+//      * 
+//      */
 
-    sistemasss.forEach(sistema => {
+//     /**
+//      * @sisMap crea un array de clave valor con el nombre ya que es el que se repite  
+//      */
 
-      template += `
+//     let SisMap = todosLosSitemas.map(item => {
 
-    <tr idSucursalSistema = "${sistema.id}" sistema="${sistema.nombre}">
-      <td> ${sistema.nombre} </td>
-      <td integracion="${sistema.integracion}"> ${sistema.integracion} </td>
-      <td> ${sistema.proveedor} </td>
-      <td class="text-center"> <i class="bi bi-pencil-square" id="editarSistema"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
-    </tr>
+//       return [item.nombre, item]
+
+//     });
+
+//     /**
+//      * @sisMapArr Se eliminan los obj repetidos 
+//      */
+//     var sisMapArr = new Map(SisMap);
+
+
+
+//     let sistemasss = [...sisMapArr.values()];
+
+//     console.log(sistemasss);
+
+//     template = "";
+
+//     sistemasss.forEach(sistema => {
+
+//       template += `
+
+//     <tr idSucursalSistema = "${sistema.id}" sistema="${sistema.nombre}">
+//       <td> ${sistema.nombre} </td>
+//       <td integracion="${sistema.integracion}"> ${sistema.integracion} </td>
+//       <td> ${sistema.proveedor} </td>
+//       <td class="text-center"> <i role="button"  class="bi bi-pencil-square" id="editarSistema"></i>  <i role="button" class="fi fi-rr-trash text-danger" id="eliminarSistema"></i></td>
+//     </tr>
     
-    `;
-    });
+//     `;
+//     });
 
-    let containerSistema = document.getElementById("containerSistemas");
-    containerSistema.innerHTML = template;
+//     let containerSistema = document.getElementById("containerSistemas");
+//     containerSistema.innerHTML = template;
 
-    editarAcceso = true;
-
-
-  });
+//     editarAcceso = true;
 
 
+//   });
 
 
-}
+
+
+// }
 
 // mensajes dependiendo el registro se mostraran dotos  //
 
@@ -1076,17 +1171,17 @@ function validarRuc() {
         switch (error) {
           case error = "RUC debe contener 11 digitos":
             Swal.fire(
-              'Error',
+              '<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width="150px" />',
               `${error}`,
-              'warning'
+              ''
             )
             break;
 
           case error = "RUC invalido":
             Swal.fire(
-              'Error',
+              '<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width="150px" />',
               `${error}`,
-              'warning'
+              ''
             )
             break;
           default:
@@ -1131,10 +1226,10 @@ function validarRuc() {
           case estado = "INACTIVO":
 
             Swal.fire(
-              'Error',
+              '<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width="150px"/>',
               `<p class="text-center mb-2 font-size-sm">Estado <span class="badge bg-success text-light">${estado}</span></p>
               `,
-              'warning'
+              ''
             )
             break;
 
@@ -1461,7 +1556,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
 </select> </td>
     <td> <input type="hidden" name="idSistema[]" value="${sistem.id}"/>  <input type="text" class="form-control form-control-sm" name="proveedor[]"
     id="proveedor" value="${sistem.proveedor}"> </td>
-    <td class="text-center"></i> <i class="bi bi-trash3" id="eliminarSistema"></i></td>
+    <td class="text-center"></i> <i role="button" class="bi bi-trash3 text-danger" id="eliminarSistema"></i></td>
   </tr>
         
       `;
@@ -1521,7 +1616,7 @@ $(document).on("click", ".btn-edit-sucursal", function () {
         
         </select>
       </td>
-      <td class="text-center"> <i class="bi bi-trash3" id="eliminarAcceso"></i></td>
+      <td class="text-center"> <i role="button" class="bi bi-trash3 text-danger" id="eliminarAcceso"></i></td>
     </tr>
       `;
     });
@@ -1560,18 +1655,18 @@ $(document).on("click", ".btn-delete-sucursal", async function () {
   alerta.eliminar("Seguro que deseas eliminar la sucursal ?", id, tableSucursal, "../processes/delete/eliminar-sucursal.php");
 });
 
-$(document).on("click", ".btn-agregar-acceso", function () {
-  let data = tableSucursal.row($(this).parents()).data();
-  let id = data.id;
-  $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
-    let sucursal = JSON.parse(response);
-    ideSuc = sucursal.id;
-    editarAcceso = false;
-    //cargando los datos al frm de acceso se hara con un btn
-    $("#txtIdSucursale").val(ideSuc);
-    cargarAccesos(ideSuc);
-  });
-});
+// $(document).on("click", ".btn-agregar-acceso", function () {
+//   let data = tableSucursal.row($(this).parents()).data();
+//   let id = data.id;
+//   $.post("../processes/listener/escuchar-sucursal.php", { id }, function (response) {
+//     let sucursal = JSON.parse(response);
+//     ideSuc = sucursal.id;
+//     editarAcceso = false;
+//     //cargando los datos al frm de acceso se hara con un btn
+//     $("#txtIdSucursale").val(ideSuc);
+//     cargarAccesos(ideSuc);
+//   });
+// });
 
 
 $(document).on("click", ".btn-delete-contacto", async function () {
@@ -1892,9 +1987,9 @@ function cargarBanderas() {
       .then(response => response.json())
       .then(data => {
 
-        let template = '<option value"0"> SELECCIONE UNA BANDERA</option>';
+        let template = '<option value"0"> SELECCIONE</option>';
 
-        template = `
+        template += `
           ${data.map(datas => ` 
          
           <option
@@ -2165,8 +2260,9 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
   let opcion = document.createElement('td');
   opcion.setAttribute('class', 'text-center');
   let i = document.createElement('i');
-  i.setAttribute('class', 'bi bi-trash3');
+  i.setAttribute('class', 'bi bi-trash3 text-danger');
   i.setAttribute('id', 'eliminarSistema');
+  i.setAttribute('role', 'button');
   opcion.appendChild(i);
 
   sistema.appendChild(nombre);
@@ -2281,8 +2377,9 @@ btnagregarAcceso.addEventListener('click', () => {
   opti.setAttribute('class', 'text-center');
 
   let i = document.createElement('i');
-  i.setAttribute('class', 'bi bi-trash3');
+  i.setAttribute('class', 'bi bi-trash3 text-danger');
   i.setAttribute('id', 'eliminarAcceso');
+  i.setAttribute('role', 'button');
   opti.appendChild(i);
 
 
@@ -2432,9 +2529,9 @@ $(document).on('click', "#editarSistema", function () {
   if (mostrarAlerta === 'true') {
 
     Swal.fire({
-      imageUrl: 'https://cdn-icons-png.flaticon.com/512/1665/1665697.png',
-      imageWidth: 100,
-      imageHeight: 100,
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/3900/3900103.png',
+      imageWidth: 150,
+      imageHeight: 150,
       title: '',
       text: 'Editaras un sistema realiza los cambio y da click en editar',
       showCloseButton: true,
@@ -2480,7 +2577,7 @@ $(document).on('click', "#eliminarSistema", function () {
 
 
   Swal.fire({
-    imageUrl: 'https://cdn-icons-png.flaticon.com/512/604/604573.png',
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3900/3900103.png',
     imageWidth: 100,
     imageHeight: 100,
     title: 'Estas seguro ?',
@@ -2525,9 +2622,9 @@ $(document).on('click', "#eliminarAcceso", function () {
   console.log(accesoss);
 
   Swal.fire({
-    imageUrl: 'https://cdn-icons-png.flaticon.com/512/604/604573.png',
-    imageWidth: 100,
-    imageHeight: 100,
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3900/3900103.png',
+    imageWidth: 150,
+    imageHeight: 150,
     title: 'Estas seguro ?',
     text: "Si se elimina no podra ser recuperado",
     showCancelButton: true,

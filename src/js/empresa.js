@@ -50,62 +50,104 @@ const MODULO = 4;
 
         if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-        let menu = document.querySelector('#navigationMenu');
+
+        let MantenimientoEmpresa = false ;
+        // let listadoContactos  = false
+        let sistema  = false;
+        // let ListadoEmpresa  = false
+        // let registro  = false
+        
         modulosAcceder.forEach(modulos => {
 
           switch (true) {
 
             case modulos == 1:
-              btnR.setAttribute('style', '')
-              CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Registrar Empresas');
+                btnR.setAttribute('style','');
+                MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
 
-
-              break;
+                break;
 
             case modulos == 2:
 
-              CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Detalle contactos');
+                listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
 
 
-              console.log('Acceso' + modulos)
-
-              break;
+                break;
 
             case modulos == 3:
 
-              CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Informacion del Sistema ')
+                sistema = CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Mantenimiento de Sistema ')
 
-              break;
+
+                break;
 
             case modulos == 4:
 
-              CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listar Empresa', true);
-
-              break;
+                ListadoEmpresa = CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listado de Empresa',true);
+                break;
 
             case modulos == 5:
 
-              CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
-
-              break;
+                registro = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
+                break;
 
 
             default:
-              console.log("default");
-              break;
+                console.log("default");
+                break;
 
-          }
+        }
         })
+
+        let menu = document.querySelector('#navigationMenu');
+        let subMenus  = CrearSubMenu('Sistema','icon-copy');
+
+        menu.appendChild(ListadoEmpresa);
+        menu.appendChild(listadoContactos);
+        menu.appendChild(subMenus);
+       
+
+        /**
+         * nav-item-open / display block cuando se de click 
+         */
+        
+        let subMenu = document.querySelector('#subMenu');
+        if(MantenimientoEmpresa)
+        subMenu.appendChild(MantenimientoEmpresa);
+        if(sistema)
+        subMenu.appendChild(sistema);
+        if(registro)
+        subMenu.appendChild(registro);
+
 
       }
     });
 
+    document.querySelector('#subMenuss').addEventListener('click',()=>{
+      let subMenu = document.querySelector('#subMenuss');
+      let subMenuSubMenu = document.querySelector('#subMenu');
+
+      let estaAbierto = document.querySelector('#subMenuss').classList.contains('nav-item-open');
+      console.log(subMenu);
+      
+      if(!estaAbierto){
+          subMenu.classList.add('nav-item-open');
+          subMenuSubMenu.setAttribute('style','display:block;');
+
+      }else{
+          subMenu.classList.remove('nav-item-open');
+          subMenuSubMenu.setAttribute('style','display:none;');
+
+      }
+
+   })
 
 })()
 
+
+
 function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
 
-  let menu = document.querySelector('#navigationMenu');
 
 
   let navigation = document.createElement('li');
@@ -129,11 +171,39 @@ function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
 
   navigation.appendChild(link);
 
-
-  menu.appendChild(navigation);
+  return navigation;
 
 }
 
+function CrearSubMenu(nombreSubMenu,iconoSubMenu){
+
+
+  let contenedor = document.createElement('li');
+  contenedor.setAttribute('class','nav-item nav-item-submenu')
+  contenedor.setAttribute('id','subMenuss');
+
+  let nombre = document.createElement('a');
+  nombre.setAttribute('class','nav-link');
+  let icono = document.createElement('i');
+  icono.setAttribute('class',iconoSubMenu );
+  let span = document.createElement('span');
+  span.innerText = nombreSubMenu
+  nombre.appendChild(icono);
+  nombre.appendChild(span);
+
+  let ul = document.createElement('ul');
+  ul.setAttribute('class','nav nav-group-sub')
+  ul.setAttribute('style','display:none;')
+  ul.setAttribute('data-submenu-title','Layouts')
+  ul.setAttribute('id','subMenu');
+
+  contenedor.appendChild(nombre);
+  contenedor.appendChild(ul);
+
+  return contenedor;
+
+
+}
 
 $(document).ready(function () {
 
@@ -203,7 +273,7 @@ $(document).ready(function () {
           if (data === "administrador") {
             return `<div class="opciones-tabla-empresa"><div class="dropdown  ">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-calendar3 text-info"></i>
+            <i class="fi fi-rr-align-justify"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li id="btn-editar-empresa" class="s "><a class="dropdown-item">Editar</a></li>
@@ -211,22 +281,22 @@ $(document).ready(function () {
               <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
               <li class="btn-delet" id="eli"><a class="dropdown-item">Eliminar</a></li>
             </ul>
-          </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
+          </div><div><i class="fi fi-rr-eye " data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
           } else if (data === "contabilidad") {
             return `
             <div class="opciones-tabla-empresa"><div class="dropdown  ">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-calendar3 text-info"></i>
+            <i class="fi fi-rr-align-justify"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li  data-bs-toggle="modal" data-bs-target="#sucursales" id="btn-sucursales"><a class="dropdown-item"  >Sucursales</a></li>
               <li  data-bs-toggle="modal" data-bs-target="#contactos" id="btn-contactos"><a class="dropdown-item" >Contactos</a></li>
             </ul>
-            </div><div><i class="bi bi-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
+            </div><div><i class="fi fi-rr-eye btn-outline-success" data-bs-toggle="modal" data-bs-target="#empresa" id="mostrarTodo"></i></div></div>`
           } else {
             return `<div class="opciones-tabla-empresa"><div class="dropdown  ">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-calendar3 text-info"></i>
+            <i class="fi fi-rr-align-justify"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           

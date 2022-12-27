@@ -18,8 +18,9 @@ export function mensajes(response, mensaje, error) {
 export function eliminar(mensaje, id, tabla, url) {
    
       Swal.fire({
-        title: `${mensaje}`,
-        icon: 'info',
+        title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' /> `,
+        text: 'Estas seguro de eliminarlo?' ,
+        icon: '',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -28,8 +29,8 @@ export function eliminar(mensaje, id, tabla, url) {
         if (result.isConfirmed) {
           
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Eliminado!',
+            '',
             'success'
           )
 

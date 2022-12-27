@@ -67,132 +67,45 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
 
         if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-        let menu = document.querySelector('#navigationMenu');
+        let MantenimientoEmpresa = false;
+        let listadoContactos = false
+        let sistema = false
+        let ListadoEmpresa = false
+        let registro = false
+
         modulosAcceder.forEach(modulos => {
 
           switch (true) {
+
             case modulos == 1:
 
-
-              let navigation1 = document.createElement('li');
-              navigation1.setAttribute('class', 'nav-item');
-              navigation1.setAttribute('id', 'registrarEmpresa');
-              let link1 = document.createElement('a');
-              link1.setAttribute('href', 'index.html');
-              link1.setAttribute('class', 'nav-link');
-              let img1 = document.createElement('i');
-              img1.setAttribute('class', 'bi bi-bookmark-plus');
-              let span1 = document.createElement('span');
-              span1.innerText = ' Registrar Empresas';
-
-              link1.appendChild(img1);
-              link1.appendChild(span1);
-
-              navigation1.appendChild(link1);
-
-              menu.appendChild(navigation1);
+              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
 
               break;
+
             case modulos == 2:
 
-              let navigation3 = document.createElement('li');
-              navigation3.setAttribute('class', 'nav-item');
-              navigation3.setAttribute('id', 'detalleContacto');
-              let link3 = document.createElement('a');
-              link3.setAttribute('href', 'vista-contactos.html');
-              link3.setAttribute('class', 'nav-link ');
-              let img3 = document.createElement('i');
-              img3.setAttribute('class', 'bi bi-person-rolodex');
-              let span3 = document.createElement('span');
-              span3.innerText = '   Detalle contactos  ';
+              listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
 
-              link3.appendChild(img3);
-              link3.appendChild(span3);
-
-              navigation3.appendChild(link3);
-
-              menu.appendChild(navigation3);
-
-
-              console.log('Acceso' + modulos)
 
               break;
 
             case modulos == 3:
 
+              sistema = CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Mantenimiento de Sistema ', true)
 
 
-              let navigation2 = document.createElement('li');
-              navigation2.setAttribute('class', 'nav-item');
-              navigation2.setAttribute('id', 'registrarInformacionSistema');
-              let link2 = document.createElement('a');
-              link2.setAttribute('href', 'vista-registro-sistemas.html');
-              link2.setAttribute('class', 'nav-link active');
-              let img2 = document.createElement('i');
-              img2.setAttribute('class', 'bi bi-archive');
-              let span2 = document.createElement('span');
-              span2.innerText = '  Informacion del Sistema ';
-
-              link2.appendChild(img2);
-              link2.appendChild(span2);
-
-              navigation2.appendChild(link2);
-
-              menu.appendChild(navigation2);
-
-              console.log('Acceso' + modulos)
 
               break;
 
             case modulos == 4:
 
-              let navigation4 = document.createElement('li');
-              navigation4.setAttribute('class', 'nav-item');
-              navigation4.setAttribute('id', 'detalleContacto');
-              let link4 = document.createElement('a');
-              link4.setAttribute('href', 'vista-empresa.html');
-              link4.setAttribute('class', 'nav-link');
-              let img4 = document.createElement('i');
-              img4.setAttribute('class', 'icon-home4');
-              let span4 = document.createElement('span');
-              span4.innerText = '   Listar Empresa  ';
-
-              link4.appendChild(img4);
-              link4.appendChild(span4);
-
-              navigation4.appendChild(link4);
-
-              menu.appendChild(navigation4);
-
-
-              console.log('Acceso' + modulos)
-
-              console.log('Acceso' + modulos)
-
+              ListadoEmpresa = CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listado de Empresa');
               break;
 
             case modulos == 5:
 
-              let navigation5 = document.createElement('li');
-              navigation5.setAttribute('class', 'nav-item');
-              navigation5.setAttribute('id', 'registroUsuario');
-              let link5 = document.createElement('a');
-              link5.setAttribute('href', 'registro-usuarios.html');
-              link5.setAttribute('class', 'nav-link');
-              let img5 = document.createElement('i');
-              img5.setAttribute('class', 'bi bi-person-plus');
-              let span5 = document.createElement('span');
-              span5.innerText = ' Registrar usuario';
-
-              link5.appendChild(img5);
-              link5.appendChild(span5);
-              navigation5.appendChild(link5);
-
-              console.log(navigation5);
-              menu.appendChild(navigation5);
-
-              console.log('Acceso' + modulos)
-
+              registro = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
               break;
 
 
@@ -203,14 +116,139 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
           }
         })
 
+        let menu = document.querySelector('#navigationMenu');
+        let subMenus = CrearSubMenu('Sistema', 'icon-copy');
+
+        menu.appendChild(ListadoEmpresa);
+        menu.appendChild(listadoContactos);
+        menu.appendChild(subMenus);
+
+
+        /**
+         * nav-item-open / display block cuando se de click 
+         */
+
+        let subMenu = document.querySelector('#subMenu');
+
+        if (MantenimientoEmpresa)
+          subMenu.appendChild(MantenimientoEmpresa);
+        if (sistema)
+          subMenu.appendChild(sistema);
+        if (registro)
+          subMenu.appendChild(registro);
+
 
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
         let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
       }
+
+
+      ValidadorModulo(MODULO);
+
+
+      document.querySelector('#subMenuss').addEventListener('click', () => {
+        let subMenu = document.querySelector('#subMenuss');
+        let subMenuSubMenu = document.querySelector('#subMenu');
+
+        let estaAbierto = document.querySelector('#subMenuss').classList.contains('nav-item-open');
+        console.log(subMenu);
+
+        if (!estaAbierto) {
+          subMenu.classList.add('nav-item-open');
+          subMenuSubMenu.setAttribute('style', 'display:block;');
+
+        } else {
+          subMenu.classList.remove('nav-item-open');
+          subMenuSubMenu.setAttribute('style', 'display:none;');
+
+        }
+
+      })
+
     });
 
 })()
 
+
+/**
+ * UI toggle SubMenu
+ */
+
+
+
+function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
+
+  let navigation = document.createElement('li');
+  navigation.setAttribute('class', 'nav-item');
+  navigation.setAttribute('id', idNavigation);
+  let link = document.createElement('a');
+  link.setAttribute('href', links);
+
+  if (activo)
+    link.setAttribute('class', 'nav-link active');
+  if (!activo)
+    link.setAttribute('class', 'nav-link');
+
+  let img = document.createElement('i');
+  img.setAttribute('class', icono);
+  let span1 = document.createElement('span');
+  span1.innerText = texto;
+
+  link.appendChild(img);
+  link.appendChild(span1);
+
+  navigation.appendChild(link);
+
+
+  return navigation;
+}
+
+function CrearSubMenu(nombreSubMenu, iconoSubMenu) {
+
+
+  let contenedor = document.createElement('li');
+  contenedor.setAttribute('class', 'nav-item nav-item-submenu')
+  contenedor.setAttribute('id', 'subMenuss');
+
+  let nombre = document.createElement('a');
+  nombre.setAttribute('class', 'nav-link');
+  let icono = document.createElement('i');
+  icono.setAttribute('class', iconoSubMenu);
+  let span = document.createElement('span');
+  span.innerText = nombreSubMenu
+  nombre.appendChild(icono);
+  nombre.appendChild(span);
+
+  let ul = document.createElement('ul');
+  ul.setAttribute('class', 'nav nav-group-sub')
+  ul.setAttribute('style', 'display:none;')
+  ul.setAttribute('data-submenu-title', 'Layouts')
+  ul.setAttribute('id', 'subMenu');
+
+  contenedor.appendChild(nombre);
+  contenedor.appendChild(ul);
+
+  return contenedor;
+
+
+}
+
+function ValidadorModulo(nmrModulo) {
+  let arrModulos = [1, 3, 5]
+  let estaDentroUnSubmenu = arrModulos.find(element => element == nmrModulo);
+  let subMenuSubMenu = document.querySelector('#subMenu');
+  let subMenu = document.querySelector('#subMenuss');
+
+
+
+  if (estaDentroUnSubmenu) {
+
+    subMenu.classList.add('nav-item-open');
+    subMenuSubMenu.setAttribute('style', 'display:block;');
+
+  }
+
+}
 
 
 var modalFormularioTipoIntegracion = new bootstrap.Modal(document.getElementById('tipo-integracion'), {
@@ -263,9 +301,9 @@ function mostrarTipoIntegracion() {
           <td data-column-id="producer"
               class="gridjs-td">${tipoIntegra.fecha}</td>
           <td>
-          <i class="bi bi-pencil btn-editar-tipoIntegracion  text-center text-primary " data-bs-toggle="modal"
+          <i class="fi fi-rr-edit ml-2 mr-2 text-primary btn-editar-tipoIntegracion  text-center text-primary " data-bs-toggle="modal"
           data-bs-target="#tipo-integracion"></i>
-          <i class="bi bi-x-circle-fill text-danger btn-delete-tipoIntegracion" ></i>
+          <i class="fi fi-rr-trash text-danger text-danger btn-delete-tipoIntegracion" ></i>
           </td>
       </tr>
      
@@ -350,9 +388,9 @@ function mostrarTiposSistema() {
           <td data-column-id="producer"
               class="gridjs-td">${tipoSistema.fecha}</td>
           <td>
-          <i class="bi bi-pencil btn-editar-tipoSistema  text-center text-primary " data-bs-toggle="modal"
+          <i class="fi fi-rr-edit ml-2 mr-2 text-primary btn-editar-tipoSistema  text-center text-primary " data-bs-toggle="modal"
           data-bs-target="#tipo-sistema"></i>
-          <i class="bi bi-x-circle-fill text-danger btn-delete-tipoSistema" ></i>
+          <i class="fi fi-rr-trash text-danger text-danger btn-delete-tipoSistema" ></i>
           </td>
       </tr>
      
@@ -504,9 +542,9 @@ function cargarBandera() {
         <td><img style="heigth:50px; width:150px;" src=".${datas.bandera}"></td>
         <td>
 
-        <i class="bi bi-pencil   text-center text-primary " data-bs-toggle="modal"
+        <i class="fi fi-rr-edit ml-2 mr-2 text-primary   text-center text-primary " data-bs-toggle="modal"
         data-bs-target="#bandera" id="btnEditarBanderas"></i>
-        <i class="bi bi-x-circle-fill text-danger btnEliminarBanderas"></i>
+        <i class="fi fi-rr-trash text-danger text-danger btnEliminarBanderas"></i>
         
         </td>
 
@@ -541,9 +579,9 @@ function cargarInfo(urlAPI, id, listado, deletes, edits, modal) {
         <td>${datas.fecha}</td>
         <td>
 
-        <i class="bi bi-pencil   text-center text-primary " data-bs-toggle="modal"
+        <i class="fi fi-rr-edit ml-2 mr-2 text-primary   text-center text-primary " data-bs-toggle="modal"
         data-bs-target="#${modal}" id="${edits}"></i>
-        <i class="bi bi-x-circle-fill text-danger ${deletes}"></i>
+        <i class="fi fi-rr-trash text-danger text-danger ${deletes}"></i>
         
         </td>
 
@@ -569,7 +607,8 @@ $(document).on("click", ".btnEliminarCargo", function () {
   let id = element.getAttribute("idcargo");
 
   Swal.fire({
-    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' /> `,
+    text: `Estas serguro de eliminarlo? `,
     icon: '',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -638,8 +677,9 @@ $(document).on("click", ".btnEliminarRubro", function () {
   let id = element.getAttribute("idrubro");
 
   Swal.fire({
-    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' /> `,
     icon: '',
+    text: 'Estas seguro de eliminarlo ?',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
@@ -696,8 +736,9 @@ $(document).on("click", ".btnEliminarBanderas", function () {
   let id = element.getAttribute("idbandera");
 
   Swal.fire({
-    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' /> `,
     icon: '',
+    text: 'Estas seguro de eliminarlo',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
@@ -732,8 +773,9 @@ $(document).on("click", ".btn-delete-tipoSistema", async function () {
 
 
   Swal.fire({
-    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' /> `,
     icon: '',
+    text: 'Estas seguro de eliminarlo ?',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
@@ -787,8 +829,9 @@ $(document).on("click", ".btn-delete-tipoIntegracion", async function () {
 
 
   Swal.fire({
-    title: `<i class="bi bi-exclamation-diamond-fill"></i>`,
+    title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' /> `,
     icon: '',
+    text: 'Estas seguro de eliminarlo?',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
@@ -983,8 +1026,10 @@ $(document).ready(function () {
 
 
     Swal.fire({
-      title: `Seguro de eliminar grupo ?`,
-      icon: 'info',
+
+      title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' />`,
+      icon: '',
+      text: 'Estas seguro de eliminarlo?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -1091,9 +1136,9 @@ function mostrarGrupos() {
           <td data-column-id="producer"
               class="gridjs-td">${grupo.fechaCreacion}</td>
           <td>
-          <i class="bi bi-pencil btn-editar-grupo  text-center text-primary " data-bs-toggle="modal"
+          <i  class=" btn-editar-grupo  text-center fi fi-rr-edit ml-2 mr-2 text-primary" data-bs-toggle="modal"
           data-bs-target="#grupo"></i>
-          <i class="bi bi-x-circle-fill text-danger btn-delete-grupo" ></i>
+          <i class="fi fi-rr-trash text-danger text-danger btn-delete-grupo" ></i>
           </td>
       </tr>
      

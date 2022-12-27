@@ -51,42 +51,44 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
                 if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
+                let MantenimientoEmpresa = false ;
+                let listadoContactos  = false
+                let sistema  = false
+                let ListadoEmpresa  = false
+                let registro  = false
+
                 modulosAcceder.forEach(modulos => {
 
                     switch (true) {
 
                         case modulos == 1:
 
-                            CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Registrar Empresas');
-
+                            MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
 
                             break;
 
                         case modulos == 2:
 
-                            CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Detalle contactos');
+                            listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
 
-
-                            console.log('Acceso' + modulos)
 
                             break;
 
                         case modulos == 3:
 
-                            CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Informacion del Sistema ')
+                            sistema = CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Mantenimiento de Sistema ')
+
 
                             break;
 
                         case modulos == 4:
 
-                            CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listar Empresa');
-
+                            ListadoEmpresa = CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listado de Empresa');
                             break;
 
                         case modulos == 5:
 
-                            CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario', true);
-
+                            registro = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario', true);
                             break;
 
 
@@ -97,17 +99,62 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
                     }
                 })
 
+                let menu = document.querySelector('#navigationMenu');
+                let subMenus = CrearSubMenu('Sistema', 'icon-copy');
+
+                menu.appendChild(ListadoEmpresa);
+                menu.appendChild(listadoContactos);
+                menu.appendChild(subMenus);
+
+
+                /**
+                 * nav-item-open / display block cuando se de click 
+                 */
+
+                let subMenu = document.querySelector('#subMenu');
+                if(MantenimientoEmpresa)
+                subMenu.appendChild(MantenimientoEmpresa);
+                if(sistema)
+                subMenu.appendChild(sistema);
+                if(registro)
+                subMenu.appendChild(registro);
+
+
             }
         });
+
+    ValidadorModulo(MODULO);
+
+    document.querySelector('#subMenuss').addEventListener('click', () => {
+        let subMenu = document.querySelector('#subMenuss');
+        let subMenuSubMenu = document.querySelector('#subMenu');
+
+        let estaAbierto = document.querySelector('#subMenuss').classList.contains('nav-item-open');
+        console.log(subMenu);
+
+        if (!estaAbierto) {
+            subMenu.classList.add('nav-item-open');
+            subMenuSubMenu.setAttribute('style', 'display:block;');
+
+        } else {
+            subMenu.classList.remove('nav-item-open');
+            subMenuSubMenu.setAttribute('style', 'display:none;');
+
+        }
+
+    })
 
 
 })()
 
 
+/**
+ * UI toggle SubMenu
+ */
+
+
+
 function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
-
-    let menu = document.querySelector('#navigationMenu');
-
 
     let navigation = document.createElement('li');
     navigation.setAttribute('class', 'nav-item');
@@ -131,7 +178,53 @@ function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
     navigation.appendChild(link);
 
 
-    menu.appendChild(navigation);
+    return navigation;
+}
+
+function CrearSubMenu(nombreSubMenu, iconoSubMenu) {
+
+
+    let contenedor = document.createElement('li');
+    contenedor.setAttribute('class', 'nav-item nav-item-submenu')
+    contenedor.setAttribute('id', 'subMenuss');
+
+    let nombre = document.createElement('a');
+    nombre.setAttribute('class', 'nav-link');
+    let icono = document.createElement('i');
+    icono.setAttribute('class', iconoSubMenu);
+    let span = document.createElement('span');
+    span.innerText = nombreSubMenu
+    nombre.appendChild(icono);
+    nombre.appendChild(span);
+
+    let ul = document.createElement('ul');
+    ul.setAttribute('class', 'nav nav-group-sub')
+    ul.setAttribute('style', 'display:none;')
+    ul.setAttribute('data-submenu-title', 'Layouts')
+    ul.setAttribute('id', 'subMenu');
+
+    contenedor.appendChild(nombre);
+    contenedor.appendChild(ul);
+
+    return contenedor;
+
+
+}
+
+function ValidadorModulo(nmrModulo) {
+    let arrModulos = [1, 3, 5]
+    let estaDentroUnSubmenu = arrModulos.find(element => element == nmrModulo);
+    let subMenuSubMenu = document.querySelector('#subMenu');
+    let subMenu = document.querySelector('#subMenuss');
+
+
+
+    if (estaDentroUnSubmenu) {
+
+        subMenu.classList.add('nav-item-open');
+        subMenuSubMenu.setAttribute('style', 'display:block;');
+
+    }
 
 }
 
@@ -195,12 +288,12 @@ const Editar = () => {
 
             console.log(data);
 
-            swal.fire('',`${data.Respuesta}`,'success')
+            swal.fire('', `${data.Respuesta}`, 'success')
 
 
         });
 
-    
+
 
 }
 
@@ -210,11 +303,40 @@ const Eliminar = (elemento) => {
 
     let contenedor = elemento.parentElement.parentElement;
 
-    postData(`../processes/MantenimientoUsuarios.php?accion=Eliminar&&id=${id}`)
-        .then(response => response.json())
-        .then(data => console.log(data));
 
-    contenedor.remove();
+
+    swal.fire({
+
+        title: `<img src="https://cdn-icons-png.flaticon.com/512/3900/3900103.png" width='150px' />  `,
+        icon: '',
+        text: "Estas seguro de eliminarlo ?",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar ahora'
+
+    }).then((result) => {
+
+
+
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Eliminado!',
+                '',
+                'success'
+            )
+
+            postData(`../processes/MantenimientoUsuarios.php?accion=Eliminar&&id=${id}`)
+                .then(response => response.json())
+                .then(data => console.log(data));
+
+            contenedor.remove();
+
+        }
+    })
+
+
 
 }
 
@@ -467,7 +589,7 @@ $(document).ready(function () {
             { data: "contraseña" },
             { data: "cargo" },
             { defaultContent: '' },
-            { defaultContent: '<td class="text-center"><i class="bi bi-pencil" onclick="CargarDatosUsuario(this)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i><i class="bi bi-trash2" onclick="Eliminar(this)"></i></td>' },
+            { defaultContent: '<td class="text-center row "><i role="button" class="fi fi-rr-edit ml-2 mr-2 text-primary" onclick="CargarDatosUsuario(this)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i><i  role="button" class="fi fi-rr-trash text-danger" onclick="Eliminar(this)"></i></td>' },
 
         ],
         language: lenguaje
@@ -477,7 +599,7 @@ $(document).ready(function () {
 
 
     btnAgregar = document.getElementById('AgregarUsuario');
-    
+
     btnAgregar.addEventListener('click', () => {
         let containerModulo = document.querySelector('#contenedorModulos');
         containerModulo.replaceChildren("");
@@ -491,9 +613,10 @@ $(document).ready(function () {
     let tabla = document.querySelector('#tablaUsuario_wrapper');
     console.log(tabla);
 
-    tabla.setAttribute('class','dataTables_wrapper no-footer shadow p-3 mb-5  rounded');
+    tabla.setAttribute('class', 'dataTables_wrapper no-footer shadow p-3 mb-5  rounded');
 
     let tablaUsuario = document.querySelector('#tablaUsuario');
-    tablaUsuario.setAttribute('class','table shadow-sm   rounded dataTable no-footer')  
+    tablaUsuario.setAttribute('class', 'table shadow-sm   rounded dataTable no-footer')
 
 });
+
