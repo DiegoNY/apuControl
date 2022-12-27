@@ -30,6 +30,7 @@
     <link href="../global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/all.min.css" rel="stylesheet" type="text/css">
 
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -232,18 +233,256 @@
 
                                 <div id="contenedorFormularioRegistroEmpresa" class="card-body py-0">
 
+
+
+
                                     <form action="../processes/register/registrar-logo.php" id="frm_empresa"
                                         enctype="multipart/form-data" method="post" class="frm-empresa row">
                                         <input type="hidden" id="id" name="id">
                                         <input type="hidden" id="editarLogo" name="editarLogo" value="">
                                         <input type="hidden" id="urlLogo" name="urlLogo" value="">
 
-                                        <fieldset class="mb-3 col-xl-6">
-                                            <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
-                                                basica de empresa</legend>
+                                        <div class="  col-sm-6  shadow-sm p-3   rounded">
+
+                                            <table class="table mt-3  table-borderless  ">
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-user"></i> 
+                                                            </span>
+                                                            Ruc
+                                                            <div class="row">
+                                                                <input type="number" ruc_ids value="" maxlength="11"
+                                                                    name="txtRuc" id="txtRuc"
+                                                                    class="form-control form-control-sm shadow-sm   rounded col-lg-8"
+                                                                    required>
+                                                                <input type="button" id="btn_ruc"
+                                                                    class="form-control form-control-sm shadow-sm   rounded col-lg-4"
+                                                                    value="Validar">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-users-alt"></i>                                                            
+                                                            </span>
+                                                            Grupo
+                                                            <div>
+                                                                <select id="cbogrupo" name="txtIdGrupo"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+                                                                    <option value="value">value</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="fi fi-rr-stats"></i>
+                                                            Nombre Comercial
+                                                            <div class="container-nombre">
+                                                                <input type="text" value="" name="txtNombreCo"
+                                                                    id="txtNombreCo"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+
+                                                            <span>
+                                                                <i class="fi fi-rr-book-alt"></i>
+                                                            </span>
+                                                            Razon social
+                                                            <div class="container-razonSocial "
+                                                                id="container-razonSocial">
+                                                                <input type="text" value="" name="txtRazonSocial"
+                                                                    id="txtRazonSocial"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-bank"></i> 
+                                                            </span>
+                                                            Ubigeo
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <select data-live-search="true" name="cboIdu"
+                                                                    id="cboIdu"
+                                                                    class="selectpicker form-control form-control-sm shadow-sm   rounded">
+                                                                    <option value="123">123</option>
+                                                                    <option value="164">164</option>
+                                                                    <option value="" selected></option>
+                                                                </select>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
 
 
-                                            <div class="form-group row">
+
+                                                        <td colspan="2">
+                                                            <i class="fi fi-rr-bank"></i>
+                                                            Direccion
+                                                            <div class="" id="direccionEmpresa">
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm shadow-sm   rounded"
+                                                                    value="" name="txtDireccion" id="txtDireccion">
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-user"></i>                                                            
+                                                            </span>
+                                                            Tipo Persona
+                                                            <div class="">
+                                                                <select name="cboTipoPersona" id="cboTipoPersona"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+
+                                                                    <option value="" selected id="defaultTipoPersona">
+                                                                    </option>
+                                                                    <option value="NATURAL" id="natu">Natural</option>
+                                                                    <option value="JURIDICA" id="juri">Juridica</option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-user"></i>
+                                                            </span>
+                                                            Rubro
+                                                            <div class="container-rubro">
+                                                                <select name="cboIdRubro" id="cboIdRubro"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+                                                                    <option value="" selected></option>
+                                                                    <option value="EDS">EDS</option>
+                                                                    <option value="BOTICAS">BOTICAS</option>
+                                                                    <option value="MARKETS">MARKETS</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-rocket-lunch"></i>
+                                                            </span>
+                                                            Tipo de Envio
+                                                            <div class="" id="tipoEnvio">
+                                                                <select name="cboTipoEnvio" id="cboTipoEnvio"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+                                                                    <option value="0" selected></option>
+                                                                    <option value="OSE">OSE</option>
+                                                                    <option value="SUNAT">SUNAT</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <i class="fi fi-rr-handshake"></i>
+                                                            </span>
+                                                            Estado Comercial
+                                                            <div>
+                                                                <select name="txtEstadoComercial"
+                                                                    id="txtEstadoComercial"
+                                                                    class="form-control form-control-sm shadow-sm   rounded">
+                                                                    <option value="" selected></option>
+                                                                    <option value="INGRESADO">INGRESADO</option>
+                                                                    <option value="POR_INSTALAR">POR INSTALAR</option>
+                                                                    <option value="PRODUCCION">PRODUCCION</option>
+                                                                    <option value="POSIBLE_CLIENTE">POSIBLE CLIENTE
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+
+
+                                            </table>
+
+                                        </div>
+
+                                        <div class=" col-sm-6  shadow-sm p-3   rounded">
+
+                                            <table class="table mt-3 table-borderless  ">
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td colspan="2">Clave sol</td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <i class="fi fi-rr-id-badge"></i>
+                                                            Usuario 
+                                                            <input type="text"
+                                                                class="form-control form-control-sm shadow-sm   rounded"
+                                                                name="usuarioClaveSol" id="usuarioClaveSol">
+                                                        </td>
+                                                        <td>
+                                                            <i class="fi fi-rr-key"></i>                   
+                                                            Contraseña 
+                                                            <input type="text"
+                                                                class="form-control form-control-sm shadow-sm   rounded"
+                                                                name="contraseñaClaveSol" id="contraseñaClaveSol"> </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <label class="custom-file ">
+
+                                                                <input type="file" name="logo" id="logo"
+                                                                    class="custom-file-input">
+                                                                <span class="custom-file-label">Ingresa Logo</span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+
+
+                                            </table>
+
+                                            <div class="content row ">
+
+                                                <div class="col-lg-4">
+
+                                                </div>
+                                                <div class="col-lg-4"
+                                                    style="height: 140px; width: auto; display: flex;  ">
+                                                    <img src="" id="preview_logo">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <fieldset class="">
+                                            <!-- <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
+                                                basica de empresa</legend> -->
+
+
+                                            <!-- <div class="form-group row">
 
 
                                                 <div class="col-lg-6">
@@ -281,10 +520,10 @@
 
                                                 </div>
 
-                                            </div>
+                                            </div> -->
 
 
-
+                                            <!-- 
                                             <div class="form-group row">
 
 
@@ -305,12 +544,12 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
+                                            </div> -->
 
 
 
 
-                                            <div class="form-group row">
+                                            <!-- <div class="form-group row">
                                                 <label
                                                     class="col-form-label col-lg-2 font-weight-semibold">Direccion</label>
                                                 <div class="col-lg-10" id="direccionEmpresa">
@@ -318,9 +557,9 @@
                                                         class="form-control form-control-sm shadow-sm   rounded"
                                                         value="" name="txtDireccion" id="txtDireccion">
                                                 </div>
-                                            </div>
+                                            </div> -->
 
-                                            <div class="form-group row">
+                                            <!-- <div class="form-group row">
 
                                                 <div class="col-lg-6">
                                                     <label class="font-weight-semibold">Ubigeo</label>
@@ -348,12 +587,12 @@
                                                 </div>
 
 
-                                            </div>
+                                            </div> -->
 
 
 
 
-                                            <div class="form-group row">
+                                            <!-- <div class="form-group row">
                                                 <label
                                                     class="col-form-label col-lg-2 font-weight-semibold">T.Persona</label>
                                                 <div class="col-lg-10">
@@ -365,18 +604,18 @@
                                                         <option value="JURIDICA" id="juri">Juridica</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </fieldset>
 
-                                        <fieldset class="mb-3 col-xl-6">
-                                            <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
+                                        <fieldset class="">
+                                            <!-- <legend class="text-uppercase font-size-sm font-weight-semibold">Informacion
                                                 de
-                                                Sistema</legend>
+                                                Sistema</legend> -->
 
 
                                             <div class="form-group row">
-
+                                                <!-- 
                                                 <div class="col-lg-6">
 
                                                     <label for="cboIdGrupo" class=" font-weight-semibold">Tipo de
@@ -389,9 +628,9 @@
                                                             <option value="SUNAT">SUNAT</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
-                                                <div class="col-lg-6">
+                                                <!-- <div class="col-lg-6">
                                                     <label class=" font-weight-semibold">Estado Comercial</label>
                                                     <div>
                                                         <select name="txtEstadoComercial" id="txtEstadoComercial"
@@ -403,7 +642,7 @@
                                                             <option value="POSIBLE_CLIENTE">POSIBLE CLIENTE</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
 
 
@@ -412,22 +651,22 @@
                                             <div class="form-group row ">
 
 
-                                                <div class="col-lg-12">
+                                                <!-- <div class="col-lg-12">
 
                                                     <table class="table">
 
-                                                        <thead>
+                                                        <!-- <thead>
 
                                                             <th>
                                                                 Clave Sol
                                                             </th>
 
 
-                                                        </thead>
+                                                        </thead> -->
 
-                                                        <tbody>
+                                                <!-- <tbody>
 
-                                                            <tr>
+                                                            <!-- <tr>
 
                                                                 <td>Usuario <input type="text"
                                                                         class="form-control form-control-sm shadow-sm   rounded"
@@ -438,13 +677,13 @@
                                                                         name="contraseñaClaveSol"
                                                                         id="contraseñaClaveSol"> </td>
 
-                                                            </tr>
+                                                            </tr> -->
 
-                                                        </tbody>
+                                                <!-- </tbody> -
 
-                                                    </table>
+                                                    </table> -
 
-                                                </div>
+                                                </div> -->
 
 
 
@@ -465,7 +704,7 @@
                                             </div>
 
 
-
+                                            <!-- 
                                             <div class="content row">
 
                                                 <label class="custom-file ">
@@ -475,13 +714,13 @@
                                                 </label>
 
 
-                                            </div>
+                                            </div> -->
 
 
 
                                         </fieldset>
 
-                                        <div class="content row ">
+                                        <!-- <div class="content row ">
 
                                             <div class="col-lg-4">
 
@@ -490,9 +729,9 @@
                                                 <img src="" id="preview_logo">
                                             </div>
 
-                                        </div>
+                                        </div> -->
 
-                                        <div id="contenedorBtnRegistrarEmpresa" class="col-lg-12">
+                                        <div id="contenedorBtnRegistrarEmpresa" class="col-sm-12 mt-2 py-0">
 
                                             <div class="mb-3 col-lg-12 ms-lg-auto text-right">
                                                 <input type="button" onclick="RegistrarEmpresa()" value="Registrar"
@@ -1415,6 +1654,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/main.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 
     <!--- Scripts-->
 

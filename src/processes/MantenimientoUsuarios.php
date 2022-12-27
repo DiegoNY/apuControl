@@ -1,52 +1,120 @@
-<?php
+    <?php
 
-include '../connection/MantenimientoUsuarioBD.php';
+    include '../connection/MantenimientoUsuarioBD.php';
 
-extract($_POST);
-
-
-$usuarios = new MantenimientoUsuarios();
-
-$accion = "";
-$respuesta = ["Sin Peticiones"];
-
-switch ($accion) {
-    case "Editar":
-        try {
-            if (!empty($cargo and isset($cargo)) and !empty($idUsuario and isset($idUsuario)) and !empty($contraseña and isset($contraseña)) and !empty($cargo and isset($cargo)))
-                $res = $usuarios->EditarUsuario($idUsuario, $usuario, $contraseña, $cargo);
-            else $camposVacios = "no todos los campos estan completos";
-        } catch (Exception $e) {
-
-            $Error =  $e->getMessage();
-        }
-
-        $respuesta = array('Error' => $camposVacios ?? $Error);
+    extract($_POST);
 
 
-        break;
+    $usuarios = new MantenimientoUsuarios();
 
-    case "Mostrar":
+    $accion = $_GET['accion'];
 
-        $usuarios->MostrarUsuarios();
-        
-        $todosUsuarios = $usuarios->usuarios;
+    $respuesta = ["Sin Peticiones"];
 
-        $respuesta = array('usuarios' => $todosUsuarios);
+    switch ($accion) {
+        case "Editar":
+            try {
+                if (
 
-        break;
+                    !empty($cargo and isset($cargo))
+                    and !empty($idUsuario and isset($idUsuario))
+                    and !empty($Contraseña and isset($Contraseña))
+                    and !empty($cargo and isset($cargo))
 
-    case "Eliminar":
-        $usuarios->EliminarUsuario($idUsuario);
-        break;
+                ) {
 
-    default:
-        # code...
-        break;
-}
+                    $res = $usuarios->EditarUsuario(
+
+                        $idUsuario,
+                        $usuario,
+                        $Contraseña,
+                        $cargo
+
+                    );
+
+                    $usuarios->QuitarPermisos($idUsuario);
+                    
+                    for ($i=0; $i < count($modulos) ; $i++) { 
+                        $usuarios->NuevoPermiso($modulos[$i],$idUsuario);
+                    }
+                    
+
+                    $respuesta = array(
+                        'Respuesta' => 'Editado'
+                    );
+
+                } else $camposVacios = "no todos los campos estan completos";
+
+            } catch (Exception $e) {
+
+                $Error =  $e->getMessage();
+            }
+
+            if (!!$camposVacios || !!$Error)
+                $respuesta = array(
+                    'Error' => $camposVacios ?? $Error
+                );
+
+            break;
+
+        case "Mostrar":
+
+            $usuarios->MostrarUsuarios();
+
+            $todosUsuarios = $usuarios->usuarios;
+
+            $respuesta = array('data' => $todosUsuarios);
+
+            break;
+
+        case "Eliminar":
+
+            try {
+
+                $id = $_GET['id'];
+                $usuarios->EliminarUsuario($id);
+
+                $respuesta = array(
+                    'Respuesta' => 'Eliminado'
+                );
+            } catch (Exception $e) {
+
+                $respuesta = array(
+                    'Error' =>  $e
+                );
+            }
+
+            break;
+
+        case "Usuario":
+
+
+            try {
+
+                $id = $_GET['id'];
+                $datos =  $usuarios->DatosUsuario($id);
+
+                $respuesta = array('Usuario' => $datos);
+
+            } catch (\Throwable $th) {
+
+                echo $th;
+
+            }
+
+
+            break;
+
+        default:
+            # code...
+            break;
+    }
 
 
 
 
 
-echo json_encode($respuesta);
+    echo json_encode($respuesta);
+
+
+

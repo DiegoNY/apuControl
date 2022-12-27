@@ -72,6 +72,10 @@
 
     <script src="../assets/js/app.js"></script>
     <script src="../global_assets/js/demo_pages/jqueryui_navigation.js"></script>
+    
+    <!-- iconos-->
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
     <!-- /theme JS files -->
 
     <!-- JavaScript Bundle with Popper -->
@@ -183,7 +187,7 @@
                             <div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu"
                                 title="Main"></i>
                         </li>
-                       
+
 
                     </ul>
                 </div>
@@ -205,11 +209,10 @@
                 <!-- Page header -->
                 <div class="page-header page-header-light">
 
-
                     <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
                         <div class="d-flex">
                             <div class="breadcrumb">
-                                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                                <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
                                 <span class="breadcrumb-item active">Usuarios </span>
                             </div>
 
@@ -225,89 +228,331 @@
                 <div class="content">
 
 
-                    <div class="d-flex justify-content-center col-sm-12">
+                    <div class="">
 
-                        <div class="card col-lg-10">
+                        <div class="card ">
 
-                            <div class="card-body ">
+                            <div class=" card-body">
 
-                                <form id="form-users">
+                                <table class="table" id="tablaUsuario" class="  rounded " style="width:100%">
+                                    <thead style="background-color: #252B36; color: white;">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Usuario</th>
+                                            <th scope="col">Contraseña</th>
+                                            <th scope="col">Cargo</th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Opciones</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+
+                                    </tfoot>
+
+                                </table>
+
+                            </div>
 
 
-                                    <div class="card">
 
-                                        <div class="card-header border-roundered"  style="background-color: #252B36; color: white;">
-                                            <h3 class="mr-2"> <strong>Usuarios</strong> </h3>
+
+
+                            <!--Modal Editar Usuario-->
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header btn-primary">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Usuario { nombre
+                                                usuario } </h1>
                                         </div>
+                                        <div class="modal-body p-0">
 
-                                        <div class=" row card-body">
+                                            <form id="formEditar" class="row p-3 d-flex justify-content-center">
 
-                                            <div class="col-sm-5 mt-3 ml-4 shadow-sm p-3 mb-5  rounded">
-                                                <div class="mb-3 ">
-                                                    <label for="nombre" class="form-label form-label-sm">Usuario</label>
-                                                    <input type="text" name="usuario"
-                                                        class="form-control usuario form-control-sm">
+                                                <input type="hidden" name="idUsuario" id="idUsuario">
+
+
+
+                                                <div class="col-sm-4 p-2 mt-4  rounded">
+
+                                                    <img class="img-fluid" src="../img/icon/Brazuca - Standing.png" alt="">
+                                                  
                                                 </div>
-                                                <div class="mb-3  ">
-                                                    <label for="nombre"
-                                                        class="form-label form-label-sm">Contraseña</label>
-                                                    <input type="text" name="Contraseña"
-                                                        class="form-control contraseña form-control-sm">
-                                                </div>
-                                                <div class="mb-3 ">
-                                                    <label for="nombre" class="form-label  form-label-sm">Cargo</label>
-                                                    <input type="text" name="cargo"
-                                                        class="form-control cargo form-control-sm">
-                                                </div>
-                                            </div>
 
-                                            <div class="col-sm-5 mr-4 mt-3 ml-5 shadow-sm p-3 mb-5  rounded">
-                                                <div class="mb-3 col-sm-12">
-                                                    <label for="nombre" class="form-label form-label-sm">Modulos</label>
+                                                <div class="col-sm-6  ml-2  p-2 shadow-sm   rounded">
+
+                                                    <table class="table mt-3 table-borderless  table-responsive-sm">
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    
+                                                                    <span>
+                                                                        <i class="bi bi-person"></i>
+                                                                    </span>
+                                                                    Usuario 
+                                                                   
+                                                                
+                                                                </td>
+                                                                
+                                                                <td> 
+                                                                   
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="usuario" 
+                                                                        id="usuario" 
+                                                                        value=""
+                                                                        class="
+                                                                            form-control  
+                                                                            form-control-sm
+                                                                            shadow-sm p-2  
+                                                                            rounded
+                                                                        "
+
+                                                                        >
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <i class="bi bi-hash"></i>
+                                                                    Contraseña
+                                                                
+                                                                </td>
+                                                                <td> 
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="Contraseña" 
+                                                                        id="Contraseña" 
+                                                                        class="
+                                                                            form-control 
+                                                                            form-control-sm
+                                                                            shadow-sm p-2  
+                                                                            rounded
+                                                                        "
+                                                                    >
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span>
+                                                                        <i class="bi bi-person-lines-fill"></i>
+                                                                    </span>
+                                                                    Cargo
+                                                                </td>
+                                                                <td> 
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="cargo" 
+                                                                        id="cargo" 
+                                                                        class="
+                                                                            form-control 
+                                                                            form-control-sm
+                                                                            shadow-sm p-2  
+                                                                            rounded
+                                                                            "
+                                                                        >
+
+                                                                </td>
+                                                            </tr>
+                                                           
+
+                                                        </tbody>
+                                                    </table>
+
+                                                    <br>
+
+                                                    <div class="mb-3  p-2">
+                                                        <label for="nombre"
+                                                            class="
+                                                                form-label 
+                                                                form-label-sm 
+                                                                badge 
+                                                            "
+                                                        >
+                                                         Acceso
+                                                        </label>
 
 
-                                                    <div class="multiselect-container modulos ">
+                                                        <div class="multiselect-container  modulo ">
+
+                                                        </div>
 
                                                     </div>
 
                                                 </div>
 
 
-                                            </div>
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" onclick="Editar()">
+                                                Guardar cambios
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Modal de Registro de Usuarios-->
+
+                            <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header btn-primary">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Registro Usuario
+                                            </h1>
+                                        </div>
+                                        <div class="modal-body p-0">
+
+                                            <form id="form-users" class="row">
+
+
+                                                <div class="col-sm-4 mr-4 mt-5 ml-5  p-3 mb-5  rounded">
+                                                   
+                                                    <img src="../img/icon/Happy Bunch - Standing.png" alt="">
+
+                                                </div>
+                                                
+
+                                                <div class="col-sm-6 mt-3 ml-4 shadow-sm p-3 mb-3  rounded">
+
+
+                                                    <table class="table mt-3 table-borderless  table-responsive-sm">
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    
+                                                                    <span>
+                                                                        <i class="fi fi-rr-user"></i>
+                                                                    </span>
+                                                                    Usuario 
+                                                                   
+                                                                
+                                                                </td>
+                                                                
+                                                                <td> 
+                                                                   
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="usuario"
+                                                                        class="
+                                                                            form-control 
+                                                                            usuario 
+                                                                            form-control-sm
+                                                                            shadow-sm p-2  
+                                                                            rounded
+                                                                            "
+                                                                    >
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <i class="fi fi-rr-key"></i>
+                                                                    Contraseña
+                                                                
+                                                                </td>
+                                                                <td> 
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="Contraseña"
+                                                                        class=" 
+                                                                            form-control 
+                                                                            contraseña 
+                                                                            form-control-sm
+                                                                            shadow-sm p-2  
+                                                                            rounded
+                                                                        "
+                                                                    
+                                                                    >
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span>
+                                                                        <i class="fi fi-rr-briefcase"></i>
+                                                                    </span>
+                                                                    Cargo
+                                                                </td>
+                                                                <td> 
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="cargo"
+                                                                        class="
+                                                                            form-control 
+                                                                            cargo 
+                                                                            form-control-sm
+                                                                            shadow-sm p-2  
+                                                                            rounded
+                                                                        "
+                                                                    >
+
+                                                                </td>
+                                                            </tr>
+                                                           
+
+
+
+                                                        </tbody>
+
+                                                       
+                                                    </table>
+
+                                                    <br>
+
+                                                    <div class="mb-3 col-sm-12">
+                                                        
+                                                        <label 
+                                                            for="nombre"
+                                                            class="
+                                                                form-label  
+                                                                badge  
+                                                                form-label-sm
+                                                            "
+                                                        >
+                                                            Acceso
+                                                        </label>
+
+
+                                                        <div class="multiselect-container modulos "
+                                                            id="contenedorModulos">
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            
+
+
+
+                                            </form>
+
+
 
 
                                         </div>
-
-                                        <div class="d-flex justify-content-end card-footer">
-
+                                        <div class="modal-footer">
                                             <button type="button" onclick="RegistrarUsuario()" class="btn btn-primary ">
                                                 REGISTRAR
                                             </button>
-
                                         </div>
-
                                     </div>
-
-
-
-
-                                </form>
-
-
-                                <div class="card">
-
-                                    <div class=" card-body">
-
-
-
-                                    </div>
-
-
                                 </div>
-
-
-
                             </div>
+
+
 
                         </div>
 
@@ -337,7 +582,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2022 - 2022. <a href="#">INGENIEROS SAC</a>
+                        &copy; 2022 - 2022. <a href="#">RC INGENIEROS SAC</a>
                     </span>
                     <ul class="navbar-nav ml-lg-auto"></ul>
                 </div>

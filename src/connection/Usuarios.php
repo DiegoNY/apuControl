@@ -31,7 +31,7 @@ class Usuarios extends BaseDatos
 
         $id = $numerosUsuarios['ID'] + 1;
 
-        $Ingresar = "INSERT INTO `usuarios` (usuario,contraseña,cargo, id) VALUES ('$this->nombre','$this->contraseña','$this->cargo','$id');";
+        $Ingresar = "INSERT INTO `usuarios` (usuario,contraseña,cargo, id ,estado) VALUES ('$this->nombre','$this->contraseña','$this->cargo','$id', 1 );";
 
 
         try {
@@ -54,6 +54,4 @@ class Usuarios extends BaseDatos
 
         return $respuesta;
     }
-
-   
 }

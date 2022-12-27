@@ -23,22 +23,24 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
             } else {
 
-                var user = nombre.usuario[1]
+                nombre.usuario[1]
 
-                var registro = document.getElementById('registrarEmpresa');
-                var infoSis = document.getElementById('registrarInformacionSistema');
-                var btnR = document.getElementById("tabla_empresasas_length");
+                document.getElementById('registrarEmpresa');
+                document.getElementById('registrarInformacionSistema');
+                document.getElementById("tabla_empresasas_length");
 
-                var btnDc = document.getElementById("detalleContacto");
-                var btnDs = document.getElementById("detalleSucursal");
+                document.getElementById("detalleContacto");
+                document.getElementById("detalleSucursal");
 
 
 
-                let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
-                let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+                document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
+                document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
 
                 var permiso = false;
-                var modulosAcceder = []
+                var modulosAcceder = [];
+
+
                 nombre.usuario.permisos.forEach(permisos => {
 
                     if (permisos.modulo == MODULO) permiso = true;
@@ -49,54 +51,20 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
                 if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-                let menu = document.querySelector('#navigationMenu');
                 modulosAcceder.forEach(modulos => {
 
                     switch (true) {
+
                         case modulos == 1:
 
-                            let navigation1 = document.createElement('li');
-                            navigation1.setAttribute('class', 'nav-item');
-                            navigation1.setAttribute('id', 'registrarEmpresa');
-                            let link1 = document.createElement('a');
-                            link1.setAttribute('href', 'index.html');
-                            link1.setAttribute('class', 'nav-link');
-                            let img1 = document.createElement('i');
-                            img1.setAttribute('class', 'bi bi-bookmark-plus');
-                            let span1 = document.createElement('span');
-                            span1.innerText = ' Registrar Empresas';
+                            CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Registrar Empresas');
 
-                            link1.appendChild(img1);
-                            link1.appendChild(span1);
-
-                            navigation1.appendChild(link1);
-
-
-
-
-
-                            menu.appendChild(navigation1);
 
                             break;
+
                         case modulos == 2:
 
-                            let navigation3 = document.createElement('li');
-                            navigation3.setAttribute('class', 'nav-item');
-                            navigation3.setAttribute('id', 'detalleContacto');
-                            let link3 = document.createElement('a');
-                            link3.setAttribute('href', 'vista-contactos.html');
-                            link3.setAttribute('class', 'nav-link');
-                            let img3 = document.createElement('i');
-                            img3.setAttribute('class', 'bi bi-person-rolodex');
-                            let span3 = document.createElement('span');
-                            span3.innerText = '   Detalle contactos  ';
-
-                            link3.appendChild(img3);
-                            link3.appendChild(span3);
-
-                            navigation3.appendChild(link3);
-
-                            menu.appendChild(navigation3);
+                            CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Detalle contactos');
 
 
                             console.log('Acceso' + modulos)
@@ -105,70 +73,19 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
                         case modulos == 3:
 
-
-
-                            let navigation2 = document.createElement('li');
-                            navigation2.setAttribute('class', 'nav-item');
-                            navigation2.setAttribute('id', 'registrarInformacionSistema');
-                            let link2 = document.createElement('a');
-                            link2.setAttribute('href', 'vista-registro-sistemas.html');
-                            link2.setAttribute('class', 'nav-link');
-                            let img2 = document.createElement('i');
-                            img2.setAttribute('class', 'bi bi-archive');
-                            let span2 = document.createElement('span');
-                            span2.innerText = '  Informacion del Sistema ';
-
-                            link2.appendChild(img2);
-                            link2.appendChild(span2);
-
-                            navigation2.appendChild(link2);
-
-                            menu.appendChild(navigation2);
-
-                            console.log('Acceso' + modulos)
+                            CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Informacion del Sistema ')
 
                             break;
 
                         case modulos == 4:
 
-                            let navigation4 = document.createElement('li');
-                            navigation4.setAttribute('class', 'nav-item');
-                            navigation4.setAttribute('id', 'detalleContacto');
-                            let link4 = document.createElement('a');
-                            link4.setAttribute('href', 'vista-empresa.html');
-                            link4.setAttribute('class', 'nav-link');
-                            let img4 = document.createElement('i');
-                            img4.setAttribute('class', 'icon-home4');
-                            let span4 = document.createElement('span');
-                            span4.innerText = '   Listar Empresa  ';
-
-                            link4.appendChild(img4);
-                            link4.appendChild(span4);
-
-                            navigation4.appendChild(link4);
-
-                            menu.appendChild(navigation4);
-
+                            CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listar Empresa');
 
                             break;
 
                         case modulos == 5:
 
-                            let navigation5 = document.createElement('li');
-                            navigation5.setAttribute('class', 'nav-item');
-                            navigation5.setAttribute('id', 'registroUsuario');
-                            let link5 = document.createElement('a');
-                            link5.setAttribute('href', 'registro-usuarios.html');
-                            link5.setAttribute('class', 'nav-link');
-                            let img5 = document.createElement('i');
-                            img5.setAttribute('class', 'bi bi-person-plus');
-                            let span5 = document.createElement('span');
-                            span5.innerText = ' Registrar usuario';
-                            link5.appendChild(img5);
-                            link5.appendChild(span5);
-                            navigation5.appendChild(link5);
-
-                            menu.appendChild(navigation5);
+                            CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario', true);
 
                             break;
 
@@ -186,6 +103,37 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
 })()
 
+
+function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
+
+    let menu = document.querySelector('#navigationMenu');
+
+
+    let navigation = document.createElement('li');
+    navigation.setAttribute('class', 'nav-item');
+    navigation.setAttribute('id', idNavigation);
+    let link = document.createElement('a');
+    link.setAttribute('href', links);
+
+    if (activo)
+        link.setAttribute('class', 'nav-link active');
+    if (!activo)
+        link.setAttribute('class', 'nav-link');
+
+    let img = document.createElement('i');
+    img.setAttribute('class', icono);
+    let span1 = document.createElement('span');
+    span1.innerText = texto;
+
+    link.appendChild(img);
+    link.appendChild(span1);
+
+    navigation.appendChild(link);
+
+
+    menu.appendChild(navigation);
+
+}
 
 function RegistrarUsuario() {
 
@@ -212,12 +160,12 @@ function RegistrarUsuario() {
                     TieneValores('.usuario');
                     TieneValores('.contraseña');
                     TieneValores('.cargo');
-                    TieneValores('.modulos ');
+
 
                 };
 
-                
-                if(data.id == 2) Error('.usuario'); 
+
+                if (data.id == 2) Error('.usuario');
 
 
                 return;
@@ -228,6 +176,110 @@ function RegistrarUsuario() {
                 '',
                 'success'
             );
+
+
+        });
+
+}
+
+
+const Editar = () => {
+
+    let formulario = document.querySelector('#formEditar')
+    const DataUsuaio = new FormData(formulario);
+    const EDITAR = "../processes/MantenimientoUsuarios.php?accion=Editar";
+
+    postData(EDITAR, DataUsuaio)
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data);
+
+            swal.fire('',`${data.Respuesta}`,'success')
+
+
+        });
+
+    
+
+}
+
+const Eliminar = (elemento) => {
+
+    let id = elemento.parentElement.parentElement.children[0].childNodes[0].data;
+
+    let contenedor = elemento.parentElement.parentElement;
+
+    postData(`../processes/MantenimientoUsuarios.php?accion=Eliminar&&id=${id}`)
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+    contenedor.remove();
+
+}
+
+const CargarDatosUsuario = (elemento) => {
+
+    /**
+    * Cargando Los Modulos
+    */
+
+    let containerModulo = document.querySelector('.modulo');
+    containerModulo.replaceChildren("");
+
+
+    /**
+     * Obteniendo Datos
+     */
+    let id = elemento.parentElement.parentElement.children[0].childNodes[0]?.data;
+
+    postData(`../processes/MantenimientoUsuarios.php?accion=Usuario&&id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+
+
+            id = data.Usuario[0].id;
+            cargo = data.Usuario[0].cargo;
+            contraseña = data.Usuario[0].contraseña;
+            usuario = data.Usuario[0].usuario;
+
+
+            document.querySelector('#exampleModalLabel').innerText = `Usuario ${usuario}`;
+            document.querySelector('#usuario').value = usuario;
+
+            if (contraseña == undefined) contraseña = "";
+            document.querySelector('#Contraseña').value = contraseña;
+
+            if (cargo == undefined) cargo = "";
+            document.querySelector('#cargo').value = cargo;
+
+            if (id == undefined) id = "";
+            document.querySelector('#idUsuario').value = id;
+
+            let inputUsuario = document.querySelector('#usuario')
+            inputUsuario.setAttribute('value', usuario);
+            let inputContraseña = document.querySelector('#Contraseña')
+            inputContraseña.setAttribute('value', contraseña);
+
+            let inputCargo = document.querySelector('#cargo')
+            inputCargo.setAttribute('value', cargo);
+
+            console.log(data);
+
+            arrPermisos = [];
+
+            data.Usuario[0].permisos.forEach(permiso => {
+
+                arrPermisos.push(permiso);
+
+            });
+
+            console.log(arrPermisos);
+            /**
+             * Marcando los modulos
+             */
+
+            Modulos('.modulo', arrPermisos);
 
 
         });
@@ -246,7 +298,10 @@ const Error = (clase) => {
 
 const TieneValores = (clase) => {
 
+
+
     let valores = document.querySelector(clase).value;
+
 
     if (!valores) document.querySelector(clase).classList.add('is-invalid');
 
@@ -278,8 +333,11 @@ const RellenandoCamposFaltantes = (input = false, inputContenedor = false) => {
  * Obtencio y envio de datos 
  */
 
-async function Modulos() {
+async function Modulos(contenedor = false, idModulo = false) {
 
+    /**
+     * Obteniendo la data y parseandola a json 
+     */
     const response = await fetch('../processes/ModulosExistente.php', {
         method: 'GET',
         headers: {
@@ -290,17 +348,39 @@ async function Modulos() {
 
     const data = await response.json();
 
-    let containerModulos = document.querySelector('.multiselect-container');
+    /**
+     * Rellenando el contenedor de modulos
+     */
+    let containerModulos;
+
+    if (contenedor) containerModulos = document.querySelector(contenedor);
+
+    if (!contenedor) containerModulos = document.querySelector('.multiselect-container');
 
     data.modulos.forEach(modulo => {
 
         let modulos = document.createElement('div');
+        modulos.setAttribute('id_modulo', modulo.id);
         modulos.setAttribute('class', 'multiselect-item dropdown-item');
         let label = document.createElement('label');
         label.setAttribute('class', 'form-check flex-1 mb-0');
         let labelInput = document.createElement('input');
         labelInput.setAttribute('class', 'form-check-input');
         labelInput.setAttribute('value', `${modulo.id}`);
+
+        /**
+         * marcar el modulo al editar  
+         */
+
+        if (idModulo) {
+
+            let valor = idModulo.find(elemento => elemento == modulo.id)
+
+            if (valor) labelInput.setAttribute('checked', '');
+
+        }
+
+
         labelInput.setAttribute('name', 'modulos[]');
         labelInput.setAttribute('type', 'checkbox');
         let span = document.createElement('span');
@@ -318,9 +398,9 @@ async function Modulos() {
 
 }
 
-function postData(urlAPI, data) {
+async function postData(urlAPI, data) {
 
-    const response = fetch(urlAPI,
+    const response = await fetch(urlAPI,
         {
             method: 'POST',
             body: data,
@@ -328,6 +408,15 @@ function postData(urlAPI, data) {
     );
 
     return response;
+
+}
+
+async function getData(urlAPI) {
+
+    const response = await fetch(urlAPI);
+    const data = await response.json();
+
+    return data;
 
 }
 
@@ -339,5 +428,72 @@ RellenandoCamposFaltantes('.contraseña');
 RellenandoCamposFaltantes('.cargo');
 RellenandoCamposFaltantes('.modulos ');
 
+var lenguaje = {
+    "decimal": "",
+    "emptyTable": "No hay información",
+    "info": "",
+    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+    "infoPostFix": "",
+    "thousands": ",",
+    "lengthMenu": "   <button type='button' class='btn btn-primary' data-bs-target='#registroModal' data-bs-toggle='modal' id='AgregarUsuario' '> Agregar Usuario +</button>",
+    "loadingRecords": "Cargando...",
+    "processing": "Procesando...",
+    "search": "",
+    "searchPlaceholder": "Buscar por..",
+    "zeroRecords": "Sin resultados encontrados",
+    "paginate": {
+        "first": "Primero",
+        "last": "Ultimo",
+        "next": "<i class='fi fi-rr-angle-right'></i>",
+        "previous": "<i class='fi fi-rr-angle-left'></i>",
+    },
+}
 
-Modulos();
+$(document).ready(function () {
+
+    var table = $("#tablaUsuario").DataTable({
+        destroy: true,
+        "scrollCollapse": true,
+        "paging": true,
+        "order": [[0, 'desc'], [1, 'desc']],
+        ajax: {
+            url: "../processes/MantenimientoUsuarios.php?accion=Mostrar",
+        }
+        ,
+        columns: [
+            { data: "id" },
+            { data: "usuario" },
+            { data: "contraseña" },
+            { data: "cargo" },
+            { defaultContent: '' },
+            { defaultContent: '<td class="text-center"><i class="bi bi-pencil" onclick="CargarDatosUsuario(this)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i><i class="bi bi-trash2" onclick="Eliminar(this)"></i></td>' },
+
+        ],
+        language: lenguaje
+    });
+
+    table.columns.adjust();
+
+
+    btnAgregar = document.getElementById('AgregarUsuario');
+    
+    btnAgregar.addEventListener('click', () => {
+        let containerModulo = document.querySelector('#contenedorModulos');
+        containerModulo.replaceChildren("");
+        Modulos('#contenedorModulos');
+    })
+
+    /**
+     * estilos a tabla 
+     */
+
+    let tabla = document.querySelector('#tablaUsuario_wrapper');
+    console.log(tabla);
+
+    tabla.setAttribute('class','dataTables_wrapper no-footer shadow p-3 mb-5  rounded');
+
+    let tablaUsuario = document.querySelector('#tablaUsuario');
+    tablaUsuario.setAttribute('class','table shadow-sm   rounded dataTable no-footer')  
+
+});

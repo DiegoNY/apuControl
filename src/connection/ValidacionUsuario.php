@@ -1,6 +1,6 @@
 <?php
 
-require '../connection/basedatos.php';
+include 'basedatos.php';
 
 
 class ValidacionUsuario extends BaseDatos
@@ -23,4 +23,6 @@ class ValidacionUsuario extends BaseDatos
         return $respuesta;
     }
     
+    
+
 }

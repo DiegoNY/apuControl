@@ -66,111 +66,47 @@ var urlEscucharEmpresaRegistrar = false;
         modulosAcceder.forEach(modulos => {
 
           switch (true) {
+
             case modulos == 1:
 
+                CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Registrar Empresas',true);
 
-              let navigation1 = document.createElement('li');
-              navigation1.setAttribute('class', 'nav-item');
-              navigation1.setAttribute('id', 'registrarEmpresa');
-              let link1 = document.createElement('a');
-              link1.setAttribute('href', 'index.html');
-              link1.setAttribute('class', 'nav-link active');
-              let img1 = document.createElement('i');
-              img1.setAttribute('class', 'bi bi-bookmark-plus');
-              let span1 = document.createElement('span');
-              span1.innerText = ' Registrar Empresas';
 
-              link1.appendChild(img1);
-              link1.appendChild(span1);
+                break;
 
-              navigation1.appendChild(link1);
-
-              menu.appendChild(navigation1);
-
-              break;
             case modulos == 2:
 
-              let navigation3 = document.createElement('li');
-              navigation3.setAttribute('class', 'nav-item');
-              navigation3.setAttribute('id', 'detalleContacto');
-              let link3 = document.createElement('a');
-              link3.setAttribute('href', 'vista-contactos.html');
-              link3.setAttribute('class', 'nav-link');
-              let img3 = document.createElement('i');
-              img3.setAttribute('class', 'bi bi-person-rolodex');
-              let span3 = document.createElement('span');
-              span3.innerText = '   Detalle contactos  ';
-
-              link3.appendChild(img3);
-              link3.appendChild(span3);
-
-              navigation3.appendChild(link3);
-
-              menu.appendChild(navigation3);
+                CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Detalle contactos');
 
 
-              console.log('Acceso' + modulos)
+                console.log('Acceso' + modulos)
 
-              break;
+                break;
 
             case modulos == 3:
 
+                CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Informacion del Sistema ')
 
-
-              let navigation2 = document.createElement('li');
-              navigation2.setAttribute('class', 'nav-item');
-              navigation2.setAttribute('id', 'registrarInformacionSistema');
-              let link2 = document.createElement('a');
-              link2.setAttribute('href', 'vista-registro-sistemas.html');
-              link2.setAttribute('class', 'nav-link');
-              let img2 = document.createElement('i');
-              img2.setAttribute('class', 'bi bi-archive');
-              let span2 = document.createElement('span');
-              span2.innerText = '  Informacion del Sistema ';
-
-              link2.appendChild(img2);
-              link2.appendChild(span2);
-
-              navigation2.appendChild(link2);
-
-              menu.appendChild(navigation2);
-
-              console.log('Acceso' + modulos)
-
-              break;
+                break;
 
             case modulos == 4:
 
-              let navigation4 = document.createElement('li');
-              navigation4.setAttribute('class', 'nav-item');
-              navigation4.setAttribute('id', 'detalleContacto');
-              let link4 = document.createElement('a');
-              link4.setAttribute('href', 'vista-empresa.html');
-              link4.setAttribute('class', 'nav-link');
-              let img4 = document.createElement('i');
-              img4.setAttribute('class', 'icon-home4');
-              let span4 = document.createElement('span');
-              span4.innerText = '   Listar Empresa  ';
+                CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listar Empresa');
 
-              link4.appendChild(img4);
-              link4.appendChild(span4);
+                break;
 
-              navigation4.appendChild(link4);
+            case modulos == 5:
 
-              menu.appendChild(navigation4);
+                CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
 
+                break;
 
-              console.log('Acceso' + modulos)
-
-              console.log('Acceso' + modulos)
-
-              break;
 
             default:
-              console.log("default");
-              break;
+                console.log("default");
+                break;
 
-          }
+        }
         })
 
 
@@ -181,6 +117,39 @@ var urlEscucharEmpresaRegistrar = false;
     });
 
 })()
+
+
+function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
+
+  let menu = document.querySelector('#navigationMenu');
+
+
+  let navigation = document.createElement('li');
+  navigation.setAttribute('class', 'nav-item');
+  navigation.setAttribute('id', idNavigation);
+  let link = document.createElement('a');
+  link.setAttribute('href', links);
+
+  if (activo)
+      link.setAttribute('class', 'nav-link active');
+  if (!activo)
+      link.setAttribute('class', 'nav-link');
+
+  let img = document.createElement('i');
+  img.setAttribute('class', icono);
+  let span1 = document.createElement('span');
+  span1.innerText = texto;
+
+  link.appendChild(img);
+  link.appendChild(span1);
+
+  navigation.appendChild(link);
+
+
+  menu.appendChild(navigation);
+
+}
+
 
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
 const valores = window.location.search;
@@ -264,7 +233,7 @@ function cargarSucursal(ruc) {
       language: {
         decimal: "",
         emptyTable: "No hay información",
-        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        info: "",
         infoEmpty: "Mostrando 0 to 0 of 0 Sucursales",
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
@@ -278,8 +247,8 @@ function cargarSucursal(ruc) {
         paginate: {
           first: "Primero",
           last: "Ultimo",
-          next: "Siguiente",
-          previous: "Anterior",
+          next: "<i class='fi fi-rr-angle-right'></i>",
+          previous: "<i class='fi fi-rr-angle-left'></i>",
         },
       },
     });
@@ -370,7 +339,7 @@ function cargarContactos(ruc) {
       language: {
         decimal: "",
         emptyTable: "No hay información",
-        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        info: "",
         infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
@@ -384,8 +353,8 @@ function cargarContactos(ruc) {
         paginate: {
           first: "Primero",
           last: "Ultimo",
-          next: "Siguiente",
-          previous: "Anterior",
+          next: "<i class='fi fi-rr-angle-right'></i>",
+          previous: "<i class='fi fi-rr-angle-left'></i>",
         },
       },
     });
@@ -418,7 +387,7 @@ function cargarContactos(ruc) {
       language: {
         decimal: "",
         emptyTable: "No hay información",
-        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        info: "",
         infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
         infoFiltered: "(Filtrado de _MAX_ total entradas)",
         infoPostFix: "",
@@ -718,7 +687,7 @@ function registrarSucursal() {
 
         TieneValores('#txtNombreSucursal');
         TieneValores('#txtDireccionSucursal');
-        
+
 
         let sistemas = document.querySelector('#containerSistemas').children;
         let containerTablaSistemas = document.querySelector('#previsualizacion-sistemas');
@@ -2194,7 +2163,7 @@ btnAgregarSistemaSucursal.addEventListener('click', function () {
 
 
   let opcion = document.createElement('td');
-  opcion.setAttribute('class','text-center');
+  opcion.setAttribute('class', 'text-center');
   let i = document.createElement('i');
   i.setAttribute('class', 'bi bi-trash3');
   i.setAttribute('id', 'eliminarSistema');
@@ -2309,7 +2278,7 @@ btnagregarAcceso.addEventListener('click', () => {
   sis.appendChild(selectSistemas);
 
   let opti = document.createElement('td');
-  opti.setAttribute('class','text-center');
+  opti.setAttribute('class', 'text-center');
 
   let i = document.createElement('i');
   i.setAttribute('class', 'bi bi-trash3');

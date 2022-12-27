@@ -171,6 +171,31 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
 
               break;
 
+            case modulos == 5:
+
+              let navigation5 = document.createElement('li');
+              navigation5.setAttribute('class', 'nav-item');
+              navigation5.setAttribute('id', 'registroUsuario');
+              let link5 = document.createElement('a');
+              link5.setAttribute('href', 'registro-usuarios.html');
+              link5.setAttribute('class', 'nav-link');
+              let img5 = document.createElement('i');
+              img5.setAttribute('class', 'bi bi-person-plus');
+              let span5 = document.createElement('span');
+              span5.innerText = ' Registrar usuario';
+
+              link5.appendChild(img5);
+              link5.appendChild(span5);
+              navigation5.appendChild(link5);
+
+              console.log(navigation5);
+              menu.appendChild(navigation5);
+
+              console.log('Acceso' + modulos)
+
+              break;
+
+
             default:
               console.log("default");
               break;
