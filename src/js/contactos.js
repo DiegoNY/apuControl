@@ -31,11 +31,11 @@ const MODULO = 2;
 
         if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-        let MantenimientoEmpresa = false ;
-        let listadoContactos  = false
-        let sistema  = false
-        let ListadoEmpresa  = false
-        let registro  = false
+        let MantenimientoEmpresa = false;
+        let listadoContactos = false
+        let sistema = false
+        let ListadoEmpresa = false
+        let registro = false
 
         modulosAcceder.forEach(modulos => {
 
@@ -43,7 +43,7 @@ const MODULO = 2;
 
             case modulos == 1:
 
-              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
+              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa');
 
               break;
 
@@ -83,8 +83,10 @@ const MODULO = 2;
         let menu = document.querySelector('#navigationMenu');
         let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
-        menu.appendChild(ListadoEmpresa || "");
-        menu.appendChild(listadoContactos || "");
+        if (ListadoEmpresa)
+          menu.appendChild(ListadoEmpresa);
+        if (listadoContactos)
+          menu.appendChild(listadoContactos);
         menu.appendChild(subMenus || "");
 
 
@@ -95,12 +97,12 @@ const MODULO = 2;
         let subMenu = document.querySelector('#subMenu');
 
 
-        if(MantenimientoEmpresa)
-        subMenu.appendChild(MantenimientoEmpresa);
-        if(sistema)
-        subMenu.appendChild(sistema);
-        if(registro)
-        subMenu.appendChild(registro);
+        if (MantenimientoEmpresa)
+          subMenu.appendChild(MantenimientoEmpresa);
+        if (sistema)
+          subMenu.appendChild(sistema);
+        if (registro)
+          subMenu.appendChild(registro);
 
 
         if (!permiso) window.location.replace('vista-empresa.html');

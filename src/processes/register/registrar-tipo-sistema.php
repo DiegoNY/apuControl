@@ -17,7 +17,7 @@ if (isset($txtNombre) && !empty($txtNombre)) {
     //$proveedor = $tipoSIstema->sanitizar($txtProveedor);
     //La insercion y la respuesta 👌
 
-    $res = $tipoSIstema->registrartipoSIstema($estado,$nombre,$fecha,$proveedor ?? "");
+    $res = $tipoSIstema->registrartipoSIstema($estado,$nombre,$fecha,$proveedor ?? "",$descripcion);
     if ($res == TRUE) {
 
         echo "ingresado";

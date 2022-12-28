@@ -79,7 +79,7 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
 
             case modulos == 1:
 
-              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
+              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa');
 
               break;
 
@@ -119,8 +119,11 @@ var btnRegistrarCargo = document.getElementById("btnRegistrarCargos");
         let menu = document.querySelector('#navigationMenu');
         let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
-        menu.appendChild(ListadoEmpresa);
-        menu.appendChild(listadoContactos);
+        if (ListadoEmpresa)
+          menu.appendChild(ListadoEmpresa);
+        if (listadoContactos)
+          menu.appendChild(listadoContactos);
+
         menu.appendChild(subMenus);
 
 
@@ -383,8 +386,10 @@ function mostrarTiposSistema() {
               class="gridjs-td">${tipoSistema.id}
           </td>
           <td data-column-id="director"
-              class="gridjs-td">${tipoSistema.nombre}</td>
+          class="gridjs-td">${tipoSistema.nombre}</td>
           
+          <td data-column-id="producer"
+              class="gridjs-td">${tipoSistema.descripcion}</td>
           <td data-column-id="producer"
               class="gridjs-td">${tipoSistema.fecha}</td>
           <td>
@@ -810,10 +815,13 @@ $(document).on("click", ".btn-editar-tipoSistema", function () {
     console.log(response)
     let tipoSistema = JSON.parse(response);
     $("#id_tipo_sistema").val(tipoSistema.id);
-    $("#txtNombre").val(tipoSistema.nombre);
     $("#txtEstado").val(tipoSistema.estado);
     $("#txtProveedor").val(tipoSistema.proveedor);
     $("#txtFecha").val(tipoSistema.fecha);
+
+    document.querySelector('#txtNombre').value = tipoSistema.nombre;
+    document.querySelector('#descripcion').value = tipoSistema.descripcion;
+
     editarSistema = true;
     mostrarTiposSistema();
   });

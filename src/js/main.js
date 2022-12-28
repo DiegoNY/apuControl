@@ -62,11 +62,15 @@ var urlEscucharEmpresaRegistrar = false;
 
         if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-        let MantenimientoEmpresa = false ;
-        let listadoContactos  = false
-        let sistema  = false
-        let ListadoEmpresa  = false
-        let registro  = false
+        let MantenimientoEmpresa = false;
+        let listadoContactos = false;
+        let sistema = false;
+        let ListadoEmpresa = false;
+        let registro = false;
+
+        /**
+         * Se validan los modulos a los que puede acceder para mostrarlos en el menu 
+         */
 
         modulosAcceder.forEach(modulos => {
 
@@ -74,7 +78,7 @@ var urlEscucharEmpresaRegistrar = false;
 
             case modulos == 1:
 
-              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa', true);
+              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa', true);
 
               break;
 
@@ -118,8 +122,10 @@ var urlEscucharEmpresaRegistrar = false;
         let menu = document.querySelector('#navigationMenu');
         let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
-        menu.appendChild(ListadoEmpresa);
-        menu.appendChild(listadoContactos);
+        if (ListadoEmpresa)
+          menu.appendChild(ListadoEmpresa);
+        if (listadoContactos)
+          menu.appendChild(listadoContactos);
         menu.appendChild(subMenus);
 
 
@@ -128,13 +134,13 @@ var urlEscucharEmpresaRegistrar = false;
          */
 
         let subMenu = document.querySelector('#subMenu');
-        
-        if(MantenimientoEmpresa)
-        subMenu.appendChild(MantenimientoEmpresa);
-        if(sistema)
-        subMenu.appendChild(sistema);
-        if(registro)
-        subMenu.appendChild(registro);
+
+        if (MantenimientoEmpresa)
+          subMenu.appendChild(MantenimientoEmpresa);
+        if (sistema)
+          subMenu.appendChild(sistema);
+        if (registro)
+          subMenu.appendChild(registro);
 
 
       }
@@ -243,7 +249,6 @@ function CrearSubMenu(nombreSubMenu, iconoSubMenu) {
 
 
 }
-
 
 
 // SE RECIBEN ESTOS VALORES PARA ACTIVAR EL PROCESO DE EDICION DE LA EMPRESA ^_^  
@@ -605,7 +610,7 @@ let Sistema = [];
 //       <td> ${sistema.proveedor} </td>
 //       <td class="text-center"> <i role="button"  class="bi bi-pencil-square" id="editarSistema"></i>  <i role="button" class="fi fi-rr-trash text-danger" id="eliminarSistema"></i></td>
 //     </tr>
-    
+
 //     `;
 //     });
 
@@ -755,6 +760,7 @@ var modalFormularioSucursal = new bootstrap.Modal(document.getElementById('sucur
  */
 
 function registrarSucursal() {
+
   let url = editarSucursall === false ? "../processes/register/registrar-sucursal.php" : "../processes/edit/editar-sucursal.php";
   let frm = document.getElementById("frm-sucursal");
   frmData = new FormData(frm);
@@ -866,6 +872,7 @@ function registrarContactos() {
 }
 
 let nombre = document.querySelector('#nombre-contacto');
+
 nombre.addEventListener('click', () => {
   let nombreContainer = document.querySelector('#container-nombre');
   nombreContainer.classList.remove('campo-faltante');

@@ -6,7 +6,7 @@
     $BD = new BaseDatos();
 
     $usuario =  $_SESSION['id'];
-
+    
     $permiso = $BD->PermisosUsuario($usuario);
 
     while ($row = mysqli_fetch_array($permiso)) {

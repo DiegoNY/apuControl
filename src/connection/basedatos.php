@@ -515,10 +515,10 @@ class BaseDatos
     }
     //crud TIPO SISTEMA 
 
-    public function registrarTipoSistema($estado, $nombre, $fecha,$proveedor)
+    public function registrarTipoSistema($estado, $nombre, $fecha,$proveedor,$descripcion)
     {
 
-        $consulta = "insert into `tipo_sistema`(nombre,estado,fecha,proveedor) values ('$nombre','$estado','$fecha','$proveedor');";
+        $consulta = "insert into `tipo_sistema`(nombre,estado,fecha,proveedor,descripcion) values ('$nombre','$estado','$fecha','$proveedor','$descripcion');";
 
         $res = mysqli_query($this->con, $consulta);
 
@@ -555,10 +555,10 @@ class BaseDatos
         }
     }
 
-    public function editarTipoSistema($id, $nombre,$proveedor)
+    public function editarTipoSistema($id, $nombre,$proveedor,$descripcion)
     {
 
-        $consulta = "update tipo_sistema as ts set nombre = '$nombre', proveedor = '$proveedor' where (ts.id = $id)";
+        $consulta = "update tipo_sistema as ts set nombre = '$nombre', proveedor = '$proveedor', descripcion = '$descripcion' where (ts.id = $id)";
         $res = mysqli_query($this->con, $consulta);
 
         if ($res == TRUE) {

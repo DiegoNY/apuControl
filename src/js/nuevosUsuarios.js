@@ -5,6 +5,9 @@ const urlParams = new URLSearchParams(valores);
 const MODULO = 5;
 const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
+var table;
+
+
 /**
  * Validando Si el usuario tiene Accesos
  */
@@ -51,11 +54,11 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
                 if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
-                let MantenimientoEmpresa = false ;
-                let listadoContactos  = false
-                let sistema  = false
-                let ListadoEmpresa  = false
-                let registro  = false
+                let MantenimientoEmpresa = false;
+                let listadoContactos = false;
+                let sistema = false;
+                let ListadoEmpresa = false;
+                let registro = false;
 
                 modulosAcceder.forEach(modulos => {
 
@@ -63,14 +66,13 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
                         case modulos == 1:
 
-                            MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
+                            MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa');
 
                             break;
 
                         case modulos == 2:
 
                             listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
-
 
                             break;
 
@@ -102,8 +104,11 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
                 let menu = document.querySelector('#navigationMenu');
                 let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
-                menu.appendChild(ListadoEmpresa);
-                menu.appendChild(listadoContactos);
+                if (ListadoEmpresa)
+                    menu.appendChild(ListadoEmpresa);
+                if (listadoContactos)
+                    menu.appendChild(listadoContactos);
+
                 menu.appendChild(subMenus);
 
 
@@ -112,12 +117,15 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
                  */
 
                 let subMenu = document.querySelector('#subMenu');
-                if(MantenimientoEmpresa)
-                subMenu.appendChild(MantenimientoEmpresa);
-                if(sistema)
-                subMenu.appendChild(sistema);
-                if(registro)
-                subMenu.appendChild(registro);
+
+                if (MantenimientoEmpresa)
+                    subMenu.appendChild(MantenimientoEmpresa);
+
+                if (sistema)
+                    subMenu.appendChild(sistema);
+
+                if (registro)
+                    subMenu.appendChild(registro);
 
 
             }
@@ -146,6 +154,24 @@ const REGISTRO = '../processes/register/RegistrarUsuarios.php';
 
 
 })()
+
+/**
+ * Variable que contiene al modal @modalRegistro es usada para cerrar el modal de registro 
+ */
+const ModalRegistro = new bootstrap.Modal(document.getElementById('registroModal'), {
+
+    keyboard: false
+
+})
+
+/**
+* Variable que contiene al modal @ModalEditar es usada para cerrar el modal de editar 
+*/
+const ModalEditar = new bootstrap.Modal(document.getElementById('exampleModal'), {
+
+    keyboard: false
+
+})
 
 
 /**
@@ -269,7 +295,12 @@ function RegistrarUsuario() {
                 '',
                 'success'
             );
-
+            
+            /**
+             * se recarga la tabla se cierra el modal 
+             */
+            table.ajax.reload();
+            ModalRegistro.toggle();
 
         });
 
@@ -289,6 +320,9 @@ const Editar = () => {
             console.log(data);
 
             swal.fire('', `${data.Respuesta}`, 'success')
+            
+            table.ajax.reload();
+            ModalEditar.toggle();
 
 
         });
@@ -574,7 +608,7 @@ var lenguaje = {
 
 $(document).ready(function () {
 
-    var table = $("#tablaUsuario").DataTable({
+    table = $("#tablaUsuario").DataTable({
         destroy: true,
         "scrollCollapse": true,
         "paging": true,

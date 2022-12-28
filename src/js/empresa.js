@@ -22,16 +22,9 @@ const MODULO = 4;
 
       } else {
 
-        var user = nombre.usuario[1]
 
-        var registro = document.getElementById('registrarEmpresa');
-        var infoSis = document.getElementById('registrarInformacionSistema');
         var btnR = document.getElementById("tabla_empresasas_length");
         btnR.setAttribute('style', 'display:none;')
-
-        var btnDc = document.getElementById("detalleContacto");
-        var btnDs = document.getElementById("detalleSucursal");
-
 
 
         let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
@@ -52,10 +45,10 @@ const MODULO = 4;
 
 
         let MantenimientoEmpresa = false ;
-        // let listadoContactos  = false
+        let listadoContactos  = false
         let sistema  = false;
-        // let ListadoEmpresa  = false
-        // let registro  = false
+        let ListadoEmpresa  = false
+        let registros  = false
         
         modulosAcceder.forEach(modulos => {
 
@@ -63,7 +56,7 @@ const MODULO = 4;
 
             case modulos == 1:
                 btnR.setAttribute('style','');
-                MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'bi bi-bookmark-plus', 'Mantenimiento Empresa');
+                MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa');
 
                 break;
 
@@ -88,7 +81,7 @@ const MODULO = 4;
 
             case modulos == 5:
 
-                registro = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
+                registros = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
                 break;
 
 
@@ -102,8 +95,10 @@ const MODULO = 4;
         let menu = document.querySelector('#navigationMenu');
         let subMenus  = CrearSubMenu('Sistema','icon-copy');
 
-        menu.appendChild(ListadoEmpresa);
-        menu.appendChild(listadoContactos);
+        if (ListadoEmpresa)
+          menu.appendChild(ListadoEmpresa);
+        if (listadoContactos)
+          menu.appendChild(listadoContactos);
         menu.appendChild(subMenus);
        
 
@@ -116,8 +111,8 @@ const MODULO = 4;
         subMenu.appendChild(MantenimientoEmpresa);
         if(sistema)
         subMenu.appendChild(sistema);
-        if(registro)
-        subMenu.appendChild(registro);
+        if(registros)
+        subMenu.appendChild(registros);
 
 
       }
