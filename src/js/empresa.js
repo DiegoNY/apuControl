@@ -27,8 +27,16 @@ const MODULO = 4;
         btnR.setAttribute('style', 'display:none;')
 
 
-        let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
-        let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+        /**
+         * Lazy loading
+         */
+         let conteinerNombreUsuario1 = document.getElementById('nombreUsuario');
+         conteinerNombreUsuario1.classList.remove('container-nombre-usuario');
+         conteinerNombreUsuario1.innerText = ` ${usuario}`;
+ 
+         let conteinerNombreUsuario2 = document.querySelector('#nombreUsuarioNav');
+         conteinerNombreUsuario2.classList.remove('container-nombre-usuario')
+        conteinerNombreUsuario2.innerText = ` ${usuario}`;
 
         var permiso = false;
         var modulosAcceder = []
@@ -93,6 +101,7 @@ const MODULO = 4;
         })
 
         let menu = document.querySelector('#navigationMenu');
+        menu.innerHTML = '';
         let subMenus  = CrearSubMenu('Sistema','icon-copy');
 
         if (ListadoEmpresa)
@@ -314,7 +323,16 @@ $(document).ready(function () {
       "infoPostFix": "",
       "thousands": ",",
       "lengthMenu": "   <a href='index.html' class='btn btn-primary'> Agregar Empresa +</a>",
-      "loadingRecords": "Cargando...",
+      "loadingRecords": ` 
+                <tr  > <td class='lazy-loading-tabla' ></td>  <td class='lazy-loading-tabla' ></td> </tr> 
+                <tr  > <td class='lazy-loading-tabla-1' ></td> <td class='lazy-loading-tabla-1' ></td>  </tr> 
+                <tr  > <td class='lazy-loading-tabla-2' ></td> <td class='lazy-loading-tabla-2' ></td>  </tr> 
+                <tr  > <td class='lazy-loading-tabla-3' ></td> <td class='lazy-loading-tabla-3' ></td>  </tr> 
+                <tr  > <td class='lazy-loading-tabla-4' ></td> <td class='lazy-loading-tabla-4' ></td> </tr> 
+                <tr  > <td class='lazy-loading-tabla-5' ></td> <td class='lazy-loading-tabla-5' ></td>  </tr> 
+                <tr  > <td class='lazy-loading-tabla-6' > </td>  <td class='lazy-loading-tabla-6' ></td> </tr> 
+                
+                `,
       "processing": "Procesando...",
       "search": "",
       "searchPlaceholder": "Buscar por..",
@@ -467,7 +485,15 @@ $(document).ready(function () {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "",
+        loadingRecords: `
+        <tr  > <td class='lazy-loading-tabla' ></td>  <td class='lazy-loading-tabla' ></td> </tr> 
+        <tr  > <td class='lazy-loading-tabla-1' ></td> <td class='lazy-loading-tabla-1' ></td>  </tr> 
+        <tr  > <td class='lazy-loading-tabla-2' ></td> <td class='lazy-loading-tabla-2' ></td>  </tr> 
+        <tr  > <td class='lazy-loading-tabla-3' ></td> <td class='lazy-loading-tabla-3' ></td>  </tr> 
+        <tr  > <td class='lazy-loading-tabla-4' ></td> <td class='lazy-loading-tabla-4' ></td> </tr> 
+        <tr  > <td class='lazy-loading-tabla-5' ></td> <td class='lazy-loading-tabla-5' ></td>  </tr> 
+        <tr  > <td class='lazy-loading-tabla-6' > </td>  <td class='lazy-loading-tabla-6' ></td> </tr> 
+        `,
         processing: "Procesando...",
         search: "",
         zeroRecords: "Sin resultados encontrados",
@@ -509,10 +535,10 @@ $(document).ready(function () {
         infoPostFix: "",
         thousands: ",",
         lengthMenu: "",
-        loadingRecords: "",
         processing: "Procesando...",
         search: " ",
         zeroRecords: "Sin resultados encontrados",
+        loadingRecords: ``,
         paginate: {
           first: "Primero",
           last: "Ultimo",

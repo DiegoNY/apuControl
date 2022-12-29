@@ -114,18 +114,30 @@ var urlEscucharEmpresaRegistrar = false;
           }
         })
 
+       
+        /**
+         * Lazy loading
+         */
+         let conteinerNombreUsuario1 = document.getElementById('nombreUsuario');
+         conteinerNombreUsuario1.classList.remove('container-nombre-usuario');
+         conteinerNombreUsuario1.innerText = ` ${usuario}`;
+ 
+         let conteinerNombreUsuario2 = document.querySelector('#nombreUsuarioNav');
+         conteinerNombreUsuario2.classList.remove('container-nombre-usuario')
+        conteinerNombreUsuario2.innerText = ` ${usuario}`;
 
-
-        let nombreUsuario = document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
-        let nombreUsuario2 = document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
 
         let menu = document.querySelector('#navigationMenu');
+        menu.innerHTML = '';
+
         let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
         if (ListadoEmpresa)
           menu.appendChild(ListadoEmpresa);
         if (listadoContactos)
           menu.appendChild(listadoContactos);
+
+
         menu.appendChild(subMenus);
 
 

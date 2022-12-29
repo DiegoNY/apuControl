@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!-- Global stylesheets  for TABS-->
-        <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
             type="text/css"> -->
     <link href="../global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
     <script src="../global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
 
     <script src="../global_assets/js/demo_pages/datatables_advanced.js"></script>
-    
+
     <script src="../assets/js/app.js"></script>
     <script src="../global_assets/js/demo_pages/jqueryui_navigation.js"></script>
     <!-- /theme JS files -->
@@ -102,7 +102,7 @@
                     class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
                     data-toggle="dropdown">
                     <img src="../img/hombre-de-negocios.png" class="rounded-pill mr-lg-2" height="34" alt="">
-                    <span class="d-none d-lg-inline-block" id="nombreUsuario">Marlon</span>
+                    <span class="d-none d-lg-inline-block container-nombre-usuario" id="nombreUsuario"></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -134,10 +134,11 @@
                             </a>
 
                             <div class="media-body">
-                                <div class="font-weight-semibold" id="nombreUsuarioNav">Marlon</div>
+                                <div class="font-weight-semibold container-nombre-usuario " id="nombreUsuarioNav"></div>
                                 <div class="font-size-sm line-height-sm opacity-50">
-                                    Jefe Sistemas
+                                    Cargo
                                 </div>
+                               
                             </div>
 
                             <div class="ml-3 align-self-center">
@@ -163,8 +164,44 @@
 
                         <!-- Main -->
                         <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">Menu</div> <i class="icon-menu"
-                                title="Main"></i>
+                            
+                        <li class="nav-item conteiner-menu-item conteiner-menu-item-lazy" >
+
+                            <a href="vista-contactos.html" class="nav-link">
+                                <i class=""></i>
+                                <span> </span></a>
+                        </li>
+                        <li class="nav-item conteiner-menu-item conteiner-menu-item-lazy-1 " >
+
+                            <a href="vista-contactos.html" class="nav-link">
+                                <i class=""></i>
+                                <span> </span></a>
+                        </li>
+                        <li class="nav-item conteiner-menu-item conteiner-menu-item-lazy-2" >
+
+                            <a href="vista-contactos.html" class="nav-link">
+                                <i class=""></i>
+                                <span> </span></a>
+                        </li>
+                        <li class="nav-item conteiner-menu-item conteiner-menu-item-lazy-3" >
+
+                            <a href="vista-contactos.html" class="nav-link">
+                                <i class=""></i>
+                                <span> </span></a>
+                        </li>
+                        <li class="nav-item conteiner-menu-item conteiner-menu-item-lazy-4" >
+
+                            <a href="vista-contactos.html" class="nav-link">
+                                <i class=""></i>
+                                <span> </span></a>
+                        </li>
+                        <li class="nav-item conteiner-menu-item conteiner-menu-item-lazy-5" >
+
+                            <a href="vista-contactos.html" class="nav-link">
+                                <i class=""></i>
+                                <span> </span></a>
+                        </li>
+
                         </li>
 
                     </ul>
@@ -250,7 +287,7 @@
                                                     <tr>
                                                         <td>
                                                             <span>
-                                                                <i class="fi fi-rr-user"></i> 
+                                                                <i class="fi fi-rr-user"></i>
                                                             </span>
                                                             Ruc
                                                             <div class="row">
@@ -265,7 +302,7 @@
                                                         </td>
                                                         <td>
                                                             <span>
-                                                                <i class="fi fi-rr-users-alt"></i>                                                            
+                                                                <i class="fi fi-rr-users-alt"></i>
                                                             </span>
                                                             Grupo
                                                             <div>
@@ -306,7 +343,7 @@
                                                     <tr>
                                                         <td>
                                                             <span>
-                                                                <i class="fi fi-rr-bank"></i> 
+                                                                <i class="fi fi-rr-bank"></i>
                                                             </span>
                                                             Ubigeo
                                                         </td>
@@ -343,7 +380,7 @@
                                                     <tr>
                                                         <td>
                                                             <span>
-                                                                <i class="fi fi-rr-user"></i>                                                            
+                                                                <i class="fi fi-rr-user"></i>
                                                             </span>
                                                             Tipo Persona
                                                             <div class="">
@@ -433,17 +470,18 @@
 
                                                         <td>
                                                             <i class="fi fi-rr-id-badge"></i>
-                                                            Usuario 
+                                                            Usuario
                                                             <input type="text"
                                                                 class="form-control form-control-sm shadow-sm   rounded"
                                                                 name="usuarioClaveSol" id="usuarioClaveSol">
                                                         </td>
                                                         <td>
-                                                            <i class="fi fi-rr-key"></i>                   
-                                                            Contraseña 
+                                                            <i class="fi fi-rr-key"></i>
+                                                            Contraseña
                                                             <input type="text"
                                                                 class="form-control form-control-sm shadow-sm   rounded"
-                                                                name="contraseñaClaveSol" id="contraseñaClaveSol"> </td>
+                                                                name="contraseñaClaveSol" id="contraseñaClaveSol">
+                                                        </td>
 
                                                     </tr>
                                                     <tr>
@@ -945,7 +983,7 @@
                     </div>
                     <!-- /main charts -->
 
-                   
+
 
                 </div>
                 <!-- /content area -->

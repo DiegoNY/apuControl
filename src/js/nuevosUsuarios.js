@@ -37,8 +37,17 @@ var table;
 
 
 
-                document.getElementById('nombreUsuario').innerText = ` ${usuario}`;
-                document.getElementById('nombreUsuarioNav').innerText = ` ${usuario}`;
+                /**
+                 * Lazy loading
+                 */
+                
+                let conteinerNombreUsuario1 = document.getElementById('nombreUsuario');
+                conteinerNombreUsuario1.classList.remove('container-nombre-usuario');
+                conteinerNombreUsuario1.innerText = ` ${usuario}`;
+
+                let conteinerNombreUsuario2 = document.querySelector('#nombreUsuarioNav');
+                conteinerNombreUsuario2.classList.remove('container-nombre-usuario')
+                conteinerNombreUsuario2.innerText = ` ${usuario}`;
 
                 var permiso = false;
                 var modulosAcceder = [];
@@ -102,6 +111,7 @@ var table;
                 })
 
                 let menu = document.querySelector('#navigationMenu');
+                menu.innerHTML = '';
                 let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
                 if (ListadoEmpresa)
@@ -295,7 +305,7 @@ function RegistrarUsuario() {
                 '',
                 'success'
             );
-            
+
             /**
              * se recarga la tabla se cierra el modal 
              */
@@ -320,7 +330,7 @@ const Editar = () => {
             console.log(data);
 
             swal.fire('', `${data.Respuesta}`, 'success')
-            
+
             table.ajax.reload();
             ModalEditar.toggle();
 

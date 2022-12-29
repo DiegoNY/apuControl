@@ -1,53 +1,158 @@
 .inactive {
-    display: none;
+  display: none;
 }
 
 .opciones-tabla-empresa {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 
 }
 
 .opciones-tabla-empresa i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #btn_ruc {
 
-    background-color: #64728c;
+  background-color: #64728c;
 
-    color: whitesmoke;
+  color: whitesmoke;
 
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #imgVistaPrincipalEmpresa {
 
-    border-radius: 15px;
+  border-radius: 15px;
 
 
 }
 
 .campo-faltante {
 
-border: 1px solid rgb(251, 89, 89);
+  border: 1px solid rgb(251, 89, 89);
 
-border-radius: 6px;
+  border-radius: 6px;
 
-animation: border-pulse 3s infinite;
+  animation: border-pulse 3s infinite;
 }
 
 
 
 @keyframes border-pulse {
-    0% {
-      border-color: rgb(255, 96, 96);
-    }
-    50% {
-      border-color: transparent;
-    }
-    100% {
-      border-color: rgb(255, 96, 96);
-    }
+  0% {
+    border-color: rgb(255, 96, 96);
   }
+
+  50% {
+    border-color: transparent;
+  }
+
+  100% {
+    border-color: rgb(255, 96, 96);
+  }
+}
+
+/*
+ *Lazy skeleton 
+ */
+
+.container-nombre-usuario {
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.8s;
+  height: 8px;
+  width: 95px;
+
+}
+
+.conteiner-menu-item {
+  background-color: #9ca1ab9d;
+  height: 45px;
+
+}
+
+.lazy-loading-tabla {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.8s;
+}
+.lazy-loading-tabla-1 {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.7s;
+}
+.lazy-loading-tabla-2 {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.6s;
+}
+.lazy-loading-tabla-3 {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.5s;
+}
+.lazy-loading-tabla-4 {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.4s;
+}
+.lazy-loading-tabla-5 {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.3s;
+}
+.lazy-loading-tabla-6 {
+  height: 20px;
+  width: 100%;
+  background-color: #9ca1ab9d;
+  animation: loading-skeleton infinite 1.2s;
+}
+
+.conteiner-menu-item-lazy {
+  animation: loading-skeleton infinite 1.3s;
+
+}
+
+.conteiner-menu-item-lazy-1 {
+  animation: loading-skeleton infinite 1.4s;
+
+}
+
+.conteiner-menu-item-lazy-2 {
+  animation: loading-skeleton infinite 1.5s;
+
+}
+
+.conteiner-menu-item-lazy-3 {
+  animation: loading-skeleton infinite 1.6s;
+
+}
+
+.conteiner-menu-item-lazy-4 {
+  animation: loading-skeleton infinite 1.7s;
+
+}
+
+.conteiner-menu-item-lazy-5 {
+  animation: loading-skeleton infinite 1.8s;
+
+}
+
+@keyframes loading-skeleton {
+
+  0%,
+  100% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 0%;
+  }
+}
