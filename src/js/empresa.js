@@ -6,7 +6,9 @@ const urlParams = new URLSearchParams(valores);
 
 const MODULO = 4;
 
-
+/**
+ * Validacion de usuario
+ */
 (async () => {
 
   await fetch('../processes/pruebaSession.php')
@@ -30,12 +32,12 @@ const MODULO = 4;
         /**
          * Lazy loading
          */
-         let conteinerNombreUsuario1 = document.getElementById('nombreUsuario');
-         conteinerNombreUsuario1.classList.remove('container-nombre-usuario');
-         conteinerNombreUsuario1.innerText = ` ${usuario}`;
- 
-         let conteinerNombreUsuario2 = document.querySelector('#nombreUsuarioNav');
-         conteinerNombreUsuario2.classList.remove('container-nombre-usuario')
+        let conteinerNombreUsuario1 = document.getElementById('nombreUsuario');
+        conteinerNombreUsuario1.classList.remove('container-nombre-usuario');
+        conteinerNombreUsuario1.innerText = ` ${usuario}`;
+
+        let conteinerNombreUsuario2 = document.querySelector('#nombreUsuarioNav');
+        conteinerNombreUsuario2.classList.remove('container-nombre-usuario')
         conteinerNombreUsuario2.innerText = ` ${usuario}`;
 
         var permiso = false;
@@ -52,102 +54,101 @@ const MODULO = 4;
         if (!permiso) window.location.replace('../processes/validator/CargaModulosPermitidos.php');
 
 
-        let MantenimientoEmpresa = false ;
-        let listadoContactos  = false
-        let sistema  = false;
-        let ListadoEmpresa  = false
-        let registros  = false
-        
+        let MantenimientoEmpresa = false;
+        let listadoContactos = false
+        let sistema = false;
+        let ListadoEmpresa = false
+        let registros = false
+
         modulosAcceder.forEach(modulos => {
 
           switch (true) {
 
             case modulos == 1:
-                btnR.setAttribute('style','');
-                MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa');
+              btnR.setAttribute('style', '');
+              MantenimientoEmpresa = CrearMenuItem('index.html', 'registrarEmpresa', 'fi fi-rr-building', 'Mantenimiento Empresa');
 
-                break;
+              break;
 
             case modulos == 2:
 
-                listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
+              listadoContactos = CrearMenuItem('vista-contactos.html', 'detalleContacto', 'bi bi-person-rolodex', 'Listado contactos');
 
 
-                break;
+              break;
 
             case modulos == 3:
 
-                sistema = CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Mantenimiento de Sistema ')
+              sistema = CrearMenuItem('vista-registro-sistemas.html', 'registrarInformacionSistema', 'bi bi-archive', ' Mantenimiento de Sistema ')
 
 
-                break;
+              break;
 
             case modulos == 4:
 
-                ListadoEmpresa = CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listado de Empresa',true);
-                break;
+              ListadoEmpresa = CrearMenuItem('vista-empresa.html', 'detalleContacto', 'icon-home4', 'Listado de Empresa', true);
+              break;
 
             case modulos == 5:
 
-                registros = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
-                break;
+              registros = CrearMenuItem('registro-usuarios.html', 'registroUsuario', 'bi bi-person-plus', 'Registrar usuario');
+              break;
 
 
             default:
-                console.log("default");
-                break;
+              console.log("default");
+              break;
 
-        }
+          }
         })
 
         let menu = document.querySelector('#navigationMenu');
         menu.innerHTML = '';
-        let subMenus  = CrearSubMenu('Sistema','icon-copy');
+        let subMenus = CrearSubMenu('Sistema', 'icon-copy');
 
         if (ListadoEmpresa)
           menu.appendChild(ListadoEmpresa);
         if (listadoContactos)
           menu.appendChild(listadoContactos);
         menu.appendChild(subMenus);
-       
+
 
         /**
          * nav-item-open / display block cuando se de click 
          */
-        
+
         let subMenu = document.querySelector('#subMenu');
-        if(MantenimientoEmpresa)
-        subMenu.appendChild(MantenimientoEmpresa);
-        if(sistema)
-        subMenu.appendChild(sistema);
-        if(registros)
-        subMenu.appendChild(registros);
+        if (MantenimientoEmpresa)
+          subMenu.appendChild(MantenimientoEmpresa);
+        if (sistema)
+          subMenu.appendChild(sistema);
+        if (registros)
+          subMenu.appendChild(registros);
 
 
       }
     });
 
-    document.querySelector('#subMenuss').addEventListener('click',()=>{
-      let subMenu = document.querySelector('#subMenuss');
-      let subMenuSubMenu = document.querySelector('#subMenu');
+  document.querySelector('#subMenuss').addEventListener('click', () => {
+    let subMenu = document.querySelector('#subMenuss');
+    let subMenuSubMenu = document.querySelector('#subMenu');
 
-      let estaAbierto = document.querySelector('#subMenuss').classList.contains('nav-item-open');
-      console.log(subMenu);
-      
-      if(!estaAbierto){
-          subMenu.classList.add('nav-item-open');
-          subMenuSubMenu.setAttribute('style','display:block;');
+    let estaAbierto = document.querySelector('#subMenuss').classList.contains('nav-item-open');
+    console.log(subMenu);
 
-      }else{
-          subMenu.classList.remove('nav-item-open');
-          subMenuSubMenu.setAttribute('style','display:none;');
+    if (!estaAbierto) {
+      subMenu.classList.add('nav-item-open');
+      subMenuSubMenu.setAttribute('style', 'display:block;');
 
-      }
+    } else {
+      subMenu.classList.remove('nav-item-open');
+      subMenuSubMenu.setAttribute('style', 'display:none;');
 
-   })
+    }
+
+  })
 
 })()
-
 
 
 function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
@@ -179,27 +180,27 @@ function CrearMenuItem(links, idNavigation, icono, texto, activo = false) {
 
 }
 
-function CrearSubMenu(nombreSubMenu,iconoSubMenu){
+function CrearSubMenu(nombreSubMenu, iconoSubMenu) {
 
 
   let contenedor = document.createElement('li');
-  contenedor.setAttribute('class','nav-item nav-item-submenu')
-  contenedor.setAttribute('id','subMenuss');
+  contenedor.setAttribute('class', 'nav-item nav-item-submenu')
+  contenedor.setAttribute('id', 'subMenuss');
 
   let nombre = document.createElement('a');
-  nombre.setAttribute('class','nav-link');
+  nombre.setAttribute('class', 'nav-link');
   let icono = document.createElement('i');
-  icono.setAttribute('class',iconoSubMenu );
+  icono.setAttribute('class', iconoSubMenu);
   let span = document.createElement('span');
   span.innerText = nombreSubMenu
   nombre.appendChild(icono);
   nombre.appendChild(span);
 
   let ul = document.createElement('ul');
-  ul.setAttribute('class','nav nav-group-sub')
-  ul.setAttribute('style','display:none;')
-  ul.setAttribute('data-submenu-title','Layouts')
-  ul.setAttribute('id','subMenu');
+  ul.setAttribute('class', 'nav nav-group-sub')
+  ul.setAttribute('style', 'display:none;')
+  ul.setAttribute('data-submenu-title', 'Layouts')
+  ul.setAttribute('id', 'subMenu');
 
   contenedor.appendChild(nombre);
   contenedor.appendChild(ul);
